@@ -110,6 +110,10 @@ const TeamCard: React.FC<TeamCardProps> = React.memo(({ member, index, variant =
         <p className="text-purple-500 font-body mb-4 text-sm">{member.experience}</p>
       )}
       
+      {member.education && (
+        <p className="text-purple-600 font-body mb-4 text-sm italic">{member.education}</p>
+      )}
+      
       {member.bio && (
         <p className="text-purple-700 leading-relaxed font-body mb-6">{member.bio}</p>
       )}

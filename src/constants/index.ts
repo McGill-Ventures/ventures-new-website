@@ -16,26 +16,28 @@ export const TEAM_TYPES = {
 
 export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
   {
-    name: "Sarah Chen",
-    role: "Managing Partner",
-    experience: "Former Goldman Sachs VP, 15+ years in VC",
-    bio: "Sarah leads McGill Ventures with over 15 years of experience in venture capital and investment banking. She has a proven track record of identifying and nurturing high-growth technology companies.",
-    education: "MBA Harvard Business School, BS MIT"
+    name: "Ethan Wu",
+    image: "/headshots/exec/ewu.jpeg",
+    role: "Co-President",
+    experience: "Prev @ CIBC Capital Markets, CDPQ",
+    bio: "Ethan leads the overall strategic direction of McGill Ventures, overseeing club operations, partnerships, and program development.",
+    education: "B.Comm Honours in Investment Management, McGill University"
   },
   {
-    name: "Michael Rodriguez",
-    role: "General Partner",
-    experience: "Ex-Google Product Lead, Deep Tech Expert",
-    bio: "Michael brings extensive product development and deep technology expertise to our portfolio companies. He previously led product teams at Google and has founded two successful startups.",
-    education: "MS Stanford Computer Science, BS UC Berkeley"
+    name: "Charlyne Luu",
+    image: "/headshots/exec/clu.jpeg",
+    role: "Co-President",
+    experience: "Prev @ Angel Host",
+    bio: "Charlyne co-leads McGill Ventures, focusing on community engagement, event management, and fostering relationships within the startup ecosystem.",
+    education: "BCom Finance, McGill University"
   },
   {
-    name: "Emily Watson",
-    role: "Principal",
-    experience: "McKinsey Consultant, Growth Strategy Specialist",
-    bio: "Emily specializes in growth strategy and operational excellence. Her consulting background at McKinsey & Company provides valuable insights for scaling portfolio companies.",
-    education: "MBA Wharton, BA Yale Economics"
-  }
+    name: "Sarah Mitchell",
+    role: "VP of Operations",
+    experience: "Prev @ Goldman Sachs, BCG",
+    bio: "Sarah oversees day-to-day operations and coordinates between different teams to ensure smooth execution of club initiatives.",
+    education: "MBA Wharton, BS McGill Economics"
+  },
 ];
 
 export const ANALYST_TEAM: AnalystTeamMember[] = [
@@ -65,13 +67,22 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
   }
 ];
 
-import jHum from "../../public/headshots/development/jaden_hum_headshot.jpg";
-import jHeng from "../../public/headshots/development/julien_heng_headshot.jpg";
+export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
+  name: "Wasif Somji",
+  role: "Head of Engineering",
+  experience: "Prev @ Amazon, Lightspeed",
+  education: "BEng Computer Engineering, McGill University",
+  skills: ["System Architecture", "Team Leadership", "Software Development", "Product Management", "Scalability"],
+  bio: "Wasif oversees all technical initiatives and leads our engineering strategy for internal and external software development practices.",
+  image: "/headshots/development/wsomji.jpeg"
+};
 
 export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
   {
     name: "Julien Heng",
     image: "/headshots/development/julien_heng_headshot.jpg",
+    education: "BEng Software Engineering, McGill University",
+    experience: "Prev @ Opella",
     role: "Senior Software Developer",
     skills: ["Next.js", "TypeScript", "Tailwind CSS"],
     bio: ""
@@ -79,6 +90,8 @@ export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
   {
     name: "Jaden Hum",
     image: "/headshots/development/jaden_hum_headshot.jpg",
+    education: "BSc Software Engineering, McGill University",
+    experience: "Prev @ UKG, Amelia",
     role: "Senior Frontend Developer",
     skills: ["Next.js", "Typescript","Tailwind CSS"],
     bio: ""
@@ -86,20 +99,13 @@ export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
   {
     name: "Noah Chen",
     image: "/headshots/development/noah_chen_headshot.jpeg",
+    education: "BA Computer Science + Management, McGill University",
+    experience: "Prev @ Industrial Securities, G-bits",
     role: "Intermediate Developer",
     skills: ["React.js", "TypeScript", "SCSS"],
     bio: ""
   }
 ];
-
-export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
-  name: "Wasif Somji",
-  role: "Head of Engineering",
-  experience: "Prev @ Amazon, Lightspeed",
-  skills: ["System Architecture", "Team Leadership", "Software Development", "Product Management", "Scalability"],
-  bio: "Wasif oversees all technical initiatives and leads our engineering strategy for internal and external software development practices.",
-  image: "/headshots/development/wsomji.jpeg"
-};
 
 export const ANIMATION_CLASSES = {
   FADE_IN_UP: 'animate-fade-in-up',
