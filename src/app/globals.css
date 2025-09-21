@@ -36,7 +36,6 @@ body {
   line-height: 1.6;
 }
 
-/* Modern animations and effects */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -153,12 +152,10 @@ body {
   animation: jet-takeoff 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-/* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom gradient backgrounds */
 .bg-gradient-radial {
   background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.12) 0%, transparent 70%);
 }
@@ -175,7 +172,6 @@ html {
     linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(250, 245, 255, 0.8) 100%);
 }
 
-/* Enhanced hover effects */
 .hover-lift {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -197,14 +193,12 @@ html {
   transform: scale(1.05);
 }
 
-/* Glass morphism effect */
 .glass {
   backdrop-filter: blur(16px) saturate(180%);
   background-color: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
-/* Text effects */
 .text-gradient {
   background: linear-gradient(135deg, #8b5cf6, #a855f7, #9333ea);
   background-clip: text;
@@ -229,7 +223,6 @@ html {
   animation: gradient-shift 3s ease-in-out infinite;
 }
 
-/* Text reveal animation */
 .text-reveal {
   background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
   background-size: 200% 100%;
@@ -247,7 +240,6 @@ html {
   }
 }
 
-/* Enhanced cursor styles */
 button,
 .cursor-pointer,
 a[href],

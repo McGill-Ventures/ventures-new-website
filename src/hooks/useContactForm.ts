@@ -63,7 +63,6 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
     const { id, value } = e.target;
     setFormData(prev => ({ ...prev, [id]: value }));
     
-    // Clear error for this field when user starts typing
     if (errors[id as keyof ContactFormData]) {
       setErrors(prev => ({ ...prev, [id]: undefined }));
     }

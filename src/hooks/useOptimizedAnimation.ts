@@ -24,14 +24,12 @@ export function useOptimizedAnimation(
   }), [index, baseDelay, staggerDelay, className]);
 }
 
-// Common animation presets
 export const useStaggeredFadeIn = (index: number, baseDelay = 0) => 
   useOptimizedAnimation(index, { baseDelay, staggerDelay: 0.1, className: 'animate-fade-in-up' });
 
 export const useStaggeredSlideIn = (index: number, baseDelay = 0) => 
   useOptimizedAnimation(index, { baseDelay, staggerDelay: 0.15, className: 'animate-slide-in-right' });
 
-// Memoized style generators for better performance
 export const getOptimizedStyles = {
   cardGrid: (columns: number) => ({
     display: 'grid',
@@ -47,7 +45,6 @@ export const getOptimizedStyles = {
   }
 };
 
-// Performance-optimized component wrapper
 export function withOptimizedAnimation<T extends object>(
   Component: React.ComponentType<T>
 ) {

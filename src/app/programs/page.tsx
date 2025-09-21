@@ -8,7 +8,6 @@ export default function Programs() {
     <div className="min-h-screen bg-white">
       <Navigation currentPage="/programs" />
 
-      {/* Hero Section */}
       <section className="px-6 py-20 md:px-12 lg:px-24 relative bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
@@ -23,7 +22,6 @@ export default function Programs() {
         </div>
       </section>
 
-      {/* Main Programs */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-mesh">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
@@ -76,7 +74,6 @@ export default function Programs() {
         </div>
       </section>
 
-      {/* Educational Initiatives */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-white">
         <div className="max-w-6xl mx-auto text-center">
           <div className="animate-fade-in-up">
@@ -102,7 +99,6 @@ export default function Programs() {
         </div>
       </section>
 
-      {/* Application Process */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-white">
         <div className="max-w-5xl mx-auto text-center">
           <div className="animate-fade-in-up">

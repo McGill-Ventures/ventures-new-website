@@ -6,7 +6,6 @@ export default function Sponsors() {
     <div className="min-h-screen bg-white">
       <Navigation currentPage="/sponsors" />
 
-      {/* Hero Section */}
       <section className="px-6 py-20 md:px-12 lg:px-24 relative bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
@@ -21,10 +20,8 @@ export default function Sponsors() {
         </div>
       </section>
 
-      {/* Sponsor Tiers */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/30 to-purple-100/20">
         <div className="max-w-7xl mx-auto">
-          {/* Platinum Sponsors */}
           <div className="mb-20">
             <div className="text-center mb-12 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-4">Platinum Partners</h2>
@@ -69,7 +66,6 @@ export default function Sponsors() {
             </div>
           </div>
 
-          {/* Gold Sponsors */}
           <div className="mb-20">
             <div className="text-center mb-12 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-4">Gold Partners</h2>
@@ -108,7 +104,6 @@ export default function Sponsors() {
             </div>
           </div>
 
-          {/* Silver Sponsors */}
           <div>
             <div className="text-center mb-12 animate-fade-in-up">
               <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-4">Silver Partners</h2>
@@ -135,7 +130,6 @@ export default function Sponsors() {
         </div>
       </section>
 
-      {/* Partnership Benefits */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
@@ -176,7 +170,6 @@ export default function Sponsors() {
         </div>
       </section>
 
-      {/* Become a Sponsor CTA */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-600/20 to-transparent"></div>

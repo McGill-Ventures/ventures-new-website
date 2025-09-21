@@ -135,7 +135,6 @@ export const COLORS = {
   TRANSPARENT: 'transparent',
 } as const;
 
-// Sponsor data for better performance and consistency
 export const SPONSOR_DATA = {
   platinum: [
     {
@@ -185,7 +184,6 @@ export const SPONSOR_DATA = {
   ]
 } as const;
 
-// Program data
 export const PROGRAM_DATA = [
   {
     title: "Analyst Program",
@@ -215,7 +213,6 @@ export const PROGRAM_DATA = [
   }
 ] as const;
 
-// Educational initiatives
 export const EDUCATIONAL_INITIATIVES = [
   {
     title: "Guest Speaker Series",
@@ -234,7 +231,6 @@ export const EDUCATIONAL_INITIATIVES = [
   }
 ] as const;
 
-// Partnership benefits
 export const PARTNERSHIP_BENEFITS = [
   {
     icon: "users",
@@ -253,7 +249,6 @@ export const PARTNERSHIP_BENEFITS = [
   }
 ] as const;
 
-// Application process steps
 export const APPLICATION_STEPS = [
   {
     step: "01",
@@ -271,8 +266,6 @@ export const APPLICATION_STEPS = [
     description: "Join our community and begin your journey in venture capital and startups"
   }
 ] as const;
-
-// Statistics for home page
 export const HOME_STATS = [
   { value: "2K+", label: "LinkedIn Followers" },
   { value: "1.7K+", label: "Instagram Followers" },

@@ -31,12 +31,10 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Background Elements */}
         <div className="absolute top-20 right-10 w-32 h-32 bg-purple-200 rounded-full opacity-20 animate-float"></div>
         <div className="absolute bottom-20 left-10 w-24 h-24 bg-purple-300 rounded-full opacity-30 animate-float" style={{animationDelay: '1s'}}></div>
       </section>
 
-      {/* Stats Section */}
       <section className="px-6 py-24 md:px-12 lg:px-24 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12 text-center">
