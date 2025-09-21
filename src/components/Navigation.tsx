@@ -2,35 +2,32 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-
-interface NavigationProps {
-  currentPage?: string;
-}
+import { useState, useCallback } from "react";
+import { NavigationProps } from "@/types";
+import { NAVIGATION_ITEMS, ANIMATION_CLASSES } from "@/constants";
+import { cn, getActiveLinkClasses } from "@/lib/utils";
 
 export default function Navigation({ currentPage }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navItems = [
-    { href: "/about", label: "About" },
-    { href: "/programs", label: "Programs" },
-    { href: "/sponsors", label: "Sponsors" },
-    { href: "/team", label: "Team" },
-    { href: "/contact", label: "Contact" },
-  ];
+  const toggleMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(prev => !prev);
+  }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
+  const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
-  };
+  }, []);
+
+  const navLinkClasses = "transition-all duration-300 relative group font-heading text-lg font-semibold cursor-pointer px-4 py-2 rounded-lg";
+  const activeClasses = "text-white bg-purple-800/50";
+  const inactiveClasses = "text-purple-100 hover:text-white hover:bg-purple-800/30";
+
+  const mobileNavLinkClasses = "block px-4 py-3 rounded-lg transition-all duration-200 font-heading text-lg font-semibold cursor-pointer";
 
   return (
     <nav className="flex items-center justify-between px-6 py-8 md:px-12 lg:px-24 relative z-50 bg-purple-900 border-b border-purple-950/50">
-      <div className="animate-fade-in-left">
-        <Link href="/" className="flex items-center hover-scale cursor-pointer">
+      <div className={ANIMATION_CLASSES.FADE_IN_LEFT}>
+        <Link href="/" className={cn("flex items-center cursor-pointer", ANIMATION_CLASSES.HOVER_SCALE)}>
           <Image
             src="/logos/logo_white.png"
             alt="McGill Ventures Logo"
@@ -45,34 +42,39 @@ export default function Navigation({ currentPage }: NavigationProps) {
         </Link>
       </div>
       
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex space-x-10 animate-fade-in-up">
-        {navItems.map((item) => (
+      <div className={cn("hidden md:flex space-x-10", ANIMATION_CLASSES.FADE_IN_UP)}>
+        {NAVIGATION_ITEMS.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className={`transition-all duration-300 relative group font-heading text-lg font-semibold cursor-pointer px-4 py-2 rounded-lg ${
-              currentPage === item.href 
-                ? "text-white bg-purple-800/50" 
-                : "text-purple-100 hover:text-white hover:bg-purple-800/30"
-            }`}
+            className={cn(
+              navLinkClasses,
+              getActiveLinkClasses(currentPage, item.href, activeClasses, inactiveClasses)
+            )}
           >
             {item.label}
-            <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-300 to-purple-200 transition-all duration-300 rounded-full ${
+            <span className={cn(
+              "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-300 to-purple-200 transition-all duration-300 rounded-full",
               currentPage === item.href ? "w-full" : "w-0 group-hover:w-full"
-            }`}></span>
+            )} />
           </Link>
         ))}
       </div>
 
-      {/* Mobile Menu Button */}
       <button 
         onClick={toggleMobileMenu}
-        className="md:hidden p-3 rounded-xl hover:bg-purple-800 transition-colors animate-slide-in-right cursor-pointer"
+        className={cn(
+          "md:hidden p-3 rounded-xl hover:bg-purple-800 transition-colors cursor-pointer",
+          ANIMATION_CLASSES.SLIDE_IN_RIGHT
+        )}
         aria-label="Toggle mobile menu"
+        aria-expanded={isMobileMenuOpen}
       >
         <svg 
-          className={`w-6 h-6 text-white transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`} 
+          className={cn(
+            "w-6 h-6 text-white transition-transform duration-300",
+            isMobileMenuOpen && "rotate-90"
+          )}
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
@@ -85,21 +87,20 @@ export default function Navigation({ currentPage }: NavigationProps) {
         </svg>
       </button>
 
-      {/* Mobile Menu */}
-      <div className={`absolute top-full left-0 right-0 bg-purple-900 border-b border-purple-950/50 md:hidden transition-all duration-300 ease-in-out ${
-        isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-      }`}>
+      <div className={cn(
+        "absolute top-full left-0 right-0 bg-purple-900 border-b border-purple-950/50 md:hidden transition-all duration-300 ease-in-out",
+        isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+      )}>
         <div className="px-6 py-4 space-y-2">
-          {navItems.map((item) => (
+          {NAVIGATION_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={closeMobileMenu}
-              className={`block px-4 py-3 rounded-lg transition-all duration-200 font-heading text-lg font-semibold cursor-pointer ${
-                currentPage === item.href 
-                  ? "text-white bg-purple-800/50" 
-                  : "text-purple-100 hover:text-white hover:bg-purple-800/30"
-              }`}
+              className={cn(
+                mobileNavLinkClasses,
+                getActiveLinkClasses(currentPage, item.href, activeClasses, inactiveClasses)
+              )}
             >
               {item.label}
             </Link>

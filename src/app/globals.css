@@ -18,7 +18,6 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
 }
 
-/* Typography utilities */
 .font-heading {
   font-family: var(--font-space-grotesk), var(--font-manrope), sans-serif;
   font-weight: 600;
@@ -98,19 +97,26 @@ body {
   }
 }
   
-@keyframes fly-across {
+@keyframes jet-takeoff {
   0% {
-    transform: translateX(-100px) translateY(0px) rotate(12deg);
+    transform: translateX(-200px) translateY(50px) rotate(15deg) scale(0.8);
     opacity: 0;
   }
-  10% {
+  15% {
     opacity: 1;
+    transform: translateX(-100px) translateY(20px) rotate(15deg) scale(0.9);
   }
-  90% {
-    opacity: 1;
+  30% {
+    transform: translateX(100px) translateY(-20px) rotate(20deg) scale(1);
+  }
+  60% {
+    transform: translateX(300px) translateY(-80px) rotate(25deg) scale(1.1);
+  }
+  80% {
+    transform: translateX(500px) translateY(-120px) rotate(30deg) scale(1.2);
   }
   100% {
-    transform: translateX(calc(100vw + 100px)) translateY(-50px) rotate(12deg);
+    transform: translateX(calc(100vw + 300px)) translateY(-200px) rotate(35deg) scale(1.5);
     opacity: 0;
   }
 }
@@ -143,8 +149,8 @@ body {
   animation: gradient-shift 6s ease infinite;
 }
 
-.animate-fly-across {
-  animation: fly-across 3s ease-in-out forwards;
+.animate-jet-takeoff {
+  animation: jet-takeoff 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 /* Smooth scroll behavior */

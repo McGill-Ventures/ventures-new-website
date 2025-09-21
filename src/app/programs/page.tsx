@@ -1,6 +1,5 @@
-import Image from "next/image";
-import Navigation from "../../components/Navigation";
-import Footer from "../../components/Footer";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
 export default function Programs() {
   return (
@@ -84,22 +83,9 @@ export default function Programs() {
                   "Mentorship from experienced VCs",
                   "Networking events with startup founders"
                 ],
-                duration: "8 weeks",
+                duration: "16 weeks",
                 commitment: "4-6 hours/week",
                 status: "Applications re-open Winter 2026"
-              },
-              {
-                title: "Startup Accelerator",
-                description: "Support early-stage student startups with funding, mentorship, and resources to bring innovative ideas to market.",
-                features: [
-                  "Seed funding up to $10,000",
-                  "1:1 mentorship with successful entrepreneurs",
-                  "Access to co-working space and resources",
-                  "Demo day presentation to investors"
-                ],
-                duration: "12 weeks",
-                commitment: "10-15 hours/week",
-                status: "Coming Spring 2026"
               }
             ].map((program, index) => (
               <div key={index} className="glass rounded-3xl p-10 hover-lift animate-fade-in-up opacity-75" style={{animationDelay: `${index * 0.2}s`}}>

@@ -1,14 +1,13 @@
 import Image from "next/image";
-import Navigation from "../../components/Navigation";
-import Footer from "../../components/Footer";
-import mainImage from '../../../public/events/homeLanding.jpg';
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import mainImage from "../../../public/events/homeLanding.jpg";
 
 export default function About() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation currentPage="/about" />
 
-      {/* Hero Section with Image Space */}
       <section className="px-6 py-20 md:px-12 lg:px-24 relative bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
@@ -27,7 +26,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-16">
@@ -64,13 +62,12 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission Statement */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-white">
         <div className="max-w-5xl mx-auto text-center">
           <div className="animate-fade-in-up">
             <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-12">Our Mission</h2>
             <p className="text-2xl md:text-3xl text-purple-800 leading-relaxed font-body mb-16">
-              To identify, invest in, and nurture the most promising entrepreneurs and technologies that will shape the future of our world. We believe in the power of innovation to solve humanity's greatest challenges.
+              To identify, invest in, and nurture the most promising entrepreneurs and technologies that will shape the future of our world. We believe in the power of innovation to solve humanity&apos;s greatest challenges.
             </p>
           </div>
         </div>

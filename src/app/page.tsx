@@ -1,14 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white overflow-hidden">
       <Navigation />
 
-      {/* Hero Section */}
       <section className="px-6 py-24 md:px-12 lg:px-24 relative min-h-[90vh] flex items-center bg-gradient-hero">
         <div className="absolute inset-0 bg-gradient-mesh opacity-60"></div>
         <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-purple-500/8 rounded-full blur-3xl animate-float"></div>
@@ -46,7 +44,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="px-6 py-32 md:px-12 lg:px-24 relative overflow-hidden bg-white">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-600/8 to-purple-700/8"></div>
         <div className="max-w-7xl mx-auto relative z-10">
@@ -68,7 +65,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-600/20 to-transparent"></div>
