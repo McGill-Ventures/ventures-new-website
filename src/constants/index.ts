@@ -259,7 +259,7 @@ export const APPLICATION_STEPS = [
   {
     step: "01",
     title: "Submit Application",
-    description: "Complete our online application form with your background and interests"
+    description: "Complete our online application form with your background, interests, and goals"
   },
   {
     step: "02",
