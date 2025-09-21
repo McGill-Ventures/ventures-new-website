@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Icon } from "@/components/ui";
+import { Icon, IconName } from "@/components/ui";
 import { PROGRAM_DATA, EDUCATIONAL_INITIATIVES, APPLICATION_STEPS } from "@/constants";
 
 export default function Programs() {
@@ -8,6 +8,7 @@ export default function Programs() {
     <div className="min-h-screen bg-white">
       <Navigation currentPage="/programs" />
 
+      {/* Hero Section */}
       <section className="px-6 py-20 md:px-12 lg:px-24 relative bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
@@ -22,6 +23,7 @@ export default function Programs() {
         </div>
       </section>
 
+      {/* Main Programs */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-mesh">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
@@ -88,7 +90,7 @@ export default function Programs() {
             {EDUCATIONAL_INITIATIVES.map((initiative, index) => (
               <div key={index} className="text-center glass rounded-3xl p-8 hover-lift animate-fade-in-up" style={{animationDelay: `${index * 0.1}s`}}>
                 <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Icon name={initiative.icon as any} className="text-white" size="lg" />
+                  <Icon name={initiative.icon as IconName} className="text-white" size="lg" />
                 </div>
                 <h3 className="text-2xl font-display text-purple-950 mb-4">{initiative.title}</h3>
                 <p className="text-purple-800 leading-relaxed font-body">
@@ -106,7 +108,7 @@ export default function Programs() {
           <div className="animate-fade-in-up">
             <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-8">How to Apply</h2>
             <p className="text-xl text-purple-800 leading-relaxed font-body mb-16">
-              Join McGill Ventures and be part of Montreal's most dynamic student entrepreneurship community
+              Join McGill Ventures and be part of Montreal&apos;s most dynamic student entrepreneurship community
             </p>
           </div>
           

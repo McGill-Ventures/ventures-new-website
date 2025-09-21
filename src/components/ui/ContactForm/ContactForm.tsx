@@ -19,24 +19,20 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     isSubmitting,
     submitStatus,
     handleInputChange,
-    handleSubmit,
-    resetForm
+    handleSubmit
   } = useContactForm({ 
     onSuccess: onSubmitSuccess, 
     onError: onSubmitError 
   });
 
   const isSubmitted = submitStatus === 'success';
-  
-  const clearError = (fieldName: string) => {
-    // This functionality is already handled in handleInputChange
-  };
+  const hasError = submitStatus === 'error';
 
   return (
     <div className="bg-white border border-purple-200 rounded-3xl p-8 shadow-xl">
       <h2 className="text-4xl font-display text-purple-950 mb-8">Send us a message</h2>
       <p className="text-purple-700 mb-8 font-body text-lg">
-        Have a question about our programs, want to partner with us, or just want to say hello? We'd love to hear from you.
+        Have a question about our programs, want to partner with us, or just want to say hello? We&apos;d love to hear from you.
       </p>
       
       {isSubmitted ? (
@@ -46,7 +42,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           </div>
           <h3 className="text-2xl font-display text-purple-950 mb-4">Message Sent!</h3>
           <p className="text-purple-700 font-body">
-            Thank you for reaching out. We'll get back to you within 24 hours.
+            Thank you for reaching out. We&apos;ll get back to you within 24 hours.
           </p>
         </div>
       ) : (
@@ -62,7 +58,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                onFocus={() => clearError('name')}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault();
@@ -95,7 +90,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                onFocus={() => clearError('email')}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     e.preventDefault();
@@ -129,7 +123,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               name="subject"
               value={formData.subject}
               onChange={handleInputChange}
-              onFocus={() => clearError('subject')}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   e.preventDefault();
@@ -142,7 +135,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   ? 'border-red-300 bg-red-50' 
                   : 'border-gray-300 bg-gray-50 hover:border-purple-400 focus:border-purple-500 focus:bg-white'
               }`}
-              placeholder="What's this about?"
+              placeholder="What&apos;s this about?"
               disabled={isSubmitting}
               tabIndex={3}
             />
@@ -161,7 +154,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               rows={6}
               value={formData.message}
               onChange={handleInputChange}
-              onFocus={() => clearError('message')}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
@@ -195,11 +187,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 if (!isSubmitting) {
-                  handleSubmit(e as any);
+                  handleSubmit(e as React.FormEvent);
                 }
               }
             }}
-            className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-8 py-4 rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all duration-300 font-heading text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-purple-600 disabled:hover:to-purple-700 disabled:transform-none flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:ring-offset-2"
+            className={`w-full px-8 py-4 rounded-xl transition-all duration-300 font-heading text-lg font-semibold shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:ring-offset-2 flex items-center justify-center ${
+              'bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800 hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-purple-600 disabled:hover:to-purple-700 disabled:transform-none'
+            }`}
             tabIndex={5}
           >
             {isSubmitting ? (
@@ -212,9 +206,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             )}
           </button>
 
-          {(errors as any).general && (
+          {hasError && (
             <div className="bg-red-50 border border-red-200 rounded-xl p-4">
-              <p className="text-red-700 font-body">{(errors as any).general}</p>
+              <p className="text-red-700 font-body">Failed to send message. Please try again.</p>
             </div>
           )}
         </form>

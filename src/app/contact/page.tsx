@@ -38,7 +38,7 @@ export default function Contact() {
               <div className="ml-3">
                 <h3 className="text-sm font-heading font-semibold">Message Sent Successfully!</h3>
                 <p className="text-sm text-green-100 mt-1 font-body">
-                  We'll get back to you within 24 hours.
+                  We&apos;ll get back to you within 24 hours.
                 </p>
               </div>
               <button 
