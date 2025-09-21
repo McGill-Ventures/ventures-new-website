@@ -30,14 +30,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
-        <div className="absolute top-20 right-10 w-32 h-32 bg-purple-200 rounded-full opacity-20 animate-float"></div>
-        <div className="absolute bottom-20 left-10 w-24 h-24 bg-purple-300 rounded-full opacity-30 animate-float" style={{animationDelay: '1s'}}></div>
       </section>
 
       <section className="px-6 py-24 md:px-12 lg:px-24 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-12 text-center">
+          <div className="grid md:grid-cols-4 gap-12 text-center">
             {HOME_STATS.map((stat, index) => (
               <div key={index} className="animate-fade-in-up group" style={{animationDelay: `${index * 0.15}s`}}>
                 <div className="text-6xl md:text-7xl lg:text-8xl font-display text-gradient mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -50,45 +47,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mission Section */}
+      {/* Why Choose McGill Ventures Section */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="animate-fade-in-left">
-              <h2 className="text-5xl md:text-6xl font-display mb-8">Our Mission</h2>
+              <h2 className="text-5xl md:text-6xl font-display mb-8">Why Choose McGill Ventures</h2>
               <p className="text-xl leading-relaxed font-body mb-8 text-purple-100">
-                We&apos;re dedicated to cultivating the next generation of venture capitalists and entrepreneurs. Through practical experience, industry connections, and comprehensive education, we bridge the gap between academic learning and real-world venture capital.
+                Join Montreal&apos;s most dynamic student venture capital community. Gain real-world experience, build lasting connections, and develop the skills to shape the future of entrepreneurship.
               </p>
               <div className="grid sm:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-2xl font-heading font-semibold mb-4 text-purple-200">Education</h3>
-                  <p className="text-purple-300 font-body">Comprehensive programs covering VC fundamentals, deal analysis, and startup ecosystem dynamics.</p>
+                  <h3 className="text-2xl font-heading font-semibold mb-4 text-purple-200">Real Experience</h3>
+                  <p className="text-purple-300 font-body">Work directly with startups, conduct due diligence, and participate in investment decisions.</p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-heading font-semibold mb-4 text-purple-200">Experience</h3>
-                  <p className="text-purple-300 font-body">Hands-on opportunities to work with startups, conduct due diligence, and build industry connections.</p>
+                  <h3 className="text-2xl font-heading font-semibold mb-4 text-purple-200">Expert Network</h3>
+                  <p className="text-purple-300 font-body">Connect with industry professionals, successful entrepreneurs, and leading investors.</p>
                 </div>
               </div>
             </div>
             
             <div className="animate-fade-in-up">
-              <div className="relative">
+              <div className="relative h-144 w-96 mx-auto">
                 <Image
-                  src="/events/homeLanding.jpg"
-                  alt="McGill Ventures Team"
-                  width={600}
-                  height={400}
-                  className="rounded-3xl shadow-2xl hover-lift"
+                  src="/events/sign.jpg"
+                  alt="McGill Ventures Community Event"
+                  fill
+                  className="rounded-3xl shadow-2xl hover-lift object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-purple-800/20 rounded-3xl"></div>
               </div>
             </div>
           </div>
         </div>
-        
-        {/* Background Animation */}
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-700 rounded-full opacity-10 animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-purple-600 rounded-full opacity-10 animate-pulse" style={{animationDelay: '2s'}}></div>
       </section>
 
       <Footer />

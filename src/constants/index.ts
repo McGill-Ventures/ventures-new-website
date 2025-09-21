@@ -208,7 +208,7 @@ export const PROGRAM_DATA = [
       "Portfolio building workshops"
     ],
     duration: "12 weeks", 
-    commitment: "6-8 hours/week",
+    commitment: "2-4 hours/week",
     status: "Applications re-open Spring 2026"
   }
 ] as const;
