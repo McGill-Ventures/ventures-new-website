@@ -93,22 +93,6 @@ export default function Home() {
         <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-purple-600 rounded-full opacity-10 animate-pulse" style={{animationDelay: '2s'}}></div>
       </section>
 
-      {/* Contact Section */}
-      <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/30 to-purple-100/20">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-8">Get in Touch</h2>
-            <p className="text-xl text-purple-800 leading-relaxed font-body">
-              Ready to join Montreal&apos;s most dynamic venture capital community? We&apos;d love to hear from you.
-            </p>
-          </div>
-          
-          <div className="animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            <ContactForm />
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
