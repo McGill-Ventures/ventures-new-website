@@ -87,7 +87,7 @@ export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
     name: "Noah Chen",
     image: "/headshots/development/noah_chen_headshot.jpeg",
     role: "Intermediate Developer",
-    skills: ["React.js, TypeScript, SCSS"],
+    skills: ["React.js", "TypeScript", "SCSS"],
     bio: ""
   }
 ];
@@ -96,7 +96,7 @@ export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
   name: "Wasif Somji",
   role: "Head of Engineering",
   experience: "Prev @ Amazon, Lightspeed",
-  skills: ["System Architecture", "Team Leadership", "DevOps", "AI/ML", "Scaling"],
+  skills: ["System Architecture", "Team Leadership", "Software Development", "Product Management", "Scalability"],
   bio: "Wasif oversees all technical initiatives and leads our engineering strategy for internal and external software development practices.",
   image: "/headshots/development/wsomji.jpeg"
 };
