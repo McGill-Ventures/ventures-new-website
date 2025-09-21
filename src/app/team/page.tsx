@@ -3,7 +3,11 @@
 import Image from "next/image";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
-import DirectorTech from "../../../public/headshots/development/wsomji.jpeg";
+import wSomji from "../../../public/headshots/development/wsomji.jpeg";
+import jHum from "../../../public/headshots/development/jaden_hum_headshot.jpg";
+import jHeng from "../../../public/headshots/development/julien_heng_headshot.jpg";
+import nChen from "../../../public/headshots/development/noah_chen_headshot.jpeg";
+
 import { useState } from "react";
 
 export default function Team() {
@@ -177,7 +181,7 @@ export default function Team() {
               <div className="text-center group animate-fade-in-up glass rounded-3xl p-12 max-w-md">
                 <div className="w-48 h-48 rounded-full mx-auto mb-8 group-hover:scale-105 transition-all duration-300 relative overflow-hidden shadow-xl">
                   <Image
-                    src={DirectorTech}
+                    src={wSomji}
                     alt="Wasif Somji - Head of Engineering"
                     fill
                     className="object-cover"
@@ -203,26 +207,35 @@ export default function Team() {
               {[
                 { 
                   name: "Julien Heng", 
+                  image: jHeng,
                   role: "Senior Software Engineer", 
                   skills: ["Next.js", "TypeScript", "Tailwind CSS"],
                   bio: "Julien builds robust, scalable features and leads and mentors juniors."
                 },
                 { 
                   name: "Jaden Hum", 
+                  image: jHum,
                   role: "Senior Frontend Developer", 
                   skills: ["Next.js", "TypeScript", "Tailwind CSS"],
                   bio: "Jaden creates beautiful, user-centric experiences for our website."
                 },
                 { 
                   name: "Noah Chen", 
+                  image: nChen,
                   role: "Intermediate Frontend Developer", 
                   skills: ["React.js", "Tailwind CSS"],
                   bio: "Noah delivers polished interfaces and ensures seamless UX."
                 }
               ].map((dev, index) => (
                 <div key={index} className="text-center group animate-fade-in-up glass rounded-3xl p-10" style={{animationDelay: `${index * 0.2}s`}}>
-                  <div className="w-40 h-40 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full mx-auto mb-8 group-hover:scale-105 transition-all duration-300 relative overflow-hidden shadow-xl">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-purple-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="w-48 h-48 rounded-full mx-auto mb-8 group-hover:scale-105 transition-all duration-300 relative overflow-hidden shadow-xl">
+                  <Image
+                    src={dev.image}
+                    alt="Wasif Somji - Head of Engineering"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-700/20 to-purple-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   <h3 className="text-2xl font-display text-purple-950 mb-3">{dev.name}</h3>
                   <p className="text-purple-600 font-heading font-semibold mb-4 text-xl">{dev.role}</p>
