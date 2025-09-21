@@ -99,7 +99,7 @@ export default function Home() {
           <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-8">Get in Touch</h2>
             <p className="text-xl text-purple-800 leading-relaxed font-body">
-              Ready to join Montreal&apos;s most dynamic venture capital community? We'd love to hear from you.
+              Ready to join Montreal&apos;s most dynamic venture capital community? We&apos;d love to hear from you.
             </p>
           </div>
           
