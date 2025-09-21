@@ -274,6 +274,7 @@ export const APPLICATION_STEPS = [
 
 // Statistics for home page
 export const HOME_STATS = [
+  { value: "2K+", label: "LinkedIn Followers" },
   { value: "1.7K+", label: "Instagram Followers" },
   { value: "3rd", label: "Largest Club in Desautels Faculty of Management" },
   { value: "70+", label: "Club Members" }
