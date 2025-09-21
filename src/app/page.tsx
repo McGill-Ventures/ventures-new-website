@@ -18,7 +18,7 @@ export default function Home() {
               Building the Future of <span className="text-gradient">Venture Capital</span>
             </h1>
             <p className="text-xl md:text-2xl text-purple-800 leading-relaxed font-body max-w-4xl mx-auto mb-12">
-              McGill Ventures is Montreal's premier student-run venture capital organization, connecting ambitious students with the startup ecosystem through hands-on experience and mentorship.
+              McGill Ventures is Montreal&apos;s premier student-run venture capital organization, connecting ambitious students with the startup ecosystem through hands-on experience and mentorship.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link href="/programs" className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-12 py-5 rounded-2xl hover:from-purple-700 hover:to-purple-800 transition-all duration-300 font-heading text-xl font-semibold hover-lift animate-pulse-glow">
@@ -59,7 +59,7 @@ export default function Home() {
             <div className="animate-fade-in-left">
               <h2 className="text-5xl md:text-6xl font-display mb-8">Our Mission</h2>
               <p className="text-xl leading-relaxed font-body mb-8 text-purple-100">
-                We're dedicated to cultivating the next generation of venture capitalists and entrepreneurs. Through practical experience, industry connections, and comprehensive education, we bridge the gap between academic learning and real-world venture capital.
+                We&apos;re dedicated to cultivating the next generation of venture capitalists and entrepreneurs. Through practical experience, industry connections, and comprehensive education, we bridge the gap between academic learning and real-world venture capital.
               </p>
               <div className="grid sm:grid-cols-2 gap-8">
                 <div>
@@ -99,7 +99,7 @@ export default function Home() {
           <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-8">Get in Touch</h2>
             <p className="text-xl text-purple-800 leading-relaxed font-body">
-              Ready to join Montreal's most dynamic venture capital community? We'd love to hear from you.
+              Ready to join Montreal&apos;s most dynamic venture capital community? We'd love to hear from you.
             </p>
           </div>
           
