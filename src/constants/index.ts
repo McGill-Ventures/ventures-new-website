@@ -65,27 +65,30 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
   }
 ];
 
+import jHum from "../../public/headshots/development/jaden_hum_headshot.jpg";
+import jHeng from "../../public/headshots/development/julien_heng_headshot.jpg";
+
 export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
   {
-    name: "Ryan Mitchell",
-    role: "Lead Developer",
-    experience: "10+ years Full-Stack",
-    skills: ["React", "Node.js", "TypeScript", "AWS"],
-    bio: "Ryan leads our technical infrastructure and portfolio company tech advisory initiatives."
+    name: "Julien Heng",
+    image: "/headshots/development/julien_heng_headshot.jpg",
+    role: "Senior Software Developer",
+    skills: ["Next.js", "TypeScript", "Tailwind CSS"],
+    bio: ""
   },
   {
-    name: "Sophie Chen",
-    role: "Frontend Developer",
-    experience: "5+ years UI/UX Focus",
-    skills: ["React", "Next.js", "Design Systems", "Figma"],
-    bio: "Sophie creates beautiful, user-centric experiences for our digital platforms."
+    name: "Jaden Hum",
+    image: "/headshots/development/jaden_hum_headshot.jpg",
+    role: "Senior Frontend Developer",
+    skills: ["Next.js", "Typescript","Tailwind CSS"],
+    bio: ""
   },
   {
-    name: "Marcus Johnson",
-    role: "Backend Developer",
-    experience: "8+ years Systems Architecture",
-    skills: ["Python", "PostgreSQL", "Docker", "Kubernetes"],
-    bio: "Marcus ensures our systems are scalable, secure, and performant."
+    name: "Noah Chen",
+    image: "/headshots/development/noah_chen_headshot.jpeg",
+    role: "Intermediate Developer",
+    skills: ["React.js, TypeScript, SCSS"],
+    bio: ""
   }
 ];
 
@@ -94,7 +97,7 @@ export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
   role: "Head of Engineering",
   experience: "Prev @ Amazon, Lightspeed",
   skills: ["System Architecture", "Team Leadership", "DevOps", "AI/ML", "Scaling"],
-  bio: "Wasif oversees all technical initiatives and leads our engineering strategy for portfolio company support and internal platform development.",
+  bio: "Wasif oversees all technical initiatives and leads our engineering strategy for internal and external software development practices.",
   image: "/headshots/development/wsomji.jpeg"
 };
 
@@ -131,3 +134,147 @@ export const COLORS = {
   WHITE: 'white',
   TRANSPARENT: 'transparent',
 } as const;
+
+// Sponsor data for better performance and consistency
+export const SPONSOR_DATA = {
+  platinum: [
+    {
+      name: "McKinsey & Company",
+      type: "Management Consulting",
+      description: "Global management consulting firm supporting our strategic initiatives and providing mentorship opportunities.",
+      benefits: ["Executive mentorship", "Case study workshops", "Internship opportunities"],
+      logo: "🏢"
+    },
+    {
+      name: "Desjardins Capital",
+      type: "Venture Capital",
+      description: "Leading Quebec venture capital firm providing funding expertise and startup ecosystem insights.",
+      benefits: ["VC training sessions", "Deal flow analysis", "Networking events"],
+      logo: "💼"
+    }
+  ],
+  gold: [
+    {
+      name: "BDC Capital",
+      type: "Development Bank",
+      description: "Canada's development bank supporting entrepreneurs and providing venture capital expertise.",
+      logo: "🏦"
+    },
+    {
+      name: "Real Ventures",
+      type: "Venture Capital",
+      description: "Montreal-based VC firm specializing in early-stage technology companies.",
+      logo: "🚀"
+    },
+    {
+      name: "Investissement Québec",
+      type: "Government Agency",
+      description: "Quebec's investment agency supporting innovation and entrepreneurship in the province.",
+      logo: "🌟"
+    }
+  ],
+  silver: [
+    { name: "Startupfest", logo: "🎪" },
+    { name: "Montreal NewTech", logo: "💻" },
+    { name: "Centech", logo: "🔬" },
+    { name: "District 3", logo: "🏢" },
+    { name: "CCMM", logo: "🤝" },
+    { name: "Techstars", logo: "⭐" },
+    { name: "DMZ", logo: "🎯" },
+    { name: "FounderFuel", logo: "⚡" }
+  ]
+} as const;
+
+// Program data
+export const PROGRAM_DATA = [
+  {
+    title: "Analyst Program",
+    description: "A comprehensive program covering fundamentals of venture capital, deal sourcing, due diligence, and portfolio management.",
+    features: [
+      "Weekly workshops with industry professionals",
+      "Case study analysis and pitch competitions", 
+      "Mentorship from experienced VCs",
+      "Networking events with startup founders"
+    ],
+    duration: "16 weeks",
+    commitment: "4-6 hours/week",
+    status: "Applications re-open Winter 2026"
+  },
+  {
+    title: "Development Program",
+    description: "A software development program focused on building technical skills and gaining real-world experience in frontend development.",
+    features: [
+      "Frontend development training",
+      "Tech portfolio project assignments",
+      "Tech mentorship sessions",
+      "Portfolio building workshops"
+    ],
+    duration: "12 weeks", 
+    commitment: "6-8 hours/week",
+    status: "Applications re-open Spring 2026"
+  }
+] as const;
+
+// Educational initiatives
+export const EDUCATIONAL_INITIATIVES = [
+  {
+    title: "Guest Speaker Series",
+    description: "Monthly talks featuring successful entrepreneurs, VCs, and industry leaders sharing insights and experiences.",
+    icon: "users"
+  },
+  {
+    title: "Pitch Competitions",
+    description: "Regular competitions where students present their startup ideas to panels of experienced judges for feedback and prizes.",
+    icon: "star"
+  },
+  {
+    title: "Workshops & Bootcamps", 
+    description: "Hands-on learning sessions covering topics like financial modeling, market analysis, and startup fundamentals.",
+    icon: "book"
+  }
+] as const;
+
+// Partnership benefits
+export const PARTNERSHIP_BENEFITS = [
+  {
+    icon: "users",
+    title: "Talent Access",
+    description: "Connect with McGill's brightest students across business, engineering, and science programs for internships and full-time opportunities."
+  },
+  {
+    icon: "lightning",
+    title: "Innovation Pipeline", 
+    description: "Early access to innovative student startups and breakthrough technologies emerging from McGill's entrepreneurship ecosystem."
+  },
+  {
+    icon: "message",
+    title: "Brand Visibility",
+    description: "Showcase your organization to Montreal's entrepreneurial community through events, workshops, and digital presence."
+  }
+] as const;
+
+// Application process steps
+export const APPLICATION_STEPS = [
+  {
+    step: "01",
+    title: "Submit Application",
+    description: "Complete our online application form with your background and interests"
+  },
+  {
+    step: "02",
+    title: "Interview Process", 
+    description: "Participate in a brief interview to discuss your goals and passion for entrepreneurship"
+  },
+  {
+    step: "03",
+    title: "Welcome & Onboarding",
+    description: "Join our community and begin your journey in venture capital and startups"
+  }
+] as const;
+
+// Statistics for home page
+export const HOME_STATS = [
+  { value: "1.7K+", label: "Instagram Followers" },
+  { value: "3rd", label: "Largest Club in Desautels Faculty of Management" },
+  { value: "70+", label: "Club Members" }
+] as const;

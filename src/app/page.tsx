@@ -1,59 +1,46 @@
 import Link from "next/link";
+import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { ContactForm } from "@/components/ui";
+import { HOME_STATS } from "@/constants";
+import { useOptimizedAnimation } from "@/hooks/useOptimizedAnimation";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white overflow-hidden">
-      <Navigation />
+    <div className="min-h-screen bg-white">
+      <Navigation currentPage="/" />
 
-      <section className="px-6 py-24 md:px-12 lg:px-24 relative min-h-[90vh] flex items-center bg-gradient-hero">
-        <div className="absolute inset-0 bg-gradient-mesh opacity-60"></div>
-        <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-purple-500/8 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-400/5 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-600/6 rounded-full blur-2xl animate-float" style={{animationDelay: '4s'}}></div>
-        
+      <section className="px-6 py-32 md:px-12 lg:px-24 relative bg-gradient-hero overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="animate-fade-in-up">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display text-purple-950 leading-tight mb-8">
-              Investing in the
-              <span className="text-gradient animate-gradient block mt-4"> future </span>
-              of innovation
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-display text-purple-950 mb-8 leading-tight">
+              Building the Future of <span className="text-gradient">Venture Capital</span>
             </h1>
-          </div>
-          <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-            <p className="text-xl md:text-2xl lg:text-3xl text-purple-800 mb-16 max-w-4xl leading-relaxed font-body">
-              McGill Ventures is a dynamic student-run organization fostering the next generation of venture capitalists and entrepreneurs. 
-              We create an inspiring community where passionate McGill students explore startups, build networks, and develop the skills to shape the future of innovation.
+            <p className="text-xl md:text-2xl text-purple-800 leading-relaxed font-body max-w-4xl mx-auto mb-12">
+              McGill Ventures is Montreal's premier student-run venture capital organization, connecting ambitious students with the startup ecosystem through hands-on experience and mentorship.
             </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-8 animate-fade-in-up" style={{animationDelay: '0.6s'}}>
-            <Link href="/sponsors">
-              <button className="group bg-gradient-to-r from-purple-600 to-purple-700 text-white px-12 py-5 rounded-2xl hover:from-purple-700 hover:to-purple-800 transition-all duration-300 font-heading text-lg font-semibold hover-lift animate-pulse-glow relative overflow-hidden cursor-pointer">
-                <span className="relative z-10">View Sponsors</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-            </Link>
-            <Link href="/about">
-              <button className="group border-2 border-purple-300 text-purple-800 px-12 py-5 rounded-2xl hover:border-purple-500 hover:text-purple-900 transition-all duration-300 font-heading text-lg font-semibold hover-lift glass relative overflow-hidden">
-                <span className="relative z-10">Learn More</span>
-                <div className="absolute inset-0 bg-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Link href="/programs" className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-12 py-5 rounded-2xl hover:from-purple-700 hover:to-purple-800 transition-all duration-300 font-heading text-xl font-semibold hover-lift animate-pulse-glow">
+                Explore Programs
+              </Link>
+              <Link href="/about" className="border-2 border-purple-300 text-purple-800 px-12 py-5 rounded-2xl hover:bg-purple-50 transition-all duration-300 font-heading text-xl font-semibold hover-lift">
+                Learn More
+              </Link>
+            </div>
           </div>
         </div>
+        
+        {/* Background Elements */}
+        <div className="absolute top-20 right-10 w-32 h-32 bg-purple-200 rounded-full opacity-20 animate-float"></div>
+        <div className="absolute bottom-20 left-10 w-24 h-24 bg-purple-300 rounded-full opacity-30 animate-float" style={{animationDelay: '1s'}}></div>
       </section>
 
-      <section className="px-6 py-32 md:px-12 lg:px-24 relative overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/8 to-purple-700/8"></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid md:grid-cols-4 gap-16 text-center">
-            {[
-              { value: "2K+", label: "LinkedIn Followers" },
-              { value: "1.7K+", label: "Instagram Followers" },
-              { value: "3rd", label: "Largest Club in Desautels Faculty of Management" },
-              { value: "70+", label: "Club Members" }
-            ].map((stat, index) => (
+      {/* Stats Section */}
+      <section className="px-6 py-24 md:px-12 lg:px-24 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-12 text-center">
+            {HOME_STATS.map((stat, index) => (
               <div key={index} className="animate-fade-in-up group" style={{animationDelay: `${index * 0.15}s`}}>
                 <div className="text-6xl md:text-7xl lg:text-8xl font-display text-gradient mb-4 group-hover:scale-110 transition-transform duration-300">
                   {stat.value}
@@ -65,29 +52,59 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Mission Section */}
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-600/20 to-transparent"></div>
-          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-purple-500/10 to-transparent"></div>
-        </div>
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <div className="animate-fade-in-up">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-display mb-10">
-              Ready to Build the Future?
-            </h2>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="animate-fade-in-left">
+              <h2 className="text-5xl md:text-6xl font-display mb-8">Our Mission</h2>
+              <p className="text-xl leading-relaxed font-body mb-8 text-purple-100">
+                We're dedicated to cultivating the next generation of venture capitalists and entrepreneurs. Through practical experience, industry connections, and comprehensive education, we bridge the gap between academic learning and real-world venture capital.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-2xl font-heading font-semibold mb-4 text-purple-200">Education</h3>
+                  <p className="text-purple-300 font-body">Comprehensive programs covering VC fundamentals, deal analysis, and startup ecosystem dynamics.</p>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-heading font-semibold mb-4 text-purple-200">Experience</h3>
+                  <p className="text-purple-300 font-body">Hands-on opportunities to work with startups, conduct due diligence, and build industry connections.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="animate-fade-in-up">
+              <div className="relative">
+                <Image
+                  src="/events/homeLanding.jpg"
+                  alt="McGill Ventures Team"
+                  width={600}
+                  height={400}
+                  className="rounded-3xl shadow-2xl hover-lift"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-purple-800/20 rounded-3xl"></div>
+              </div>
+            </div>
           </div>
-          <div className="animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-            <p className="text-2xl md:text-3xl text-purple-100 mb-16 leading-relaxed font-body max-w-4xl mx-auto">
-              We're always looking for exceptional entrepreneurs with bold visions. Let's discuss how we can help bring your revolutionary ideas to life.
+        </div>
+        
+        {/* Background Animation */}
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-700 rounded-full opacity-10 animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-0 w-64 h-64 bg-purple-600 rounded-full opacity-10 animate-pulse" style={{animationDelay: '2s'}}></div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/30 to-purple-100/20">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-8">Get in Touch</h2>
+            <p className="text-xl text-purple-800 leading-relaxed font-body">
+              Ready to join Montreal's most dynamic venture capital community? We'd love to hear from you.
             </p>
           </div>
-          <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            <Link href="/contact">
-              <button className="group bg-gradient-to-r from-purple-500 to-purple-600 text-white px-16 py-6 rounded-2xl hover:from-purple-600 hover:to-purple-700 transition-all duration-300 font-heading text-2xl font-semibold hover-lift animate-pulse-glow relative overflow-hidden">
-                <span className="relative z-10">Get in Touch</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-            </Link>
+          
+          <div className="animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+            <ContactForm />
           </div>
         </div>
       </section>

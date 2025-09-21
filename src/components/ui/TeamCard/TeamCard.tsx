@@ -1,30 +1,52 @@
 import React from 'react';
 import Image from 'next/image';
 import { TeamCardProps } from '@/types';
-import { cn, getAnimationDelay } from '@/lib/utils';
+import { cn } from '@/lib/utils';
+import { useStaggeredFadeIn } from '@/hooks/useOptimizedAnimation';
+import { Icon } from '@/components/ui';
 
-export const TeamCard: React.FC<TeamCardProps> = ({ member, index, variant = 'executive' }) => {
+const TeamCard: React.FC<TeamCardProps> = React.memo(({ member, index, variant = 'executive' }) => {
+  const animation = useStaggeredFadeIn(index);
+  
+  const sizeConfig = {
+    executive: { image: 'w-48 h-48', card: 'p-10' },
+    analyst: { image: 'w-32 h-32', card: 'p-8' },
+    developer: { image: 'w-40 h-40', card: 'p-10' },
+    head: { image: 'w-48 h-48', card: 'p-12 max-w-md' }
+  };
+
+  const titleConfig = {
+    executive: 'text-3xl font-display text-purple-950 mb-3',
+    analyst: 'text-2xl font-display text-purple-950 mb-2',
+    developer: 'text-2xl font-display text-purple-950 mb-3',
+    head: 'text-3xl font-display text-purple-950 mb-3'
+  };
+
+  const roleConfig = {
+    executive: 'text-purple-600 font-heading font-semibold mb-4 text-xl',
+    analyst: 'text-purple-600 font-heading font-semibold mb-3 text-lg',
+    developer: 'text-purple-600 font-heading font-semibold mb-4 text-xl',
+    head: 'text-purple-600 font-heading font-semibold mb-4 text-xl'
+  };
+
   const renderImage = () => {
     if (member.image) {
       return (
-        <div className="w-48 h-48 rounded-full mx-auto mb-8 group-hover:scale-105 transition-all duration-300 relative overflow-hidden shadow-xl">
+        <div className={cn(
+          sizeConfig[variant].image,
+          "rounded-full mx-auto mb-8 group-hover:scale-105 transition-all duration-300 relative overflow-hidden shadow-xl"
+        )}>
           <Image
             src={member.image}
             alt={`${member.name} - ${member.role}`}
             fill
             className="object-cover"
+            sizes="(max-width: 768px) 128px, (max-width: 1024px) 160px, 192px"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-700/20 to-purple-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-700/20 to-purple-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
       );
     }
-
-    const sizeClasses = {
-      executive: 'w-48 h-48',
-      analyst: 'w-32 h-32',
-      developer: 'w-40 h-40',
-      head: 'w-48 h-48'
-    };
 
     const gradientClasses = {
       executive: 'from-purple-200 to-purple-300',
@@ -35,10 +57,10 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index, variant = 'ex
 
     return (
       <div className={cn(
-        sizeClasses[variant],
+        sizeConfig[variant].image,
         `bg-gradient-to-br ${gradientClasses[variant]} rounded-full mx-auto mb-8 group-hover:scale-105 transition-all duration-300 relative overflow-hidden shadow-xl`
       )}>
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
     );
   };
@@ -70,48 +92,34 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index, variant = 'ex
     );
   };
 
-  const containerClasses = {
-    executive: 'text-center group animate-fade-in-up glass rounded-3xl p-10',
-    analyst: 'text-center group animate-fade-in-up glass rounded-3xl p-8',
-    developer: 'text-center group animate-fade-in-up glass rounded-3xl p-10',
-    head: 'text-center group animate-fade-in-up glass rounded-3xl p-12 max-w-md'
-  };
-
-  const titleClasses = {
-    executive: 'text-3xl font-display text-purple-950 mb-3',
-    analyst: 'text-2xl font-display text-purple-950 mb-2',
-    developer: 'text-2xl font-display text-purple-950 mb-3',
-    head: 'text-3xl font-display text-purple-950 mb-3'
-  };
-
-  const roleClasses = {
-    executive: 'text-purple-600 font-heading font-semibold mb-4 text-xl',
-    analyst: 'text-purple-600 font-heading font-semibold mb-3 text-lg',
-    developer: 'text-purple-600 font-heading font-semibold mb-4 text-xl',
-    head: 'text-purple-600 font-heading font-semibold mb-4 text-xl'
-  };
-
   return (
     <div 
-      className={containerClasses[variant]}
-      style={getAnimationDelay(index)}
+      className={cn(
+        "text-center group glass rounded-3xl hover-lift",
+        sizeConfig[variant].card,
+        animation.className
+      )}
+      style={animation.style}
     >
       {renderImage()}
       
-      <h3 className={titleClasses[variant]}>{member.name}</h3>
-      <p className={roleClasses[variant]}>{member.role}</p>
-      <p className="text-purple-700 font-body text-lg mb-4">{member.experience}</p>
+      <h3 className={titleConfig[variant]}>{member.name}</h3>
+      <p className={roleConfig[variant]}>{member.role}</p>
+      
+      {member.experience && (
+        <p className="text-purple-500 font-body mb-4 text-sm">{member.experience}</p>
+      )}
       
       {member.bio && (
-        <p className="text-purple-800 leading-relaxed font-body mb-4">{member.bio}</p>
+        <p className="text-purple-700 leading-relaxed font-body mb-6">{member.bio}</p>
       )}
       
-      {member.education && (
-        <p className="text-purple-600 font-body text-sm">{member.education}</p>
-      )}
-      
-      {renderSkills()}
       {renderSpecialization()}
+      {renderSkills()}
     </div>
   );
-};
+});
+
+TeamCard.displayName = 'TeamCard';
+
+export { TeamCard };

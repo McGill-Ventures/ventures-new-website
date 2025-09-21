@@ -10,7 +10,7 @@ export interface NavigationProps {
 export interface TeamMember {
   name: string;
   role: string;
-  experience: string;
+  experience?: string;
   bio?: string;
   education?: string;
   skills?: string[];

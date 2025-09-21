@@ -1,6 +1,28 @@
 import Link from "next/link";
+import { Icon } from "@/components/ui";
+
+const footerLinks = {
+  company: [
+    { label: "About", href: "/about" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Team", href: "/team" },
+  ],
+  resources: [
+    { label: "Programs", href: "/programs" },
+    { label: "Sponsors", href: "/sponsors" },
+    { label: "Contact Us", href: "/contact" },
+  ]
+};
+
+const contactInfo = {
+  email: "hello@mcgillvc.ca",
+  phone: "+1 (514) 555-0123",
+  location: "Montreal, QC"
+};
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="px-6 py-20 md:px-12 lg:px-24 bg-purple-50">
       <div className="max-w-7xl mx-auto">
@@ -8,38 +30,57 @@ export default function Footer() {
           <div>
             <div className="text-2xl font-bold text-purple-900 mb-6 font-heading">McGill Ventures</div>
             <p className="text-purple-800 leading-relaxed font-body">
-              Investing in innovation and building the companies of tomorrow through strategic partnerships and visionary leadership.
+              Building the companies of tomorrow through strategic partnerships and visionary leadership.
             </p>
           </div>
+          
           <div>
             <h4 className="font-heading font-semibold text-purple-950 mb-4 text-lg">Company</h4>
             <div className="space-y-3 text-purple-800 font-body">
-              <div><Link href="/about" className="hover:text-purple-950 transition-colors cursor-pointer">About</Link></div>
-              <div><Link href="/portfolio" className="hover:text-purple-950 transition-colors cursor-pointer">Portfolio</Link></div>
-              <div><Link href="/team" className="hover:text-purple-950 transition-colors cursor-pointer">Team</Link></div>
-              <div><a href="#" className="hover:text-purple-950 transition-colors cursor-pointer">Careers</a></div>
+              {footerLinks.company.map((link) => (
+                <div key={link.href}>
+                  <Link href={link.href} className="hover:text-purple-950 transition-colors cursor-pointer">
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
+          
           <div>
             <h4 className="font-heading font-semibold text-purple-950 mb-4 text-lg">Resources</h4>
             <div className="space-y-3 text-purple-800 font-body">
-              <div><Link href="/programs" className="hover:text-purple-950 transition-colors cursor-pointer">Programs</Link></div>
-              <div><Link href="/sponsors" className="hover:text-purple-950 transition-colors cursor-pointer">Sponsors</Link></div>
-              <div><Link href="/contact" className="hover:text-purple-950 transition-colors cursor-pointer">Contact Us</Link></div>
-              <div><a href="#" className="hover:text-purple-950 transition-colors cursor-pointer">News</a></div>
+              {footerLinks.resources.map((link) => (
+                <div key={link.href}>
+                  <Link href={link.href} className="hover:text-purple-950 transition-colors cursor-pointer">
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
+          
           <div>
             <h4 className="font-heading font-semibold text-purple-950 mb-4 text-lg">Contact</h4>
             <div className="space-y-3 text-purple-800 font-body">
-              <div>hello@mcgillvc.ca</div>
-              <div>+1 (514) 555-0123</div>
-              <div>Montreal, QC</div>
+              <div className="flex items-center">
+                <Icon name="email" className="mr-2 text-purple-600" size="sm" />
+                {contactInfo.email}
+              </div>
+              <div className="flex items-center">
+                <Icon name="phone" className="mr-2 text-purple-600" size="sm" />
+                {contactInfo.phone}
+              </div>
+              <div className="flex items-center">
+                <Icon name="location" className="mr-2 text-purple-600" size="sm" />
+                {contactInfo.location}
+              </div>
             </div>
           </div>
         </div>
+        
         <div className="border-t border-purple-200 pt-8 text-center text-purple-700 font-body">
-          © 2025 McGill Ventures. All rights reserved.
+          © {currentYear} McGill Ventures. All rights reserved.
         </div>
       </div>
     </footer>
