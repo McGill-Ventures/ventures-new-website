@@ -22,109 +22,20 @@ export default function Sponsors() {
 
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/30 to-purple-100/20">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-20">
-            <div className="text-center mb-12 animate-fade-in-up">
-              <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-4">Platinum Partners</h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full"></div>
-            </div>
-            <div className="grid md:grid-cols-2 gap-12">
-              {[
-                {
-                  name: "McKinsey & Company",
-                  type: "Management Consulting",
-                  description: "Global management consulting firm supporting our strategic initiatives and providing mentorship opportunities.",
-                  benefits: ["Executive mentorship", "Case study workshops", "Internship opportunities"],
-                  logo: "🏢"
-                },
-                {
-                  name: "Desjardins Capital",
-                  type: "Venture Capital",
-                  description: "Leading Quebec venture capital firm providing funding expertise and startup ecosystem insights.",
-                  benefits: ["VC training sessions", "Deal flow analysis", "Networking events"],
-                  logo: "💼"
-                }
-              ].map((sponsor, index) => (
-                <div key={index} className="glass rounded-3xl p-8 shadow-lg hover-lift animate-fade-in-up" style={{animationDelay: `${index * 0.2}s`}}>
-                  <div className="text-6xl mb-6 text-center">{sponsor.logo}</div>
-                  <h3 className="text-3xl font-display text-purple-950 mb-2 text-center">{sponsor.name}</h3>
-                  <p className="text-purple-600 font-heading font-semibold mb-4 text-xl text-center">{sponsor.type}</p>
-                  <p className="text-purple-800 mb-6 leading-relaxed font-body text-center">
-                    {sponsor.description}
-                  </p>
-                  <div className="space-y-2">
-                    {sponsor.benefits.map((benefit, idx) => (
-                      <div key={idx} className="flex items-center text-purple-700 font-body">
-                        <svg className="w-5 h-5 text-purple-600 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        {benefit}
-                      </div>
-                    ))}
-                  </div>
+          <div className="text-center animate-fade-in-up">
+            <div className="max-w-4xl mx-auto">
+              <div className="glass rounded-3xl p-16 shadow-lg">
+                <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                  <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mb-20">
-            <div className="text-center mb-12 animate-fade-in-up">
-              <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-4">Gold Partners</h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full"></div>
-            </div>
-            <div className="grid md:grid-cols-3 gap-10">
-              {[
-                {
-                  name: "BDC Capital",
-                  type: "Development Bank",
-                  description: "Canada's development bank supporting entrepreneurs and providing venture capital expertise.",
-                  logo: "🏦"
-                },
-                {
-                  name: "Real Ventures",
-                  type: "Venture Capital",
-                  description: "Montreal-based VC firm specializing in early-stage technology companies.",
-                  logo: "🚀"
-                },
-                {
-                  name: "Investissement Québec",
-                  type: "Government Agency",
-                  description: "Quebec's investment agency supporting innovation and entrepreneurship in the province.",
-                  logo: "🌟"
-                }
-              ].map((sponsor, index) => (
-                <div key={index} className="glass rounded-3xl p-8 text-center hover-lift animate-fade-in-up" style={{animationDelay: `${index * 0.1}s`}}>
-                  <div className="text-5xl mb-4">{sponsor.logo}</div>
-                  <h3 className="text-2xl font-display text-purple-950 mb-2">{sponsor.name}</h3>
-                  <p className="text-purple-600 font-heading font-semibold mb-4">{sponsor.type}</p>
-                  <p className="text-purple-800 leading-relaxed font-body text-sm">
-                    {sponsor.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <div className="text-center mb-12 animate-fade-in-up">
-              <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-4">Silver Partners</h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full"></div>
-            </div>
-            <div className="grid md:grid-cols-4 gap-8">
-              {[
-                { name: "Startupfest", logo: "🎪" },
-                { name: "Montreal NewTech", logo: "💻" },
-                { name: "Centech", logo: "🔬" },
-                { name: "District 3", logo: "🏢" },
-                { name: "CCMM", logo: "🤝" },
-                { name: "Techstars", logo: "⭐" },
-                { name: "DMZ", logo: "🎯" },
-                { name: "FounderFuel", logo: "⚡" }
-              ].map((sponsor, index) => (
-                <div key={index} className="glass rounded-2xl p-6 text-center hover-lift animate-fade-in-up" style={{animationDelay: `${index * 0.05}s`}}>
-                  <div className="text-4xl mb-3">{sponsor.logo}</div>
-                  <h3 className="text-lg font-heading text-purple-950">{sponsor.name}</h3>
-                </div>
-              ))}
+                <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-6">Coming Soon</h2>
+                <p className="text-2xl text-purple-800 leading-relaxed font-body mb-8">
+                  We're currently building partnerships with industry-leading organizations. 
+                  Our sponsorship program will launch soon!
+                </p>
+              </div>
             </div>
           </div>
         </div>
