@@ -31,13 +31,6 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     bio: "Charlyne co-leads McGill Ventures, focusing on community engagement, event management, and fostering relationships within the startup ecosystem.",
     education: "BCom Finance, McGill University"
   },
-  {
-    name: "Sarah Mitchell",
-    role: "VP of Operations",
-    experience: "Prev @ Goldman Sachs, BCG",
-    bio: "Sarah oversees day-to-day operations and coordinates between different teams to ensure smooth execution of club initiatives.",
-    education: "MBA Wharton, BS McGill Economics"
-  },
 ];
 
 export const ANALYST_TEAM: AnalystTeamMember[] = [
