@@ -20,7 +20,7 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     image: "/headshots/exec/ewu.jpeg",
     role: "Co-President",
     experience: "Prev @ CIBC Capital Markets, CDPQ",
-    bio: "Ethan leads the overall strategic direction of McGill Ventures, overseeing club operations, partnerships, and program development.",
+    bio: "Ethan co-leads the overall strategic direction of McGill Ventures, overseeing club operations, partnerships, and program development.",
     education: "B.Comm Honours in Investment Management, McGill University"
   },
   {
