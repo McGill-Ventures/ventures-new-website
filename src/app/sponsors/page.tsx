@@ -32,7 +32,7 @@ export default function Sponsors() {
                 </div>
                 <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-6">Coming Soon</h2>
                 <p className="text-2xl text-purple-800 leading-relaxed font-body mb-8">
-                  We're currently building partnerships with industry-leading organizations. 
+                  We&apos;re currently building partnerships with industry-leading organizations. 
                   Our sponsorship program will launch soon!
                 </p>
               </div>
