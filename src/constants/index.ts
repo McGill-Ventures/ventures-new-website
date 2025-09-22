@@ -30,34 +30,11 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     experience: "Prev @ Angel Host",
     bio: "Charlyne co-leads McGill Ventures, focusing on community engagement, event management, and fostering relationships within the startup ecosystem.",
     education: "BCom Finance, McGill University"
-  },
+  },  
 ];
 
 export const ANALYST_TEAM: AnalystTeamMember[] = [
-  {
-    name: "Alex Thompson",
-    role: "Senior Analyst",
-    experience: "Ex-McKinsey, MIT Sloan MBA",
-    specialization: "AI & Machine Learning"
-  },
-  {
-    name: "Jessica Park",
-    role: "Investment Analyst",
-    experience: "Former JPMorgan, CFA",
-    specialization: "Fintech & Blockchain"
-  },
-  {
-    name: "David Kumar",
-    role: "Research Analyst",
-    experience: "Ex-Bain, Stanford MS",
-    specialization: "Biotech & Healthcare"
-  },
-  {
-    name: "Maria Santos",
-    role: "Junior Analyst",
-    experience: "Wharton MBA, BCG",
-    specialization: "Clean Technology"
-  }
+  
 ];
 
 export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
