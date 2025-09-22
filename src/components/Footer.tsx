@@ -4,7 +4,6 @@ import { Icon } from "@/components/ui";
 const footerLinks = {
   company: [
     { label: "About", href: "/about" },
-    { label: "Portfolio", href: "/portfolio" },
     { label: "Team", href: "/team" },
   ],
   resources: [
