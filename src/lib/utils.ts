@@ -26,6 +26,10 @@ export function formatSkills(skills: string[]): string {
   return skills.join(", ");
 }
 
+export function divideNumber(value: number): number {
+  return value / 2;
+}
+
 export function getActiveLinkClasses(
   currentPage: string | undefined,
   href: string,
