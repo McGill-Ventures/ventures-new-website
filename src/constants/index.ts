@@ -31,6 +31,30 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     bio: "Charlyne co-leads McGill Ventures, focusing on community engagement, event management, and fostering relationships within the startup ecosystem.",
     education: "BCom Finance, McGill University"
   },  
+  {
+    name: "Oscar Ham",
+    image: "",
+    role: "Fund Principal",
+    experience: "Prev @ KPMG",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Chris Robinson",
+    image: "/headshots/exec/chris_robinson_headshot.jpg",
+    role: "Director of Finance",
+    experience: "Prev @ HSBC",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Orion Pirang",
+    image: "/headshots/exec/orion_pirang_headshot.JPG",
+    role: "Finance Associate/ Analyst",
+    experience: "Prev @ PwC, Desato",
+    bio: "",
+    education: ""
+  }
 ];
 
 export const ANALYST_TEAM: AnalystTeamMember[] = [
