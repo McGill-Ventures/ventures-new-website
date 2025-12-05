@@ -31,6 +31,63 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     bio: "Charlyne co-leads McGill Ventures, focusing on community engagement, event management, and fostering relationships within the startup ecosystem.",
     education: "BCom Finance, McGill University"
   },  
+  {
+    name: "Xin Yu Zhang",
+    image: "/headshots/exec/xin.jpeg",
+    role: "Co-Director of Events",
+    experience: "Prev @ Royal Lepage Real Estate, Headstart Global",
+    bio: "",
+    education: "BCom Finance, McGill University"
+  },
+  {
+    name: "Aya Cherkaoui",
+    image: "/headshots/exec/aya.JPG",
+    role: "Co-Director of Events",
+    experience: "Prev @ EY",
+    bio: "",
+    education: "BCom Economics & Business Analytics, McGill University"
+  }, 
+  {
+    name: "Kelly Yan",
+    image: "/headshots/exec/kelly.JPG",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: "BCom Honours Joint Component Economics and Accounting, McGill University"
+  }, 
+  {
+    name: "Riya Jain",
+    image: "/headshots/exec/riya.jpeg",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: "BCom Economics and International Development Studies, McGill University"
+  },   
+  {
+    name: "Coco Meng",
+    image: "/headshots/exec/coco.jpeg",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Thai Tran",
+    image: "/headshots/exec/thai.jpg",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: "BEng Computer Engineering, McGill University"
+  },
+  {
+    name: "Lola Julliand",
+    image: "/headshots/exec/lola.jpg",
+    role: "Ambassador of Events",
+    experience: "",
+    bio: "",
+    education: "BCom, McGill University"
+  },
+  
 ];
 
 export const ANALYST_TEAM: AnalystTeamMember[] = [
