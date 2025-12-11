@@ -119,7 +119,7 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     bio: "",
     education: "BCom, McGill University"
   },
-  
+  {
     name: "Alexandre Comtois",
     image: "/headshots/exec/alexandre_comtois_headshot.jpg",
     role: "Fund Manager",
