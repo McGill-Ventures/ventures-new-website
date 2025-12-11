@@ -10,7 +10,10 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
   // Separate Co-Presidents from other executive members
   const coPresidents = members.filter(member => member.role.includes('Co-President'));
   const eventsTeam = members.filter(member => member.role.includes('Events'));
-  const otherExecutives = members.filter(member => !member.role.includes('Co-President'));
+  const financeTeam = members.filter(member => 
+    member.role.includes('Finance') || 
+    member.role.includes('Fund')
+  );
 
   return (
     <section className="px-6 py-32 md:px-12 lg:px-24 relative bg-white animate-fade-in-up">
@@ -44,7 +47,7 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
 
         {/* Events Team */}
         {eventsTeam.length > 0 && (
-          <div>
+          <div className="mb-20">
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Events Team</h3>
             </div>
@@ -54,6 +57,25 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
                   key={member.name}
                   member={member}
                   index={index + coPresidents.length}
+                  variant="executive"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Finance & Fund Team */}
+        {financeTeam.length > 0 && (
+          <div>
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Finance & Fund Team</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
+              {financeTeam.map((member, index) => (
+                <TeamCard
+                  key={member.name}
+                  member={member}
+                  index={index + coPresidents.length + eventsTeam.length}
                   variant="executive"
                 />
               ))}
