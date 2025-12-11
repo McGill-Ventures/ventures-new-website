@@ -31,6 +31,54 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     bio: "Charlyne co-leads McGill Ventures, focusing on community engagement, event management, and fostering relationships within the startup ecosystem.",
     education: "BCom Finance, McGill University"
   },  
+  {
+    name: "Oscar Ham",
+    image: "/headshots/exec/oscar_ham_headshot.jpg",
+    role: "Fund Principal",
+    experience: "Prev @ KPMG",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Chris Robinson",
+    image: "/headshots/exec/chris_robinson_headshot.jpg",
+    role: "Director of Finance",
+    experience: "Prev @ HSBC",
+    bio: "As Director of Finance for MVC, Chris manages the annual budget, builds financial forecasts, and tracks all revenues and expenses. He oversees accounting and documenting actuals, ensures members are reimbursed through MUS, and manages funding and sponsorships coming into the bank account.",
+    education: ""
+  },
+  {
+    name: "Orion Pirang",
+    image: "/headshots/exec/orion_pirang_headshot.jpg",
+    role: "Finance Associate/ Analyst",
+    experience: "Prev @ PwC, Desato",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Gael Gonzàlez",
+    image: "/headshots/exec/gael_huacuja_headshot.jpg",
+    role: "Program Manager - Venture Advisory and Principle for the Fund",
+    experience: "Prev @ Attain",
+    bio: "Gael supports early-stage founders in preparing for fundraising by refining capital strategies and strengthening investor readiness. He leads teams of student consultants advising startups across AI, healthtech, and legal tech. He focuses on guiding pitch development, market positioning, and growth planning to help founders effectively engage with investors.",
+    education: ""
+  },
+  {
+    name: "Alexandre Comtois",
+    image: "/headshots/exec/alexandre_comtois_headshot.jpg",
+    role: "Fund Manager",
+    experience: "",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Celine Chung",
+    image: "/headshots/exec/celine_chung_headshot.jpg",
+    role: "Principal at McGill Ventures Fund and Corporate Relations",
+    experience: "",
+    bio: "",
+    education: ""
+  },
 ];
 
 export const ANALYST_TEAM: AnalystTeamMember[] = [
