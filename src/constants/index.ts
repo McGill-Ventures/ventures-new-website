@@ -147,7 +147,7 @@ export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
   experience: "Prev @ Amazon, Lightspeed",
   education: "BEng Computer Engineering, McGill University",
   skills: ["System Architecture", "Team Leadership", "Software Development", "Product Management", "Scalability"],
-  bio: "Wasif oversees all technical initiatives and leads our engineering strategy for internal and external software development practices.",
+  bio: "Wasif oversees all technical initiatives and leads our engineering strategy for internal software development practices.",
   image: "/headshots/development/wsomji.jpeg"
 };
 
