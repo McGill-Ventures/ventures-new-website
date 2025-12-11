@@ -72,6 +72,30 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     education: ""
   },
   {
+    name: "Thai Tran",
+    image: "/headshots/exec/thai.jpg",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: "BEng Computer Engineering, McGill University"
+  },
+  {
+    name: "Lola Julliand",
+    image: "/headshots/exec/lola.jpg",
+    role: "Ambassador of Events",
+    experience: "",
+    bio: "",
+    education: "BCom, McGill University"
+  },
+  {
+    name: "Alexandre Comtois",
+    image: "/headshots/exec/alexandre_comtois_headshot.jpg",
+    role: "Fund Manager",
+    experience: "",
+    bio: "",
+    education: ""
+  },
+  {
     name: "Oscar Ham",
     image: "/headshots/exec/oscar_ham_headshot.jpg",
     role: "Fund Principal",
@@ -100,30 +124,6 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     image: "/headshots/exec/gael_huacuja_headshot.jpg",
     role: "Program Manager - Venture Advisory and Principle for the Fund",
     experience: "Prev @ Attain",
-    bio: "",
-    education: ""
-  },
-  {
-    name: "Thai Tran",
-    image: "/headshots/exec/thai.jpg",
-    role: "Events Associate",
-    experience: "",
-    bio: "",
-    education: "BEng Computer Engineering, McGill University"
-  },
-  {
-    name: "Lola Julliand",
-    image: "/headshots/exec/lola.jpg",
-    role: "Ambassador of Events",
-    experience: "",
-    bio: "",
-    education: "BCom, McGill University"
-  },
-  {
-    name: "Alexandre Comtois",
-    image: "/headshots/exec/alexandre_comtois_headshot.jpg",
-    role: "Fund Manager",
-    experience: "",
     bio: "",
     education: ""
   },
