@@ -72,6 +72,38 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     education: ""
   },
   {
+    name: "Oscar Ham",
+    image: "/headshots/exec/oscar_ham_headshot.jpg",
+    role: "Fund Principal",
+    experience: "Prev @ KPMG",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Chris Robinson",
+    image: "/headshots/exec/chris_robinson_headshot.jpg",
+    role: "Director of Finance",
+    experience: "Prev @ HSBC",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Orion Pirang",
+    image: "/headshots/exec/orion_pirang_headshot.jpg",
+    role: "Finance Associate/ Analyst",
+    experience: "Prev @ PwC, Desato",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Gael Gonzàlez",
+    image: "/headshots/exec/gael_huacuja_headshot.jpg",
+    role: "Program Manager - Venture Advisory and Principle for the Fund",
+    experience: "Prev @ Attain",
+    bio: "",
+    education: ""
+  },
+  {
     name: "Thai Tran",
     image: "/headshots/exec/thai.jpg",
     role: "Events Associate",
@@ -88,6 +120,21 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     education: "BCom, McGill University"
   },
   
+    name: "Alexandre Comtois",
+    image: "/headshots/exec/alexandre_comtois_headshot.jpg",
+    role: "Fund Manager",
+    experience: "",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Celine Chung",
+    image: "/headshots/exec/celine_chung_headshot.jpg",
+    role: "Principal at McGill Ventures Fund and Corporate Relations",
+    experience: "",
+    bio: "",
+    education: ""
+  },
 ];
 
 export const ANALYST_TEAM: AnalystTeamMember[] = [
