@@ -24,7 +24,7 @@ export interface ExecutiveTeamMember extends TeamMember {
 }
 
 export interface AnalystTeamMember extends TeamMember {
-  specialization: string;
+  specialization?: string;
 }
 
 export interface DeveloperTeamMember extends TeamMember {

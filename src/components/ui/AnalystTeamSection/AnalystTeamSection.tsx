@@ -24,15 +24,17 @@ export const AnalystTeamSection: React.FC<AnalystTeamSectionProps> = ({ members 
           <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 mb-16">
-          {programManagers.map((member, index) => (
-            <TeamCard
-              key={member.name}
-              member={member}
-              index={index}
-              variant="head"
-            />
-          ))}
+        <div className="flex justify-center mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 justify-items-center">
+            {programManagers.map((member, index) => (
+              <TeamCard
+                key={member.name}
+                member={member}
+                index={index}
+                variant="head"
+              />
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">

@@ -142,64 +142,60 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     name: "Nikola Lee",
     role: "Analyst Program Manager",
     specialization: "Venture Advisory",
+    image: "/headshots/analyst/placeholder.jpeg"
   },
-  {
-    name: "Ava Mckee",
-    role: "Analyst Program Manager",
-    specialization: "Fund Principal",
-    image: "/headshots/analyst/ava_mckee.png"
-  },
+  // {
+  //   name: "Ava Mckee",
+  //   role: "Analyst Program Manager",
+  //   specialization: "Fund Principal",
+  //   image: "/headshots/analyst/ava_mckee.png"
+  // },
   {
     name: "Elisabeth Scodigor",
     role: "Analyst Program Manager",
-    specialization: "to fill"
+    image: "/headshots/analyst/placeholder.jpeg"
   },
-  {
-    name: "Alhaan Haris",
-    role: "Analyst",
-    specialization: "Fund Principal"
-  },
+  // {
+  //   name: "Alhaan Haris",
+  //   role: "Analyst",
+  //   specialization: "Fund Principal"
+  // },
   {
     name: "Clive Raza",
     role: "Analyst",
-    specialization: "to fill",
     image: "/headshots/analyst/clive_raza.jpeg"
   },
   {
     name: "Chris Chan",
     role: "Junior Analyst",
-    specialization: "to fill",
     experience: "Prev @ Manulife Wealth Management",
     image: "/headshots/analyst/chris_chan.jpg"
   },
-  {
-   name: "Noah Vaillancourt",
-   role: "Analyst",
-   specialization: "Fund Principal",
-   experience: "Prev @ Valsoft" 
-  },
-  { 
-    name: "Urfaan Sadid",
-    role: "Analyst Program Manager",
-    specialization: "Fund Principal",
-    experience: "Prev @ Richardson Wealth, Wyld VC"
-  },
+  // {
+  //  name: "Noah Vaillancourt",
+  //  role: "Analyst",
+  //  specialization: "Fund Principal",
+  //  experience: "Prev @ Valsoft" 
+  // },
+  // { 
+  //   name: "Urfaan Sadid",
+  //   role: "Analyst Program Manager",
+  //   specialization: "Fund Principal",
+  //   experience: "Prev @ Richardson Wealth, Wyld VC"
+  // },
   {
     name: "Joey Marsh",
     role: "Analyst",
-    specialization: "to fill",
     image: "/headshots/analyst/joey_marsh.jpg"
   },
   {
     name: "Paul Lagrue",
     role: "Junior Analyst",
-    specialization: "to fill",
     image: "/headshots/analyst/paul_lagrue.jpeg"
   },
   {
     name: "Brit Meisels",
     role: "Analyst",
-    specialization: "to fill",
     image: "/headshots/analyst/brit_meisels.jpeg"
   },
   {
@@ -212,45 +208,38 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
   {
     name: "Anthony Melki",
     role: "Analyst",
-    specialization: "to fill",
     image: "/headshots/analyst/anthony_melki.jpg"
   },
   {
     name: "Kristen Alexander Tran",
     role: "Analyst",
-    specialization: "to fill",
     experience: "Co-founder @ Astrid",
     image: "/headshots/analyst/kristen_tran.jpg"
   },
   {
     name: "Laetitia Fleurent",
     role: "Analyst",
-    specialization: "to fill",
     experience: "Prev @ Moment Factory",
     image: "/headshots/analyst/laetitia_fleurent.jpg"
   },
   {
     name: "Iuliana Arhire",
     role: "Analyst",
-    specialization: "to fill",
     image: "/headshots/analyst/iuliana_arhire.jpeg"
   },
   {
     name: "Sophia Mahiout",
     role: "Analyst",
-    specialization: "to fill",
     image: "/headshots/analyst/sophia_mahiout.jpeg"
   },
   {
     name: "Guillaume Bouramia",
     role: "Analyst",
-    specialization: "to fill",
     image: "/headshots/analyst/guillaume_bouramia.jpg"
   },
   {
     name: "Emiko McLean",
     role: "Analyst",
-    specialization: "to fill",
     image: "/headshots/analyst/emiko_mclean.jpg"
   },
   {
@@ -262,14 +251,12 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
   {
     name: "Yueran Lu",
     role: "Analyst",
-    specialization: "to fill",
     experience: "Prev @ LIDD",
     image: "/headshots/analyst/yueran_lu.jpg"
   },
   {
     name: "David Li",
     role: "Analyst",
-    specialization: "to fill",
     experience: "Prev @ L’Oréal",
     image: "/headshots/analyst/david_li.jpeg"
   }
