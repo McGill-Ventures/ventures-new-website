@@ -8,7 +8,38 @@ import { ExecutiveTeamSection } from "@/components/ui/ExecutiveTeamSection/Execu
 import { AnalystTeamSection } from "@/components/ui/AnalystTeamSection/AnalystTeamSection";
 import { DeveloperTeamSection } from "@/components/ui/DeveloperTeamSection/DeveloperTeamSection";
 import { TeamType } from "@/types";
-import { TEAM_TYPES, EXECUTIVE_TEAM, ANALYST_TEAM, DEVELOPMENT_TEAM, HEAD_OF_ENGINEERING } from "@/constants";
+import {
+  TEAM_TYPES,
+  EXECUTIVE_TEAM,
+  ANALYST_TEAM,
+  DEVELOPMENT_TEAM,
+  HEAD_OF_ENGINEERING,
+} from "@/constants";
+
+const HEADSHOT_BASE_PATH = "/headshots/development";
+
+const UPDATED_DEVELOPMENT_TEAM = [
+  {
+    name: "Bill Huynh-Lu",
+    major: "BEng Software Engineering",
+    imageSrc: `${HEADSHOT_BASE_PATH}/bill_huynh-lu_headshot.jpeg`,
+  },
+  {
+    name: "Ayaan Rayani",
+    major: "Computer Science & Economics",
+    imageSrc: `${HEADSHOT_BASE_PATH}/ayaan_rayani_headshot.jpeg`,
+  },
+  {
+    name: "Aditi Potnis",
+    major: "Computer Science",
+    imageSrc: `${HEADSHOT_BASE_PATH}/aditi_potnis_headshot.jpeg`,
+  },
+  {
+    name: "Michael Lukas",
+    major: "Business Analytics",
+    imageSrc: `${HEADSHOT_BASE_PATH}/michael_lukas_headshot.jpeg`,
+  },
+];
 
 export default function Team() {
   const [activeTeam, setActiveTeam] = useState<TeamType>(TEAM_TYPES.EXECUTIVE);
@@ -21,9 +52,9 @@ export default function Team() {
         return <AnalystTeamSection members={ANALYST_TEAM} />;
       case TEAM_TYPES.DEVELOPER:
         return (
-          <DeveloperTeamSection 
-            members={DEVELOPMENT_TEAM} 
-            headOfEngineering={HEAD_OF_ENGINEERING} 
+          <DeveloperTeamSection
+            members={UPDATED_DEVELOPMENT_TEAM}
+            headOfEngineering={HEAD_OF_ENGINEERING}
           />
         );
       default:
@@ -34,7 +65,6 @@ export default function Team() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation currentPage="/team" />
-
       <section className="px-6 py-20 md:px-12 lg:px-24 relative bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
@@ -44,11 +74,8 @@ export default function Team() {
           </div>
         </div>
       </section>
-
       <TeamNavigation activeTeam={activeTeam} setActiveTeam={setActiveTeam} />
-
       {renderTeamSection()}
-
       <Footer />
     </div>
   );
