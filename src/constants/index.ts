@@ -31,6 +31,110 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     bio: "Charlyne co-leads McGill Ventures, focusing on community engagement, event management, and fostering relationships within the startup ecosystem.",
     education: "BCom Finance, McGill University"
   },  
+  {
+    name: "Xin Yu Zhang",
+    image: "/headshots/exec/xin.jpeg",
+    role: "Co-Director of Events",
+    experience: "Prev @ Royal Lepage Real Estate, Headstart Global",
+    bio: "",
+    education: "BCom Finance, McGill University"
+  },
+  {
+    name: "Aya Cherkaoui",
+    image: "/headshots/exec/aya.JPG",
+    role: "Co-Director of Events",
+    experience: "Prev @ EY",
+    bio: "",
+    education: "BCom Economics & Business Analytics, McGill University"
+  }, 
+  {
+    name: "Kelly Yan",
+    image: "/headshots/exec/kelly.JPG",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: "BCom Honours Joint Component Economics and Accounting, McGill University"
+  }, 
+  {
+    name: "Riya Jain",
+    image: "/headshots/exec/riya.jpeg",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: "BCom Economics and International Development Studies, McGill University"
+  },   
+  {
+    name: "Coco Meng",
+    image: "/headshots/exec/coco.jpeg",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Thai Tran",
+    image: "/headshots/exec/thai.jpg",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: "BEng Computer Engineering, McGill University"
+  },
+  {
+    name: "Lola Julliand",
+    image: "/headshots/exec/lola.jpg",
+    role: "Ambassador of Events",
+    experience: "",
+    bio: "",
+    education: "BCom, McGill University"
+  },
+  {
+    name: "Alexandre Comtois",
+    image: "/headshots/exec/alexandre_comtois_headshot.jpg",
+    role: "Fund Manager",
+    experience: "",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Oscar Ham",
+    image: "/headshots/exec/oscar_ham_headshot.jpg",
+    role: "Fund Principal",
+    experience: "Prev @ KPMG",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Chris Robinson",
+    image: "/headshots/exec/chris_robinson_headshot.jpg",
+    role: "Director of Finance",
+    experience: "Prev @ HSBC",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Orion Pirang",
+    image: "/headshots/exec/orion_pirang_headshot.jpg",
+    role: "Finance Associate/ Analyst",
+    experience: "Prev @ PwC, Desato",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Gael Gonzàlez",
+    image: "/headshots/exec/gael_huacuja_headshot.jpg",
+    role: "Program Manager - Venture Advisory and Principle for the Fund",
+    experience: "Prev @ Attain",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Celine Chung",
+    image: "/headshots/exec/celine_chung_headshot.jpg",
+    role: "Principal at McGill Ventures Fund and Corporate Relations",
+    experience: "",
+    bio: "",
+    education: ""
+  },
 ];
 
 export const ANALYST_TEAM: AnalystTeamMember[] = [
@@ -177,7 +281,7 @@ export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
   experience: "Prev @ Amazon, Lightspeed",
   education: "BEng Computer Engineering, McGill University",
   skills: ["System Architecture", "Team Leadership", "Software Development", "Product Management", "Scalability"],
-  bio: "Wasif oversees all technical initiatives and leads our engineering strategy for internal and external software development practices.",
+  bio: "Wasif oversees all technical initiatives and leads our engineering strategy for internal software development practices.",
   image: "/headshots/development/wsomji.jpeg"
 };
 
