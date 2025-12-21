@@ -144,22 +144,11 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     specialization: "Venture Advisory",
     image: "/headshots/analyst/nikola_lee.jpg"
   },
-  // {
-  //   name: "Ava Mckee",
-  //   role: "Analyst Program Manager",
-  //   specialization: "Fund Principal",
-  //   image: "/headshots/analyst/ava_mckee.png"
-  // },
   {
     name: "Elisabeth Scodigor",
     role: "Analyst Program Manager",
     image: "/headshots/analyst/elisabeth_scodigor.jpg"
   },
-  // {
-  //   name: "Alhaan Haris",
-  //   role: "Analyst",
-  //   specialization: "Fund Principal"
-  // },
   {
     name: "Clive Raza",
     role: "Analyst",
@@ -171,18 +160,6 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     experience: "Prev @ Manulife Wealth Management",
     image: "/headshots/analyst/chris_chan.jpg"
   },
-  // {
-  //  name: "Noah Vaillancourt",
-  //  role: "Analyst",
-  //  specialization: "Fund Principal",
-  //  experience: "Prev @ Valsoft" 
-  // },
-  // { 
-  //   name: "Urfaan Sadid",
-  //   role: "Analyst Program Manager",
-  //   specialization: "Fund Principal",
-  //   experience: "Prev @ Richardson Wealth, Wyld VC"
-  // },
   {
     name: "Joey Marsh",
     role: "Analyst",
