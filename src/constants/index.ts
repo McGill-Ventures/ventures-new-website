@@ -142,7 +142,7 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     name: "Nikola Lee",
     role: "Analyst Program Manager",
     specialization: "Venture Advisory",
-    image: "/headshots/analyst/placeholder.jpeg"
+    image: "/headshots/analyst/nikola_lee.jpg"
   },
   // {
   //   name: "Ava Mckee",
@@ -153,7 +153,7 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
   {
     name: "Elisabeth Scodigor",
     role: "Analyst Program Manager",
-    image: "/headshots/analyst/placeholder.jpeg"
+    image: "/headshots/analyst/elisabeth_scodigor.jpg"
   },
   // {
   //   name: "Alhaan Haris",
