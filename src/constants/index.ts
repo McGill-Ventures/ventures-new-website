@@ -138,7 +138,105 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
 ];
 
 export const ANALYST_TEAM: AnalystTeamMember[] = [
-  
+  {
+    name: "Nikola Lee",
+    role: "Analyst Program Manager",
+    specialization: "Venture Advisory",
+    image: "/headshots/analyst/nikola_lee.jpg"
+  },
+  {
+    name: "Elisabeth Scodigor",
+    role: "Analyst Program Manager",
+    image: "/headshots/analyst/elisabeth_scodigor.jpg"
+  },
+  {
+    name: "Clive Raza",
+    role: "Analyst",
+    image: "/headshots/analyst/clive_raza.jpeg"
+  },
+  {
+    name: "Chris Chan",
+    role: "Junior Analyst",
+    experience: "Prev @ Manulife Wealth Management",
+    image: "/headshots/analyst/chris_chan.jpg"
+  },
+  {
+    name: "Joey Marsh",
+    role: "Analyst",
+    image: "/headshots/analyst/joey_marsh.jpg"
+  },
+  {
+    name: "Paul Lagrue",
+    role: "Junior Analyst",
+    image: "/headshots/analyst/paul_lagrue.jpeg"
+  },
+  {
+    name: "Brit Meisels",
+    role: "Analyst",
+    image: "/headshots/analyst/brit_meisels.jpeg"
+  },
+  {
+    name: "Harsh Bokadia",
+    role: "Analyst",
+    specialization: "Flagship Analyst Program",
+    experience: "Prev @ Nuvama Health",
+    image: "/headshots/analyst/harsh_bokadia.jpg"
+  },
+  {
+    name: "Anthony Melki",
+    role: "Analyst",
+    image: "/headshots/analyst/anthony_melki.jpg"
+  },
+  {
+    name: "Kristen Alexander Tran",
+    role: "Analyst",
+    experience: "Co-founder @ Astrid",
+    image: "/headshots/analyst/kristen_tran.jpg"
+  },
+  {
+    name: "Laetitia Fleurent",
+    role: "Analyst",
+    experience: "Prev @ Moment Factory",
+    image: "/headshots/analyst/laetitia_fleurent.jpg"
+  },
+  {
+    name: "Iuliana Arhire",
+    role: "Analyst",
+    image: "/headshots/analyst/iuliana_arhire.jpeg"
+  },
+  {
+    name: "Sophia Mahiout",
+    role: "Analyst",
+    image: "/headshots/analyst/sophia_mahiout.jpeg"
+  },
+  {
+    name: "Guillaume Bouramia",
+    role: "Analyst",
+    image: "/headshots/analyst/guillaume_bouramia.jpg"
+  },
+  {
+    name: "Emiko McLean",
+    role: "Analyst",
+    image: "/headshots/analyst/emiko_mclean.jpg"
+  },
+  {
+    name: "Jaden Lee",
+    role: "Analyst",
+    specialization: "Finance Associate",
+    image: "/headshots/analyst/jaden_lee.jpg"
+  },
+  {
+    name: "Yueran Lu",
+    role: "Analyst",
+    experience: "Prev @ LIDD",
+    image: "/headshots/analyst/yueran_lu.jpg"
+  },
+  {
+    name: "David Li",
+    role: "Analyst",
+    experience: "Prev @ L’Oréal",
+    image: "/headshots/analyst/david_li.jpeg"
+  }
 ];
 
 export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
