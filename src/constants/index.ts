@@ -276,7 +276,31 @@ export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
     role: "Intermediate Developer",
     skills: ["React.js", "TypeScript", "SCSS"],
     bio: ""
-  }
+  },
+  {
+    name: "Bill Huynh-Lu",
+    education: "BEng Software Engineering",
+    image: "/headshots/development/bill_huynh-lu.png",
+    role: "Junior Developer",
+  },
+  {
+    name: "Ayaan Rayani",
+    education: "Computer Science & Economics",
+    image: "/headshots/development/ayaan_rayani_headshot.jpeg",
+    role: "Junior Developer",
+  },
+  {
+    name: "Aditi Potnis",
+    education: "Computer Science",
+    image: "/headshots/development/aditi_potnis_headshot.jpg",
+    role: "Junior Developer",
+  },
+  {
+    name: "Michael Lukas",
+    education: "Business Analytics",
+    image: "/headshots/development/michael_lukas_headshot.JPG",
+    role: "Junior Developer",
+  },
 ];
 
 export const ANIMATION_CLASSES = {
