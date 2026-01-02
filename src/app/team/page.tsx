@@ -16,31 +16,6 @@ import {
   HEAD_OF_ENGINEERING,
 } from "@/constants";
 
-const HEADSHOT_BASE_PATH = "/headshots/development";
-
-const UPDATED_DEVELOPMENT_TEAM = [
-  {
-    name: "Bill Huynh-Lu",
-    major: "BEng Software Engineering",
-    imageSrc: `${HEADSHOT_BASE_PATH}/bill_huynh-lu_headshot.jpeg`,
-  },
-  {
-    name: "Ayaan Rayani",
-    major: "Computer Science & Economics",
-    imageSrc: `${HEADSHOT_BASE_PATH}/ayaan_rayani_headshot.jpeg`,
-  },
-  {
-    name: "Aditi Potnis",
-    major: "Computer Science",
-    imageSrc: `${HEADSHOT_BASE_PATH}/aditi_potnis_headshot.jpeg`,
-  },
-  {
-    name: "Michael Lukas",
-    major: "Business Analytics",
-    imageSrc: `${HEADSHOT_BASE_PATH}/michael_lukas_headshot.jpeg`,
-  },
-];
-
 export default function Team() {
   const [activeTeam, setActiveTeam] = useState<TeamType>(TEAM_TYPES.EXECUTIVE);
 
@@ -53,7 +28,7 @@ export default function Team() {
       case TEAM_TYPES.DEVELOPER:
         return (
           <DeveloperTeamSection
-            members={UPDATED_DEVELOPMENT_TEAM}
+            members={DEVELOPMENT_TEAM}
             headOfEngineering={HEAD_OF_ENGINEERING}
           />
         );

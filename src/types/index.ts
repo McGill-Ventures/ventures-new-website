@@ -28,8 +28,8 @@ export interface AnalystTeamMember extends TeamMember {
 }
 
 export interface DeveloperTeamMember extends TeamMember {
-  skills: string[];
-  bio: string;
+  skills?: string[];
+  bio?: string;
 }
 
 export interface ContactFormData {
