@@ -166,7 +166,7 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
   },
   {
     name: "Orion Pirang",
-    image: "/headshots/exec/orion_pirang_headshot.jpg",
+    image: "/headshots/exec/orion_pirang_headshot.JPG",
     role: "Finance Associate/ Analyst",
     experience: "Prev @ PwC, Desato",
     bio: "",
@@ -301,7 +301,7 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     role: "Analyst",
     experience: "Co-founder @ Astrid",
     education: "BSc Cognitive Science",
-    image: "/headshots/analyst/kristen_tran.jpg"
+    image: "/headshots/analyst/kristen_tran.png"
   },
   {
     name: "Laetitia Fleurent",
