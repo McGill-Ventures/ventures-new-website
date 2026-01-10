@@ -36,15 +36,15 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     image: "/headshots/exec/alexis_hamam.jpg", 
     role: "Founder & IC (Fund)",
     experience: "Prev @ EY M&A, Boreal Ventures",
-    bio: "Let me know if I need to do this.",
-    education: ""
+    bio: "",
+    education: "BCom Finance, McGill University"
   },
   {
     name: "Alhaan Haris",
     role: "Fund Principal",
     image: "/headshots/exec/alhaan_haris.jpg",
     bio: "",
-    education: "",
+    education: "BCom Joint Honours Economics + Finance, McGill University",
   },
   {
     name: "Noah Vaillancourt",
@@ -162,7 +162,7 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Director of Finance",
     experience: "Prev @ HSBC",
     bio: "",
-    education: "Joint Honours Economics + Finance, McGill University"
+    education: "BCom Joint Honours Economics + Finance, McGill University"
   },
   {
     name: "Orion Pirang",
@@ -242,44 +242,44 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     name: "Nikola Lee",
     role: "Analyst Program Manager",
     specialization: "Venture Advisory",
-    education: "BCom Finance + Entrepreneurship",
+    education: "BCom Finance + Entrepreneurship, McGill University",
     image: "/headshots/analyst/nikola_lee.jpg"
   },
   {
     name: "Elisabeth Scodigor",
     role: "Analyst Program Manager",
-    education: "BCom Ops Mgmt + Business Analytics + Strategy",
+    education: "BCom Ops Mgmt + Business Analytics + Strategy, McGill University",
     image: "/headshots/analyst/elisabeth_scodigor.jpg"
   },
   {
     name: "Clive Raza",
     role: "Analyst",
-    education: "BCom Economics",
+    education: "BCom Economic, McGill Universitys",
     image: "/headshots/analyst/clive_raza.jpeg"
   },
   {
     name: "Chris Chan",
     role: "Junior Analyst",
     experience: "Prev @ Manulife Wealth Management",
-    education: "BCom Management",
+    education: "BCom Management, McGill University",
     image: "/headshots/analyst/chris_chan.jpg"
   },
   {
     name: "Joey Marsh",
     role: "Analyst",
-    education: "BCom Finance",
+    education: "BCom Finance, McGill University",
     image: "/headshots/analyst/joey_marsh.jpg"
   },
   {
     name: "Paul Lagrue",
     role: "Junior Analyst",
-    education: "BCom Finance",
+    education: "BCom Finance, McGill University",
     image: "/headshots/analyst/paul_lagrue.jpeg"
   },
   {
     name: "Brit Meisels",
     role: "Analyst",
-    education: "BA Political Science",
+    education: "BA Political Science, McGill University",
     image: "/headshots/analyst/brit_meisels.jpeg"
   },
   {
@@ -287,72 +287,72 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     role: "Analyst",
     specialization: "Flagship Analyst Program",
     experience: "Prev @ Nuvama Health",
-    education: "BA Economics + Social Entrepreneurship",
+    education: "BA Economics + Social Entrepreneurship, McGill University",
     image: "/headshots/analyst/harsh_bokadia.jpg"
   },
   {
     name: "Anthony Melki",
     role: "Analyst",
-    education: "BEng Mechanical Engineering",
+    education: "BEng Mechanical Engineering, McGill University",
     image: "/headshots/analyst/anthony_melki.jpg"
   },
   {
     name: "Kristen Alexander Tran",
     role: "Analyst",
     experience: "Co-founder @ Astrid",
-    education: "BSc Cognitive Science",
+    education: "BSc Cognitive Science, McGill University",
     image: "/headshots/analyst/kristen_tran.png"
   },
   {
     name: "Laetitia Fleurent",
     role: "Analyst",
     experience: "Prev @ Moment Factory",
-    education: "BCom Finance",
+    education: "BCom Finance, McGill University",
     image: "/headshots/analyst/laetitia_fleurent.jpg"
   },
   {
     name: "Iuliana Arhire",
     role: "Analyst",
-    education: "BCom Finance",
+    education: "BCom Finance, McGill University",
     image: "/headshots/analyst/iuliana_arhire.jpeg"
   },
   {
     name: "Sophia Mahiout",
     role: "Analyst",
-    education: "BSc Microbiology + Immunology",
+    education: "BSc Microbiology + Immunology, McGill University",
     image: "/headshots/analyst/sophia_mahiout.jpeg"
   },
   {
     name: "Guillaume Bouramia",
     role: "Analyst",
-    education: "BSc Biochemistry + Entrepreneurship",
+    education: "BSc Biochemistry + Entrepreneurship, McGill University",
     image: "/headshots/analyst/guillaume_bouramia.jpg"
   },
   {
     name: "Emiko McLean",
     role: "Analyst",
-    education: "MSc Surgical + Interventional Sciences",
+    education: "MSc Surgical + Interventional Sciences, McGill University",
     image: "/headshots/analyst/emiko_mclean.jpg"
   },
   {
     name: "Jaden Lee",
     role: "Analyst",
     specialization: "Finance Associate",
-    education: "BCom Finance",
+    education: "BCom Finance, McGill University",
     image: "/headshots/analyst/jaden_lee.jpg"
   },
   {
     name: "Yueran Lu",
     role: "Analyst",
     experience: "Prev @ LIDD",
-    education: "BEng Computer Engineering",
+    education: "BEng Computer Engineering, McGill University",
     image: "/headshots/analyst/yueran_lu.jpg"
   },
   {
     name: "David Li",
     role: "Analyst",
     experience: "Prev @ L’Oréal",
-    education: "BSc Computer Science + Economics",
+    education: "BSc Computer Science + Economics, McGill University",
     image: "/headshots/analyst/david_li.jpeg"
   }
 ];
