@@ -8,11 +8,23 @@ interface ExecutiveTeamSectionProps {
 
 export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ members }) => {
   // Separate Co-Presidents from other executive members
-  const coPresidents = members.filter(member => member.role.includes('Co-President'));
-  const eventsTeam = members.filter(member => member.role.includes('Events'));
-  const financeTeam = members.filter(member => 
-    member.role.includes('Finance') || 
-    member.role.includes('Fund')
+  const leadership = members.filter(member => member.role.includes('Co-President'));
+
+  const financeFund = members.filter(m =>
+    !leadership.includes(m) &&
+    (m.role.includes('Finance') || m.role.includes('Fund'))
+  );
+
+  const events = members.filter(m =>
+    !leadership.includes(m) &&
+    !financeFund.includes(m) &&
+    (m.role.includes('Events') || m.role.includes('Event'))
+  );
+
+  const operations = members.filter(m =>
+    !leadership.includes(m) &&
+    !financeFund.includes(m) &&
+    !events.includes(m)
   );
 
   return (
@@ -25,14 +37,14 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
         </div>
         
         {/* Co-Presidents Section */}
-        {coPresidents.length > 0 && (
+        {leadership.length > 0 && (
           <div className="mb-20">
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Leadership</h3>
             </div>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 max-w-4xl">
-                {coPresidents.map((member, index) => (
+                {leadership.map((member, index) => (
                   <TeamCard
                     key={member.name}
                     member={member}
@@ -46,17 +58,17 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
         )}
 
         {/* Events Team */}
-        {eventsTeam.length > 0 && (
+        {events.length > 0 && (
           <div className="mb-20">
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Events Team</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
-              {eventsTeam.map((member, index) => (
+              {events.map((member, index) => (
                 <TeamCard
                   key={member.name}
                   member={member}
-                  index={index + coPresidents.length}
+                  index={index + leadership.length}
                   variant="executive"
                 />
               ))}
@@ -65,17 +77,36 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
         )}
 
         {/* Finance & Fund Team */}
-        {financeTeam.length > 0 && (
+        {financeFund.length > 0 && (
           <div>
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Finance & Fund Team</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
-              {financeTeam.map((member, index) => (
+              {financeFund.map((member, index) => (
                 <TeamCard
                   key={member.name}
                   member={member}
-                  index={index + coPresidents.length + eventsTeam.length}
+                  index={index + leadership.length + events.length}
+                  variant="executive"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Operations Team */}
+        {operations.length > 0 && (
+          <div>
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Operations</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
+              {operations.map((member, index) => (
+                <TeamCard
+                  key={member.name}
+                  member={member}
+                  index={index + leadership.length + events.length + operations.length}
                   variant="executive"
                 />
               ))}
