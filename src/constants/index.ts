@@ -332,7 +332,7 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     name: "Emiko McLean",
     role: "Analyst",
     education: "MSc Surgical + Interventional Sciences, McGill University",
-    image: "/headshots/analyst/emiko_mclean.jpg"
+    image: "/headshots/analyst/emiko_mcLean.jpg"
   },
   {
     name: "Jaden Lee",
