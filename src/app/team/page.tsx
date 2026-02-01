@@ -11,6 +11,8 @@ import { TeamType } from "@/types";
 import {
   TEAM_TYPES,
   EXECUTIVE_TEAM,
+  FUND_TEAM,
+  FINANCE_TEAM,
   ANALYST_TEAM,
   DEVELOPMENT_TEAM,
   HEAD_OF_ENGINEERING,
@@ -22,7 +24,11 @@ export default function Team() {
   const renderTeamSection = () => {
     switch (activeTeam) {
       case TEAM_TYPES.EXECUTIVE:
-        return <ExecutiveTeamSection members={EXECUTIVE_TEAM} />;
+        return <ExecutiveTeamSection members={EXECUTIVE_TEAM} title="Executive Team" />;
+      case TEAM_TYPES.FUND:
+        return <ExecutiveTeamSection members={FUND_TEAM} title="Fund Team" />;
+      case TEAM_TYPES.FINANCE:
+        return <ExecutiveTeamSection members={FINANCE_TEAM} title="Finance Team" />;
       case TEAM_TYPES.ANALYST:
         return <AnalystTeamSection members={ANALYST_TEAM} />;
       case TEAM_TYPES.DEVELOPER:
@@ -33,7 +39,7 @@ export default function Team() {
           />
         );
       default:
-        return <ExecutiveTeamSection members={EXECUTIVE_TEAM} />;
+        return <ExecutiveTeamSection members={EXECUTIVE_TEAM} title="Executive Team" />;
     }
   };
 

@@ -49,7 +49,7 @@ export interface APIResponse<T = Record<string, unknown>> {
   error?: string;
 }
 
-export type TeamType = 'executive' | 'analyst' | 'dev';
+export type TeamType = 'executive' | 'fund' | 'finance' | 'analyst' | 'dev';
 
 export type GovernanceType = 'fund-overview' | 'governance' | 'get-involved';
 

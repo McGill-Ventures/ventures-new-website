@@ -158,10 +158,7 @@ export const OurGovernanceSection: React.FC = () => {
             <div className="mt-12 text-center">
               <div className="glass rounded-xl p-6 max-w-2xl mx-auto">
                 <p className="text-lg text-purple-800 font-body">
-                  <strong>Investment Process:</strong> Students present to Investment Committee, working directly on deals.
-                </p>
-                <p className="text-purple-800 font-body mt-3">
-                  Top performing analysts join the <strong>Investment Team</strong>, working directly on deals.
+                  <strong>Investment Process:</strong> Students deal source, interact with founders, conduct due diligence, formulate their convictions, make their decision, finally, they present it to the Investment Committee.
                 </p>
               </div>
             </div>

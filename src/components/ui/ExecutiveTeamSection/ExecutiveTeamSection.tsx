@@ -4,9 +4,10 @@ import { TeamCard } from '../TeamCard/TeamCard';
 
 interface ExecutiveTeamSectionProps {
   members: ExecutiveTeamMember[];
+  title?: string;
 }
 
-export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ members }) => {
+export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ members, title = "Executive Team" }) => {
   // Separate Co-Presidents from other executive members
   const leadership = members.filter(member => member.role.includes('Co-President'));
 
@@ -32,7 +33,7 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
       <div className="absolute inset-0 bg-gradient-radial"></div>
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-8">Executive Team</h2>
+          <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-8">{title}</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full"></div>
         </div>
         
@@ -79,10 +80,7 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
         {/* Finance & Fund Team */}
         {financeFund.length > 0 && (
           <div>
-            <div className="text-center mb-12">
-              <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Finance & Fund Team</h3>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
               {financeFund.map((member, index) => (
                 <TeamCard
                   key={member.name}
@@ -97,7 +95,7 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
 
         {/* Operations Team */}
         {operations.length > 0 && (
-          <div>
+          <div className="mt-20">
             <div className="text-center mb-12">
               <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Operations</h3>
             </div>

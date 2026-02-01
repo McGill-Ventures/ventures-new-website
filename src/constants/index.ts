@@ -11,6 +11,8 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 
 export const TEAM_TYPES = {
   EXECUTIVE: 'executive' as const,
+  FUND: 'fund' as const,
+  FINANCE: 'finance' as const,
   ANALYST: 'analyst' as const,
   DEVELOPER: 'dev' as const,
 } as const;
@@ -235,6 +237,71 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     bio: "",
     education: "BCom Finance, McGill University"
   },
+];
+
+export const FUND_TEAM: ExecutiveTeamMember[] = [
+  {
+    name: "Alexis Hamam",
+    image: "/headshots/exec/alexis_hamam.jpg", 
+    role: "Founder & IC (Fund)",
+    experience: "Prev @ EY M&A, Boreal Ventures",
+    bio: "",
+    education: "BCom Finance, McGill University"
+  },
+  {
+    name: "Alhaan Haris",
+    role: "Fund Principal",
+    image: "/headshots/exec/alhaan_haris.jpg",
+    bio: "",
+    education: "BCom Joint Honours Economics + Finance, McGill University",
+  },
+  {
+    name: "Noah Vaillancourt",
+    role: "Fund Principal",
+    image: "/headshots/exec/noah_vaillancourt.jpg",
+    bio: "",
+    education: "BEng Software Engineering, McGill University",
+  },
+  {
+    name: "Urfaan Sadid",
+    role: "Fund Program Manager",
+    experience: "Prev @ Richardson Wealth, Wyld VC",
+    image: "/headshots/exec/urfaan_sadid.jpg",
+    bio: "",
+    education: "BCom Joint Honours Economics + Finance, McGill University",
+  },
+  {
+    name: "Alexandre Comtois",
+    image: "/headshots/exec/alexandre_comtois_headshot.jpg",
+    role: "Fund Manager",
+    experience: "",
+    bio: "",
+    education: "Honours Investment Management, McGill University"
+  },
+  {
+    name: "Oscar Ham",
+    image: "/headshots/exec/oscar_ham_headshot.jpg",
+    role: "Fund Principal",
+    experience: "Prev @ KPMG",
+    bio: "",
+    education: "BEng Electrical Engineering, McGill University",
+  },
+  {
+    name: "Gael Gonzàlez",
+    image: "/headshots/exec/gael_huacuja_headshot.jpg",
+    role: "Program Manager - Venture Advisory and Fund Principal",
+    experience: "Prev @ Attain",
+    bio: "",
+    education: "BComm Finance + Strategic Management, McGill University"
+  },
+  {
+    name: "Celine Chung",
+    image: "/headshots/exec/celine_chung_headshot.jpg",
+    role: "Fund Principal and Corporate Relations",
+    experience: "",
+    bio: "",
+    education: "BComm International Management, McGill University"
+  },
   {
     name: "Ava McKee",
     role: "Analyst Program Manager & Fund Principal",
@@ -244,13 +311,31 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
   },
 ];
 
+export const FINANCE_TEAM: ExecutiveTeamMember[] = [
+  {
+    name: "Chris Robinson",
+    image: "/headshots/exec/chris_robinson_headshot.jpg",
+    role: "Director of Finance",
+    experience: "Prev @ HSBC",
+    bio: "",
+    education: "BCom Joint Honours Economics + Finance, McGill University"
+  },
+  {
+    name: "Orion Pirang",
+    image: "/headshots/exec/orion_pirang_headshot.JPG",
+    role: "Finance Associate/ Analyst",
+    experience: "Prev @ PwC, Desato",
+    bio: "",
+    education: "BComm Finance, McGill University"
+  },
+];
+
 export const ANALYST_TEAM: AnalystTeamMember[] = [
   {
-    name: "Nikola Lee",
+    name: "Ava McKee",
     role: "Analyst Program Manager",
-    specialization: "Venture Advisory",
-    education: "BCom Finance + Entrepreneurship, McGill University",
-    image: "/headshots/analyst/nikola_lee.jpg"
+    education: "BCom Finance, McGill University",
+    image: "/headshots/exec/ava_mckee.png"
   },
   {
     name: "Elisabeth Scodigor",
@@ -266,7 +351,7 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
   },
   {
     name: "Chris Chan",
-    role: "Junior Analyst",
+    role: "Analyst",
     experience: "Prev @ Manulife Wealth Management",
     education: "BCom Management, McGill University",
     image: "/headshots/analyst/chris_chan.jpg"
@@ -279,7 +364,7 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
   },
   {
     name: "Paul Lagrue",
-    role: "Junior Analyst",
+    role: "Analyst",
     education: "BCom Finance, McGill University",
     image: "/headshots/analyst/paul_lagrue.jpeg"
   },
