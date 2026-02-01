@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { TeamCardProps } from '@/types';
 import { cn } from '@/lib/utils';
 import { useStaggeredFadeIn } from '@/hooks/useOptimizedAnimation';
-import { Icon } from '@/components/ui';
 
 const TeamCard: React.FC<TeamCardProps> = React.memo(({ member, index, variant = 'executive' }) => {
   const animation = useStaggeredFadeIn(index);

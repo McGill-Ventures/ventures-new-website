@@ -5,4 +5,8 @@ export { AnalystTeamSection } from './AnalystTeamSection/AnalystTeamSection';
 export { DeveloperTeamSection } from './DeveloperTeamSection/DeveloperTeamSection';
 export { ContactForm } from './ContactForm/ContactForm';
 export { Icon } from './Icon/Icon';
+export { GovernanceNavigation } from './GovernanceNavigation/GovernanceNavigation';
+export { FundOverviewSection } from './FundOverviewSection/FundOverviewSection';
+export { OurGovernanceSection } from './OurGovernanceSection/OurGovernanceSection';
+export { GetInvolvedSection } from './GetInvolvedSection/GetInvolvedSection';
 export type { IconName } from './Icon/Icon';

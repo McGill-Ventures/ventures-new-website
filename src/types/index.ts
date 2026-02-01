@@ -32,6 +32,10 @@ export interface DeveloperTeamMember extends TeamMember {
   bio?: string;
 }
 
+export interface GovernanceTeamMember extends TeamMember {
+  organization?: string;
+}
+
 export interface ContactFormData {
   name: string;
   email: string;
@@ -46,6 +50,13 @@ export interface APIResponse<T = Record<string, unknown>> {
 }
 
 export type TeamType = 'executive' | 'analyst' | 'dev';
+
+export type GovernanceType = 'fund-overview' | 'governance' | 'get-involved';
+
+export interface GovernanceSectionProps {
+  activeSection: GovernanceType;
+  setActiveSection: (section: GovernanceType) => void;
+}
 
 export interface TeamSectionProps {
   activeTeam: TeamType;

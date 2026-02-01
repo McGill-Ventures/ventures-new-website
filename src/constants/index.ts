@@ -1,9 +1,10 @@
-import { NavigationItem, ExecutiveTeamMember, AnalystTeamMember, DeveloperTeamMember } from '@/types';
+import { NavigationItem, ExecutiveTeamMember, AnalystTeamMember, DeveloperTeamMember, GovernanceTeamMember } from '@/types';
 
 export const NAVIGATION_ITEMS: NavigationItem[] = [
   { href: "/about", label: "About" },
   { href: "/programs", label: "Programs" },
   { href: "/sponsors", label: "Sponsors" },
+  { href: "/fund", label: "Fund" },
   { href: "/team", label: "Team" },
   { href: "/contact", label: "Contact" },
 ];
@@ -12,6 +13,12 @@ export const TEAM_TYPES = {
   EXECUTIVE: 'executive' as const,
   ANALYST: 'analyst' as const,
   DEVELOPER: 'dev' as const,
+} as const;
+
+export const GOVERNANCE_TYPES = {
+  FUND_OVERVIEW: 'fund-overview' as const,
+  GOVERNANCE: 'governance' as const,
+  GET_INVOLVED: 'get-involved' as const,
 } as const;
 
 export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
@@ -229,7 +236,7 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     education: "BCom Finance, McGill University"
   },
   {
-    name: "Ava Mckee",
+    name: "Ava McKee",
     role: "Analyst Program Manager & Fund Principal",
     image: "/headshots/exec/ava_mckee.png",
     bio: "",
@@ -517,7 +524,7 @@ export const PROGRAM_DATA = [
     ],
     duration: "16 weeks",
     commitment: "4-6 hours/week",
-    status: "Applications re-open Winter 2026"
+    status: "Applications re-open Summer 2026"
   },
   {
     title: "Development Program",
@@ -593,3 +600,174 @@ export const HOME_STATS = [
   { value: "3rd", label: "Largest Club in Desautels Faculty of Management" },
   { value: "70+", label: "Club Members" }
 ] as const;
+
+// Governance Team Data
+export const MANAGING_DIRECTORS: GovernanceTeamMember[] = [
+  {
+    name: "Alex Comtois",
+    role: "Managing Director",
+    image: "/headshots/exec/alexandre_comtois_headshot.jpg",
+    experience: "",
+    bio: "",
+    education: "Honours Investment Management, McGill University"
+  },
+  {
+    name: "Elisabeth Scodigor", 
+    role: "Managing Director",
+    image: "/headshots/analyst/elisabeth_scodigor.jpg",
+    experience: "",
+    bio: "",
+    education: "BCom Ops Mgmt + Business Analytics + Strategy, McGill University"
+  },
+  {
+    name: "Urfaan Sadid",
+    role: "Managing Director", 
+    experience: "Prev @ Richardson Wealth, Wyld VC",
+    image: "/headshots/exec/urfaan_sadid.jpg",
+    bio: "",
+    education: "BCom Joint Honours Economics + Finance, McGill University"
+  },
+  {
+    name: "Priyank Shah",
+    role: "Managing Director",
+    image: "/headshots/investment/priyank_shah.jpg",
+    experience: "",
+    bio: "",
+    education: ""
+  }
+];
+
+export const GOVERNANCE_TEAM_MEMBERS: GovernanceTeamMember[] = [
+  {
+    name: "Gael Gonzàlez",
+    image: "/headshots/exec/gael_huacuja_headshot.jpg",
+    role: "Principal",
+    experience: "Prev @ Attain",
+    bio: "",
+    education: "BComm Finance + Strategic Management, McGill University"
+  },
+  {
+    name: "Celine Chung",
+    image: "/headshots/exec/celine_chung_headshot.jpg",
+    role: "Principal",
+    experience: "",
+    bio: "",
+    education: "BComm International Management, McGill University"
+  },
+  {
+    name: "Ava McKee",
+    role: "Principal",
+    image: "/headshots/exec/ava_mckee.png",
+    experience: "",
+    bio: "",
+    education: "BCom Finance, McGill University"
+  },
+  {
+    name: "Kirin DeJacobson",
+    role: "Principal",
+    image: "/headshots/investment/kirin_dejacobson.jpg",
+    experience: "",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Noah Vaillancourt",
+    role: "Principal",
+    image: "/headshots/exec/noah_vaillancourt.jpg",
+    bio: "",
+    education: "BEng Software Engineering, McGill University"
+  },
+  {
+    name: "Oscar Ham",
+    image: "/headshots/exec/oscar_ham_headshot.jpg",
+    role: "Principal",
+    experience: "Prev @ KPMG",
+    bio: "",
+    education: "BEng Electrical Engineering, McGill University"
+  },
+  {
+    name: "Alhaan Haris",
+    role: "Principal",
+    image: "/headshots/exec/alhaan_haris.jpg",
+    bio: "",
+    education: "BCom Joint Honours Economics + Finance, McGill University"
+  }
+];
+
+export const INVESTMENT_COMMITTEE: GovernanceTeamMember[] = [
+  {
+    name: "Emilie Boutros",
+    role: "Managing Partner", 
+    organization: "Tandem Launch",
+    image: "/headshots/investment/Emilie Boutros, Managing Partner, Tandem Launch.jpg",
+    experience: "Managing Partner, Tandem Launch",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "David Charbonneau",
+    role: "Managing Partner",
+    organization: "Boréal Ventures", 
+    image: "/headshots/investment/David Charbonneau, Managing Partner, Boréal Ventures.jpg",
+    experience: "Managing Partner, Boréal Ventures",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Felicity Meyer",
+    role: "Investment Manager",
+    organization: "BoxOne Ventures", 
+    image: "/headshots/investment/Felicity Meyer, Investment Manager, BoxOne Ventures.jpg",
+    experience: "Investment Manager, BoxOne Ventures",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Alexis Garneau",
+    role: "Investment Associate",
+    organization: "Inovia Capital", 
+    image: "/headshots/investment/Alexis Garneau, Investment Associate, Inovia Capital.jpg",
+    experience: "Investment Associate, Inovia Capital",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Jiro Kondo",
+    role: "VC & Entrepreneurial Finance Professor",
+    organization: "McGill University", 
+    image: "/headshots/investment/Jiro Kondo, VC & Entrepreneurial Finance, McGill University.jpg",
+    experience: "VC & Entrepreneurial Finance Professor, McGill University",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Alexis Hamam",
+    role: "MVF Co-Founder & M&A Analyst",
+    organization: "EY", 
+    image: "/headshots/exec/alexis_hamam.jpg",
+    experience: "MVF Co-Founder & M&A Analyst, EY",
+    bio: "",
+    education: "BCom Finance, McGill University"
+  }
+];
+
+export const BOARD_OF_DIRECTORS: GovernanceTeamMember[] = [
+  {
+    name: "Neil Murdoch",
+    role: "Chair",
+    organization: "Desautels Advisory Board", 
+    image: "/headshots/investment/neil_murdoch.jpg",
+    experience: "Chair, Desautels Advisory Board",
+    bio: "",
+    education: ""
+  },
+  {
+    name: "Tala Al Jabri",
+    role: "Managing Partner",
+    organization: "Wyld VC", 
+    image: "/headshots/investment/tala_al_jabri.jpg",
+    experience: "Managing Partner, Wyld VC",
+    bio: "",
+    education: ""
+  }
+];
