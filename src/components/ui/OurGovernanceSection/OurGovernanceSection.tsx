@@ -28,7 +28,7 @@ export const OurGovernanceSection: React.FC = () => {
             {/* Managing Directors */}
             <div className="mb-12">
               <h4 className="text-2xl font-heading text-purple-950 mb-8 text-center">Managing Directors</h4>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid md:grid-cols-3 gap-8 justify-items-center max-w-4xl mx-auto">
                 {MANAGING_DIRECTORS.map((member, index) => (
                   <TeamCard 
                     key={member.name}
@@ -43,7 +43,7 @@ export const OurGovernanceSection: React.FC = () => {
             {/* Team Members */}
             <div className="mb-12">
               <h4 className="text-2xl font-heading text-purple-950 mb-8 text-center">Team Members</h4>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-4xl mx-auto">
                 {GOVERNANCE_TEAM_MEMBERS.map((member, index) => (
                   <TeamCard 
                     key={member.name}
@@ -75,7 +75,7 @@ export const OurGovernanceSection: React.FC = () => {
               <h3 className="text-3xl font-heading text-purple-950 mb-4">Investment Committee</h3>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto justify-items-center">
               {INVESTMENT_COMMITTEE.map((member, index) => (
                 <TeamCard 
                   key={member.name}
@@ -100,7 +100,7 @@ export const OurGovernanceSection: React.FC = () => {
               <h3 className="text-3xl font-heading text-purple-950 mb-4">Board of Directors</h3>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto justify-items-center">
               {BOARD_OF_DIRECTORS.map((member, index) => (
                 <TeamCard 
                   key={member.name}

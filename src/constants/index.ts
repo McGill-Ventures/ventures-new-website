@@ -627,14 +627,6 @@ export const MANAGING_DIRECTORS: GovernanceTeamMember[] = [
     bio: "",
     education: "BCom Joint Honours Economics + Finance, McGill University"
   },
-  {
-    name: "Priyank Shah",
-    role: "Managing Director",
-    image: "/headshots/investment/priyank_shah.jpg",
-    experience: "",
-    bio: "",
-    education: ""
-  }
 ];
 
 export const GOVERNANCE_TEAM_MEMBERS: GovernanceTeamMember[] = [
@@ -665,7 +657,7 @@ export const GOVERNANCE_TEAM_MEMBERS: GovernanceTeamMember[] = [
   {
     name: "Kirin DeJacobson",
     role: "Principal",
-    image: "/headshots/investment/kirin_dejacobson.jpg",
+    image: "/headshots/investment/kirin_dejacobson.png",
     experience: "",
     bio: "",
     education: ""
@@ -756,7 +748,7 @@ export const BOARD_OF_DIRECTORS: GovernanceTeamMember[] = [
     name: "Neil Murdoch",
     role: "Chair",
     organization: "Desautels Advisory Board", 
-    image: "/headshots/investment/neil_murdoch.jpg",
+    image: "/headshots/investment/neil_murdoch.png",
     experience: "Chair, Desautels Advisory Board",
     bio: "",
     education: ""
@@ -765,7 +757,7 @@ export const BOARD_OF_DIRECTORS: GovernanceTeamMember[] = [
     name: "Tala Al Jabri",
     role: "Managing Partner",
     organization: "Wyld VC", 
-    image: "/headshots/investment/tala_al_jabri.jpg",
+    image: "/headshots/investment/tala_al_jabri.png",
     experience: "Managing Partner, Wyld VC",
     bio: "",
     education: ""
