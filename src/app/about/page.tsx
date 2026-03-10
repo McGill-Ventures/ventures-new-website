@@ -1,14 +1,13 @@
-import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import mainImage from "../../../public/events/homeLanding.jpg";
+import ImageCarousel from "@/components/ImageCarousel";
 
 export default function About() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation currentPage="/about" />
 
-      <section className="px-6 py-20 md:px-12 lg:px-24 relative bg-gradient-hero">
+      <section className="px-6 py-20 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-display text-purple-950 mb-8">
@@ -16,13 +15,45 @@ export default function About() {
             </h1>
             <div className="w-32 h-1.5 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full mb-12"></div>
             <div className="w-3/4 md:w-2/3 lg:w-1/2 h-96 md:h-[50vh] bg-gradient-to-br from-purple-100 to-purple-200 rounded-3xl flex items-center justify-center mb-8 animate-fade-in-up overflow-hidden mx-auto" style={{animationDelay: '0.2s'}}>
-              <Image 
-                src={mainImage} 
-                alt="McGill Ventures hero image" 
-                className="w-full h-full object-cover rounded-3xl"
+              {/* carousel placeholder images */}
+              <ImageCarousel
+                images={[
+                  'https://via.placeholder.com/800x600?text=Slide+1',
+                  'https://via.placeholder.com/800x600?text=Slide+2',
+                  'https://via.placeholder.com/800x600?text=Slide+3',
+                ]}
               />
             </div>
           </div>
+        </div>
+
+        {/* introduction text between carousel and pillars */}
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <p className="text-lg md:text-xl text-purple-800 leading-relaxed font-body">
+            McGill Ventures is a student‑run organization that connects academia 
+            with the dynamic world of venture capital. Driven by a passion for 
+            entrepreneurship, finance, and innovation, our community of McGill 
+            students works closely with leading investors, founders, and corporate 
+            partners to provide unparalleled exposure to the VC ecosystem. Through 
+            hands‑on experiences, industry insights, and meaningful connections, we 
+            equip students with the knowledge and skills to thrive as the next 
+            generation of venture leaders.
+          </p>
+        </div>
+
+        {/* pull-quote block inserted after the introductory paragraph */}
+        <div className="max-w-4xl mx-auto text-center">
+          <blockquote className="text-xl italic text-purple-800 font-body">
+            &ldquo;Founded in 2020 by Aaron, Woo, and Zach, McGill Ventures was born 
+            out of the idea to bring structure to venture- and startup&#39;related 
+            activity at McGill University. What started as a small team of three 
+            has since grown into a 65+ student organization with a strong influence 
+            beyond our campus; carried forward by each cohort that builds on the 
+            work of the last.&rdquo;
+          </blockquote>
+          <cite className="block mt-4 text-purple-600 font-semibold">
+            — Aaron Anandji, Co-Founder &amp; Member of the Board of Directors
+          </cite>
         </div>
       </section>
 
@@ -62,12 +93,22 @@ export default function About() {
         </div>
       </section>
 
-      <section className="px-6 py-32 md:px-12 lg:px-24 bg-white">
-        <div className="max-w-5xl mx-auto text-center">
+      <section className="px-6 py-16 md:px-12 lg:px-24 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white">
+        <div className="max-w-4xl mx-auto text-center">
           <div className="animate-fade-in-up">
-            <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-12">Our Mission</h2>
-            <p className="text-2xl md:text-3xl text-purple-800 leading-relaxed font-body mb-16">
-              To identify, invest in, and nurture the most promising entrepreneurs and technologies that will shape the future of our world. We believe in the power of innovation to solve humanity&apos;s greatest challenges.
+            <h2 className="text-4xl md:text-5xl font-display text-white mb-8">
+              McGill Ventures educates and connects students to the venture capital 
+              and startup ecosystem in Canada and beyond.
+            </h2>
+            <p className="text-base md:text-lg text-white leading-relaxed font-body mt-6 mb-16 text-center">
+              With the pace of innovation accelerating across industries, global 
+              uncertainty rising, and AI progressing at frightening speeds, it&#39;s now 
+              more crucial than ever to stay plugged into emerging innovation, build 
+              a multidisciplinary skill set, and cultivate an antifragile mindset. 
+              These qualities are synonymous with the world of venture capital and 
+              startups, but will be increasingly essential no matter what role/field 
+              you want to be in; from finance to engineering and everything in 
+              between.
             </p>
           </div>
         </div>
