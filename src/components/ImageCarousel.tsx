@@ -14,7 +14,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
     if (images.length === 0) return;
     const iv = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 4000);
+    }, 6000);
     return () => clearInterval(iv);
   }, [images.length]);
 
@@ -26,7 +26,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
   };
 
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-3xl">
+    <div className="group relative w-full h-full overflow-hidden rounded-3xl">
       {images.map((src, idx) => (
         <div
           key={idx}
@@ -43,30 +43,30 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
         </div>
       ))}
 
-      {/* controls */}
+      {/* controls — hidden by default, visible on hover */}
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-purple-600 bg-opacity-50 p-2 rounded-full hover:bg-opacity-75"
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-purple-600 bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         aria-label="Previous slide"
       >
         ‹
       </button>
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-purple-600 bg-opacity-50 p-2 rounded-full hover:bg-opacity-75"
+        className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-purple-600 bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         aria-label="Next slide"
       >
         ›
       </button>
 
-      {/* dots */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      {/* dots — hidden by default, visible on hover */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         {images.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
-            className={`w-3 h-3 rounded-full focus:outline-none ${
-              idx === current ? "bg-purple-600" : "bg-purple-300"
+            className={`w-3 h-3 rounded-full focus:outline-none transition-colors duration-300 ${
+              idx === current ? "bg-white" : "bg-white/40"
             }`}
             aria-label={`Go to slide ${idx + 1}`}
           />

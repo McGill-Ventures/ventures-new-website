@@ -15,7 +15,6 @@ const footerLinks = {
 
 const contactInfo = {
   email: "hello@mcgillvc.ca",
-  phone: "+1 (514) 555-0123",
   location: "Montreal, QC"
 };
 
@@ -65,10 +64,6 @@ export default function Footer() {
               <div className="flex items-center">
                 <Icon name="email" className="mr-2 text-purple-600" size="sm" />
                 {contactInfo.email}
-              </div>
-              <div className="flex items-center">
-                <Icon name="phone" className="mr-2 text-purple-600" size="sm" />
-                {contactInfo.phone}
               </div>
               <div className="flex items-center">
                 <Icon name="location" className="mr-2 text-purple-600" size="sm" />

@@ -7,20 +7,22 @@ export default function About() {
     <div className="min-h-screen bg-white">
       <Navigation currentPage="/about" />
 
-      <section className="px-6 py-20 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/50 to-white">
+      <section className="px-6 py-14 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/50 to-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-display text-purple-950 mb-8">
               About McGill Ventures
             </h1>
             <div className="w-32 h-1.5 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full mb-12"></div>
-            <div className="w-3/4 md:w-2/3 lg:w-1/2 h-96 md:h-[50vh] bg-gradient-to-br from-purple-100 to-purple-200 rounded-3xl flex items-center justify-center mb-8 animate-fade-in-up overflow-hidden mx-auto" style={{animationDelay: '0.2s'}}>
+            <div className="max-w-5xl mx-auto h-[420px] bg-gradient-to-br from-purple-100 to-purple-200 rounded-3xl mb-8 animate-fade-in-up overflow-hidden" style={{animationDelay: '0.2s'}}>
               {/* carousel placeholder images */}
               <ImageCarousel
                 images={[
-                  'https://via.placeholder.com/800x600?text=Slide+1',
-                  'https://via.placeholder.com/800x600?text=Slide+2',
-                  'https://via.placeholder.com/800x600?text=Slide+3',
+                  '/events/image_carousel_pic1.jpg',
+                  '/events/image_carousel_pic2.jpg',
+                  '/events/image_carousel_pic3.jpg',
+                  '/events/image_carousel_pic4.jpg',
+                  '/events/image_carousel_pic5.jpg',
                 ]}
               />
             </div>

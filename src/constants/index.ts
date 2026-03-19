@@ -3,9 +3,13 @@ import { NavigationItem, ExecutiveTeamMember, AnalystTeamMember, DeveloperTeamMe
 export const NAVIGATION_ITEMS: NavigationItem[] = [
   { href: "/about", label: "About" },
   { href: "/programs", label: "Programs" },
-  { href: "/sponsors", label: "Sponsors" },
+  { href: "/sponsors", label: "Sponsorships & Partners" },
   { href: "/fund", label: "Fund" },
+  // new navigation item inserted between Fund and Team
+  { href: "/events", label: "Events" },
   { href: "/team", label: "Team" },
+  // placeholder coming soon link
+  { href: "#", label: "Project ATLAS", comingSoon: true },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -29,16 +33,18 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     image: "/headshots/exec/ewu.jpeg",
     role: "Co-President",
     experience: "Prev @ CIBC Capital Markets, CDPQ",
-    bio: "Ethan co-leads the overall strategic direction of McGill Ventures, overseeing club operations, partnerships, and program development.",
-    education: "BCom Honours in Investment Management, McGill University"
+    bio: "",
+    education: "BCom Honours in Investment Management, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/wuethan/"
   },
   {
     name: "Charlyne Luu",
     image: "/headshots/exec/clu.jpeg",
     role: "Co-President",
     experience: "Prev @ Angel Host",
-    bio: "Charlyne co-leads McGill Ventures, focusing on community engagement, event management, and fostering relationships within the startup ecosystem.",
-    education: "BCom Finance, McGill University"
+    bio: "",
+    education: "BCom Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/charlyne-luu-235062213/"
   },
   {
     name: "Alexis Hamam",
@@ -83,7 +89,8 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Corporate Relations Associate",
     experience: "Prev @ Fondaction, Meroka",
     bio: "",
-    education: "BCom Finance + CS"
+    education: "BCom Finance + CS",
+    linkedinUrl: "https://www.linkedin.com/in/clara-caden"
   },
   {
     name: "Xin Yu Zhang",
@@ -91,7 +98,8 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Co-Director of Events",
     experience: "Prev @ Royal Lepage Real Estate, Headstart Global",
     bio: "",
-    education: "BCom Finance, McGill University"
+    education: "BCom Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/xinyuzhang-xyz/"
   },
   {
     name: "Aya Cherkaoui",
@@ -99,31 +107,35 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Co-Director of Events",
     experience: "Prev @ EY",
     bio: "",
-    education: "BCom Economics & Business Analytics, McGill University"
-  }, 
+    education: "BCom Economics & Business Analytics, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/ayacherkaoui/"
+  },
   {
     name: "Kelly Yan",
     image: "/headshots/exec/kelly.JPG",
     role: "Events Associate",
     experience: "",
     bio: "",
-    education: "BCom Honours Joint Component Economics + Accounting, McGill University"
-  }, 
+    education: "BCom Honours Joint Component Economics + Accounting, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/kelly-yan-mcgill"
+  },
   {
     name: "Riya Jain",
     image: "/headshots/exec/riya.jpeg",
     role: "Events Associate",
     experience: "",
     bio: "",
-    education: "BCom Economics + International Development Studies, McGill University"
-  },   
+    education: "BCom Economics + International Development Studies, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/riya-jain25/"
+  },
   {
     name: "Coco Meng",
     image: "/headshots/exec/coco.jpeg",
     role: "Events Associate",
     experience: "",
     bio: "",
-    education: "Bsc Pharmacology + Therapeutics, McGill University"
+    education: "Bsc Pharmacology + Therapeutics, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/coco-m-679678320"
   },
   {
     name: "Thai Tran",
@@ -131,7 +143,8 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Events Associate",
     experience: "",
     bio: "",
-    education: "BEng Computer Engineering, McGill University"
+    education: "BEng Computer Engineering, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/thai-tran-minh/"
   },
   {
     name: "Lola Julliand",
@@ -139,7 +152,8 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Ambassador of Events",
     experience: "",
     bio: "",
-    education: "BCom Entrepreneurship + Finance, McGill University"
+    education: "BCom Entrepreneurship + Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/lola-julliand-955706329"
   },
   {
     name: "Alexandre Comtois",
@@ -171,7 +185,8 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Director of Finance",
     experience: "Prev @ HSBC",
     bio: "",
-    education: "BCom Joint Honours Economics + Finance, McGill University"
+    education: "BCom Joint Honours Economics + Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/chris-robinson-682783299"
   },
   {
     name: "Orion Pirang",
@@ -179,7 +194,8 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Finance Associate/ Analyst",
     experience: "Prev @ PwC, Desato",
     bio: "",
-    education: "BComm Finance, McGill University"
+    education: "BComm Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/orion-pirang-272b5035b"
   },
   {
     name: "Celine Chung",
@@ -187,7 +203,7 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Fund Principal and Corporate Relations",
     experience: "",
     bio: "",
-    education: "BComm International Management, McGill University"
+    education: "BCom International Management, McGill University"
   },
   {
     name: "Ronardy Abellard",
@@ -195,15 +211,17 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Event Associate & Junior Analyst",
     experience: "",
     bio: "",
-    education: "BEng Material Engineering, McGill University"
+    education: "BEng Material Engineering, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/ronardyabellard"
   },
   {
     name: "Nicole Zeng",
-    image: "/headshots/exec/nicole_zeng.jpg", 
+    image: "/headshots/exec/nicole_zeng.jpg",
     role: "Executive Assistant",
     experience: "",
     bio: "",
-    education: "BCom Management, McGill University"
+    education: "BCom Management, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/nicole-r-zeng/"
   },
   {
     name: "Aditya Ranjan",
@@ -211,14 +229,15 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Corporate Relations Associate",
     experience: "Prev @ SickKids",
     bio: "",
-    education: "Bsc Biomedical Sciences, McGill University"
+    education: "Bsc Biomedical Sciences, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/ad1tyaranjan/"
   },
   {
     name: "Canyu Wu",
     image: "/headshots/exec/canyu_wu.png", // TODO
     role: "Director of Partnerships",
     experience: "",
-    bio: "I also run the HTIL, foster partnerships with leading VC’s and Startups organizations of Montreal.",
+    bio: "",
     education: "BEng Bioengineering, McGill University"
   },
   {
@@ -227,7 +246,8 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Marketing Associate",
     experience: "",
     bio: "",
-    education: "BCom Finance + Strategic Management, McGill University"
+    education: "BCom Finance + Strategic Management, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/zara-berholz/"
   },
   {
     name: "Annie Mingru Yang",
@@ -235,7 +255,8 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     role: "Events Associate",
     experience: "Incoming @ EY, Prev @ Pharmascience, TD Canada Trust",
     bio: "",
-    education: "BCom Finance, McGill University"
+    education: "BCom Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/annie-mingru-yang/"
   },
 ];
 
@@ -309,6 +330,53 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
     bio: "",
     education: "BCom Finance, McGill University",
   },
+  {
+    name: "Jaden Lee",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/jaden_lee.jpg",
+    bio: "",
+    education: "BCom Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/jaden-tklee"
+  },
+  {
+    name: "Chris Chan",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/chris_chan.jpg",
+    experience: "Prev @ Manulife Wealth Management",
+    bio: "",
+    education: "BCom Management, McGill University"
+  },
+  {
+    name: "Orion Pirang",
+    role: "Senior Analyst",
+    image: "/headshots/exec/orion_pirang_headshot.JPG",
+    experience: "Prev @ PwC, Desato",
+    bio: "",
+    education: "BComm Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/orion-pirang-272b5035b"
+  },
+  {
+    name: "Clive Raza",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/clive_raza.jpeg",
+    bio: "",
+    education: "BCom Economics, McGill University"
+  },
+  {
+    name: "Guillaume Bouramia",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/guillaume_bouramia.jpg",
+    bio: "",
+    education: "BSc Biochemistry + Entrepreneurship, McGill University"
+  },
+  {
+    name: "Yueran Lu",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/yueran_lu.jpg",
+    experience: "Prev @ LIDD",
+    bio: "",
+    education: "BEng Computer Engineering, McGill University"
+  },
 ];
 
 export const FINANCE_TEAM: ExecutiveTeamMember[] = [
@@ -318,15 +386,25 @@ export const FINANCE_TEAM: ExecutiveTeamMember[] = [
     role: "Director of Finance",
     experience: "Prev @ HSBC",
     bio: "",
-    education: "BCom Joint Honours Economics + Finance, McGill University"
+    education: "BCom Joint Honours Economics + Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/chris-robinson-682783299"
   },
   {
     name: "Orion Pirang",
     image: "/headshots/exec/orion_pirang_headshot.JPG",
-    role: "Finance Associate/ Analyst",
+    role: "Finance Associate",
     experience: "Prev @ PwC, Desato",
     bio: "",
-    education: "BComm Finance, McGill University"
+    education: "BComm Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/orion-pirang-272b5035b"
+  },
+  {
+    name: "Jaden Lee",
+    image: "/headshots/analyst/jaden_lee.jpg",
+    role: "Finance Associate",
+    bio: "",
+    education: "BCom Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/jaden-tklee"
   },
 ];
 
@@ -377,7 +455,6 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
   {
     name: "Harsh Bokadia",
     role: "Analyst",
-    specialization: "Flagship Analyst Program",
     experience: "Prev @ Nuvama Health",
     education: "BA Economics + Social Entrepreneurship, McGill University",
     image: "/headshots/analyst/harsh_bokadia.jpg"
@@ -429,9 +506,9 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
   {
     name: "Jaden Lee",
     role: "Analyst",
-    specialization: "Finance Associate",
     education: "BCom Finance, McGill University",
-    image: "/headshots/analyst/jaden_lee.jpg"
+    image: "/headshots/analyst/jaden_lee.jpg",
+    linkedinUrl: "https://www.linkedin.com/in/jaden-tklee"
   },
   {
     name: "Yueran Lu",
@@ -456,7 +533,7 @@ export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
   experience: "Prev @ Amazon, Lightspeed",
   education: "BEng Computer Engineering, McGill University",
   skills: ["System Architecture", "Team Leadership", "Software Development", "Product Management", "Scalability"],
-  bio: "Wasif oversees all technical initiatives and leads our engineering strategy for internal software development practices.",
+  bio: "",
   image: "/headshots/development/wsomji.jpeg"
 };
 
@@ -670,11 +747,16 @@ export const APPLICATION_STEPS = [
   },
   {
     step: "02",
-    title: "Interview Process", 
+    title: "Interview Process",
     description: "Participate in a brief interview to discuss your goals and passion for entrepreneurship"
   },
   {
     step: "03",
+    title: "Case Study",
+    description: "Complete a case study to demonstrate your analytical thinking and interest in venture capital"
+  },
+  {
+    step: "04",
     title: "Welcome & Onboarding",
     description: "Join our community and begin your journey in venture capital and startups"
   }
@@ -714,11 +796,61 @@ export const MANAGING_DIRECTORS: GovernanceTeamMember[] = [
   },
 ];
 
+export const SENIOR_ANALYSTS: GovernanceTeamMember[] = [
+  {
+    name: "Jaden Lee",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/jaden_lee.jpg",
+    bio: "",
+    education: "BCom Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/jaden-tklee"
+  },
+  {
+    name: "Chris Chan",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/chris_chan.jpg",
+    experience: "Prev @ Manulife Wealth Management",
+    bio: "",
+    education: "BCom Management, McGill University"
+  },
+  {
+    name: "Orion Pirang",
+    role: "Senior Analyst",
+    image: "/headshots/exec/orion_pirang_headshot.JPG",
+    experience: "Prev @ PwC, Desato",
+    bio: "",
+    education: "BComm Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/orion-pirang-272b5035b"
+  },
+  {
+    name: "Clive Raza",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/clive_raza.jpeg",
+    bio: "",
+    education: "BCom Economics, McGill University"
+  },
+  {
+    name: "Guillaume Bouramia",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/guillaume_bouramia.jpg",
+    bio: "",
+    education: "BSc Biochemistry + Entrepreneurship, McGill University"
+  },
+  {
+    name: "Yueran Lu",
+    role: "Senior Analyst",
+    image: "/headshots/analyst/yueran_lu.jpg",
+    experience: "Prev @ LIDD",
+    bio: "",
+    education: "BEng Computer Engineering, McGill University"
+  },
+];
+
 export const GOVERNANCE_TEAM_MEMBERS: GovernanceTeamMember[] = [
   {
     name: "Gael Gonzàlez",
     image: "/headshots/exec/gael_huacuja_headshot.jpg",
-    role: "Principal",
+    role: "Senior Analyst",
     experience: "Prev @ Attain",
     bio: "",
     education: "BComm Finance + Strategic Management, McGill University"
@@ -726,14 +858,14 @@ export const GOVERNANCE_TEAM_MEMBERS: GovernanceTeamMember[] = [
   {
     name: "Celine Chung",
     image: "/headshots/exec/celine_chung_headshot.jpg",
-    role: "Principal",
+    role: "Senior Analyst",
     experience: "",
     bio: "",
     education: "BComm International Management, McGill University"
   },
   {
     name: "Ava McKee",
-    role: "Principal",
+    role: "Senior Analyst",
     image: "/headshots/exec/ava_mckee.png",
     experience: "",
     bio: "",
@@ -741,15 +873,15 @@ export const GOVERNANCE_TEAM_MEMBERS: GovernanceTeamMember[] = [
   },
   {
     name: "Kirin DeJacobson",
-    role: "Principal",
+    role: "Senior Analyst",
     image: "/headshots/investment/kirin_dejacobson.png",
     experience: "",
     bio: "",
-    education: ""
+    education: "BCom Finance"
   },
   {
     name: "Noah Vaillancourt",
-    role: "Principal",
+    role: "Senior Analyst",
     image: "/headshots/exec/noah_vaillancourt.jpg",
     bio: "",
     education: "BEng Software Engineering, McGill University"
@@ -757,14 +889,14 @@ export const GOVERNANCE_TEAM_MEMBERS: GovernanceTeamMember[] = [
   {
     name: "Oscar Ham",
     image: "/headshots/exec/oscar_ham_headshot.jpg",
-    role: "Principal",
+    role: "Senior Analyst",
     experience: "Prev @ KPMG",
     bio: "",
     education: "BEng Electrical Engineering, McGill University"
   },
   {
     name: "Alhaan Haris",
-    role: "Principal",
+    role: "Senior Analyst",
     image: "/headshots/exec/alhaan_haris.jpg",
     bio: "",
     education: "BCom Joint Honours Economics + Finance, McGill University"

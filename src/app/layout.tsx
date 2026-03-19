@@ -32,6 +32,9 @@ export const metadata: Metadata = {
   keywords: "venture capital, investment, startup funding, innovation, McGill, Montreal, VC",
   authors: [{ name: "McGill Ventures" }],
   creator: "McGill Ventures",
+  icons: {
+    icon: "/logos/main_logo_transparent.png",
+  },
   openGraph: {
     title: "McGill Ventures",
     description: "McGill Ventures partners with exceptional entrepreneurs to build transformative companies that shape tomorrow's world.",

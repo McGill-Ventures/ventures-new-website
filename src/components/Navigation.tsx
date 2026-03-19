@@ -27,30 +27,30 @@ export default function Navigation({ currentPage }: NavigationProps) {
 
   return (
     <nav className="flex items-center justify-between px-6 py-8 md:px-12 lg:px-24 relative z-50 bg-purple-900 border-b border-purple-950/50">
-      <div className={ANIMATION_CLASSES.FADE_IN_LEFT}>
-        <Link href="/" className={cn("flex items-center cursor-pointer", ANIMATION_CLASSES.HOVER_SCALE)}>
+      <div className={cn(ANIMATION_CLASSES.FADE_IN_LEFT, "mr-auto")}>
+        <Link href="/" className={cn("flex items-center cursor-pointer overflow-hidden", ANIMATION_CLASSES.HOVER_SCALE)}>
           <Image
-            src="/logos/logo_white.png"
+            src="/logos/white_logo_transparent.png"
             alt="McGill Ventures Logo"
-            width={60}
-            height={60}
-            className="w-12 h-12 md:w-16 md:h-16"
+            width={120}
+            height={40}
+            className="h-8 w-auto object-contain"
             priority
           />
-          <h1 className="ml-3 font-display text-white font-black text-xl md:text-2xl lg:text-3xl whitespace-nowrap">
-            McGill | Ventures
-          </h1>
         </Link>
       </div>
       
-      <div className={cn("hidden md:flex space-x-10", ANIMATION_CLASSES.FADE_IN_UP)}>
+      <div className={cn("hidden md:flex space-x-4", ANIMATION_CLASSES.FADE_IN_UP)}>
         {NAVIGATION_ITEMS.map((item) => (
           <Link
             key={item.href}
             href={item.href}
+            title={item.comingSoon ? "Coming Soon" : undefined}
+            onClick={item.comingSoon ? (e) => e.preventDefault() : undefined}
             className={cn(
               navLinkClasses,
               getActiveLinkClasses(currentPage, item.href, activeClasses, inactiveClasses)
+              , item.comingSoon && "opacity-50 cursor-not-allowed"
             )}
           >
             {item.label}
@@ -90,13 +90,23 @@ export default function Navigation({ currentPage }: NavigationProps) {
             <Link
               key={item.href}
               href={item.href}
-              onClick={closeMobileMenu}
+              onClick={(e) => {
+                if (item.comingSoon) {
+                  e.preventDefault();
+                } else {
+                  closeMobileMenu();
+                }
+              }}
               className={cn(
                 mobileNavLinkClasses,
                 getActiveLinkClasses(currentPage, item.href, activeClasses, inactiveClasses)
+                , item.comingSoon && "opacity-50 cursor-not-allowed"
               )}
             >
               {item.label}
+              {item.comingSoon && (
+                <span className="sr-only">(Coming Soon)</span>
+              )}
             </Link>
           ))}
         </div>

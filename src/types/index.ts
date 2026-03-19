@@ -1,6 +1,12 @@
 export interface NavigationItem {
   href: string;
   label: string;
+  /**
+   * When true the link is not yet active; it will render with reduced
+   * opacity and show a tooltip indicating "Coming Soon". The href is kept
+   * as `#` or similar placeholder.
+   */
+  comingSoon?: boolean;
 }
 
 export interface NavigationProps {
@@ -16,6 +22,7 @@ export interface TeamMember {
   skills?: string[];
   specialization?: string;
   image?: string;
+  linkedinUrl?: string;
 }
 
 export interface ExecutiveTeamMember extends TeamMember {
