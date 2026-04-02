@@ -40,26 +40,11 @@ export const OurGovernanceSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Team Members */}
+            {/* Analysts */}
             <div className="mb-12">
-              <h4 className="text-2xl font-heading text-purple-950 mb-8 text-center">Team Members</h4>
+              <h4 className="text-2xl font-heading text-purple-950 mb-8 text-center">Analysts</h4>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-4xl mx-auto">
-                {GOVERNANCE_TEAM_MEMBERS.map((member, index) => (
-                  <TeamCard 
-                    key={member.name}
-                    member={member}
-                    index={index}
-                    variant="analyst"
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Senior Analysts */}
-            <div className="mb-12">
-              <h4 className="text-2xl font-heading text-purple-950 mb-8 text-center">Senior Analysts</h4>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-4xl mx-auto">
-                {SENIOR_ANALYSTS.map((member, index) => (
+                {[...GOVERNANCE_TEAM_MEMBERS, ...SENIOR_ANALYSTS].map((member, index) => (
                   <TeamCard
                     key={member.name}
                     member={member}

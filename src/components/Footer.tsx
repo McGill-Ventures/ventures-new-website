@@ -10,11 +10,12 @@ const footerLinks = {
     { label: "Programs", href: "/programs" },
     { label: "Sponsors", href: "/sponsors" },
     { label: "Contact Us", href: "/contact" },
+    { label: "Asset Base", href: "https://www.playbook.com/s/takenbyknives/mvc-asset-base", external: true },
   ]
 };
 
 const contactInfo = {
-  email: "hello@mcgillvc.ca",
+  email: "mcgillventuresclub@gmail.com",
   location: "Montreal, QC"
 };
 
@@ -50,9 +51,15 @@ export default function Footer() {
             <div className="space-y-3 text-purple-800 font-body">
               {footerLinks.resources.map((link) => (
                 <div key={link.href}>
-                  <Link href={link.href} className="hover:text-purple-950 transition-colors cursor-pointer">
-                    {link.label}
-                  </Link>
+                  {link.external ? (
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="hover:text-purple-950 transition-colors cursor-pointer">
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link href={link.href} className="hover:text-purple-950 transition-colors cursor-pointer">
+                      {link.label}
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>
@@ -63,7 +70,7 @@ export default function Footer() {
             <div className="space-y-3 text-purple-800 font-body">
               <div className="flex items-center">
                 <Icon name="email" className="mr-2 text-purple-600" size="sm" />
-                {contactInfo.email}
+                <a href={`mailto:${contactInfo.email}`} className="hover:text-purple-600 transition-colors">{contactInfo.email}</a>
               </div>
               <div className="flex items-center">
                 <Icon name="location" className="mr-2 text-purple-600" size="sm" />

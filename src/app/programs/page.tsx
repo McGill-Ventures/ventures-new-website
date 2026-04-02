@@ -1,8 +1,9 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Icon } from "@/components/ui";
 import { APPLICATION_STEPS } from "@/constants";
 import FundProgramCard from "@/components/FundProgramCard";
+import AnalystProgramCard from "@/components/AnalystProgramCard";
+import HTILProgramCard from "@/components/HTILProgramCard";
 
 export default function Programs() {
   return (
@@ -33,91 +34,11 @@ export default function Programs() {
           </div>
           
           <div className="max-w-5xl mx-auto space-y-12">
-            <div className="glass rounded-3xl p-10 hover-lift animate-fade-in-up opacity-75">
-              <div className="bg-purple-200 text-purple-800 px-4 py-2 rounded-full text-sm font-heading font-semibold mb-6 inline-block">
-                Applications reopen Fall 2026
-              </div>
-              <h3 className="text-4xl font-display text-purple-950 mb-6">Analyst Program</h3>
-              <p className="text-lg text-purple-800 font-body mb-8 leading-relaxed">
-                A comprehensive program covering the fundamentals of venture capital, including deal sourcing, due diligence, portfolio management, and case study analysis.
-              </p>
-
-              <div className="mb-8">
-                <h4 className="text-xl font-heading text-purple-950 mb-4">Program Features:</h4>
-                <ul className="space-y-3">
-                  {[
-                    "Weekly workshops with VC and biotech industry professionals",
-                    "Case study analysis and pitch competitions",
-                    "Mentorship from experienced VCs",
-                    "Networking events with startup founders and investors",
-                  ].map((feature, idx) => (
-                    <li key={idx} className="flex items-start text-purple-700 font-body">
-                      <Icon name="check" className="text-purple-600 mr-3 mt-1 flex-shrink-0" size="sm" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-purple-100 rounded-xl p-4 text-center">
-                  <div className="text-sm font-heading text-purple-700">Duration</div>
-                  <div className="text-lg font-display text-purple-950">16 weeks</div>
-                </div>
-                <div className="bg-purple-100 rounded-xl p-4 text-center">
-                  <div className="text-sm font-heading text-purple-700">Commitment</div>
-                  <div className="text-lg font-display text-purple-950">4-6 hours/week</div>
-                </div>
-              </div>
-
-              <button disabled className="w-full bg-gray-200 text-gray-500 px-8 py-4 rounded-xl cursor-not-allowed font-heading text-lg font-semibold">
-                Applications open Fall 2026
-              </button>
-            </div>
+            <AnalystProgramCard />
 
             <FundProgramCard />
 
-            <div className="glass rounded-3xl p-10 hover-lift animate-fade-in-up opacity-75">
-              <div className="bg-purple-200 text-purple-800 px-4 py-2 rounded-full text-sm font-heading font-semibold mb-6 inline-block">
-                Applications reopen Fall 2026
-              </div>
-              <h3 className="text-4xl font-display text-purple-950 mb-6">Health Tech & Innovation Lab (HTIL)</h3>
-              <p className="text-lg text-purple-800 font-body mb-8 leading-relaxed">
-                An intensive 7-week program bridging healthcare and venture capital through hands-on workshops with biotech and VC professionals, mentorship, and real-world project deliverables.
-              </p>
-
-              <div className="mb-8">
-                <h4 className="text-xl font-heading text-purple-950 mb-4">Program Features:</h4>
-                <ul className="space-y-3">
-                  {[
-                    "Weekly workshops with biotech and VC professionals",
-                    "Hands-on project deliverables",
-                    "Mentorship from industry experts",
-                    "Exposure to health tech investment landscape",
-                  ].map((feature, idx) => (
-                    <li key={idx} className="flex items-start text-purple-700 font-body">
-                      <Icon name="check" className="text-purple-600 mr-3 mt-1 flex-shrink-0" size="sm" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-purple-100 rounded-xl p-4 text-center">
-                  <div className="text-sm font-heading text-purple-700">Duration</div>
-                  <div className="text-lg font-display text-purple-950">7 weeks</div>
-                </div>
-                <div className="bg-purple-100 rounded-xl p-4 text-center">
-                  <div className="text-sm font-heading text-purple-700">Commitment</div>
-                  <div className="text-lg font-display text-purple-950">4-6 hours/week</div>
-                </div>
-              </div>
-
-              <button disabled className="w-full bg-gray-200 text-gray-500 px-8 py-4 rounded-xl cursor-not-allowed font-heading text-lg font-semibold">
-                Applications open Fall 2026
-              </button>
-            </div>
+            <HTILProgramCard />
           </div>
         </div>
       </section>

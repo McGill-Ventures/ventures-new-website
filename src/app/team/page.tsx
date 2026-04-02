@@ -10,6 +10,7 @@ import { DeveloperTeamSection } from "@/components/ui/DeveloperTeamSection/Devel
 import { TeamType } from "@/types";
 import {
   TEAM_TYPES,
+  FOUNDERS,
   EXECUTIVE_TEAM,
   FUND_TEAM,
   FINANCE_TEAM,
@@ -19,10 +20,12 @@ import {
 } from "@/constants";
 
 export default function Team() {
-  const [activeTeam, setActiveTeam] = useState<TeamType>(TEAM_TYPES.EXECUTIVE);
+  const [activeTeam, setActiveTeam] = useState<TeamType>(TEAM_TYPES.FOUNDERS);
 
   const renderTeamSection = () => {
     switch (activeTeam) {
+      case TEAM_TYPES.FOUNDERS:
+        return <ExecutiveTeamSection members={FOUNDERS} title="Founders" />;
       case TEAM_TYPES.EXECUTIVE:
         return <ExecutiveTeamSection members={EXECUTIVE_TEAM} title="Executive Team" />;
       case TEAM_TYPES.FUND:

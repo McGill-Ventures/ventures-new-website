@@ -8,9 +8,17 @@ import bdcLogo from "./bdc.png";
 import eyLogo from "./ey.png";
 import deloitteLogo from "./Deloitte-Black-Logo.png";
 import oslerLogo from "./osler.png";
-import ascentLogo from "./ascent.png";
+import investissementQuebecLogo from "./investissement_quebec.png";
 
 // partner logos
+import nationgraphLogo from "./nationgraph.png";
+import generalMagicLogo from "./general_magic.png";
+import gowlingLogo from "./gowling.png";
+import panacheVenturesCurrentLogo from "./panache_ventures.png";
+import inoviaCurrentLogo from "./inovia.png";
+import dobsonCentreCurrentLogo from "./dobson_centre.png";
+import standupVenturesLogo from "./standup_ventures.png";
+import polyfinancesLogo from "./polyfinances.png";
 import torontoTechWeekLogo from "./toronto_tech_week.png";
 import nextAILogo from "./next_ai.png";
 import frameworkVenturesLogo from "./front_row_ventures.png";
@@ -26,7 +34,6 @@ import axLogo from "./ax.png";
 import elanchTechLogo from "./elanch_tech.png";
 import mcgillEngineLogo from "./mcgill_engine.png";
 import theClipLogo from "./the_clip.png";
-import mayoClinicLogo from "./mayo_clinic.png";
 import amiralVenturesLogo from "./amiral_ventures.png";
 import northStarLogo from "./north_star.png";
 import finchlyVenturesLogo from "./finchley_ventures.png";
@@ -38,10 +45,11 @@ import claudeBuilderClubLogo from "./claude_builder_club.png";
 import graphiteVenturesLogo from "./graphite_ventures.png";
 
 // past sponsor logos
-import panacheVenturesLogo from "./panache_ventures.png";
-import inoviaLogo from "./inovia.png";
+import ascentLogo from "./ascent.png";
+import borealVenturesLogo from "./boreal_ventures.png";
+import mayoClinicLogo from "./mayo_clinic.png";
+import perplexityLogo from "./perplexity.png";
 import penderVenturesLogo from "./pender_ventures.png";
-import dobsonCentreLogo from "./dobson_centre.png";
 import blueVisionCapitalLogo from "./blue_vision_capital.png";
 import aqcCapitalLogo from "./aqc_capital.png";
 import telusLogo from "./telus.png";
@@ -78,7 +86,7 @@ export default function Sponsors() {
                 { src: eyLogo, alt: "EY", href: "https://www.ey.com" },
                 { src: deloitteLogo, alt: "Deloitte", href: "https://www.deloitte.com" },
                 { src: oslerLogo, alt: "Osler", href: "https://www.osler.com" },
-                { src: ascentLogo, alt: "Ascent by McMillan", href: "https://www.mcmillan.ca" },
+                { src: investissementQuebecLogo, alt: "Investissement Québec", href: "https://www.investquebec.com/fr" },
               ].map((logo, idx) => (
                 <a key={idx} href={logo.href} target="_blank" rel="noopener noreferrer">
                   <Image
@@ -98,6 +106,14 @@ export default function Sponsors() {
             <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-14">Our Partners</h2>
             <div className="flex flex-wrap justify-center items-center gap-12">
               {[
+                { src: nationgraphLogo, alt: "Nation Graph", href: "https://www.nationgraph.com/" },
+                { src: generalMagicLogo, alt: "General Magic", href: "https://generalmagic.inc/" },
+                { src: gowlingLogo, alt: "Gowling WLG", href: "https://gowlingwlg.com/en" },
+                { src: panacheVenturesCurrentLogo, alt: "Panache Ventures", href: "https://www.panache.vc" },
+                { src: inoviaCurrentLogo, alt: "Inovia", href: "https://inovia.vc" },
+                { src: dobsonCentreCurrentLogo, alt: "McGill Dobson Centre", href: "https://www.mcgill.ca/dobson" },
+                { src: standupVenturesLogo, alt: "Standup Ventures", href: "https://www.standupvc.com/" },
+                { src: polyfinancesLogo, alt: "Polyfinances", href: "https://www.polyfinances.ca/en" },
                 { src: torontoTechWeekLogo, alt: "Toronto Tech Week", href: "https://www.torontotechweek.com" },
                 { src: nextAILogo, alt: "Next AI", href: "https://www.nextcanada.com/next-ai" },
                 { src: frameworkVenturesLogo, alt: "Framework Ventures", href: "https://frontrow.ventures" },
@@ -110,10 +126,9 @@ export default function Sponsors() {
                 { src: espaceCDPQLogo, alt: "Espace CDPQ", href: "https://www.cdpq.com" },
                 { src: brightsparkLogo, alt: "Brightspark", href: "https://www.brightspark.com" },
                 { src: axLogo, alt: "AX", href: "https://ax.co" },
-                { src: elanchTechLogo, alt: "Elanch Tech", href: "https://elanch.com" },
+                { src: elanchTechLogo, alt: "Elanch Tech", href: "https://www.elantech.co/home" },
                 { src: mcgillEngineLogo, alt: "McGill Engine", href: "https://mcgillengine.com" },
                 { src: theClipLogo, alt: "The Clip", href: "https://theclip.ca" },
-                { src: mayoClinicLogo, alt: "Mayo Clinic", href: "https://www.mayoclinic.org" },
                 { src: amiralVenturesLogo, alt: "Amiral Ventures", href: "https://amiral.ventures" },
                 { src: northStarLogo, alt: "North Star", href: "https://northstar.vc" },
                 { src: finchlyVenturesLogo, alt: "Finchly Ventures", href: "https://finchly.com" },
@@ -142,10 +157,11 @@ export default function Sponsors() {
             <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-14">Past Sponsors & Partners</h2>
             <div className="flex flex-wrap justify-center items-center gap-12">
               {[
-                { src: panacheVenturesLogo, alt: "Panache Ventures", href: "https://www.panache.vc" },
-                { src: inoviaLogo, alt: "Inovia", href: "https://inovia.vc" },
+                { src: ascentLogo, alt: "Ascent by McMillan", href: "https://www.mcmillan.ca" },
+                { src: borealVenturesLogo, alt: "Boreal Ventures", href: "https://boreal.vc/" },
+                { src: mayoClinicLogo, alt: "Mayo Clinic", href: "https://www.mayoclinic.org" },
+                { src: perplexityLogo, alt: "Perplexity", href: "https://www.perplexity.ai/" },
                 { src: penderVenturesLogo, alt: "Pender Ventures", href: "https://penderventures.com" },
-                { src: dobsonCentreLogo, alt: "McGill Dobson Centre", href: "https://www.mcgill.ca/dobson" },
                 { src: blueVisionCapitalLogo, alt: "Blue Vision Capital", href: "https://bluevisioncapital.com" },
                 { src: aqcCapitalLogo, alt: "AQC Capital", href: "https://aqccapital.com" },
                 { src: telusLogo, alt: "Telus", href: "https://www.telus.com" },
@@ -157,7 +173,7 @@ export default function Sponsors() {
                     alt={logo.alt}
                     width={150}
                     height={60}
-                    className="h-20 object-contain opacity-50 filter grayscale hover:grayscale-0 transition duration-300"
+                    className="h-20 object-contain filter grayscale hover:grayscale-0 transition duration-300"
                   />
                 </a>
               ))}

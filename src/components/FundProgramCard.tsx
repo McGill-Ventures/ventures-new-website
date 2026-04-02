@@ -1,32 +1,7 @@
-"use client";
-
-import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
 import { Icon } from "@/components/ui";
 
-const WEEKLY_MODULES = [
-  "Introduction to Venture Capital as an Asset Class",
-  "Networking and Breaking into VC",
-  "Sourcing and Introduction to Dealflow",
-  "Screening and Introduction to Due Diligence",
-  "Valuation and Financial Modelling – Early Stage",
-  "Valuation and Financial Modelling – Late Stage",
-  "Structuring Investment Deals & Portfolio Support",
-  "The Founder's Perspective",
-  "Fund Structure & LP Relationships",
-  "Impact Investing",
-];
-
-const DELIVERABLES = [
-  "Homework 1: Sourcing – Find three interesting startups within McGill's ecosystem",
-  "Homework 2: Due Diligence 1 – Complete part 1 of DD + convictions about the business",
-  "Case 1: Complete Due Diligence process in small teams on an existing startup",
-  "Case 2: Draft Investment Memo and Term Sheet for potential investor",
-];
-
 export default function FundProgramCard() {
-  const [expanded, setExpanded] = useState(false);
 
   return (
     <div className="glass rounded-3xl p-10 hover-lift animate-fade-in-up opacity-75">
@@ -65,43 +40,6 @@ export default function FundProgramCard() {
           <div className="text-lg font-display text-purple-950">4-6 hours/week</div>
         </div>
       </div>
-
-      {/* Expandable curriculum */}
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full flex items-center justify-between px-6 py-4 mb-4 rounded-xl border-2 border-purple-200 bg-purple-50 text-purple-800 font-heading font-semibold text-base hover:bg-purple-100 hover:border-purple-300 transition-all duration-200"
-      >
-        <span>View 10-Week Curriculum</span>
-        {expanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
-      </button>
-
-      {expanded && (
-        <div className="mb-6 rounded-2xl border border-purple-100 bg-white overflow-hidden">
-          <div className="p-6">
-            <h5 className="text-base font-heading text-purple-950 mb-4">Weekly Modules</h5>
-            <ol className="space-y-2 mb-6">
-              {WEEKLY_MODULES.map((module, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-purple-700 font-body text-sm">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-purple-100 text-purple-700 font-heading font-semibold text-xs flex items-center justify-center mt-0.5">
-                    {idx + 1}
-                  </span>
-                  {module}
-                </li>
-              ))}
-            </ol>
-
-            <h5 className="text-base font-heading text-purple-950 mb-4">Deliverables</h5>
-            <ul className="space-y-2">
-              {DELIVERABLES.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-purple-700 font-body text-sm">
-                  <Icon name="check" className="text-purple-500 flex-shrink-0 mt-0.5" size="sm" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
 
       <div className="flex flex-col sm:flex-row gap-3">
         <Link
