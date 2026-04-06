@@ -4,6 +4,7 @@ import { APPLICATION_STEPS } from "@/constants";
 import FundProgramCard from "@/components/FundProgramCard";
 import AnalystProgramCard from "@/components/AnalystProgramCard";
 import HTILProgramCard from "@/components/HTILProgramCard";
+import VentureAdvisoryProgramCard from "@/components/VentureAdvisoryProgramCard";
 
 export default function Programs() {
   return (
@@ -36,9 +37,11 @@ export default function Programs() {
           <div className="max-w-5xl mx-auto space-y-12">
             <AnalystProgramCard />
 
-            <FundProgramCard />
-
             <HTILProgramCard />
+
+            <VentureAdvisoryProgramCard />
+
+            <FundProgramCard />
           </div>
         </div>
       </section>

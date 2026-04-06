@@ -19,7 +19,28 @@ interface EventCard {
   image: string;
   photos: EventPhoto[];
   imagePosition?: string;
+  imageScale?: number;
+  ticketsUrl?: string;
 }
+
+// TO MOVE SCARLET PITCH 2026 TO PAST EVENTS AFTER APRIL 11, 2026:
+// 1. Remove the UPCOMING_EVENTS constant and section below
+// 2. Add the scarlet-pitch-2026 entry into EVENTS_2026 array
+// 3. Add photos array once available
+const UPCOMING_EVENTS: EventCard[] = [
+  {
+    id: "scarlet-pitch-2026",
+    title: "Scarlet Pitch 2026",
+    category: "Competition",
+    date: "April 11, 2026",
+    location: "Ax.c",
+    description: "McGill's premier pitch competition where student founders compete for funding, mentorship, and the chance to pitch their ventures to leading investors.",
+    image: "/events/scarlet_pitch_2026_upcoming.jpeg",
+    photos: [],
+    imageScale: 0.8,
+    ticketsUrl: "https://luma.com/18q4y3gu?tk=zQMAeE",
+  },
+];
 
 const EVENTS_2026: EventCard[] = [
   {
@@ -207,13 +228,13 @@ function EventCardComponent({ event, index }: { event: EventCard; index: number 
       }}
     >
       {/* Cover photo */}
-      <div className="relative aspect-video w-full flex-shrink-0 overflow-hidden">
+      <div className="relative aspect-video w-full flex-shrink-0 overflow-hidden bg-gray-100">
         <Image
           src={event.image}
           alt={event.title}
           fill
           className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-          style={{ objectPosition: event.imagePosition ?? "center" }}
+          style={{ objectPosition: event.imagePosition ?? "center", transform: event.imageScale ? `scale(${event.imageScale})` : undefined }}
         />
       </div>
 
@@ -253,6 +274,21 @@ function EventCardComponent({ event, index }: { event: EventCard; index: number 
           </p>
         )}
 
+        {/* Tickets button */}
+        {event.ticketsUrl && (
+          <a
+            href={event.ticketsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 self-start px-4 py-2 mb-4 rounded-lg bg-[#5A189A] text-white text-sm font-heading font-semibold hover:bg-[#3D1551] transition-colors duration-200"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+            </svg>
+            Get Tickets
+          </a>
+        )}
+
         {/* Photo gallery */}
         <EventPhotoGallery eventId={event.id} photos={event.photos} />
       </div>
@@ -276,6 +312,23 @@ export default function Events() {
             <p className="text-base sm:text-xl md:text-2xl text-purple-800 leading-relaxed font-body max-w-4xl mx-auto">
               From intimate workshops to large-scale conferences, we bring together the McGill entrepreneurship community with industry leaders, investors, and founders.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Upcoming Events */}
+      <section className="px-6 pt-6 sm:pt-10 pb-10 sm:pb-[60px] md:px-12 lg:px-24 bg-gradient-hero">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-purple-950 mb-4">Upcoming Events</h2>
+            <p className="text-base sm:text-xl text-purple-800 leading-relaxed font-body max-w-3xl mx-auto">
+              Don&apos;t miss what&apos;s coming up next
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            {UPCOMING_EVENTS.map((event, index) => (
+              <EventCardComponent key={event.id} event={event} index={index} />
+            ))}
           </div>
         </div>
       </section>
