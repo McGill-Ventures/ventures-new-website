@@ -1,6 +1,6 @@
 import React from 'react';
 import { TeamCard } from '@/components/ui/TeamCard/TeamCard';
-import { MANAGING_DIRECTORS, GOVERNANCE_TEAM_MEMBERS, INVESTMENT_COMMITTEE, BOARD_OF_DIRECTORS } from '@/constants';
+import { MANAGING_DIRECTORS, GOVERNANCE_TEAM_MEMBERS, SENIOR_ANALYSTS, INVESTMENT_COMMITTEE, BOARD_OF_DIRECTORS } from '@/constants';
 
 export const OurGovernanceSection: React.FC = () => {
   return (
@@ -40,12 +40,12 @@ export const OurGovernanceSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Team Members */}
+            {/* Analysts */}
             <div className="mb-12">
-              <h4 className="text-2xl font-heading text-purple-950 mb-8 text-center">Team Members</h4>
+              <h4 className="text-2xl font-heading text-purple-950 mb-8 text-center">Analysts</h4>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-4xl mx-auto">
-                {GOVERNANCE_TEAM_MEMBERS.map((member, index) => (
-                  <TeamCard 
+                {[...GOVERNANCE_TEAM_MEMBERS, ...SENIOR_ANALYSTS].map((member, index) => (
+                  <TeamCard
                     key={member.name}
                     member={member}
                     index={index}
@@ -67,7 +67,7 @@ export const OurGovernanceSection: React.FC = () => {
         <div className="mb-16 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
           <div className="glass rounded-2xl p-8 md:p-12">
             <div className="text-center mb-12">
-              <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{backgroundColor: '#3D348B'}}>
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -92,7 +92,7 @@ export const OurGovernanceSection: React.FC = () => {
         <div className="mb-16 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
           <div className="glass rounded-2xl p-8 md:p-12">
             <div className="text-center mb-12">
-              <div className="w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{backgroundColor: '#7678ED'}}>
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
@@ -117,7 +117,7 @@ export const OurGovernanceSection: React.FC = () => {
         <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
           <div className="glass rounded-2xl p-8 md:p-12">
             <div className="text-center mb-12">
-              <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{backgroundColor: '#5A189A'}}>
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
@@ -127,30 +127,30 @@ export const OurGovernanceSection: React.FC = () => {
 
             <div className="grid md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="bg-blue-100 rounded-xl p-4">
-                  <h5 className="font-heading text-blue-950 mb-2">Board of Directors</h5>
-                  <p className="text-blue-800 font-body">Investment Committee</p>
+                <div className="bg-purple-100 rounded-xl p-4">
+                  <h5 className="font-heading text-purple-950 mb-2">Board of Directors</h5>
+                  <p className="text-purple-800 font-body">Investment Committee</p>
                 </div>
               </div>
 
               <div className="text-center">
-                <div className="bg-blue-100 rounded-xl p-4">
-                  <h5 className="font-heading text-blue-950 mb-2">Board of Advisors</h5>
-                  <p className="text-blue-800 font-body">Student Members</p>
+                <div className="bg-purple-100 rounded-xl p-4">
+                  <h5 className="font-heading text-purple-950 mb-2">Board of Advisors</h5>
+                  <p className="text-purple-800 font-body">Student Members</p>
                 </div>
               </div>
 
               <div className="text-center">
-                <div className="bg-blue-100 rounded-xl p-4">
-                  <h5 className="font-heading text-blue-950 mb-2">Students</h5>
-                  <p className="text-blue-800 font-body">Apply to Analyst Program</p>
+                <div className="bg-purple-100 rounded-xl p-4">
+                  <h5 className="font-heading text-purple-950 mb-2">Students</h5>
+                  <p className="text-purple-800 font-body">Apply to Analyst Program</p>
                 </div>
               </div>
 
               <div className="text-center">
-                <div className="bg-blue-100 rounded-xl p-4">
-                  <h5 className="font-heading text-blue-950 mb-2">Startups</h5>
-                  <p className="text-blue-800 font-body">McGill-connected founders</p>
+                <div className="bg-purple-100 rounded-xl p-4">
+                  <h5 className="font-heading text-purple-950 mb-2">Startups</h5>
+                  <p className="text-purple-800 font-body">McGill-connected founders</p>
                 </div>
               </div>
             </div>

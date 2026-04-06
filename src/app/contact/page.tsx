@@ -5,7 +5,7 @@ import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ContactForm } from "@/components/ui/ContactForm/ContactForm";
-import eventImage from "../../../public/events/pizza.jpg";
+import eventImage from "../../../public/events/contact_us_photo.jpg";
 
 export default function Contact() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -55,18 +55,19 @@ export default function Contact() {
         </div>
       )}
 
-      <section className="px-6 py-20 md:px-12 lg:px-24 relative bg-gradient-hero">
+      <section className="px-6 py-14 md:px-12 lg:px-24 relative bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in-up">
+          <div className="text-center mb-8 animate-fade-in-up">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-display text-purple-950 mb-8">
               Contact Us
             </h1>
             <div className="w-32 h-1.5 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full mb-12"></div>
-            <div className="w-3/4 md:w-2/3 lg:w-1/2 h-96 md:h-[50vh] bg-gradient-to-br from-purple-100 to-purple-200 rounded-3xl flex items-center justify-center mb-8 animate-fade-in-up overflow-hidden mx-auto" style={{animationDelay: '0.2s'}}>
-              <Image 
-                src={eventImage} 
-                alt="McGill Ventures team event" 
+            <div className="w-3/4 h-80 md:h-[48vh] mx-auto rounded-3xl overflow-hidden mb-4 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+              <Image
+                src={eventImage}
+                alt="McGill Ventures team event"
                 className="w-full h-full object-cover rounded-3xl"
+                style={{objectPosition: '50% 60%'}}
                 priority
               />
             </div>
@@ -74,7 +75,7 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50 to-white">
+      <section className="px-6 py-16 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50 to-white">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16">
             <div className="animate-fade-in-up">
@@ -89,21 +90,13 @@ export default function Contact() {
               <div className="space-y-8">
                 <div className="glass rounded-2xl p-8">
                   <h3 className="text-2xl font-heading text-purple-950 mb-4">General Inquiries</h3>
-                  <div className="space-y-3 text-purple-800 font-body">
+                  <div className="space-y-2 text-purple-800 font-body">
                     <div className="flex items-center">
                       <svg className="w-5 h-5 mr-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                       <a href="mailto:mcgillventuresclub@gmail.com" className="hover:text-purple-600 transition-colors duration-300">
                         mcgillventuresclub@gmail.com
-                      </a>
-                    </div>
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 mr-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                      <a href="tel:+15145550123" className="hover:text-purple-600 transition-colors duration-300">
-                        +1 (514) 555-0123
                       </a>
                     </div>
                     <div className="flex items-start">

@@ -9,6 +9,7 @@ interface TeamTab {
 }
 
 const TEAM_TABS: TeamTab[] = [
+  { key: TEAM_TYPES.FOUNDERS, label: 'Founders' },
   { key: TEAM_TYPES.EXECUTIVE, label: 'Executive Team' },
   { key: TEAM_TYPES.FUND, label: 'Fund Team' },
   { key: TEAM_TYPES.FINANCE, label: 'Finance Team' },

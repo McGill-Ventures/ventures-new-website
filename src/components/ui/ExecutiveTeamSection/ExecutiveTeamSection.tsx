@@ -13,7 +13,7 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
 
   const financeFund = members.filter(m =>
     !leadership.includes(m) &&
-    (m.role.includes('Finance') || m.role.includes('Fund'))
+    (m.role.includes('Finance') || m.role.includes('Fund') || m.role.includes('Managing Director'))
   );
 
   const events = members.filter(m =>
@@ -22,10 +22,18 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
     (m.role.includes('Events') || m.role.includes('Event'))
   );
 
+  const seniorAnalysts = members.filter(m =>
+    !leadership.includes(m) &&
+    !financeFund.includes(m) &&
+    !events.includes(m) &&
+    m.role.includes('Senior Analyst')
+  );
+
   const operations = members.filter(m =>
     !leadership.includes(m) &&
     !financeFund.includes(m) &&
-    !events.includes(m)
+    !events.includes(m) &&
+    !seniorAnalysts.includes(m)
   );
 
   return (
@@ -86,6 +94,25 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
                   key={member.name}
                   member={member}
                   index={index + leadership.length + events.length}
+                  variant="executive"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Senior Analysts */}
+        {seniorAnalysts.length > 0 && (
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Analysts</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
+              {seniorAnalysts.map((member, index) => (
+                <TeamCard
+                  key={member.name}
+                  member={member}
+                  index={index + leadership.length + events.length + financeFund.length}
                   variant="executive"
                 />
               ))}

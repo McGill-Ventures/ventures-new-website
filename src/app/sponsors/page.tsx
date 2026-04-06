@@ -1,12 +1,66 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import Image from "next/image";
+import Link from "next/link";
+
+// sponsor logos
+import bdcLogo from "./bdc.png";
+import eyLogo from "./ey.png";
+import deloitteLogo from "./Deloitte-Black-Logo.png";
+import oslerLogo from "./osler.png";
+import investissementQuebecLogo from "./investissement_quebec.png";
+
+// partner logos
+import nationgraphLogo from "./nationgraph.png";
+import generalMagicLogo from "./general_magic.png";
+import gowlingLogo from "./gowling.png";
+import panacheVenturesCurrentLogo from "./panache_ventures.png";
+import inoviaCurrentLogo from "./inovia.png";
+import dobsonCentreCurrentLogo from "./dobson_centre.png";
+import standupVenturesLogo from "./standup_ventures.png";
+import polyfinancesLogo from "./polyfinances.png";
+import torontoTechWeekLogo from "./toronto_tech_week.png";
+import nextAILogo from "./next_ai.png";
+import frameworkVenturesLogo from "./front_row_ventures.png";
+import realVenturesLogo from "./realventures.png";
+import cycleCapitalLogo from "./cycle_capital.png";
+import d3Logo from "./d3.png";
+import laBaseHECLogo from "./la_base_hec.png";
+import betaKitLogo from "./beta_kit.png";
+import diagramVenturesLogo from "./diagram_ventures.png";
+import espaceCDPQLogo from "./escape_cdpq.png";
+import brightsparkLogo from "./brightspark.png";
+import axLogo from "./ax.png";
+import elanchTechLogo from "./elanch_tech.png";
+import mcgillEngineLogo from "./mcgill_engine.png";
+import theClipLogo from "./the_clip.png";
+import amiralVenturesLogo from "./amiral_ventures.png";
+import northStarLogo from "./north_star.png";
+import finchlyVenturesLogo from "./finchley_ventures.png";
+import cdlLogo from "./cdl.png";
+import zuLogo from "./zu.png";
+import cvcaLogo from "./cvca.png";
+import startupfestLogo from "./startupfest.png";
+import claudeBuilderClubLogo from "./claude_builder_club.png";
+import graphiteVenturesLogo from "./graphite_ventures.png";
+
+// past sponsor logos
+import ascentLogo from "./ascent.png";
+import borealVenturesLogo from "./boreal_ventures.png";
+import mayoClinicLogo from "./mayo_clinic.png";
+import perplexityLogo from "./perplexity.png";
+import penderVenturesLogo from "./pender_ventures.png";
+import blueVisionCapitalLogo from "./blue_vision_capital.png";
+import aqcCapitalLogo from "./aqc_capital.png";
+import telusLogo from "./telus.png";
+import triptyqCapitalLogo from "./triptyq_capital.png";
 
 export default function Sponsors() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation currentPage="/sponsors" />
 
-      <section className="px-6 py-20 md:px-12 lg:px-24 relative bg-gradient-hero">
+      <section className="px-6 py-14 md:px-12 lg:px-24 relative bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-display text-purple-950 mb-8">
@@ -21,21 +75,108 @@ export default function Sponsors() {
       </section>
 
       <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/30 to-purple-100/20">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto space-y-32">
+          {/* Our Sponsors */}
           <div className="text-center animate-fade-in-up">
-            <div className="max-w-4xl mx-auto">
-              <div className="glass rounded-3xl p-16 shadow-lg">
-                <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-8">
-                  <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-6">Coming Soon</h2>
-                <p className="text-2xl text-purple-800 leading-relaxed font-body mb-8">
-                  We&apos;re currently building partnerships with industry-leading organizations. 
-                  Our sponsorship program will launch soon!
-                </p>
-              </div>
+            <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-14">Our Sponsors</h2>
+            <div className="flex flex-wrap justify-center items-center gap-12">
+              {/* sponsor logos */}
+              {[
+                { src: bdcLogo, alt: "BDC", href: "https://www.bdc.ca" },
+                { src: eyLogo, alt: "EY", href: "https://www.ey.com" },
+                { src: deloitteLogo, alt: "Deloitte", href: "https://www.deloitte.com" },
+                { src: oslerLogo, alt: "Osler", href: "https://www.osler.com" },
+                { src: investissementQuebecLogo, alt: "Investissement Québec", href: "https://www.investquebec.com/fr" },
+              ].map((logo, idx) => (
+                <a key={idx} href={logo.href} target="_blank" rel="noopener noreferrer">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={150}
+                    height={60}
+                    className="h-20 object-contain filter grayscale hover:grayscale-0 transition duration-300"
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Our Partners */}
+          <div className="text-center animate-fade-in-up">
+            <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-14">Our Partners</h2>
+            <div className="flex flex-wrap justify-center items-center gap-12">
+              {[
+                { src: nationgraphLogo, alt: "Nation Graph", href: "https://www.nationgraph.com/" },
+                { src: generalMagicLogo, alt: "General Magic", href: "https://generalmagic.inc/" },
+                { src: gowlingLogo, alt: "Gowling WLG", href: "https://gowlingwlg.com/en" },
+                { src: panacheVenturesCurrentLogo, alt: "Panache Ventures", href: "https://www.panache.vc" },
+                { src: inoviaCurrentLogo, alt: "Inovia", href: "https://inovia.vc" },
+                { src: dobsonCentreCurrentLogo, alt: "McGill Dobson Centre", href: "https://www.mcgill.ca/dobson" },
+                { src: standupVenturesLogo, alt: "Standup Ventures", href: "https://www.standupvc.com/" },
+                { src: polyfinancesLogo, alt: "Polyfinances", href: "https://www.polyfinances.ca/en" },
+                { src: torontoTechWeekLogo, alt: "Toronto Tech Week", href: "https://www.torontotechweek.com" },
+                { src: nextAILogo, alt: "Next AI", href: "https://www.nextcanada.com/next-ai" },
+                { src: frameworkVenturesLogo, alt: "Framework Ventures", href: "https://frontrow.ventures" },
+                { src: realVenturesLogo, alt: "Real Ventures", href: "https://realventures.com" },
+                { src: cycleCapitalLogo, alt: "Cycle Momentum", href: "https://cyclemomentum.com" },
+                { src: d3Logo, alt: "D3", href: "https://d3.ventures" },
+                { src: laBaseHECLogo, alt: "La Base HEC", href: "https://labase.hec.ca" },
+                { src: betaKitLogo, alt: "Beta Kit", href: "https://betakit.com" },
+                { src: diagramVenturesLogo, alt: "Diagram Ventures", href: "https://diagram.ca" },
+                { src: espaceCDPQLogo, alt: "Espace CDPQ", href: "https://www.cdpq.com" },
+                { src: brightsparkLogo, alt: "Brightspark", href: "https://www.brightspark.com" },
+                { src: axLogo, alt: "AX", href: "https://ax.co" },
+                { src: elanchTechLogo, alt: "Elanch Tech", href: "https://www.elantech.co/home" },
+                { src: mcgillEngineLogo, alt: "McGill Engine", href: "https://mcgillengine.com" },
+                { src: theClipLogo, alt: "The Clip", href: "https://theclip.ca" },
+                { src: amiralVenturesLogo, alt: "Amiral Ventures", href: "https://amiral.ventures" },
+                { src: northStarLogo, alt: "North Star", href: "https://northstar.vc" },
+                { src: finchlyVenturesLogo, alt: "Finchly Ventures", href: "https://finchly.com" },
+                { src: cdlLogo, alt: "CDL", href: "https://creativedestructionlab.com" },
+                { src: zuLogo, alt: "Zu", href: "https://zu.com" },
+                { src: cvcaLogo, alt: "CVCA", href: "https://www.cvca.ca" },
+                { src: startupfestLogo, alt: "Startupfest", href: "https://www.startupfest.com" },
+                { src: claudeBuilderClubLogo, alt: "Claude Builder Club", href: "https://www.claudebuildersmcgill.ca/" },
+                { src: graphiteVenturesLogo, alt: "Graphite Ventures", href: "https://graphitevc.com/" },
+              ].map((logo, idx) => (
+                <a key={idx} href={logo.href} target="_blank" rel="noopener noreferrer">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={150}
+                    height={60}
+                    className="h-20 object-contain filter grayscale hover:grayscale-0 transition duration-300"
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Past Sponsors & Partners */}
+          <div className="text-center animate-fade-in-up">
+            <h2 className="text-4xl md:text-5xl font-display text-purple-950 mb-14">Past Sponsors & Partners</h2>
+            <div className="flex flex-wrap justify-center items-center gap-12">
+              {[
+                { src: ascentLogo, alt: "Ascent by McMillan", href: "https://www.mcmillan.ca" },
+                { src: borealVenturesLogo, alt: "Boreal Ventures", href: "https://boreal.vc/" },
+                { src: mayoClinicLogo, alt: "Mayo Clinic", href: "https://www.mayoclinic.org" },
+                { src: perplexityLogo, alt: "Perplexity", href: "https://www.perplexity.ai/" },
+                { src: penderVenturesLogo, alt: "Pender Ventures", href: "https://penderventures.com" },
+                { src: blueVisionCapitalLogo, alt: "Blue Vision Capital", href: "https://bluevisioncapital.com" },
+                { src: aqcCapitalLogo, alt: "AQC Capital", href: "https://aqccapital.com" },
+                { src: telusLogo, alt: "Telus", href: "https://www.telus.com" },
+                { src: triptyqCapitalLogo, alt: "Triptyq Capital", href: "https://triptyqcapital.com" },
+              ].map((logo, idx) => (
+                <a key={idx} href={logo.href} target="_blank" rel="noopener noreferrer">
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={150}
+                    height={60}
+                    className="h-20 object-contain filter grayscale hover:grayscale-0 transition duration-300"
+                  />
+                </a>
+              ))}
             </div>
           </div>
         </div>
@@ -98,9 +239,11 @@ export default function Sponsors() {
             </p>
           </div>
           <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
-            <button className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-12 py-5 rounded-2xl hover:from-purple-600 hover:to-purple-700 transition-all duration-300 font-heading text-xl font-semibold hover-lift animate-pulse-glow">
-              Become a Sponsor
-            </button>
+            <Link href="/contact">
+              <button className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-12 py-5 rounded-2xl hover:from-purple-600 hover:to-purple-700 transition-all duration-300 font-heading text-xl font-semibold hover-lift animate-pulse-glow">
+                Become a Sponsor
+              </button>
+            </Link>
           </div>
         </div>
       </section>

@@ -16,7 +16,7 @@ export const GetInvolvedSection: React.FC = () => {
           {/* Students */}
           <div className="glass rounded-2xl p-8 animate-fade-in-up" style={{animationDelay: '0.1s'}}>
             <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#3D1551'}}>
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
@@ -24,19 +24,19 @@ export const GetInvolvedSection: React.FC = () => {
               <h3 className="text-2xl font-heading text-purple-950 mb-4">Students</h3>
             </div>
             <div className="space-y-4">
-              <div className="bg-blue-50 rounded-lg p-4">
-                <h4 className="font-heading text-blue-900 mb-2">Apply to the Analyst Program</h4>
-                <p className="text-blue-800 font-body text-sm mb-3">Full training and hands-on investment experience needed — we train you.</p>
+              <div className="bg-purple-50 rounded-lg p-4">
+                <h4 className="font-heading text-purple-900 mb-2">Apply to the Analyst Program</h4>
+                <p className="text-purple-800 font-body text-sm mb-3">Full training and hands-on investment experience needed — we train you.</p>
                 <Link 
                   href="/programs#analyst-program"
-                  className="inline-block text-blue-600 hover:text-blue-700 font-semibold text-sm underline"
+                  className="inline-block text-purple-600 hover:text-purple-700 font-semibold text-sm underline"
                 >
                   Learn More About the Analyst Program →
                 </Link>
               </div>
-              <div className="bg-blue-50 rounded-lg p-4">
-                <h4 className="font-heading text-blue-900 mb-2">Top performing analysts join the Investment Team</h4>
-                <p className="text-blue-800 font-body text-sm">Working directly on deals</p>
+              <div className="bg-purple-50 rounded-lg p-4">
+                <h4 className="font-heading text-purple-900 mb-2">Top performing analysts join the Investment Team</h4>
+                <p className="text-purple-800 font-body text-sm">Working directly on deals</p>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@ export const GetInvolvedSection: React.FC = () => {
           {/* Startups */}
           <div className="glass rounded-2xl p-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
             <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{backgroundColor: '#3D348B'}}>
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -52,16 +52,16 @@ export const GetInvolvedSection: React.FC = () => {
               <h3 className="text-2xl font-heading text-purple-950 mb-4">Startups</h3>
             </div>
             <div className="space-y-4">
-              <div className="bg-green-50 rounded-lg p-4">
-                <p className="text-green-800 font-body text-sm mb-3">
+              <div className="bg-purple-50 rounded-lg p-4">
+                <p className="text-purple-800 font-body text-sm mb-3">
                   If you&apos;re McGill-connected and building something we want to support,
                 </p>
-                <p className="text-green-800 font-body text-sm mb-3">
+                <p className="text-purple-800 font-body text-sm mb-3">
                   We have <strong>$10K-$50K</strong> at the pre-seed stage.
                 </p>
-                <p className="text-green-800 font-body text-sm">
+                <p className="text-purple-800 font-body text-sm">
                   <strong>Submit your deck:</strong><br />
-                  <a href="mailto:mcgillventuresclub@gmail.com" className="text-green-700 hover:text-green-600 underline">
+                  <a href="mailto:mcgillventuresclub@gmail.com" className="text-purple-700 hover:text-purple-600 underline">
                     mcgillventuresclub@gmail.com
                   </a>
                 </p>
