@@ -419,14 +419,14 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
     education: "BEng Computer Engineering, McGill University",
     linkedinUrl: "https://www.linkedin.com/in/yueranlu05/"
   },
-  {
-    name: "Gaspar Billerault",
-    role: "Senior Analyst",
-    image: "/headshots/exec/gaspar_billerault.jpg",
-    bio: "",
-    education: "BSc Computer Science, McGill University",
-    linkedinUrl: "https://www.linkedin.com/in/billerault/"
-  },
+  // {
+  //   name: "Gaspar Billerault",
+  //   role: "Senior Analyst",
+  //   image: "/headshots/exec/gaspar_billerault.jpg",
+  //   bio: "",
+  //   education: "BSc Computer Science, McGill University",
+  //   linkedinUrl: "https://www.linkedin.com/in/billerault/"
+  // },
   {
     name: "Nicholas Mandalenakis",
     role: "Senior Analyst",
@@ -1068,14 +1068,14 @@ export const GOVERNANCE_TEAM_MEMBERS: GovernanceTeamMember[] = [
     education: "BCom Joint Honours Economics + Finance, McGill University",
     linkedinUrl: "https://www.linkedin.com/in/alhaanharis/"
   },
-  {
-    name: "Gaspar Billerault",
-    role: "Senior Analyst",
-    image: "/headshots/exec/gaspar_billerault.jpg",
-    bio: "",
-    education: "BSc Computer Science, McGill University",
-    linkedinUrl: "https://www.linkedin.com/in/billerault/"
-  },
+  // {
+  //   name: "Gaspar Billerault",
+  //   role: "Senior Analyst",
+  //   image: "/headshots/exec/gaspar_billerault.jpg",
+  //   bio: "",
+  //   education: "BSc Computer Science, McGill University",
+  //   linkedinUrl: "https://www.linkedin.com/in/billerault/"
+  // },
   {
     name: "Nicholas Mandalenakis",
     role: "Senior Analyst",

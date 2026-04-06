@@ -1,6 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-import graphiteVenturesLogo from '@/app/sponsors/graphite_ventures.png';
 
 export const FundOverviewSection: React.FC = () => {
   return (
@@ -136,26 +134,6 @@ export const FundOverviewSection: React.FC = () => {
                 <p className="text-purple-800 font-body">Pre-seed</p>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Partners */}
-        <div className="text-center animate-fade-in-up mb-16" style={{animationDelay: '0.65s'}}>
-          <h3 className="text-2xl font-heading text-purple-950 mb-8">Supported By</h3>
-          <div className="flex flex-wrap justify-center items-center gap-12">
-            {[
-              { src: graphiteVenturesLogo, alt: "Graphite Ventures", href: "https://graphitevc.com/" },
-            ].map((logo, idx) => (
-              <a key={idx} href={logo.href} target="_blank" rel="noopener noreferrer">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={150}
-                  height={60}
-                  className="h-16 object-contain filter grayscale hover:grayscale-0 transition duration-300"
-                />
-              </a>
-            ))}
           </div>
         </div>
 
