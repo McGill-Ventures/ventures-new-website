@@ -19,6 +19,7 @@ export const TEAM_TYPES = {
   FINANCE: 'finance' as const,
   ANALYST: 'analyst' as const,
   DEVELOPER: 'dev' as const,
+  HTIL: 'htil' as const,
 } as const;
 
 export const GOVERNANCE_TYPES = {
@@ -77,39 +78,9 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     linkedinUrl: "https://www.linkedin.com/in/charlyne-luu-235062213/"
   },
   {
-    name: "Alexis Hamam",
-    image: "/headshots/exec/alexis_hamam.jpg", 
-    role: "Founder & IC (Fund)",
-    experience: "Prev @ EY M&A, Boreal Ventures",
-    bio: "",
-    education: "BCom Finance, McGill University"
-  },
-  {
-    name: "Alhaan Haris",
-    role: "Fund Principal",
-    image: "/headshots/exec/alhaan_haris.jpg",
-    bio: "",
-    education: "BCom Joint Honours Economics + Finance, McGill University",
-  },
-  {
-    name: "Noah Vaillancourt",
-    role: "Fund Principal",
-    image: "/headshots/exec/noah_vaillancourt.jpg",
-    bio: "",
-    education: "BEng Software Engineering, McGill University",
-  },
-  {
-    name: "Urfaan Sadid",
-    role: "Fund Program Manager",
-    experience: "Prev @ Richardson Wealth, Wyld VC",
-    image: "/headshots/exec/urfaan_sadid.jpg",
-    bio: "",
-    education: "BCom Joint Honours Economics + Finance, McGill University",
-  },
-  {
     name: "Clara Caden",
     image: "/headshots/exec/clara_caden.png",
-    role: "Corporate Relations Associate",
+    role: "Partnerships Director",
     experience: "Prev @ Fondaction, Meroka",
     bio: "",
     education: "BCom Finance + CS",
@@ -179,30 +150,6 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     linkedinUrl: "https://www.linkedin.com/in/lola-julliand-955706329"
   },
   {
-    name: "Alexandre Comtois",
-    image: "/headshots/exec/alexandre_comtois_headshot.jpg",
-    role: "Fund Manager",
-    experience: "",
-    bio: "",
-    education: "Honours Investment Management, McGill University"
-  },
-  {
-    name: "Oscar Ham",
-    image: "/headshots/exec/oscar_ham_headshot.jpg",
-    role: "Fund Principal",
-    experience: "Prev @ KPMG",
-    bio: "",
-    education: "BEng Electrical Engineering, McGill University",
-  },
-  {
-    name: "Gael Gonzàlez",
-    image: "/headshots/exec/gael_huacuja_headshot.jpg",
-    role: "Program Manager - Venture Advisory and Fund Principal",
-    experience: "Prev @ Attain",
-    bio: "",
-    education: "BCom Finance + Strategic Management, McGill University"
-  },
-  {
     name: "Chris Robinson",
     image: "/headshots/exec/chris_robinson_headshot.jpg",
     role: "Director of Finance",
@@ -214,19 +161,27 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
   {
     name: "Orion Pirang",
     image: "/headshots/exec/orion_pirang_headshot.JPG",
-    role: "Finance Associate/ Analyst",
+    role: "Finance Associate",
     experience: "Prev @ PwC, Desato",
     bio: "",
     education: "BCom Finance, McGill University",
     linkedinUrl: "https://www.linkedin.com/in/orion-pirang-272b5035b"
   },
   {
-    name: "Celine Chung",
-    image: "/headshots/exec/celine_chung_headshot.jpg",
-    role: "Fund Principal and Corporate Relations",
-    experience: "",
+    name: "Jaden Lee",
+    image: "/headshots/analyst/jaden_lee.jpg",
+    role: "Finance Associate",
     bio: "",
-    education: "BCom International Management, McGill University"
+    education: "BCom Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/jaden-tklee"
+  },
+  {
+    name: "Theodore Popa",
+    image: "/headshots/exec/theodore_popa.jpg",
+    role: "Finance Associate",
+    bio: "",
+    education: "BCom Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/theodore-popa-124a95348/"
   },
   {
     name: "Ronardy Abellard",
@@ -247,21 +202,67 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     linkedinUrl: "https://www.linkedin.com/in/nicole-r-zeng/"
   },
   {
+    name: "Rachel Vilgrain",
+    image: "/headshots/exec/rachel_vilgrain.jpeg",
+    role: "Executive Assistant",
+    experience: "",
+    bio: "",
+    education: "BCom Finance & Marketing, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/rachelvilgrain/"
+  },
+  {
     name: "Aditya Ranjan",
-    image: "/headshots/exec/aditya_ranjan.jpg", // TODO
-    role: "Corporate Relations Associate",
+    image: "/headshots/exec/aditya_ranjan.jpg",
+    role: "Sponsorship Associate",
     experience: "Prev @ SickKids",
     bio: "",
     education: "BSc Biomedical Sciences, McGill University",
     linkedinUrl: "https://www.linkedin.com/in/ad1tyaranjan/"
   },
   {
-    name: "Canyu Wu",
-    image: "/headshots/exec/canyu_wu.png", // TODO
-    role: "Director of Partnerships",
+    name: "Miriam Mikhaeil",
+    image: "/headshots/exec/miriam_mikhaeil.jpeg",
+    role: "Sponsorship Director",
     experience: "",
     bio: "",
-    education: "BEng Bioengineering, McGill University"
+    education: "BCom Finance & Accounting, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/miriam-mikhaeil-5b96941b7/"
+  },
+  {
+    name: "Sophia Waller",
+    image: "/headshots/exec/sophia_waller.jpeg",
+    role: "Sponsorship Associate",
+    experience: "",
+    bio: "",
+    education: "BA Honours in International Development and Economics, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/sophia-waller/"
+  },
+  {
+    name: "Kevin Sun",
+    image: "/headshots/exec/kevin_sun.jpeg",
+    role: "Creative Director",
+    experience: "",
+    bio: "",
+    education: "BCom Finance/Accounting/Business Analytics, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/kevin-sun-938aa0223/"
+  },
+  {
+    name: "Makena Rivard",
+    image: "/headshots/exec/makena_rivard.jpeg",
+    role: "Marketing Director",
+    experience: "",
+    bio: "",
+    education: "BA Psychology, Minor Linguistics, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/makena-rivard/"
+  },
+  {
+    name: "Alexandra Jorgensen",
+    image: "/headshots/exec/alexandra_jorgensen.jpeg",
+    role: "Marketing Associate",
+    experience: "",
+    bio: "",
+    education: "BA Economics & International Development, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/alexandra-jorgensen-torress/"
   },
   {
     name: "Zara Berholz",
@@ -281,9 +282,36 @@ export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
     education: "BCom Finance, McGill University",
     linkedinUrl: "https://www.linkedin.com/in/annie-mingru-yang/"
   },
+  {
+    name: "Delfina Lian Guan",
+    image: "/headshots/exec/delfina_luan_guan.jpeg",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: "BCom Finance & Accounting, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/delfina-lian-guan/?originalSubdomain=ca"
+  },
+  {
+    name: "Isabelle Kondo",
+    image: "/headshots/exec/isabelle_kondo.jpeg",
+    role: "Events Associate",
+    experience: "",
+    bio: "",
+    education: "BCom Management, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/isabelle-kondo-724482307/"
+  },
 ];
 
 export const FUND_TEAM: ExecutiveTeamMember[] = [
+  {
+    name: "Alexis Hamam",
+    image: "/headshots/exec/alexis_hamam.jpg",
+    role: "Founder & IC (Fund)",
+    experience: "Prev @ EY M&A, Boreal Ventures",
+    bio: "",
+    education: "BCom Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/alexishamam/"
+  },
   {
     name: "Urfaan Sadid",
     role: "Managing Director",
@@ -291,6 +319,7 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
     image: "/headshots/exec/urfaan_sadid.jpg",
     bio: "",
     education: "BCom Joint Honours Economics + Finance, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/urfaan-sadid/"
   },
   {
     name: "Alexandre Comtois",
@@ -298,7 +327,8 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
     role: "Managing Director",
     experience: "",
     bio: "",
-    education: "Honours Investment Management, McGill University"
+    education: "Honours Investment Management, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/alexandre-comtois/"
   },
   {
     name: "Elisabeth Scodigor",
@@ -311,7 +341,7 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
   },
   {
     name: "Noah Vaillancourt",
-    role: "Senior Analyst",
+    role: "Fund Principal",
     image: "/headshots/exec/noah_vaillancourt.jpg",
     bio: "",
     education: "BEng Software Engineering, McGill University",
@@ -320,7 +350,7 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
   {
     name: "Oscar Ham",
     image: "/headshots/exec/oscar_ham_headshot.jpg",
-    role: "Senior Analyst",
+    role: "Fund Principal",
     experience: "Prev @ KPMG",
     bio: "",
     education: "BEng Electrical Engineering, McGill University",
@@ -328,7 +358,7 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
   },
   {
     name: "Ava McKee",
-    role: "Senior Analyst",
+    role: "Fund Principal",
     image: "/headshots/exec/ava_mckee.png",
     bio: "",
     education: "BCom Finance, McGill University",
@@ -336,7 +366,7 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
   },
   {
     name: "Alhaan Haris",
-    role: "Senior Analyst",
+    role: "Fund Principal",
     image: "/headshots/exec/alhaan_haris.jpg",
     bio: "",
     education: "BCom Joint Honours Economics + Finance, McGill University",
@@ -344,7 +374,7 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
   },
   {
     name: "Kirin DeJacobson",
-    role: "Senior Analyst",
+    role: "Fund Principal",
     image: "/headshots/investment/kirin_dejacobson.png",
     bio: "",
     education: "BCom Finance, McGill University",
@@ -353,7 +383,7 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
   {
     name: "Gael Gonzàlez",
     image: "/headshots/exec/gael_huacuja_headshot.jpg",
-    role: "Senior Analyst",
+    role: "Fund Principal",
     experience: "Prev @ Attain",
     bio: "",
     education: "BCom Finance + Strategic Management, McGill University",
@@ -362,7 +392,7 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
   {
     name: "Celine Chung",
     image: "/headshots/exec/celine_chung_headshot.jpg",
-    role: "Senior Analyst",
+    role: "Fund Principal",
     experience: "",
     bio: "",
     education: "BCom International Management, McGill University",
@@ -689,7 +719,8 @@ export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
   education: "BEng Computer Engineering, McGill University",
   skills: ["System Architecture", "Team Leadership", "Software Development", "Product Management", "Scalability"],
   bio: "",
-  image: "/headshots/development/wsomji.jpeg"
+  image: "/headshots/development/wsomji.jpeg",
+  linkedinUrl: "https://www.linkedin.com/in/wasifsomji/"
 };
 
 export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
@@ -698,7 +729,7 @@ export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
     image: "/headshots/development/julien_heng_headshot.jpg",
     education: "BEng Software Engineering, McGill University",
     experience: "Prev @ Opella",
-    role: "Senior Software Developer",
+    role: "Developer",
     skills: ["Next.js", "TypeScript", "Tailwind CSS"],
     bio: ""
   },
@@ -707,7 +738,7 @@ export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
     image: "/headshots/development/jaden_hum_headshot.jpg",
     education: "BSc Software Engineering, McGill University",
     experience: "Prev @ UKG, Amelia",
-    role: "Senior Frontend Developer",
+    role: "Developer",
     skills: ["Next.js", "Typescript","Tailwind CSS"],
     bio: ""
   },
@@ -716,7 +747,7 @@ export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
     image: "/headshots/development/noah_chen_headshot.jpeg",
     education: "BA Computer Science + Management, McGill University",
     experience: "Prev @ Industrial Securities, G-bits",
-    role: "Intermediate Developer",
+    role: "Developer",
     skills: ["React.js", "TypeScript", "SCSS"],
     bio: ""
   },
@@ -724,25 +755,26 @@ export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
     name: "Bill Huynh-Lu",
     education: "BEng Software Engineering, McGill University",
     image: "/headshots/development/bill_huynh-lu.png",
-    role: "Junior Developer",
+    role: "Developer",
   },
   {
     name: "Ayaan Rayani",
     education: "BSc Computer Science & Economics, McGill University",
     image: "/headshots/development/ayaan_rayani_headshot.jpeg",
-    role: "Junior Developer",
+    role: "Developer",
   },
   {
     name: "Aditi Potnis",
     education: "BSc Computer Science, McGill University",
     image: "/headshots/development/aditi_potnis_headshot.jpg",
-    role: "Junior Developer",
+    role: "Developer",
   },
   {
     name: "Michael Lukas",
     education: "BCom Business Analytics, McGill University",
     image: "/headshots/development/michael_lukas_headshot.JPG",
-    role: "Junior Developer",
+    role: "Developer",
+    linkedinUrl: "https://www.linkedin.com/in/michaellukas/"
   },
 ];
 
@@ -917,9 +949,9 @@ export const APPLICATION_STEPS = [
   }
 ] as const;
 export const HOME_STATS = [
-  { value: "2K+", label: "LinkedIn Followers" },
-  { value: "1.7K+", label: "Instagram Followers" },
-  { value: "3rd", label: "Largest Club in Desautels Faculty of Management" },
+  { value: "2.6K+", label: "LinkedIn Followers" },
+  { value: "2K+", label: "Instagram Followers" },
+  { value: "2nd", label: "Largest Club in Desautels Faculty of Management" },
   { value: "70+", label: "Club Members" }
 ] as const;
 
@@ -1170,4 +1202,205 @@ export const BOARD_OF_DIRECTORS: GovernanceTeamMember[] = [
     bio: "",
     education: ""
   }
+];
+
+export const HTIL_TEAM: ExecutiveTeamMember[] = [
+  {
+    name: "Marc James de Man",
+    image: "/headshots/HTIL/marc_james_de_man.jpeg",
+    role: "Program Leader",
+    experience: "",
+    bio: "",
+    education: "M.D. Medicine, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/marc-james-de-man-8aa25a260/"
+  },
+  {
+    name: "Kirin DeJacobson",
+    image: "/headshots/HTIL/kirin_dejacobson.jpeg",
+    role: "Program Leader",
+    experience: "",
+    bio: "",
+    education: "BCom Management, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/kirindejacobson/"
+  },
+  {
+    name: "Canyu Wu",
+    image: "/headshots/exec/canyu_wu.png",
+    role: "Program Leader",
+    experience: "",
+    bio: "",
+    education: "BEng Bioengineering, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/canyu-wu-3b5726260/"
+  },
+  {
+    name: "Guillaume Bouramia",
+    image: "/headshots/HTIL/guillaume_bouramia.jpeg",
+    role: "Program Manager",
+    experience: "",
+    bio: "",
+    education: "BS Biochemistry, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/guillaume-bouramia/"
+  },
+  {
+    name: "William Prato-Deriet",
+    image: "/headshots/HTIL/william_prato-deriet.jpeg",
+    role: "Program Manager",
+    experience: "",
+    bio: "",
+    education: "BE Bioengineering & Biomedical Engineering, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/williampratoderiet/"
+  },
+  {
+    name: "Aditya Ranjan",
+    image: "/headshots/exec/aditya_ranjan.jpg",
+    role: "Program Manager",
+    experience: "",
+    bio: "",
+    education: "BS Biological, Biomedical & Life Sciences, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/ad1tyaranjan/"
+  },
+  {
+    name: "Samaksh Khandelwal",
+    image: "/headshots/HTIL/samaksh_khandelwal.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BA Computer Science & Statistics with Economics, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/samaksh-khandelwal/"
+  },
+  {
+    name: "Letizia Marello",
+    image: "/headshots/HTIL/letizia_marello.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BEng Bioengineering, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/letiziamarello/"
+  },
+  {
+    name: "Ishtiaque Hossain",
+    image: "/headshots/HTIL/ishtiaque_hossain.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "Doctoral Researcher, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/ishtiaque-hsn/"
+  },
+  {
+    name: "Louis Landreau",
+    image: "/headshots/HTIL/louis_landreau.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BEng Electrical Engineering, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/louis-landreau/?locale=en_US"
+  },
+  {
+    name: "Justin Kashi",
+    image: "/headshots/HTIL/justin_kashi.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "MSc Bioengineering & Biomedical Engineering, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/justin-kashi/"
+  },
+  {
+    name: "Albert Huang",
+    image: "/headshots/HTIL/albert_huang.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BS Microbiology & Immunology (Honours), McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/albert-huang-b275522b9/"
+  },
+  {
+    name: "Abed Abual-haj",
+    image: "/headshots/HTIL/abed_Abual-haj.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BEng Chemical Engineering, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/abed-abual-haj-68b56a290/"
+  },
+  {
+    name: "Milana Farah",
+    image: "/headshots/HTIL/milana_farah.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BEng Bioengineering, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/milanafarah/"
+  },
+  {
+    name: "Sophia Mahiout",
+    image: "/headshots/HTIL/sophia_mahiout.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BS Microbiology & Immunology, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/sophia-mahiout-153785354/"
+  },
+  {
+    name: "May Sun",
+    image: "/headshots/HTIL/may_sun.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BS Cell Biology & Anatomy, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/maysun5588/"
+  },
+  {
+    name: "Mutian Feng",
+    image: "/headshots/HTIL/mutian_feng.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BS Neuroscience, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/mutian-feng-5a8a38313/"
+  },
+  {
+    name: "Georgio Gholam",
+    image: "",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "Doctor of Medicine & Master of Surgery, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/georgio-gholam-113abb272/"
+  },
+  {
+    name: "Rukun Dou",
+    image: "/headshots/HTIL/rukun_dou.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "MDCM Medicine, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/rukun-dou/"
+  },
+  {
+    name: "Aaron Menezes",
+    image: "/headshots/HTIL/aaron_menezes.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BE Software Engineering Co-op, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/aaron-menezes-1b18b5369/"
+  },
+  {
+    name: "Yanchen Dong",
+    image: "/headshots/HTIL/yanchen_dong.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "PhD Human Genetics, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/yanchen-dong/"
+  },
+  {
+    name: "Tomas Bruschi Ferreira",
+    image: "/headshots/HTIL/tomas_bruschi_ferreira.jpeg",
+    role: "Innovation Strategist",
+    experience: "",
+    bio: "",
+    education: "BCom Management, McGill University",
+    linkedinUrl: "https://www.linkedin.com/in/tomasbf/"
+  },
 ];

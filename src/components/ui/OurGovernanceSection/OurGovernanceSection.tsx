@@ -30,7 +30,7 @@ export const OurGovernanceSection: React.FC = () => {
               <h4 className="text-2xl font-heading text-purple-950 mb-8 text-center">Managing Directors</h4>
               <div className="grid md:grid-cols-3 gap-8 justify-items-center max-w-4xl mx-auto">
                 {MANAGING_DIRECTORS.map((member, index) => (
-                  <TeamCard 
+                  <TeamCard
                     key={member.name}
                     member={member}
                     index={index}

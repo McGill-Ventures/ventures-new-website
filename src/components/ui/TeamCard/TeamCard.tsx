@@ -119,7 +119,7 @@ const TeamCard: React.FC<TeamCardProps> = React.memo(({ member, index, variant =
   );
 
   const cardClass = cn(
-    "text-center group glass rounded-3xl hover-lift relative",
+    "text-center group glass rounded-3xl hover-lift relative block",
     sizeConfig[variant].card,
     animation.className
   );
