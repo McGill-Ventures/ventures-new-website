@@ -918,8 +918,8 @@ export const APPLICATION_STEPS = [
 ] as const;
 export const HOME_STATS = [
   { value: "2K+", label: "LinkedIn Followers" },
-  { value: "1.7K+", label: "Instagram Followers" },
-  { value: "3rd", label: "Largest Club in Desautels Faculty of Management" },
+  { value: "2K+", label: "Instagram Followers" },
+  { value: "2nd", label: "Largest Club in Desautels Faculty of Management" },
   { value: "70+", label: "Club Members" }
 ] as const;
 
