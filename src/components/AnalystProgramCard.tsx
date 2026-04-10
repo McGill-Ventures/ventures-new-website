@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Icon } from "@/components/ui";
+import graphiteVenturesLogo from "@/app/sponsors/graphite_ventures.png";
 
 const WEEKLY_MODULES = [
   "Introduction to Venture Capital as an Asset Class",
@@ -63,6 +65,19 @@ export default function AnalystProgramCard() {
           <div className="text-sm font-heading text-purple-700">Commitment</div>
           <div className="text-lg font-display text-purple-950">4-6 hours/week</div>
         </div>
+      </div>
+
+      <div className="text-center mb-8">
+        <h4 className="text-xl font-heading text-purple-950 mb-4">Supported By</h4>
+        <a href="https://graphitevc.com/" target="_blank" rel="noopener noreferrer" className="inline-flex justify-center">
+          <Image
+            src={graphiteVenturesLogo}
+            alt="Graphite Ventures"
+            width={150}
+            height={60}
+            className="h-16 object-contain filter grayscale hover:grayscale-0 transition duration-300"
+          />
+        </a>
       </div>
 
       {/* Expandable curriculum */}

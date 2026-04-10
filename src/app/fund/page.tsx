@@ -5,20 +5,26 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { GovernanceNavigation } from "@/components/ui/GovernanceNavigation/GovernanceNavigation";
 import { FundOverviewSection } from "@/components/ui/FundOverviewSection/FundOverviewSection";
-import { OurGovernanceSection } from "@/components/ui/OurGovernanceSection/OurGovernanceSection";
 import { GetInvolvedSection } from "@/components/ui/GetInvolvedSection/GetInvolvedSection";
 import { GovernanceType } from "@/types";
 import { GOVERNANCE_TYPES } from "@/constants";
 
 export default function Fund() {
+  // TODO: To unhide the Governance section:
+  // 1) Re-add this import:
+  //    import { OurGovernanceSection } from "@/components/ui/OurGovernanceSection/OurGovernanceSection";
+  // 2) Re-add the switch case below:
+  //    case GOVERNANCE_TYPES.GOVERNANCE:
+  //      return <OurGovernanceSection />;
+  // 3) Re-add the Governance tab in:
+  //    src/components/ui/GovernanceNavigation/GovernanceNavigation.tsx
+  //    { key: GOVERNANCE_TYPES.GOVERNANCE, label: 'Our Governance' },
   const [activeSection, setActiveSection] = useState<GovernanceType>(GOVERNANCE_TYPES.FUND_OVERVIEW);
 
   const renderGovernanceSection = () => {
     switch (activeSection) {
       case GOVERNANCE_TYPES.FUND_OVERVIEW:
         return <FundOverviewSection />;
-      case GOVERNANCE_TYPES.GOVERNANCE:
-        return <OurGovernanceSection />;
       case GOVERNANCE_TYPES.GET_INVOLVED:
         return <GetInvolvedSection />;
       default:

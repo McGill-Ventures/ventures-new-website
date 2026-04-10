@@ -10,7 +10,6 @@ interface GovernanceTab {
 
 const GOVERNANCE_TABS: GovernanceTab[] = [
   { key: GOVERNANCE_TYPES.FUND_OVERVIEW, label: 'Fund Overview' },
-  { key: GOVERNANCE_TYPES.GOVERNANCE, label: 'Our Governance' },
   { key: GOVERNANCE_TYPES.GET_INVOLVED, label: 'Get Involved' },
 ];
 
