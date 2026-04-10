@@ -379,7 +379,7 @@ export const FUND_TEAM: ExecutiveTeamMember[] = [
   {
     name: "Chris Chan",
     role: "Senior Analyst",
-    image: "/headshots/analyst/chris_chan.jpg",
+    image: "/headshots/analyst/chris_chan.png",
     experience: "Prev @ Manulife Wealth Management",
     bio: "",
     education: "BCom Management, McGill University",
@@ -508,7 +508,7 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     role: "Analyst",
     experience: "Prev @ Manulife Wealth Management",
     education: "BCom Management, McGill University",
-    image: "/headshots/analyst/chris_chan.jpg",
+    image: "/headshots/analyst/chris_chan.png",
     linkedinUrl: "https://www.linkedin.com/in/chris-chan-grad2028/"
   },
   {
@@ -964,7 +964,7 @@ export const SENIOR_ANALYSTS: GovernanceTeamMember[] = [
   {
     name: "Chris Chan",
     role: "Senior Analyst",
-    image: "/headshots/analyst/chris_chan.jpg",
+    image: "/headshots/analyst/chris_chan.png",
     experience: "Prev @ Manulife Wealth Management",
     bio: "",
     education: "BCom Management, McGill University",
