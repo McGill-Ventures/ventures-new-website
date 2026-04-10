@@ -86,7 +86,6 @@ export default function Sponsors() {
                 { src: eyLogo, alt: "EY", href: "https://www.ey.com" },
                 { src: deloitteLogo, alt: "Deloitte", href: "https://www.deloitte.com" },
                 { src: oslerLogo, alt: "Osler", href: "https://www.osler.com" },
-                { src: investissementQuebecLogo, alt: "Investissement Québec", href: "https://www.investquebec.com/fr" },
               ].map((logo, idx) => (
                 <a key={idx} href={logo.href} target="_blank" rel="noopener noreferrer">
                   <Image
