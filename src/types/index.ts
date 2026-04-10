@@ -56,7 +56,7 @@ export interface APIResponse<T = Record<string, unknown>> {
   error?: string;
 }
 
-export type TeamType = 'founders' | 'executive' | 'fund' | 'finance' | 'analyst' | 'dev';
+export type TeamType = 'founders' | 'executive' | 'fund' | 'finance' | 'analyst' | 'dev' | 'htil';
 
 export type GovernanceType = 'fund-overview' | 'governance' | 'get-involved';
 

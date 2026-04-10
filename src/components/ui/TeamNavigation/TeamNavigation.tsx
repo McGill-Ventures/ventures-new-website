@@ -12,9 +12,9 @@ const TEAM_TABS: TeamTab[] = [
   { key: TEAM_TYPES.FOUNDERS, label: 'Founders' },
   { key: TEAM_TYPES.EXECUTIVE, label: 'Executive Team' },
   { key: TEAM_TYPES.FUND, label: 'Fund Team' },
-  { key: TEAM_TYPES.FINANCE, label: 'Finance Team' },
   { key: TEAM_TYPES.ANALYST, label: 'Analyst Team' },
   { key: TEAM_TYPES.DEVELOPER, label: 'Development Team' },
+  { key: TEAM_TYPES.HTIL, label: 'HTIL' },
 ];
 
 export const TeamNavigation: React.FC<TeamSectionProps> = ({ activeTeam, setActiveTeam }) => {

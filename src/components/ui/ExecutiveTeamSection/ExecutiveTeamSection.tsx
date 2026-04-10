@@ -11,9 +11,15 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
   // Separate Co-Presidents from other executive members
   const leadership = members.filter(member => member.role.includes('Co-President'));
 
+  const founderIC = members.filter(m =>
+    !leadership.includes(m) &&
+    m.role.includes('Founder & IC')
+  );
+
   const financeFund = members.filter(m =>
     !leadership.includes(m) &&
-    (m.role.includes('Finance') || m.role.includes('Fund') || m.role.includes('Managing Director'))
+    !founderIC.includes(m) &&
+    (m.role.includes('Finance') || m.role.includes('Managing Director'))
   );
 
   const events = members.filter(m =>
@@ -22,17 +28,40 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
     (m.role.includes('Events') || m.role.includes('Event'))
   );
 
-  const seniorAnalysts = members.filter(m =>
+  const corporateRelations = members.filter(m =>
     !leadership.includes(m) &&
+    !founderIC.includes(m) &&
     !financeFund.includes(m) &&
     !events.includes(m) &&
-    m.role.includes('Senior Analyst')
+    (m.role.includes('Partnerships') || m.role.includes('Sponsorship'))
+  );
+
+  const marketing = members.filter(m =>
+    !leadership.includes(m) &&
+    !founderIC.includes(m) &&
+    !financeFund.includes(m) &&
+    !events.includes(m) &&
+    !corporateRelations.includes(m) &&
+    m.role.includes('Marketing')
+  );
+
+  const seniorAnalysts = members.filter(m =>
+    !leadership.includes(m) &&
+    !founderIC.includes(m) &&
+    !financeFund.includes(m) &&
+    !events.includes(m) &&
+    !corporateRelations.includes(m) &&
+    !marketing.includes(m) &&
+    (m.role.includes('Senior Analyst') || m.role.includes('Fund Principal'))
   );
 
   const operations = members.filter(m =>
     !leadership.includes(m) &&
+    !founderIC.includes(m) &&
     !financeFund.includes(m) &&
     !events.includes(m) &&
+    !corporateRelations.includes(m) &&
+    !marketing.includes(m) &&
     !seniorAnalysts.includes(m)
   );
 
@@ -66,6 +95,42 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
           </div>
         )}
 
+        {/* Founder & IC */}
+        {founderIC.length > 0 && (
+          <div className="mb-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
+            {founderIC.map((member, index) => (
+              <div key={member.name} className="sm:col-start-1 lg:col-start-2">
+                <TeamCard
+                  member={member}
+                  index={index + leadership.length}
+                  variant="executive"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Operations Team */}
+        {operations.length > 0 && (
+          <div className="mb-20">
+            {title !== "Founders" && (
+              <div className="text-center mb-12">
+                <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Operations</h3>
+              </div>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
+              {operations.map((member, index) => (
+                <TeamCard
+                  key={member.name}
+                  member={member}
+                  index={index + leadership.length + founderIC.length}
+                  variant="executive"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Events Team */}
         {events.length > 0 && (
           <div className="mb-20">
@@ -88,12 +153,55 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
         {/* Finance & Fund Team */}
         {financeFund.length > 0 && (
           <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+            {title === "Executive Team" && (
+              <div className="text-center mb-12">
+                <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Finance</h3>
+              </div>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
               {financeFund.map((member, index) => (
                 <TeamCard
                   key={member.name}
                   member={member}
                   index={index + leadership.length + events.length}
+                  variant="executive"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Corporate Relations */}
+        {corporateRelations.length > 0 && (
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Corporate Relations</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
+              {corporateRelations.map((member, index) => (
+                <TeamCard
+                  key={member.name}
+                  member={member}
+                  index={index + leadership.length + events.length + financeFund.length}
+                  variant="executive"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Marketing */}
+        {marketing.length > 0 && (
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Marketing</h3>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
+              {marketing.map((member, index) => (
+                <TeamCard
+                  key={member.name}
+                  member={member}
+                  index={index + leadership.length + events.length + financeFund.length + corporateRelations.length}
                   variant="executive"
                 />
               ))}
@@ -120,24 +228,6 @@ export const ExecutiveTeamSection: React.FC<ExecutiveTeamSectionProps> = ({ memb
           </div>
         )}
 
-        {/* Operations Team */}
-        {operations.length > 0 && (
-          <div className="mt-20">
-            <div className="text-center mb-12">
-              <h3 className="text-3xl md:text-4xl font-display text-purple-950 mb-6">Operations</h3>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
-              {operations.map((member, index) => (
-                <TeamCard
-                  key={member.name}
-                  member={member}
-                  index={index + leadership.length + events.length + operations.length}
-                  variant="executive"
-                />
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

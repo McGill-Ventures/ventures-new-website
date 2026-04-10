@@ -74,7 +74,25 @@ export default function Sponsors() {
         </div>
       </section>
 
-      <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/30 to-purple-100/20">
+      {/* Presenting Sponsor */}
+      <section className="px-6 pt-12 pb-0 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/30 to-purple-100/20">
+        <div className="max-w-7xl mx-auto text-center animate-fade-in-up">
+          <h2 className="text-2xl md:text-3xl font-display text-purple-700 mb-8 tracking-wide uppercase">Presenting Sponsor</h2>
+          <div className="flex justify-center items-center py-4">
+            <a href="https://www.deloitte.com" target="_blank" rel="noopener noreferrer">
+              <Image
+                src={deloitteLogo}
+                alt="Deloitte"
+                width={300}
+                height={120}
+                className="h-32 object-contain filter grayscale hover:grayscale-0 transition duration-300"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 pt-16 pb-32 md:px-12 lg:px-24 bg-gradient-to-br from-purple-50/30 to-purple-100/20">
         <div className="max-w-7xl mx-auto space-y-32">
           {/* Our Sponsors */}
           <div className="text-center animate-fade-in-up">
@@ -84,7 +102,6 @@ export default function Sponsors() {
               {[
                 { src: bdcLogo, alt: "BDC", href: "https://www.bdc.ca" },
                 { src: eyLogo, alt: "EY", href: "https://www.ey.com" },
-                { src: deloitteLogo, alt: "Deloitte", href: "https://www.deloitte.com" },
                 { src: oslerLogo, alt: "Osler", href: "https://www.osler.com" },
               ].map((logo, idx) => (
                 <a key={idx} href={logo.href} target="_blank" rel="noopener noreferrer">
@@ -93,7 +110,7 @@ export default function Sponsors() {
                     alt={logo.alt}
                     width={150}
                     height={60}
-                    className="h-20 object-contain filter grayscale hover:grayscale-0 transition duration-300"
+                    className="h-16 object-contain filter grayscale hover:grayscale-0 transition duration-300"
                   />
                 </a>
               ))}
@@ -137,6 +154,7 @@ export default function Sponsors() {
                 { src: startupfestLogo, alt: "Startupfest", href: "https://www.startupfest.com" },
                 { src: claudeBuilderClubLogo, alt: "Claude Builder Club", href: "https://www.claudebuildersmcgill.ca/" },
                 { src: graphiteVenturesLogo, alt: "Graphite Ventures", href: "https://graphitevc.com/" },
+                { src: investissementQuebecLogo, alt: "Investissement Québec", href: "https://www.investquebec.com/fr" },
               ].map((logo, idx) => (
                 <a key={idx} href={logo.href} target="_blank" rel="noopener noreferrer">
                   <Image

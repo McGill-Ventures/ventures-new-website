@@ -69,10 +69,10 @@ export default function Home() {
             <div className="animate-fade-in-up flex justify-center">
               <div className="relative h-96 w-full max-w-sm lg:max-w-md xl:max-w-lg">
                 <Image
-                  src="/events/sign.jpg"
+                  src="/events/homeLanding.jpg"
                   alt="McGill Ventures Community Event"
                   fill
-                  className="rounded-3xl shadow-2xl hover-lift object-cover"
+                  className="rounded-3xl shadow-2xl hover-lift object-cover object-[75%_center]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-purple-800/20 rounded-3xl"></div>
               </div>

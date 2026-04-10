@@ -133,7 +133,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<APIResponse>>
 
     const mailOptions: nodemailer.SendMailOptions = {
       from: process.env.GMAIL_EMAIL,
-      to: process.env.GMAIL_EMAIL,
+      to: 'mcgillventuresclub@gmail.com',
       replyTo: email,
       subject: `McGill VC Contact: ${safeSubject} - from ${safeName}`,
       html: `

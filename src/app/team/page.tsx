@@ -7,16 +7,17 @@ import { TeamNavigation } from "@/components/ui/TeamNavigation/TeamNavigation";
 import { ExecutiveTeamSection } from "@/components/ui/ExecutiveTeamSection/ExecutiveTeamSection";
 import { AnalystTeamSection } from "@/components/ui/AnalystTeamSection/AnalystTeamSection";
 import { DeveloperTeamSection } from "@/components/ui/DeveloperTeamSection/DeveloperTeamSection";
+import { HTILTeamSection } from "@/components/ui/HTILTeamSection/HTILTeamSection";
 import { TeamType } from "@/types";
 import {
   TEAM_TYPES,
   FOUNDERS,
   EXECUTIVE_TEAM,
   FUND_TEAM,
-  FINANCE_TEAM,
   ANALYST_TEAM,
   DEVELOPMENT_TEAM,
   HEAD_OF_ENGINEERING,
+  HTIL_TEAM,
 } from "@/constants";
 
 export default function Team() {
@@ -30,9 +31,7 @@ export default function Team() {
         return <ExecutiveTeamSection members={EXECUTIVE_TEAM} title="Executive Team" />;
       case TEAM_TYPES.FUND:
         return <ExecutiveTeamSection members={FUND_TEAM} title="Fund Team" />;
-      case TEAM_TYPES.FINANCE:
-        return <ExecutiveTeamSection members={FINANCE_TEAM} title="Finance Team" />;
-      case TEAM_TYPES.ANALYST:
+case TEAM_TYPES.ANALYST:
         return <AnalystTeamSection members={ANALYST_TEAM} />;
       case TEAM_TYPES.DEVELOPER:
         return (
@@ -41,6 +40,8 @@ export default function Team() {
             headOfEngineering={HEAD_OF_ENGINEERING}
           />
         );
+      case TEAM_TYPES.HTIL:
+        return <HTILTeamSection members={HTIL_TEAM} />;
       default:
         return <ExecutiveTeamSection members={EXECUTIVE_TEAM} title="Executive Team" />;
     }
