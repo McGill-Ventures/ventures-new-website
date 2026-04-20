@@ -23,26 +23,29 @@ interface EventCard {
   ticketsUrl?: string;
 }
 
-// TO MOVE SCARLET PITCH 2026 TO PAST EVENTS AFTER APRIL 11, 2026:
-// 1. Remove the UPCOMING_EVENTS constant and section below
-// 2. Add the scarlet-pitch-2026 entry into EVENTS_2026 array
-// 3. Add photos array once available
-const UPCOMING_EVENTS: EventCard[] = [
+const EVENTS_2026: EventCard[] = [
   {
     id: "scarlet-pitch-2026",
     title: "Scarlet Pitch 2026",
     category: "Competition",
-    date: "April 11, 2026",
-    location: "Ax.c",
+    date: "April 10, 2026",
+    location: "AX.C",
     description: "McGill's premier pitch competition where student founders compete for funding, mentorship, and the chance to pitch their ventures to leading investors.",
-    image: "/events/scarlet_pitch_2026_upcoming.jpeg",
-    photos: [],
-    imageScale: 0.8,
-    ticketsUrl: "https://luma.com/18q4y3gu?tk=zQMAeE",
+    image: "/events/scarlet_pitch_2026/sp26_01.jpg",
+    photos: [
+      { src: "/events/scarlet_pitch_2026/sp26_01.jpg", alt: "Scarlet Pitch 2026 - Photo 1", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_02.jpg", alt: "Scarlet Pitch 2026 - Photo 2", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_03.jpg", alt: "Scarlet Pitch 2026 - Photo 3", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_04.jpg", alt: "Scarlet Pitch 2026 - Photo 4", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_05.jpg", alt: "Scarlet Pitch 2026 - Photo 5", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_06.jpg", alt: "Scarlet Pitch 2026 - Photo 6", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_07.jpeg", alt: "Scarlet Pitch 2026 - Photo 7", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_08.jpeg", alt: "Scarlet Pitch 2026 - Photo 8", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_09.jpeg", alt: "Scarlet Pitch 2026 - Photo 9", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_10.jpeg", alt: "Scarlet Pitch 2026 - Photo 10", caption: "" },
+      { src: "/events/scarlet_pitch_2026/sp26_11.jpg", alt: "Scarlet Pitch 2026 - Photo 11", caption: "" },
+    ],
   },
-];
-
-const EVENTS_2026: EventCard[] = [
   {
     id: "women-in-vc-2026",
     title: "Women in VC 2026",
@@ -218,6 +221,54 @@ const EVENTS_2025: EventCard[] = [
   },
 ];
 
+const EVENTS_2024: EventCard[] = [
+  {
+    id: "scarlet-pitch-2024",
+    title: "Scarlet Pitch 2024",
+    category: "Competition",
+    date: "March 20, 2024",
+    location: "Desjardins Lounge",
+    description: "McGill's premier pitch competition where student founders compete for funding, mentorship, and the chance to pitch their ventures to leading investors.",
+    image: "/events/scarlet_pitch_2024/sp24_01.jpg",
+    photos: [
+      { src: "/events/scarlet_pitch_2024/sp24_01.jpg", alt: "Scarlet Pitch 2024 - Photo 1", caption: "" },
+      { src: "/events/scarlet_pitch_2024/sp24_02.jpg", alt: "Scarlet Pitch 2024 - Photo 2", caption: "" },
+      { src: "/events/scarlet_pitch_2024/sp24_03.jpg", alt: "Scarlet Pitch 2024 - Photo 3", caption: "" },
+      { src: "/events/scarlet_pitch_2024/sp24_04.jpg", alt: "Scarlet Pitch 2024 - Photo 4", caption: "" },
+      { src: "/events/scarlet_pitch_2024/sp24_05.jpg", alt: "Scarlet Pitch 2024 - Photo 5", caption: "" },
+    ],
+  },
+  {
+    id: "women-in-vc-2024",
+    title: "Women in VC 2024",
+    category: "Panel",
+    date: "February 13, 2024",
+    location: "Armstrong Building",
+    description: "A panel discussion featuring female investors and VCs sharing insights on breaking into venture capital and supporting underrepresented founders.",
+    image: "/events/women_in_vc2024/wvc24_01.jpg",
+    photos: [
+      { src: "/events/women_in_vc2024/wvc24_01.jpg", alt: "Women in VC 2024 - Photo 1", caption: "" },
+      { src: "/events/women_in_vc2024/wvc24_02.jpg", alt: "Women in VC 2024 - Photo 2", caption: "" },
+      { src: "/events/women_in_vc2024/wvc24_03.jpg", alt: "Women in VC 2024 - Photo 3", caption: "" },
+    ],
+  },
+  {
+    id: "startup-showcase-2023",
+    title: "Startup Showcase 2023",
+    category: "Industry Event",
+    date: "October 27, 2023",
+    location: "Thomson House",
+    description: "Connect with rising startup entrepreneurs and Montreal's leading venture capitalists. Discover the missions, product differentiators, and future plans of startup founders, along with investment perspectives from VCs.",
+    image: "/events/startup_showcase2023/showcase23_01.jpg",
+    photos: [
+      { src: "/events/startup_showcase2023/showcase23_01.jpg", alt: "Startup Showcase 2023 - Photo 1", caption: "" },
+      { src: "/events/startup_showcase2023/showcase23_02.jpg", alt: "Startup Showcase 2023 - Photo 2", caption: "" },
+      { src: "/events/startup_showcase2023/showcase23_03.jpg", alt: "Startup Showcase 2023 - Photo 3", caption: "" },
+      { src: "/events/startup_showcase2023/showcase23_04.jpg", alt: "Startup Showcase 2023 - Photo 4", caption: "" },
+    ],
+  },
+];
+
 function EventCardComponent({ event, index }: { event: EventCard; index: number }) {
   return (
     <div
@@ -316,23 +367,6 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Upcoming Events */}
-      <section className="px-6 pt-6 sm:pt-10 pb-10 sm:pb-[60px] md:px-12 lg:px-24 bg-gradient-hero">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-purple-950 mb-4">Upcoming Events</h2>
-            <p className="text-base sm:text-xl text-purple-800 leading-relaxed font-body max-w-3xl mx-auto">
-              Don&apos;t miss what&apos;s coming up next
-            </p>
-          </div>
-          <div className="max-w-2xl mx-auto">
-            {UPCOMING_EVENTS.map((event, index) => (
-              <EventCardComponent key={event.id} event={event} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 2026 Events */}
       <section className="px-6 pt-6 sm:pt-10 pb-10 sm:pb-[60px] md:px-12 lg:px-24 bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
@@ -342,7 +376,7 @@ export default function Events() {
               This year&apos;s lineup of events and programming for the McGill Ventures community
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 [&>*:last-child:nth-child(odd)]:md:col-span-2 [&>*:last-child:nth-child(odd)]:md:mx-auto [&>*:last-child:nth-child(odd)]:md:w-1/2">
             {EVENTS_2026.map((event, index) => (
               <EventCardComponent key={event.id} event={event} index={index} />
             ))}
@@ -361,6 +395,20 @@ export default function Events() {
           </div>
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 [&>*:last-child:nth-child(odd)]:md:col-span-2 [&>*:last-child:nth-child(odd)]:md:mx-auto [&>*:last-child:nth-child(odd)]:md:w-1/2">
             {EVENTS_2025.map((event, index) => (
+              <EventCardComponent key={event.id} event={event} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 2024 Events */}
+      <section className="px-6 pt-10 sm:pt-[40px] pb-10 sm:pb-[100px] md:px-12 lg:px-24 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-purple-950 mb-4">2023–2024 Events</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 [&>*:last-child:nth-child(odd)]:md:col-span-2 [&>*:last-child:nth-child(odd)]:md:mx-auto [&>*:last-child:nth-child(odd)]:md:w-1/2">
+            {EVENTS_2024.map((event, index) => (
               <EventCardComponent key={event.id} event={event} index={index} />
             ))}
           </div>

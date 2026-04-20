@@ -10,7 +10,7 @@ import { Icon } from "@/components/ui";
 
 const TOP_NAV_ITEMS = [
   { href: "/about", label: "About", comingSoon: false },
-  { href: "https://www.project-atlas.ca/", label: "Project ATLAS", comingSoon: true },
+  { href: "https://www.project-atlas.ca/", label: "Project ATLAS", comingSoon: false },
   { href: "/contact", label: "Contact", comingSoon: false },
 ];
 
@@ -29,7 +29,7 @@ const MOBILE_ALL_ITEMS = [
   { href: "/events", label: "Events", comingSoon: false },
   { href: "/team", label: "Team", comingSoon: false },
   { href: "/sponsors", label: "Sponsorships & Partners", comingSoon: false },
-  { href: "https://www.project-atlas.ca/", label: "Project ATLAS", comingSoon: true },
+  { href: "https://www.project-atlas.ca/", label: "Project ATLAS", comingSoon: false },
   { href: "/contact", label: "Contact", comingSoon: false },
 ];
 
@@ -83,6 +83,8 @@ export default function Navigation({ currentPage }: NavigationProps) {
             key={item.href}
             href={item.comingSoon ? "#" : item.href}
             title={item.comingSoon ? "Coming Soon" : undefined}
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
             onClick={item.comingSoon ? (e) => e.preventDefault() : undefined}
             className={cn(
               navLinkClasses,
@@ -172,6 +174,8 @@ export default function Navigation({ currentPage }: NavigationProps) {
             <Link
               key={item.href}
               href={item.comingSoon ? "#" : item.href}
+              target={item.href.startsWith("http") ? "_blank" : undefined}
+              rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
               onClick={(e) => {
                 if (item.comingSoon) {
                   e.preventDefault();
