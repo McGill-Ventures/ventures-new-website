@@ -36,7 +36,7 @@ const WHAT_YOU_GAIN = [
   { label: "Portfolio-worthy work", description: "Build case studies and consulting experience for your resume" },
 ];
 
-export default function VentureAdvisoryProgramCard() {
+export default function GrowthStudioProgramCard() {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -44,9 +44,9 @@ export default function VentureAdvisoryProgramCard() {
       <div className="bg-purple-200 text-purple-800 px-4 py-2 rounded-full text-sm font-heading font-semibold mb-6 inline-block">
         Applications reopen Fall 2026
       </div>
-      <h3 className="text-4xl font-display text-purple-950 mb-6">Venture Advisory</h3>
+      <h3 className="text-4xl font-display text-purple-950 mb-6">Growth Studio</h3>
       <p className="text-lg text-purple-800 font-body mb-8 leading-relaxed">
-        The Venture Advisory program connects students with early-stage startups to help shape real-world growth strategies, providing actionable deliverables on go-to-market strategies and venture capital fundraising.
+        The Growth Studio program connects students with early-stage startups to tackle real-world scaling challenges, delivering actionable recommendations on go-to-market and venture capital fundraising.
       </p>
 
       <div className="mb-8">

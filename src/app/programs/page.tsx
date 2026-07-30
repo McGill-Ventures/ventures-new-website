@@ -4,7 +4,7 @@ import { APPLICATION_STEPS } from "@/constants";
 import FundProgramCard from "@/components/FundProgramCard";
 import AnalystProgramCard from "@/components/AnalystProgramCard";
 import HTILProgramCard from "@/components/HTILProgramCard";
-import VentureAdvisoryProgramCard from "@/components/VentureAdvisoryProgramCard";
+import GrowthStudioProgramCard from "@/components/GrowthStudioProgramCard";
 
 export default function Programs() {
   return (
@@ -39,7 +39,7 @@ export default function Programs() {
 
             <HTILProgramCard />
 
-            <VentureAdvisoryProgramCard />
+            <GrowthStudioProgramCard />
 
             <FundProgramCard />
           </div>
