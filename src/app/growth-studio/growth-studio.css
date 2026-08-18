@@ -1,0 +1,41 @@
+/*
+ * Growth Studio — page-level CSS.
+ * Ported from the design bundle's <style> block. Everything that is not a
+ * @keyframes is scoped to .gs-root so these rules never reach the rest of
+ * the site; the keyframes are global by necessity.
+ */
+
+.gs-root *{ box-sizing: border-box; }
+
+.gs-root ::selection { background: #3a1fb0; color: #f3f13a; }
+
+/* The bundle set these on <body>; scoped to the page wrapper instead. */
+.gs-root {
+  --purple: #3a1fb0;
+  --yellow: #f3f13a;
+  background: #ffffff;
+  color: #241454;
+  font-family: var(--font-hanken-grotesk), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+html:has(.gs-root) { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.gs-root) { scroll-behavior: auto; }
+}
+
+@keyframes gs-floatY  { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-22px)} }
+@keyframes gs-floatY2 { 0%,100%{transform:translateY(0)}  50%{transform:translateY(16px)} }
+@keyframes gs-spin    { to{transform:rotate(360deg)} }
+@keyframes gs-spinR   { to{transform:rotate(-360deg)} }
+@keyframes gs-marquee { to{transform:translateX(-50%)} }
+@keyframes gs-pulse   { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.08);opacity:.85} }
+@keyframes gs-burst   { 0%,100%{transform:scale(1) rotate(0deg)} 50%{transform:scale(1.06) rotate(6deg)} }
+@keyframes gs-wc-morph {
+  0%,100% { border-radius: 48% 52% 43% 57% / 53% 45% 55% 47%; }
+  33%     { border-radius: 57% 43% 52% 48% / 45% 55% 46% 54%; }
+  66%     { border-radius: 43% 57% 49% 51% / 56% 44% 58% 42%; }
+}
