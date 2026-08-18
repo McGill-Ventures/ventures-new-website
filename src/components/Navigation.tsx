@@ -20,11 +20,13 @@ const DROPDOWN_ITEMS = [
   { href: "/events", label: "Events" },
   { href: "/team", label: "Team" },
   { href: "/sponsors", label: "Sponsorships & Partners" },
+  { href: "/growth-studio", label: "Growth Studio" },
 ];
 
 const MOBILE_ALL_ITEMS = [
   { href: "/about", label: "About", comingSoon: false },
   { href: "/programs", label: "Programs", comingSoon: false },
+  { href: "/growth-studio", label: "Growth Studio", comingSoon: false },
   { href: "/fund", label: "Fund", comingSoon: false },
   { href: "/events", label: "Events", comingSoon: false },
   { href: "/team", label: "Team", comingSoon: false },
