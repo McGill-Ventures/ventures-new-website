@@ -52,9 +52,14 @@ export default function GrowthStudioProgramCard() {
         >
           Visit Growth Studio
         </Link>
-        <button disabled className="flex-1 bg-gray-200 text-gray-500 px-8 py-4 rounded-xl cursor-not-allowed font-heading text-base font-semibold">
-          Applications open Fall 2026
-        </button>
+        <Link
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 text-center bg-purple-100 hover:bg-purple-200 text-purple-900 px-8 py-4 rounded-xl font-heading text-base font-semibold transition-all duration-200"
+        >
+          Apply for Fall 2026
+        </Link>
       </div>
     </div>
   );
