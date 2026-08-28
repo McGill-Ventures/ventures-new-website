@@ -5,14 +5,20 @@ import Footer from "./_components/Footer";
 import Interactions from "./_components/Interactions";
 
 export const metadata: Metadata = {
-  title: "Growth Studio — Investor-ready founders, powered by McGill Ventures",
-  description: "Growth Studio by McGill Ventures pairs early-stage founders with trained student consultants for strategic consulting, fundraising support, and market validation.",
+  title: "Growth Studio — Startup consulting by McGill Ventures",
+  description: "Growth Studio by McGill Ventures pairs early-stage founders with student consultants for free, hands-on strategy and fundraising support — helping you become investor-ready.",
   openGraph: {
-    title: "Growth Studio — powered by McGill Ventures",
-    description: "Growth Studio by McGill Ventures pairs early-stage founders with trained student consultants for strategic consulting, fundraising support, and market validation.",
+    title: "Growth Studio — Startup consulting by McGill Ventures",
+    description: "Free, hands-on strategy and fundraising support for pre-seed and seed-stage founders, powered by McGill Ventures.",
     type: "website",
     url: "https://www.mcgillvc.ca/growth-studio",
-    images: "/growth-studio/logo-wordmark.webp",
+    images: "/growth-studio/hero-founders.webp",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Growth Studio — Startup consulting by McGill Ventures",
+    description: "Free, hands-on strategy and fundraising support for pre-seed and seed-stage founders, powered by McGill Ventures.",
+    images: "/growth-studio/hero-founders.webp",
   },
 };
 
@@ -22,7 +28,7 @@ export default function GrowthStudioPage() {
       <Nav active={null} ctaHref={"#apply"} />
       <main>
         <div style={{ background: 'var(--yellow,#f3f13a)', padding: '12px 32px', textAlign: 'center' }}>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform?usp=header" target="_blank" rel="noopener" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '14px', letterSpacing: '.08em', color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>APPLICATIONS FOR OUR FALL 2026 COHORT OPEN NOW</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform?usp=header" target="_blank" rel="noopener" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '14px', letterSpacing: '.08em', color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>STARTUPS: INTAKE APPLICATIONS ARE NOW OPEN</a>
         </div>
         <header id="top" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '56px 32px 80px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.08fr .92fr', gap: '56px', alignItems: 'center' }}>
@@ -30,9 +36,9 @@ export default function GrowthStudioPage() {
               <h1 data-reveal="" data-delay="80" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(42px,5.6vw,74px)', lineHeight: '.98', letterSpacing: '-.025em', margin: '0 0 24px' }}>
                 We help founders become <span style={{ color: 'var(--purple,#3a1fb0)' }}>investor-ready.</span>
               </h1>
-              <p data-reveal="" data-delay="160" style={{ fontSize: '19px', lineHeight: '1.55', maxWidth: '540px', color: 'rgba(36,20,84,.78)', margin: '0 0 34px' }}>Growth Studio by McGill Ventures pairs early-stage founders with trained student consultants, backed by a network of investors, mentors, and innovation resources through strategic consulting, fundraising support, and market validation.</p>
+              <p data-reveal="" data-delay="160" style={{ fontSize: '19px', lineHeight: '1.55', maxWidth: '540px', color: 'rgba(36,20,84,.78)', margin: '0 0 34px' }}>Free, hands-on consulting for early-stage founders. Growth Studio pairs you with trained student consultants who tailor the engagement to your needs then execute alongside you. Backed by the McGill Ventures network of funds and founder communities.</p>
               <div data-reveal="" data-delay="240" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform" target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)","boxShadow":"0 12px 28px rgba(58,31,176,.32)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease,box-shadow .18s ease' }}>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform?usp=header" target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)","boxShadow":"0 12px 28px rgba(58,31,176,.32)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease,box-shadow .18s ease' }}>
                   <div>Fill out our startup intake form<br />
                 </div>
                 <span style={{ fontSize: '18px', lineHeight: '1' }}>→</span>
@@ -58,9 +64,9 @@ export default function GrowthStudioPage() {
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(30px,3.6vw,44px)', lineHeight: '1.05', letterSpacing: '-.02em', margin: '0' }}>Sector agnostic. Founder focused.</h2>
             </div>
             <div data-reveal="" data-delay="120">
-              <p style={{ fontSize: '19px', lineHeight: '1.6', color: 'rgba(255,255,255,.88)', margin: '0 0 26px' }}>We partner with <strong>pre-seed and seed-stage</strong> companies led by curious, coachable founders seeking clarity in fundraising and growth strategy & technical founders who need business expertise.</p>
+              <p style={{ fontSize: '19px', lineHeight: '1.6', color: 'rgba(255,255,255,.88)', margin: '0 0 26px' }}>We partner with <strong>pre-seed and seed-stage</strong> companies led by curious, coachable founders seeking clarity in fundraising and growth strategy, from software to biotech.</p>
               <div style={{ borderLeft: '3px solid var(--yellow,#f3f13a)', paddingLeft: '20px' }}>
-                <p style={{ fontSize: '16px', lineHeight: '1.6', color: 'rgba(255,255,255,.75)', margin: '0' }}>Built to close the knowledge gap founders face in go-to-market strategy and VC fundraising. <strong style={{ color: '#fff' }}>Each engagement spans four weeks</strong> and includes in-depth analysis, close collaboration, and actionable deliverables.</p>
+                <p style={{ fontSize: '16px', lineHeight: '1.6', color: 'rgba(255,255,255,.75)', margin: '0' }}>Built to close the knowledge gap founders face in go-to-market strategy and VC fundraising. <strong style={{ color: '#fff' }}>Engagements span four weeks minimum and can be customized to your needs.</strong></p>
               </div>
             </div>
           </div>
@@ -70,7 +76,7 @@ export default function GrowthStudioPage() {
             <div data-reveal="" style={{ maxWidth: '720px', marginBottom: '40px' }}>
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>OUR NETWORK</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4vw,52px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0 0 20px' }}>We live and breathe the startup world.</h2>
-              <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'rgba(36,20,84,.75)', margin: '0' }}>Growth Studio sits inside McGill Ventures&apos; network of funds, accelerators, and founder communities — connections most consulting clubs simply don&apos;t have.</p>
+              <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'rgba(36,20,84,.75)', margin: '0' }}>Growth Studio sits inside McGill Ventures&apos; network of investors, accelerators, and founder communities.</p>
             </div>
             <div data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: '14px' }}>
               <a href="https://frontrow.ventures/" target="_blank" rel="noopener" data-hover={`{"borderColor":"var(--purple,#3a1fb0)"}`} style={{ textDecoration: 'none', color: '#241454', textAlign: 'center', background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '22px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'border-color .18s ease' }}>
@@ -159,7 +165,7 @@ export default function GrowthStudioPage() {
                 <div data-label="3" style={{ position: 'absolute', left: '453.2px', top: '453.2px', transform: 'translate(-50%,-50%)', width: '118px', textAlign: 'center', fontFamily: 'var(--font-space-grotesk),sans-serif', fontSize: '12.5px', fontWeight: '700', lineHeight: '1.3', color: '#241454', background: '#fff', border: '1.5px solid rgba(36,20,84,.28)', borderRadius: '4px', padding: '9px 8px', boxShadow: '0 3px 0 rgba(36,20,84,.28)', cursor: 'pointer', transition: 'transform .15s ease,box-shadow .15s ease,background .2s ease,color .2s ease,border-color .2s ease' }}>Go-to-Market Strategy</div>
                 <div data-label="4" style={{ position: 'absolute', left: '280px', top: '505px', transform: 'translate(-50%,-50%)', width: '118px', textAlign: 'center', fontFamily: 'var(--font-space-grotesk),sans-serif', fontSize: '12.5px', fontWeight: '700', lineHeight: '1.3', color: '#241454', background: '#fff', border: '1.5px solid rgba(36,20,84,.28)', borderRadius: '4px', padding: '9px 8px', boxShadow: '0 3px 0 rgba(36,20,84,.28)', cursor: 'pointer', transition: 'transform .15s ease,box-shadow .15s ease,background .2s ease,color .2s ease,border-color .2s ease' }}>Pitch Deck Development</div>
                 <div data-label="5" style={{ position: 'absolute', left: '106.8px', top: '453.2px', transform: 'translate(-50%,-50%)', width: '118px', textAlign: 'center', fontFamily: 'var(--font-space-grotesk),sans-serif', fontSize: '12.5px', fontWeight: '700', lineHeight: '1.3', color: '#241454', background: '#fff', border: '1.5px solid rgba(36,20,84,.28)', borderRadius: '4px', padding: '9px 8px', boxShadow: '0 3px 0 rgba(36,20,84,.28)', cursor: 'pointer', transition: 'transform .15s ease,box-shadow .15s ease,background .2s ease,color .2s ease,border-color .2s ease' }}>Beta Tester Database and Interview Strategy</div>
-                <div data-label="6" style={{ position: 'absolute', left: '30px', top: '280px', transform: 'translate(-50%,-50%)', width: '118px', textAlign: 'center', fontFamily: 'var(--font-space-grotesk),sans-serif', fontSize: '12.5px', fontWeight: '700', lineHeight: '1.3', color: '#241454', background: '#fff', border: '1.5px solid rgba(36,20,84,.28)', borderRadius: '4px', padding: '9px 8px', boxShadow: '0 3px 0 rgba(36,20,84,.28)', cursor: 'pointer', transition: 'transform .15s ease,box-shadow .15s ease,background .2s ease,color .2s ease,border-color .2s ease' }}>Cap Table Setup</div>
+                <div data-label="6" style={{ position: 'absolute', left: '30px', top: '280px', transform: 'translate(-50%,-50%)', width: '118px', textAlign: 'center', fontFamily: 'var(--font-space-grotesk),sans-serif', fontSize: '12.5px', fontWeight: '700', lineHeight: '1.3', color: '#241454', background: '#fff', border: '1.5px solid rgba(36,20,84,.28)', borderRadius: '4px', padding: '9px 8px', boxShadow: '0 3px 0 rgba(36,20,84,.28)', cursor: 'pointer', transition: 'transform .15s ease,box-shadow .15s ease,background .2s ease,color .2s ease,border-color .2s ease' }}>AI Adoption</div>
                 <div data-label="7" style={{ position: 'absolute', left: '106.8px', top: '106.8px', transform: 'translate(-50%,-50%)', width: '118px', textAlign: 'center', fontFamily: 'var(--font-space-grotesk),sans-serif', fontSize: '12.5px', fontWeight: '700', lineHeight: '1.3', color: '#241454', background: '#fff', border: '1.5px solid rgba(36,20,84,.28)', borderRadius: '4px', padding: '9px 8px', boxShadow: '0 3px 0 rgba(36,20,84,.28)', cursor: 'pointer', transition: 'transform .15s ease,box-shadow .15s ease,background .2s ease,color .2s ease,border-color .2s ease' }}>Resource Access</div>
               </div>
               <div>
@@ -167,7 +173,7 @@ export default function GrowthStudioPage() {
                 </p>
                 <h3 data-active-title="" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: 'clamp(24px,2.6vw,32px)', lineHeight: '1.15', margin: '0 0 16px', minHeight: '1.15em' }}>Hover over a facet to learn more</h3>
                 <p data-active-desc="" style={{ fontSize: '17px', lineHeight: '1.6', color: 'rgba(36,20,84,.72)', margin: '0', maxWidth: '440px' }}>A customizable menu of support options to help you build traction and investor readiness.</p>
-                <p style={{ fontSize: '14px', lineHeight: '1.5', color: 'rgba(36,20,84,.55)', margin: '64px 0 0', maxWidth: '440px' }}>Don&apos;t see what you need here? Reach out to us directly at <a href="mailto:hello.growthstudio@gmail.com" style={{ color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>hello.growthstudio@gmail.com</a>
+                <p style={{ fontSize: '14px', lineHeight: '1.5', color: 'rgba(36,20,84,.55)', margin: '64px 0 0', maxWidth: '440px' }}>This is just a starting point! Don&apos;t see what you need here? Reach out to us directly at <a href="mailto:hello.growthstudio@gmail.com" style={{ color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>hello.growthstudio@gmail.com</a>
               </p>
             </div>
           </div>
@@ -179,7 +185,7 @@ export default function GrowthStudioPage() {
             <div data-reveal="">
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--yellow,#f3f13a)', margin: '0 0 18px' }}>RECENT IMPACT</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(28px,3.2vw,40px)', lineHeight: '1.12', letterSpacing: '-.02em', margin: '0 0 22px' }}>Market research, commercial strategy, and pitch-ready founders.</h2>
-              <p style={{ fontSize: '17px', lineHeight: '1.6', color: 'rgba(255,255,255,.82)', margin: '0' }}>In Growth Studio&apos;s inaugural year, our consultants supported <strong>AeroCellutions</strong> ahead of the 2026 BioDesign Challenge with commercial analysis and pitch refinement, and supported Waterloo-based startup <strong>MyPip</strong> in its early growth work.</p>
+              <p style={{ fontSize: '17px', lineHeight: '1.6', color: 'rgba(255,255,255,.82)', margin: '0' }}>In Growth Studio&apos;s inaugural year, our consultants prepped <strong><a href="https://aerocellutions.com/" target="_blank" rel="noopener" style={{ color: 'rgba(255,255,255,.82)' }}>AeroCellutions</a></strong> ahead of the 2026 BioDesign Challenge with commercial analysis and pitch refinement, and supported Waterloo-based <strong><a href="https://mypipdev.com/" target="_blank" rel="noopener" style={{ color: 'rgba(255,255,255,.82)' }}>MyPip</a></strong> (named top 100 AI startup in Canada) in its early growth work.</p>
             </div>
             <div data-reveal="" data-delay="140" style={{ position: 'relative', overflow: 'hidden', background: 'var(--yellow,#f3f13a)', color: 'var(--purple,#3a1fb0)', borderRadius: '4px', textAlign: 'center' }}>
               <Image src="/growth-studio/aerocellutions-biodesign.jpg" alt="AeroCellutions team at the 2026 BioDesign Challenge" width={800} height={533} style={{ width: '100%', height: '260px', objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }} />
@@ -202,19 +208,16 @@ export default function GrowthStudioPage() {
             <div style={{ position: 'relative', maxWidth: '560px' }}>
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'rgba(36,20,84,.7)', margin: '0 0 18px' }}>APPLICATIONS FOR OUR FALL 2026 COHORT OPEN NOW</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4.4vw,54px)', lineHeight: '1.0', letterSpacing: '-.02em', margin: '0 0 18px' }}>Let&apos;s build your next phase.</h2>
-              <p style={{ fontSize: '18px', lineHeight: '1.55', color: 'rgba(36,20,84,.82)', margin: '0 0 30px' }}>Being a founder is ambitious, uncertain, and personal. Every journey is unique, and we tailor our support to your stage and goals.</p>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform" target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', fontFamily: 'var(--font-space-grotesk),sans-serif', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease' }}>Fill out our startup intake form <span style={{ fontSize: '18px', lineHeight: '1' }}>→</span>
+              <p style={{ fontSize: '18px', lineHeight: '1.55', color: 'rgba(36,20,84,.82)', margin: '0 0 30px' }}>Every founder journey is unique, and the team at Growth Studio aims to tailor our work to maximize impact on each startup we partner with. We&apos;d love to connect to explore how we can best support you based on your current stage and goals.</p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform?usp=header" target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', fontFamily: 'var(--font-space-grotesk),sans-serif', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease' }}>Fill out our startup intake form <span style={{ fontSize: '18px', lineHeight: '1' }}>→</span>
             </a>
-            <p style={{ fontSize: '15.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '22px 0 0' }}>Or contact us directly at <a href="mailto:hello.growthstudio@gmail.com" style={{ color: 'var(--purple,#3a1fb0)', fontWeight: '700' }}>hello.growthstudio@gmail.com</a>
+            <p style={{ fontSize: '15.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '22px 0 0' }}>Questions about how the process works? Contact us directly at <a href="mailto:hello.growthstudio@gmail.com" style={{ color: 'var(--purple,#3a1fb0)', fontWeight: '700' }}>hello.growthstudio@gmail.com</a>
           </p>
         </div>
         </div>
         </section>
       </main>
-      <Footer
-        program={[{ href: "#apply", label: "Contact" }, { href: "#how", label: "How we help" }, { href: "#impact", label: "Impact" }]}
-        team={[{ href: "/growth-studio/team", label: "Directors" }, { href: "#who", label: "Who we work with" }, { href: "/growth-studio/careers", label: "Careers" }]}
-      />
+      <Footer />
       <Interactions />
     </>
   );

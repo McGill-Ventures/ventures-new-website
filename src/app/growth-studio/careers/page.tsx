@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Nav from "../_components/Nav";
 import Footer from "../_components/Footer";
 import Interactions from "../_components/Interactions";
+
+const INTEREST_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfbyiRB5Lo5Pb-s7c9OYx48h60NqwwZ1I9dlUJbMYjnJg5HbA/viewform?usp=publish-editor";
 
 export const metadata: Metadata = {
   title: "Careers — Growth Studio",
@@ -15,22 +18,30 @@ export const metadata: Metadata = {
   },
 };
 
+const BULLET_LIGHT: React.CSSProperties = { fontSize: '15px', lineHeight: '1.5', color: 'rgba(36,20,84,.78)', display: 'flex', gap: '12px' };
+const DOT_PURPLE: React.CSSProperties = { flex: 'none', width: '7px', height: '7px', marginTop: '7px', background: 'var(--purple,#3a1fb0)' };
+const BULLET_DARK: React.CSSProperties = { fontSize: '15px', lineHeight: '1.5', color: 'rgba(255,255,255,.85)', display: 'flex', gap: '12px' };
+const DOT_YELLOW: React.CSSProperties = { flex: 'none', width: '7px', height: '7px', marginTop: '7px', background: 'var(--yellow,#f3f13a)' };
+
 export default function CareersPage() {
   return (
     <>
-      <Nav active={"careers"} ctaHref={"mailto:hello.growthstudio@gmail.com"} />
+      <Nav active={"careers"} ctaHref={"#c-apply"} />
       <main>
         <div style={{ background: 'var(--yellow,#f3f13a)', padding: '12px 32px', textAlign: 'center' }}>
-          <a href="mailto:hello.growthstudio@gmail.com" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '14px', letterSpacing: '.08em', color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>CONSULTANT RECRUITMENT FOR FALL 2026 IS OPEN</a>
+          <a href={INTEREST_FORM_URL} target="_blank" rel="noopener" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '14px', letterSpacing: '.08em', color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>FUTURE CONSULTANTS: INTEREST FORM IS NOW LIVE</a>
         </div>
-        <header id="c-top" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '88px 32px 96px' }}>
-          <div style={{ maxWidth: '820px' }}>
-            <p data-reveal="" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>JOIN THE STUDIO</p>
+        <header id="c-top" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '88px 32px 96px', overflow: 'hidden' }}>
+          <div aria-hidden="true" style={{ position: 'absolute', right: '0', top: 'calc(50% - 190px)', width: '380px', height: '380px', pointerEvents: 'none', opacity: '.2' }}>
+            <Image src="/growth-studio/logo-mark-large.png" alt="" width={512} height={492} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', animation: 'gs-floatY 11s ease-in-out infinite' }} />
+          </div>
+          <div style={{ position: 'relative', maxWidth: '820px' }}>
+            <p data-reveal="" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>JOIN THE GROWTH STUDIO</p>
             <h1 data-reveal="" data-delay="80" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(42px,5.6vw,74px)', lineHeight: '.98', letterSpacing: '-.025em', margin: '0 0 24px' }}>Do real venture work <span style={{ color: 'var(--purple,#3a1fb0)' }}>as a student.</span>
           </h1>
-          <p data-reveal="" data-delay="160" style={{ fontSize: '19px', lineHeight: '1.55', maxWidth: '640px', color: 'rgba(36,20,84,.78)', margin: '0 0 34px' }}>Growth Studio consultants don&apos;t write case comps for a grade — they ship fundraising, GTM, and market work for real founders, backed by the McGill Ventures network. If you want hands-on startup experience before you graduate, this is where you get it.</p>
+          <p data-reveal="" data-delay="160" style={{ fontSize: '19px', lineHeight: '1.55', maxWidth: '640px', color: 'rgba(36,20,84,.78)', margin: '0 0 34px' }}>Growth Studio consultants ship fundraising, GTM, and market work for founders. If you want hands-on startup experience before you graduate, this is where you get it.</p>
           <div data-reveal="" data-delay="240" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href="mailto:hello.growthstudio@gmail.com" data-hover={`{"transform":"translateY(-2px)","boxShadow":"0 12px 28px rgba(58,31,176,.32)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease,box-shadow .18s ease' }}>
+            <a href={INTEREST_FORM_URL} target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)","boxShadow":"0 12px 28px rgba(58,31,176,.32)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease,box-shadow .18s ease' }}>
               <div>Apply to join</div>
               <span style={{ fontSize: '18px', lineHeight: '1' }}>→</span>
             </a>
@@ -46,12 +57,12 @@ export default function CareersPage() {
           <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '96px 32px', position: 'relative', display: 'grid', gridTemplateColumns: '.85fr 1.15fr', gap: '56px', alignItems: 'start' }}>
             <div data-reveal="">
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--yellow,#f3f13a)', margin: '0 0 16px' }}>WHY JOIN</p>
-              <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(30px,3.6vw,44px)', lineHeight: '1.05', letterSpacing: '-.02em', margin: '0' }}>Consulting that actually ships.</h2>
+              <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(30px,3.6vw,44px)', lineHeight: '1.05', letterSpacing: '-.02em', margin: '0' }}>You own the work, start to finish.</h2>
             </div>
             <div data-reveal="" data-delay="120">
-              <p style={{ fontSize: '19px', lineHeight: '1.6', color: 'rgba(255,255,255,.88)', margin: '0 0 26px' }}>Most student clubs stop at a slide deck. Our consultants build the CRM, run investor outreach, and refine the pitch alongside the founder — <strong>real deliverables, real stakes.</strong> You&apos;ll be trained, mentored, and thrown into meaningful work from week one.</p>
+              <p style={{ fontSize: '19px', lineHeight: '1.6', color: 'rgba(255,255,255,.88)', margin: '0 0 26px' }}>Have the chance to present your work directly to founders. Work with a tight knit, motivated team. Get involved in the startup ecosystem as a student.</p>
               <div style={{ borderLeft: '3px solid var(--yellow,#f3f13a)', paddingLeft: '20px' }}>
-                <p style={{ fontSize: '16px', lineHeight: '1.6', color: 'rgba(255,255,255,.75)', margin: '0' }}>We recruit a small cohort each semester and pair every consultant with a director. <strong style={{ color: '#fff' }}>No prior startup experience required</strong> — just curiosity, drive, and a willingness to learn fast.</p>
+                <p style={{ fontSize: '16px', lineHeight: '1.6', color: 'rgba(255,255,255,.75)', margin: '0' }}>We&apos;re looking for a team with a diverse array of academic backgrounds and experiences. What matters most is that you <strong style={{ color: '#fff' }}>take agency and follow through.</strong></p>
               </div>
             </div>
           </div>
@@ -59,55 +70,81 @@ export default function CareersPage() {
         <div style={{ background: '#f6f5fb' }}>
           <section id="c-gain" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px' }}>
             <div data-reveal="" style={{ maxWidth: '720px', marginBottom: '56px' }}>
-              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>WHAT YOU&apos;LL GAIN</p>
-              <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4vw,52px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0' }}>More than a line on your résumé.</h2>
+              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>AVAILABLE OPPORTUNITIES</p>
+              <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4vw,52px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0' }}>Start as a consultant, grow to lead your own team.</h2>
             </div>
-            <div data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '20px' }}>
-              <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '28px 24px' }}>
-                <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '18px', margin: '0 0 10px' }}>Real client work</h3>
-                <p style={{ fontSize: '14.5px', lineHeight: '1.55', color: 'rgba(36,20,84,.68)', margin: '0' }}>Ship fundraising, GTM, and market deliverables for live startups — the kind of work most people only do after they graduate.</p>
+            <div data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '20px', alignItems: 'stretch' }}>
+              <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '36px 34px' }}>
+                <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.14em', fontSize: '12px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 8px' }}>ROLE WE RECRUIT FOR</p>
+                <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '24px', margin: '0 0 22px' }}>As a junior consultant</h3>
+                <ul style={{ listStyle: 'none', margin: '0', padding: '0', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <li style={BULLET_LIGHT}><span style={DOT_PURPLE}></span><span>Work a startup&apos;s mandate directly, alongside your team</span></li>
+                  <li style={BULLET_LIGHT}><span style={DOT_PURPLE}></span><span>Bring your own ideas and take agency from day one</span></li>
+                  <li style={BULLET_LIGHT}><span style={DOT_PURPLE}></span><span>Give and take honest peer feedback</span></li>
+                  <li style={BULLET_LIGHT}><span style={DOT_PURPLE}></span><span>Attend in-person work sessions, client presentations, and workshops</span></li>
+                </ul>
               </div>
-              <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '28px 24px' }}>
-                <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '18px', margin: '0 0 10px' }}>Investor network</h3>
-                <p style={{ fontSize: '14.5px', lineHeight: '1.55', color: 'rgba(36,20,84,.68)', margin: '0' }}>Plug into the McGill Ventures ecosystem of funds, angels, and founders. Build the relationships that open doors.</p>
-              </div>
-              <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '28px 24px' }}>
-                <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '18px', margin: '0 0 10px' }}>Hands-on training</h3>
-                <p style={{ fontSize: '14.5px', lineHeight: '1.55', color: 'rgba(36,20,84,.68)', margin: '0' }}>Structured onboarding in market research, capital strategy, and pitch development — then apply it immediately.</p>
-              </div>
-              <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '28px 24px' }}>
-                <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '18px', margin: '0 0 10px' }}>A tight team</h3>
-                <p style={{ fontSize: '14.5px', lineHeight: '1.55', color: 'rgba(36,20,84,.68)', margin: '0' }}>Join a small, driven cohort paired with directors who mentor you through every engagement.</p>
+              <div style={{ background: 'var(--purple,#3a1fb0)', color: '#fff', borderRadius: '3px', padding: '36px 34px' }}>
+                <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.14em', fontSize: '12px', fontWeight: '700', color: 'var(--yellow,#f3f13a)', margin: '0 0 8px' }}>PROGRESSION OPPORTUNITY</p>
+                <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '24px', margin: '0 0 22px', color: '#fff' }}>As a senior consultant</h3>
+                <ul style={{ listStyle: 'none', margin: '0', padding: '0', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <li style={BULLET_DARK}><span style={DOT_YELLOW}></span><span>Scout and help select the startups we take on</span></li>
+                  <li style={BULLET_DARK}><span style={DOT_YELLOW}></span><span>Become a founder&apos;s main point of contact for the mandate</span></li>
+                  <li style={BULLET_DARK}><span style={DOT_YELLOW}></span><span>Set the weekly cadence and keep the mandate on track</span></li>
+                  <li style={BULLET_DARK}><span style={DOT_YELLOW}></span><span>Mentor junior consultants and delegate the work</span></li>
+                </ul>
               </div>
             </div>
           </section>
         </div>
         <section id="c-what" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px' }}>
-          <div data-reveal="" style={{ maxWidth: '720px', marginBottom: '56px' }}>
-            <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>HOW A SEMESTER WORKS</p>
-            <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4vw,52px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0 0 20px' }}>From application to showcase.</h2>
-            <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'rgba(36,20,84,.75)', margin: '0' }}>Recruitment runs at the start of each term. Once you&apos;re in, you&apos;re paired to a startup and start delivering fast.</p>
+          <div data-reveal="" style={{ maxWidth: '720px', marginBottom: '60px' }}>
+            <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>TIMELINE</p>
+            <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4vw,52px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0 0 20px' }}>How the program runs.</h2>
+            <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'rgba(36,20,84,.75)', margin: '0' }}>We recruit from the McGill Ventures Analyst Program and beyond, then run two to three startup mandates a year. We do background work online and collaborate in-person for brainstorming, peer feedback, and presentation refinement.</p>
           </div>
-          <div data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '20px' }}>
-            <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '30px 26px', position: 'relative' }}>
-              <div style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '34px', color: 'rgba(58,31,176,.18)', lineHeight: '1', margin: '0 0 14px' }}>01</div>
-              <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '18px', margin: '0 0 8px' }}>Apply</h3>
-              <p style={{ fontSize: '14.5px', lineHeight: '1.55', color: 'rgba(36,20,84,.68)', margin: '0' }}>Submit an application and interview with our directors. We recruit for fit, curiosity, and drive — not a specific major.</p>
+          <div data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '32px' }}>
+            <div>
+              <div style={{ height: '2px', background: 'rgba(58,31,176,.16)', marginBottom: '28px', position: 'relative' }}>
+                <div style={{ position: 'absolute', left: '0', top: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--yellow,#f3f13a)', boxShadow: '0 0 0 2px var(--purple,#3a1fb0)' }}>
+                </div>
+              </div>
+              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.14em', fontSize: '12px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 8px' }}>SUMMER 2026</p>
+              <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '22px', margin: '0 0 12px' }}>Scouting & discovery</h3>
+              <p style={{ fontSize: '15px', lineHeight: '1.55', color: 'rgba(36,20,84,.7)', margin: '0', maxWidth: '320px' }}>Startups are scouted. Consultants work asynchronously to structure the program and develop tools for founders.</p>
             </div>
-            <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '30px 26px', position: 'relative' }}>
-              <div style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '34px', color: 'rgba(58,31,176,.18)', lineHeight: '1', margin: '0 0 14px' }}>02</div>
-              <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '18px', margin: '0 0 8px' }}>Onboard & train</h3>
-              <p style={{ fontSize: '14.5px', lineHeight: '1.55', color: 'rgba(36,20,84,.68)', margin: '0' }}>New consultants ramp on our frameworks for market research, capital strategy, CRM building, and pitch work.</p>
+            <div>
+              <div style={{ height: '2px', background: 'rgba(58,31,176,.16)', marginBottom: '28px', position: 'relative' }}>
+                <div style={{ position: 'absolute', left: '0', top: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--purple,#3a1fb0)' }}>
+                </div>
+              </div>
+              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.14em', fontSize: '12px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 8px' }}>FALL 2026</p>
+              <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '22px', margin: '0 0 12px' }}>First mandate</h3>
+              <p style={{ fontSize: '15px', lineHeight: '1.55', color: 'rgba(36,20,84,.7)', margin: '0', maxWidth: '320px' }}>Startups are selected, and the first mandate kicks off.</p>
             </div>
-            <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '30px 26px', position: 'relative' }}>
-              <div style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '34px', color: 'rgba(58,31,176,.18)', lineHeight: '1', margin: '0 0 14px' }}>03</div>
-              <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '18px', margin: '0 0 8px' }}>Client engagement</h3>
-              <p style={{ fontSize: '14.5px', lineHeight: '1.55', color: 'rgba(36,20,84,.68)', margin: '0' }}>Get paired to a founder for a focused four-week engagement, working directly on their fundraising and growth.</p>
+            <div>
+              <div style={{ height: '2px', background: 'rgba(58,31,176,.16)', marginBottom: '28px', position: 'relative' }}>
+                <div style={{ position: 'absolute', left: '0', top: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--purple,#3a1fb0)' }}>
+                </div>
+              </div>
+              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.14em', fontSize: '12px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 8px' }}>WINTER 2027</p>
+              <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '22px', margin: '0 0 12px' }}>Recruitment & further mandates</h3>
+              <p style={{ fontSize: '15px', lineHeight: '1.55', color: 'rgba(36,20,84,.7)', margin: '0', maxWidth: '320px' }}>New consultants are recruited and onboarded. Two more mandates run alongside professional development opportunities.</p>
             </div>
-            <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '30px 26px', position: 'relative' }}>
-              <div style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '34px', color: 'rgba(58,31,176,.18)', lineHeight: '1', margin: '0 0 14px' }}>04</div>
-              <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '18px', margin: '0 0 8px' }}>Showcase</h3>
-              <p style={{ fontSize: '14.5px', lineHeight: '1.55', color: 'rgba(36,20,84,.68)', margin: '0' }}>Present deliverables to the founder and the team, and take real, shipped work into your next role.</p>
+          </div>
+        </section>
+        <section id="c-fit" style={{ maxWidth: '1200px', margin: '0 auto 120px', padding: '0 32px' }}>
+          <div data-reveal="" style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: '48px', alignItems: 'center', background: '#f6f5fb', border: '1px solid rgba(36,20,84,.12)', borderRadius: '4px', padding: '56px 48px' }}>
+            <div>
+              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>WHAT WE LOOK FOR</p>
+              <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(26px,3vw,38px)', lineHeight: '1.08', letterSpacing: '-.02em', margin: '0 0 16px' }}>Dedication & Adaptability</h2>
+              <p style={{ fontSize: '17px', lineHeight: '1.6', color: 'rgba(36,20,84,.78)', margin: '0' }}>We recruit for agency and follow-through, and a real interest in startups no matter the industry. Any faculty, any year. If you take ownership of your work and can communicate your conviction, you&apos;ll fit here.</p>
+            </div>
+            <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '32px 30px' }}>
+              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.14em', fontSize: '12px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 14px' }}>THE COMMITMENT</p>
+              <div style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '40px', lineHeight: '1', color: 'var(--purple,#3a1fb0)', margin: '0 0 12px' }}>~10 hrs<span style={{ fontSize: '20px', fontWeight: '600', color: 'rgba(36,20,84,.55)' }}>/week</span>
+              </div>
+              <p style={{ fontSize: '15px', lineHeight: '1.55', color: 'rgba(36,20,84,.7)', margin: '0' }}>during the academic year, with weekly in-person sessions.</p>
             </div>
           </div>
         </section>
@@ -118,10 +155,10 @@ export default function CareersPage() {
             <div data-float="" style={{ position: 'absolute', right: '120px', bottom: '-50px', width: '120px', height: '120px', background: 'rgba(36,20,84,.08)', transform: 'rotate(20deg)', animation: 'gs-floatY 8s ease-in-out infinite' }}>
             </div>
             <div style={{ position: 'relative', maxWidth: '560px' }}>
-              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'rgba(36,20,84,.7)', margin: '0 0 18px' }}>CONSULTANT RECRUITMENT FOR FALL 2026 IS OPEN</p>
+              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'rgba(36,20,84,.7)', margin: '0 0 18px' }}>CONSULTANT RECRUITMENT FOR WINTER 2027 WILL OPEN SOON</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4.4vw,54px)', lineHeight: '1.0', letterSpacing: '-.02em', margin: '0 0 18px' }}>Ready to build with us?</h2>
-              <p style={{ fontSize: '18px', lineHeight: '1.55', color: 'rgba(36,20,84,.82)', margin: '0 0 30px' }}>We recruit a new cohort of consultants every semester. Tell us a bit about yourself and why you want to work with founders.</p>
-              <a href="mailto:hello.growthstudio@gmail.com" data-hover={`{"transform":"translateY(-2px)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', fontFamily: 'var(--font-space-grotesk),sans-serif', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease' }}>Apply to join <span style={{ fontSize: '18px', lineHeight: '1' }}>→</span>
+              <p style={{ fontSize: '18px', lineHeight: '1.55', color: 'rgba(36,20,84,.82)', margin: '0 0 30px' }}>We bring on a new cohort each winter. Fill out our interest form to tell us who you are and get notified when applications open.</p>
+              <a href={INTEREST_FORM_URL} target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', fontFamily: 'var(--font-space-grotesk),sans-serif', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease' }}>Interest form <span style={{ fontSize: '18px', lineHeight: '1' }}>→</span>
             </a>
             <p style={{ fontSize: '15.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '22px 0 0' }}>Questions? Reach us directly at <a href="mailto:hello.growthstudio@gmail.com" style={{ color: 'var(--purple,#3a1fb0)', fontWeight: '700' }}>hello.growthstudio@gmail.com</a>
           </p>
@@ -129,10 +166,7 @@ export default function CareersPage() {
         </div>
         </section>
       </main>
-      <Footer
-        program={[{ href: "mailto:hello.growthstudio@gmail.com", label: "Contact" }, { href: "/growth-studio/startups", label: "How we help" }, { href: "/growth-studio/partners", label: "Partner with us" }]}
-        team={[{ href: "/growth-studio/team", label: "Directors" }, { href: "/growth-studio#who", label: "Who we work with" }, { href: "#c-apply", label: "Careers" }]}
-      />
+      <Footer />
       <Interactions />
     </>
   );
