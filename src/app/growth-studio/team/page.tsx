@@ -34,8 +34,8 @@ export default function TeamPage() {
         <header style={{ position: 'relative', zIndex: '1', maxWidth: '1200px', margin: '0 auto', padding: '80px 32px 20px' }}>
           <div data-reveal="">
             <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>OUR TEAM</p>
-            <h1 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(36px,5vw,60px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0 0 18px', maxWidth: '760px' }}>The people behind every engagement.</h1>
-            <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'rgba(36,20,84,.75)', maxWidth: '640px', margin: '0' }}>Growth Studio pairs founders with trained student consultants, backed by directors and advisors from across the McGill Ventures network.</p>
+            <h1 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(36px,5vw,60px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0 0 18px', maxWidth: '760px' }}>We bias towards execution.</h1>
+            <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'rgba(36,20,84,.75)', maxWidth: '640px', margin: '0' }}>Growth Studio&apos;s consultants are students passionate about startups and venture, trained through the McGill Ventures Analyst Program and shaped by experience building and investing. We&apos;re backed by experienced advisors from across our network.</p>
           </div>
         </header>
         <section id="directors" style={{ position: 'relative', zIndex: '1', maxWidth: '1200px', margin: '0 auto', padding: '64px 32px 0' }}>
@@ -47,7 +47,7 @@ export default function TeamPage() {
               <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
               </span>
               <div data-photo="" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)' }}>
-                <Image src="/growth-studio/emiko-mclean-headshot.webp" alt="Emiko McLean headshot" width={152} height={152} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src="/growth-studio/emiko-mclean-headshot.jpg" alt="Emiko McLean headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Emiko McLean</h3>
               <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>2nd Year MSc, Surgical and Interventional Sciences<br />Favourite productivity tool: Granola</p>
@@ -57,7 +57,7 @@ export default function TeamPage() {
               <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
               </span>
               <div data-photo="" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)' }}>
-                <Image src="/growth-studio/anthony-melki-headshot.webp" alt="Anthony Melki headshot" width={152} height={152} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src="/growth-studio/anthony-melki-headshot.jpg" alt="Anthony Melki headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Anthony Melki</h3>
               <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>5th Year BEng, Mechanical Engineering<br />Favourite productivity tool: n8n</p>
@@ -67,7 +67,7 @@ export default function TeamPage() {
               <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
               </span>
               <div data-photo="" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)' }}>
-                <Image src="/growth-studio/sophia-mahiout-headshot.webp" alt="Sophia Mahiout headshot" width={152} height={152} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src="/growth-studio/sophia-mahiout-headshot.jpg" alt="Sophia Mahiout headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Sophia Mahiout</h3>
               <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>1st Year, Doctor of Dental Medicine<br />Favourite productivity tool: read.ai</p>
@@ -83,7 +83,7 @@ export default function TeamPage() {
               <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
               </span>
               <div data-photo="" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)' }}>
-                <Image src="/growth-studio/consultant-headshot.webp" alt="Consultant headshot" width={152} height={152} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src="/growth-studio/ronardy-abellard-headshot.jpg" alt="Ronardy Abellard headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Ronardy Abellard</h3>
               <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BEng, Materials Engineering<br />Favourite productivity tool: Claude Code</p>
@@ -93,7 +93,7 @@ export default function TeamPage() {
               <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
               </span>
               <div data-photo="" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)' }}>
-                <Image src="/growth-studio/consultant-headshot-2.webp" alt="Consultant headshot" width={152} height={152} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src="/growth-studio/joey-marsh-headshot.jpg" alt="Joey Marsh headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Joey Marsh</h3>
               <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>2nd Year BCom, Finance<br />Favourite productivity tool: Claude Chat</p>
@@ -103,11 +103,11 @@ export default function TeamPage() {
               <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
               </span>
               <div data-photo="" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)' }}>
-                <Image src="/growth-studio/advisor-headshot.webp" alt="Advisor headshot" width={152} height={152} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src="/growth-studio/gael-gonzalez-headshot.jpg" alt="Gael González headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Gael González</h3>
-              <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BCom, Strategic Management & Finance</p>
-              <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>CO-PRESIDENT @ McGILL VENTURES, PORTFOLIO MANAGER @ FRONT ROW VENTURES</p>
+              <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BCom, Strategic Management & Finance<br />Favourite productivity tool: Opennote</p>
+              <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>CO-PRESIDENT (McGILL VENTURES)<br />FRONT ROW VENTURES</p>
             </a>
           </div>
         </section>
@@ -115,17 +115,13 @@ export default function TeamPage() {
           <div style={{ background: 'var(--purple,#3a1fb0)', borderRadius: '20px', padding: '64px 56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '32px' }}>
             <div style={{ maxWidth: '620px' }}>
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--yellow,#f3f13a)', margin: '0 0 14px' }}>WANT TO JOIN US?</p>
-              <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(28px,3.4vw,40px)', lineHeight: '1.05', letterSpacing: '-.02em', color: '#fff', margin: '0' }}>We&apos;re recruiting consultants passionate about making big impacts on early startups.</h2>
+              <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(28px,3.4vw,40px)', lineHeight: '1.05', letterSpacing: '-.02em', color: '#fff', margin: '0' }}>We&apos;re recruiting consultants interested in making big impacts on early startups.</h2>
             </div>
             <a href="/growth-studio/careers" data-hover={`{"transform":"translateY(-2px)","boxShadow":"0 10px 26px rgba(0,0,0,.28)"}`} style={{ flex: 'none', textDecoration: 'none', background: 'var(--yellow,#f3f13a)', color: 'var(--purple,#3a1fb0)', fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '16px', padding: '16px 30px', borderRadius: '2px', transition: 'transform .18s ease,box-shadow .18s ease', display: 'inline-block' }}>Learn more here →</a>
           </div>
         </section>
       </main>
-      <Footer
-        program={[{ href: "mailto:hello.growthstudio@gmail.com", label: "Contact" }, { href: "/growth-studio/startups", label: "How we help" }, { href: "/growth-studio/partners", label: "Partner with us" }]}
-        team={[{ href: "/growth-studio/team", label: "Directors" }, { href: "/growth-studio#who", label: "Who we work with" }, { href: "/growth-studio/careers", label: "Careers" }]}
-        raised
-      />
+      <Footer raised />
       </div>
       <Interactions />
       <TeamWash />

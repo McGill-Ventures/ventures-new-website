@@ -37,8 +37,8 @@ const SERVICES: { label: string; desc: string }[] = [
     desc: "Source early users, define ideal testers, and create outreach and interview materials. Option to synthesize user insights for product feedback or pitch refinement.",
   },
   {
-    label: "Cap Table Setup (non-legal)",
-    desc: "Understand and model your cap table for smart fundraising decisions.",
+    label: "AI Adoption",
+    desc: "Identify where AI can accelerate your product and operations, research & recommend relevant AI tools, build basic automations suited to your business context.",
   },
   {
     label: "Resource Access",
@@ -101,9 +101,10 @@ export default function Interactions() {
     });
 
     // ---- radar ---------------------------------------------------------
-    const box = root.querySelector<HTMLElement>("[data-radar]");
-    let radarRaf = 0;
-    if (box) {
+    // The facet chart appears on more than one page, so wire every instance,
+    // scoping the read-out elements to the surrounding section.
+    root.querySelectorAll<HTMLElement>("[data-radar]").forEach((box) => {
+      const section = box.closest<HTMLElement>("section") || box.parentElement || root;
       const octagon = box.querySelector<SVGPolygonElement>('[data-role="base-octagon"]');
       const dots = [0, 1, 2, 3, 4, 5, 6, 7].map((i) =>
         box.querySelector<SVGCircleElement>(`[data-dot="${i}"]`),
@@ -112,9 +113,11 @@ export default function Interactions() {
         box.querySelector<HTMLElement>(`[data-label="${i}"]`),
       );
       const numEl = box.querySelector<SVGTextElement>("[data-active-num]");
-      const numEl2 = root.querySelector<HTMLElement>("[data-active-num-2]");
-      const titleEl = root.querySelector<HTMLElement>("[data-active-title]");
-      const descEl = root.querySelector<HTMLElement>("[data-active-desc]");
+      const numEl2 = section.querySelector<HTMLElement>("[data-active-num-2]");
+      const titleEl = section.querySelector<HTMLElement>("[data-active-title]");
+      const descEl = section.querySelector<HTMLElement>("[data-active-desc]");
+      const defaultTitle = titleEl?.textContent ?? "";
+      const defaultDesc = descEl?.textContent ?? "";
 
       const cx = 280, cy = 280, baseR = 100, hoverR = 145;
       const angles = [-90, -45, 0, 45, 90, 135, 180, 225];
@@ -148,10 +151,8 @@ export default function Interactions() {
         if (i === null) {
           if (numEl) numEl.textContent = "";
           if (numEl2) numEl2.textContent = "";
-          if (titleEl) titleEl.textContent = "Hover a facet to learn more";
-          if (descEl)
-            descEl.textContent =
-              "Eight interconnected ways we get founders investor-ready — explore the chart to see how each one works.";
+          if (titleEl) titleEl.textContent = defaultTitle;
+          if (descEl) descEl.textContent = defaultDesc;
         } else {
           const s = SERVICES[i];
           const num = String(i + 1).padStart(2, "0");
@@ -180,6 +181,7 @@ export default function Interactions() {
         });
       });
 
+      let radarRaf = 0;
       const animate = () => {
         const pts: string[] = [];
         for (let i = 0; i < 8; i++) {
@@ -199,7 +201,7 @@ export default function Interactions() {
       };
       animate();
       cleanups.push(() => cancelAnimationFrame(radarRaf));
-    }
+    });
 
     // ---- reveals -------------------------------------------------------
     const reveals = Array.from(root.querySelectorAll<HTMLElement>("[data-reveal]"));

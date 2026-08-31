@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export type FooterLink = { href: string; label: string };
-
 const LINK: React.CSSProperties = {
   textDecoration: "none",
   color: "rgba(255,255,255,.82)",
@@ -17,29 +15,9 @@ const H4: React.CSSProperties = {
   margin: "0 0 16px",
 };
 
-/** Route links go through next/link; anchors and mailto stay plain <a>. */
-function FLink({ href, label }: FooterLink) {
-  if (href.startsWith("/")) {
-    return (
-      <Link href={href} style={LINK}>
-        {label}
-      </Link>
-    );
-  }
-  return (
-    <a href={href} style={LINK}>
-      {label}
-    </a>
-  );
-}
-
 export default function Footer({
-  program,
-  team,
   raised = false,
 }: {
-  program: FooterLink[];
-  team: FooterLink[];
   /** The team page lifts the footer above the cursor-wash layer. */
   raised?: boolean;
 }) {
@@ -96,18 +74,24 @@ export default function Footer({
           <div>
             <h4 style={H4}>PROGRAM</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "11px" }}>
-              {program.map((l) => (
-                <FLink key={l.label} {...l} />
-              ))}
+              <Link href="/growth-studio/startups" style={LINK}>
+                How we help founders
+              </Link>
+              <Link href="/growth-studio/partners" style={LINK}>
+                Partner with us
+              </Link>
             </div>
           </div>
 
           <div>
             <h4 style={H4}>TEAM</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "11px" }}>
-              {team.map((l) => (
-                <FLink key={l.label} {...l} />
-              ))}
+              <Link href="/growth-studio/team" style={LINK}>
+                About us
+              </Link>
+              <Link href="/growth-studio/careers" style={LINK}>
+                Careers
+              </Link>
             </div>
           </div>
 
@@ -117,8 +101,21 @@ export default function Footer({
               <a href="https://www.mcgillvc.ca" style={LINK}>
                 www.mcgillvc.ca
               </a>
-              <a href="https://www.instagram.com/mcgillvc/" style={LINK}>
-                @mcgillvc
+              <a
+                href="https://www.instagram.com/mcgillvc/?hl=en"
+                target="_blank"
+                rel="noopener"
+                style={LINK}
+              >
+                Instagram
+              </a>
+              <a
+                href="https://www.linkedin.com/company/mcgillvc/"
+                target="_blank"
+                rel="noopener"
+                style={LINK}
+              >
+                LinkedIn
               </a>
             </div>
           </div>
@@ -138,12 +135,8 @@ export default function Footer({
         >
           <span>© 2026 Growth Studio · McGill Ventures. All rights reserved.</span>
           <div style={{ display: "flex", gap: "24px" }}>
-            <a
-              href="https://www.linkedin.com/company/mcgillvc/"
-              style={{ textDecoration: "none", color: "rgba(255,255,255,.55)" }}
-            >
-              LinkedIn
-            </a>
+            <span style={{ color: "rgba(255,255,255,.55)" }}>Privacy (in progress)</span>
+            <span style={{ color: "rgba(255,255,255,.55)" }}>Terms (in progress)</span>
           </div>
         </div>
       </div>
