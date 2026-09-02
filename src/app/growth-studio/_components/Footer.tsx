@@ -7,6 +7,11 @@ const LINK: React.CSSProperties = {
   fontSize: "15px",
 };
 
+const LEGAL_LINK: React.CSSProperties = {
+  textDecoration: "none",
+  color: "rgba(255,255,255,.55)",
+};
+
 const H4: React.CSSProperties = {
   fontFamily: "var(--font-space-grotesk), sans-serif",
   fontSize: "13px",
@@ -135,8 +140,12 @@ export default function Footer({
         >
           <span>© 2026 Growth Studio · McGill Ventures. All rights reserved.</span>
           <div style={{ display: "flex", gap: "24px" }}>
-            <span style={{ color: "rgba(255,255,255,.55)" }}>Privacy (in progress)</span>
-            <span style={{ color: "rgba(255,255,255,.55)" }}>Terms (in progress)</span>
+            <Link href="/growth-studio/privacy" style={LEGAL_LINK}>
+              Privacy Policy
+            </Link>
+            <Link href="/growth-studio/terms" style={LEGAL_LINK}>
+              Terms &amp; Conditions
+            </Link>
           </div>
         </div>
       </div>
