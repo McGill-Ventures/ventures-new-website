@@ -39,3 +39,54 @@ html:has(.gs-root) { scroll-behavior: smooth; }
   33%     { border-radius: 57% 43% 52% 48% / 45% 55% 46% 54%; }
   66%     { border-radius: 43% 57% 49% 51% / 56% 44% 58% 42%; }
 }
+
+/*
+ * Nav bar layout. Kept here rather than inline on the elements so the
+ * narrow-viewport rules below can actually override it — an inline style beats
+ * any stylesheet rule, which is why the desktop values live here too.
+ */
+.gs-root [data-navbar] {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gs-root [data-navright] {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.gs-root [data-navlinks] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+}
+
+/*
+ * Below 860px the single nowrap row pushed "Partner with us", "Careers" and the
+ * Contact CTA past the right edge, where .gs-root's overflow-x:hidden clipped
+ * them with no way to scroll. Split into two rows: brand above, links + CTA below.
+ */
+@media (max-width: 860px) {
+  .gs-root [data-navbar] {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+
+  .gs-root [data-navright] {
+    flex: 1 0 100%;
+    gap: 16px;
+    justify-content: space-between;
+  }
+
+  .gs-root [data-navlinks] {
+    gap: 8px 18px;
+  }
+}

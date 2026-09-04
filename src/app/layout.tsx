@@ -27,6 +27,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  // Without this, relative OG/Twitter image paths resolve against
+  // http://localhost:3000 in the production build.
+  metadataBase: new URL("https://www.mcgillvc.ca"),
   title: "McGill Ventures",
   description: "McGill Ventures partners with exceptional entrepreneurs to build transformative companies that shape tomorrow's world. Leading venture capital firm focused on innovation and growth.",
   keywords: "venture capital, investment, startup funding, innovation, McGill, Montreal, VC",
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
     description: "McGill Ventures partners with exceptional entrepreneurs to build transformative companies that shape tomorrow's world.",
     type: "website",
     locale: "en_US",
-    images: "/logos/logo_white.png",
+    images: "/logos/main_logo_transparent.png",
   },
 };
 

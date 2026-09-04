@@ -72,6 +72,8 @@ export default function Home() {
                   src="/events/homeLanding.jpg"
                   alt="McGill Ventures Community Event"
                   fill
+                  sizes="(max-width: 1024px) 90vw, 512px"
+                  priority
                   className="rounded-3xl shadow-2xl hover-lift object-cover object-[75%_center]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-purple-800/20 rounded-3xl"></div>

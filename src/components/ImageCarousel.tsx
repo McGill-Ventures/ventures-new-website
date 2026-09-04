@@ -38,6 +38,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
             src={src}
             alt={`Slide ${idx + 1}`}
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
           />
         </div>

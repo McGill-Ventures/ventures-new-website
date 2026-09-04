@@ -23,6 +23,14 @@ function validateContactData(data: unknown): { isValid: boolean; errors: string[
     errors.push('Message must be less than 5000 characters');
   }
 
+  if (contactData.subject !== undefined && contactData.subject !== null) {
+    if (typeof contactData.subject !== 'string') {
+      errors.push('Subject must be text');
+    } else if (contactData.subject.length > 200) {
+      errors.push('Subject must be less than 200 characters');
+    }
+  }
+
   return {
     isValid: errors.length === 0,
     errors
@@ -125,17 +133,27 @@ export async function POST(req: NextRequest): Promise<NextResponse<APIResponse>>
       );
     }
 
-    const sanitize = (str: string) => str.replace(/[<>]/g, '');
-    const safeName = sanitize(name);
-    const safeEmail = sanitize(email);
-    const safeSubject = subject ? sanitize(subject) : 'No subject';
-    const safeMessage = sanitize(message);
+    const escapeHtml = (str: string) =>
+      str.replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!,
+      );
+
+    // Header values must stay on one line; nodemailer also guards this.
+    const oneLine = (str: string) => str.replace(/[\r\n]+/g, ' ').trim();
+    const rawSubject = subject?.trim() || 'No subject';
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeSubject = escapeHtml(rawSubject);
+    const safeMessage = escapeHtml(message);
+    // Attribute values inside a URL need URL-encoding before HTML-escaping.
+    const mailtoEmail = escapeHtml(encodeURIComponent(email));
+    const mailtoSubject = escapeHtml(encodeURIComponent(`Re: ${rawSubject}`));
 
     const mailOptions: nodemailer.SendMailOptions = {
       from: process.env.GMAIL_EMAIL,
       to: 'mcgillventuresclub@gmail.com',
       replyTo: email,
-      subject: `McGill VC Contact: ${safeSubject} - from ${safeName}`,
+      subject: oneLine(`McGill VC Contact: ${rawSubject} - from ${name}`),
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff;">
           <div style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); padding: 30px; text-align: center;">
@@ -147,7 +165,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<APIResponse>>
             <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #7c3aed;">
               <h3 style="color: #374151; margin: 0 0 15px 0; font-size: 18px;">Contact Information</h3>
               <p style="margin: 5px 0;"><strong>Name:</strong> ${safeName}</p>
-              <p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:${safeEmail}" style="color: #7c3aed;">${safeEmail}</a></p>
+              <p style="margin: 5px 0;"><strong>Email:</strong> <a href="mailto:${mailtoEmail}" style="color: #7c3aed;">${safeEmail}</a></p>
               <p style="margin: 5px 0;"><strong>Subject:</strong> ${safeSubject}</p>
               <p style="margin: 5px 0;"><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
             </div>
@@ -161,7 +179,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<APIResponse>>
           <div style="background-color: #f3f4f6; padding: 20px; text-align: center; border-top: 1px solid #e5e7eb;">
             <p style="color: #6b7280; font-size: 14px; margin: 0;">
               This email was sent from the McGill Ventures website contact form<br>
-              <a href="mailto:${safeEmail}?subject=Re: ${safeSubject}" style="color: #7c3aed;">Click here to reply directly</a>
+              <a href="mailto:${mailtoEmail}?subject=${mailtoSubject}" style="color: #7c3aed;">Click here to reply directly</a>
             </p>
           </div>
         </div>
@@ -170,16 +188,16 @@ export async function POST(req: NextRequest): Promise<NextResponse<APIResponse>>
 McGill Ventures - New Contact Form Submission
 
 Contact Information:
-Name: ${safeName}
-Email: ${safeEmail}
-Subject: ${safeSubject}
+Name: ${name}
+Email: ${email}
+Subject: ${rawSubject}
 Submitted: ${new Date().toLocaleString()}
 
 Message:
-${safeMessage}
+${message}
 
 ---
-Reply to: ${safeEmail}
+Reply to: ${email}
 This email was sent from the McGill Ventures website contact form
       `,
     };

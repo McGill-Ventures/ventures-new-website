@@ -284,6 +284,7 @@ function EventCardComponent({ event, index }: { event: EventCard; index: number 
           src={event.image}
           alt={event.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
           className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
           style={{ objectPosition: event.imagePosition ?? "center", transform: event.imageScale ? `scale(${event.imageScale})` : undefined }}
         />
@@ -341,7 +342,7 @@ function EventCardComponent({ event, index }: { event: EventCard; index: number 
         )}
 
         {/* Photo gallery */}
-        <EventPhotoGallery eventId={event.id} photos={event.photos} />
+        <EventPhotoGallery photos={event.photos} />
       </div>
     </div>
   );

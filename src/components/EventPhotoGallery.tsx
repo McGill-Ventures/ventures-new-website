@@ -12,13 +12,11 @@ interface Photo {
 }
 
 interface EventPhotoGalleryProps {
-  eventId: string;
   photos: Photo[];
   buttonText?: string;
 }
 
 export default function EventPhotoGallery({
-  eventId: _eventId,
   photos,
   buttonText = "View Photos",
 }: EventPhotoGalleryProps) {

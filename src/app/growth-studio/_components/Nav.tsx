@@ -6,6 +6,7 @@ const LINK_BASE: React.CSSProperties = {
   color: "#241454",
   fontWeight: 600,
   fontSize: "15px",
+  whiteSpace: "nowrap",
 };
 
 const LINK_ACTIVE: React.CSSProperties = {
@@ -13,6 +14,7 @@ const LINK_ACTIVE: React.CSSProperties = {
   color: "var(--purple,#3a1fb0)",
   fontWeight: 700,
   fontSize: "15px",
+  whiteSpace: "nowrap",
 };
 
 const NAV_LINKS = [
@@ -43,17 +45,7 @@ export default function Nav({
         borderBottom: "1px solid rgba(36,20,84,.12)",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "0 32px",
-          height: "78px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <div data-navbar="">
         <Link
           href="/growth-studio"
           style={{
@@ -97,8 +89,8 @@ export default function Nav({
           </span>
         </Link>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "34px" }}>
-          <div style={{ display: "flex", gap: "26px", whiteSpace: "nowrap" }} data-navlinks="">
+        <div data-navright="">
+          <div data-navlinks="">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.key}
