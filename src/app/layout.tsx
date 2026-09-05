@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     description: "McGill Ventures partners with exceptional entrepreneurs to build transformative companies that shape tomorrow's world.",
     type: "website",
     locale: "en_US",
-    images: "/logos/logo_white.png",
+    images: "/logos/main_logo_transparent.png",
   },
 };
 
