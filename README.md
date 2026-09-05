@@ -2,21 +2,24 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, install all dependencies (ensure you have `node` and `npm` installed for this):
+This project uses **Node 24** (see `.nvmrc`) and **pnpm** (see `packageManager` in `package.json`).
+
+pnpm ships with Node via corepack, so you do not need to install it separately:
+
 ```bash
-npm i 
+corepack enable
 ```
 
-Second, run the development server:
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+Run the development server:
+
+```bash
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
