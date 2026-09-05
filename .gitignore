@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 _reference/
+
+# keep the example env file (documents required settings, contains no secrets)
+!.env.example
