@@ -2,6 +2,9 @@
   "name": "mcgill-vc-site",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
@@ -21,7 +24,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/nodemailer": "^7.0.12",
     "@types/react": "^19",
     "@types/react-dom": "^19",
