@@ -22,6 +22,19 @@ Run the development server:
 pnpm dev
 ```
 
+Other scripts:
+
+```bash
+pnpm build   # production build
+pnpm start   # serve the production build
+pnpm lint    # eslint
+```
+
+`pnpm.onlyBuiltDependencies` in `package.json` allows `unrs-resolver` to run its
+install script. pnpm blocks install scripts by default. That one links a
+platform-native binary for the ESLint TypeScript resolver, and installs fail
+without it.
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
