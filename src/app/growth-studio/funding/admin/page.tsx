@@ -67,10 +67,10 @@ function Console() {
       </div>
 
       {tab === "attention" && (
-        <AttentionDashboard onEdit={(id) => { setEditTarget({ endpoint: "/api/admin/programs", id }); setTab("programs"); }} />
+        <AttentionDashboard onEdit={(id) => { setEditTarget({ endpoint: "/api/funding/admin/programs", id }); setTab("programs"); }} />
       )}
-      {tab === "programs" && <CrudTab endpoint="/api/admin/programs" fields={FUNDING_FIELDS} label="programs" nameKey="program_name" jumpToId={editTarget?.endpoint === "/api/admin/programs" ? editTarget.id : null} />}
-      {tab === "partners" && <CrudTab endpoint="/api/admin/partners" fields={PARTNER_FIELDS} label="partners" nameKey="name" jumpToId={null} />}
+      {tab === "programs" && <CrudTab endpoint="/api/funding/admin/programs" fields={FUNDING_FIELDS} label="programs" nameKey="program_name" jumpToId={editTarget?.endpoint === "/api/funding/admin/programs" ? editTarget.id : null} />}
+      {tab === "partners" && <CrudTab endpoint="/api/funding/admin/partners" fields={PARTNER_FIELDS} label="partners" nameKey="name" jumpToId={null} />}
     </Shell>
   );
 }
