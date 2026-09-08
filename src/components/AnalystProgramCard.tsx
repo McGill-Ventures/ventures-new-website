@@ -32,7 +32,7 @@ export default function AnalystProgramCard() {
   return (
     <div className="rounded-3xl p-10 hover-lift animate-fade-in-up border border-purple-200 bg-white">
       <div className="bg-purple-200 text-purple-800 px-4 py-2 rounded-full text-sm font-heading font-semibold mb-6 inline-block">
-        Applications Open Fall 2026
+        Applications Open
       </div>
       <h3 className="text-4xl font-display text-purple-950 mb-6">Analyst Program</h3>
       <p className="text-lg text-purple-800 font-body mb-8 leading-relaxed">
@@ -123,7 +123,7 @@ export default function AnalystProgramCard() {
         rel="noopener noreferrer"
         className="w-full block bg-purple-700 hover:bg-purple-800 text-white px-8 py-4 rounded-xl font-heading text-lg font-semibold text-center transition-colors duration-200"
       >
-        Applications Open Fall 2026
+        Applications Open
       </a>
     </div>
   );
