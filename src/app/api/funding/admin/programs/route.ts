@@ -25,7 +25,7 @@ function clean(rec: Record<string, unknown>) {
 export async function GET() {
   if (!isSupabaseConfigured()) return NextResponse.json(NOT_CONFIGURED_BODY, { status: 503 });
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const { data, error } = await supabase().from("funding_programs").select("*").order("name");
+  const { data, error } = await supabase().from("funding_programs").select("*").order("program_name");
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ rows: data ?? [] });
 }
