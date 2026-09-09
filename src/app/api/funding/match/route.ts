@@ -15,7 +15,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Incomplete intake. Please answer every question." }, { status: 400 });
     }
 
-    const { data, error } = await supabase().from("funding_programs").select("*");
+    const { data, error } = await supabase().from("funding_programs").select(
+      "id,program_name,administering_body,jurisdiction,province_territory,official_url,status,last_reviewed,instrument,non_dilutive,short_description,eligible_activities,amount_min,amount_max,amount_notes,applicant_types,company_stage,sectors,incorporation_required,canadian_rd_required,deadline_type,next_deadline,open_date,window_notes",
+    );
     if (error) {
       console.error("load programs error", error);
       return NextResponse.json({ error: "Could not load programs." }, { status: 500 });
