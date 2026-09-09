@@ -45,7 +45,7 @@ const VENTURES: Venture[] = [
     // inset highlight fakes a glass edge — a real backdrop-filter nested inside
     // the already-glass header would blur a uniform backdrop for nothing.
     pill:
-      "border border-white/12 bg-gradient-to-br from-[#2c2358] via-[#1a1238] to-[#120c26] text-[#f2f0fa] shadow-[0_4px_16px_-4px_rgba(26,18,56,0.55),inset_0_1px_0_rgba(255,255,255,0.14)] hover:border-[#8b5cf6]/45 hover:shadow-[0_10px_26px_-6px_rgba(139,92,246,0.6),inset_0_1px_0_rgba(255,255,255,0.2)] focus-visible:outline-[#8b5cf6]",
+      "animate-gradient border border-white/12 bg-gradient-to-br from-[#2c2358] via-[#332a72] to-[#120c26] text-[#f2f0fa] shadow-[0_4px_16px_-4px_rgba(26,18,56,0.55),inset_0_1px_0_rgba(255,255,255,0.14)] hover:border-[#8b5cf6]/45 hover:shadow-[0_10px_26px_-6px_rgba(139,92,246,0.6),inset_0_1px_0_rgba(255,255,255,0.2)] focus-visible:outline-[#8b5cf6]",
     taglineClass: "text-[#f2f0fa]/60",
   },
   {
@@ -58,44 +58,16 @@ const VENTURES: Venture[] = [
     // yellow is held back to a hover ring so it never sits next to McGill
     // Ventures purple at full strength.
     pill:
-      "border border-[#241454]/15 bg-white text-[#241454] shadow-[0_4px_14px_-4px_rgba(36,20,84,0.18)] hover:border-[#ddd94f] hover:shadow-[0_10px_26px_-6px_rgba(224,220,90,0.7)] focus-visible:outline-[#3a1fb0]",
+      "animate-gradient border border-[#241454]/15 bg-gradient-to-br from-white via-[#fffef8] to-[#fbf9ec] text-[#241454] shadow-[0_4px_14px_-4px_rgba(36,20,84,0.18)] hover:border-[#ddd94f] hover:shadow-[0_10px_26px_-6px_rgba(224,220,90,0.7)] focus-visible:outline-[#3a1fb0]",
     taglineClass: "text-[#241454]/60",
   },
 ];
 
 const PILL_BASE =
-  "group inline-flex items-center gap-2 whitespace-nowrap rounded-full font-heading font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2";
+  "group inline-flex items-center gap-2 whitespace-nowrap rounded-xl font-heading font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2";
 
 const ROLL =
   "block transition-transform duration-[260ms] ease-[cubic-bezier(.6,0,.2,1)] motion-reduce:transition-none";
-
-/**
- * Hover/focus label for the icon-only venture buttons. aria-hidden because the
- * trigger already carries an aria-label; announcing both would double it up.
- * The right-most button aligns its tooltip to its own right edge, otherwise a
- * centred one runs past the viewport.
- */
-function Tooltip({ children, align }: { children: React.ReactNode; align: "center" | "right" }) {
-  const isRight = align === "right";
-  return (
-    <span
-      aria-hidden
-      className={cn(
-        "pointer-events-none absolute top-full z-10 mt-2 translate-y-1 rounded-lg bg-purple-950 px-2.5 py-1.5 font-heading text-xs font-semibold whitespace-nowrap text-white opacity-0 shadow-[0_8px_20px_-6px_rgba(88,28,135,0.5)] transition-[opacity,transform] duration-150 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 motion-reduce:transition-none",
-        isRight ? "right-0" : "left-1/2 -translate-x-1/2 group-hover:-translate-x-1/2 group-focus-visible:-translate-x-1/2"
-      )}
-    >
-      <span
-        className={cn(
-          "absolute -top-1 size-2 rotate-45 rounded-[2px] bg-purple-950",
-          // half the 2.75rem button, less half the arrow, keeps it on the icon
-          isRight ? "right-[1.125rem]" : "left-1/2 -translate-x-1/2"
-        )}
-      />
-      {children}
-    </span>
-  );
-}
 
 function VentureMark({ logo, className }: { logo: Venture["logo"]; className?: string }) {
   return (
@@ -229,19 +201,17 @@ export default function Navigation({ currentPage }: NavigationProps) {
 
           <div className="ml-auto flex items-center gap-2">
             <div className="hidden items-center gap-2 lg:flex">
-              {VENTURES.map((v, i) => (
+              {VENTURES.map((v) => (
                 <Link
                   key={v.href}
                   href={v.href}
                   target={v.external ? "_blank" : undefined}
                   rel={v.external ? "noopener noreferrer" : undefined}
-                  // The label is gone from the surface, so it has to live here
-                  // or the control is unnamed for assistive tech.
-                  aria-label={v.external ? `${v.label} (opens in a new tab)` : v.label}
-                  className={cn(PILL_BASE, v.pill, "relative size-11 justify-center")}
+                  className={cn(PILL_BASE, v.pill, "px-5 py-2 text-base")}
                 >
-                  <VentureMark logo={v.logo} className="size-6 xl:size-7" />
-                  <Tooltip align={i === VENTURES.length - 1 ? "right" : "center"}>{v.label}</Tooltip>
+                  <VentureMark logo={v.logo} className="size-7" />
+                  {v.label}
+                  {v.external && <span className="sr-only">(opens in a new tab)</span>}
                 </Link>
               ))}
             </div>
