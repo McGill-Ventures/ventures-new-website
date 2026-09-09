@@ -43,3 +43,6 @@ _reference/
 
 # keep the example env file (documents required settings, contains no secrets)
 !.env.example
+# this project uses pnpm
+package-lock.json
+yarn.lock
