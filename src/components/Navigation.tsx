@@ -114,7 +114,7 @@ export default function Navigation({ currentPage }: NavigationProps) {
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-300",
           isScrolled
-            ? "border-b border-purple-950/10 bg-gradient-to-b from-white/80 to-white/80 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)] backdrop-blur-xl backdrop-saturate-150"
+            ? "border-b border-purple-950/10 bg-gradient-to-b from-white/85 to-purple-50/85 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)] backdrop-blur-xl backdrop-saturate-150"
             : // Matches the top of every hero's wash, so the bar leaves no seam.
               "bg-gradient-to-b from-white to-purple-50"
         )}
