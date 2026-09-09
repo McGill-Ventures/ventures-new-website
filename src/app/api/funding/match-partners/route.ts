@@ -13,13 +13,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Incomplete. Please answer every question." }, { status: 400 });
     }
 
-    const { data, error } = await supabase().from("partners").select("*");
+    // Only the columns the matcher and results page use. `contact` is included so
+    // it can be released below for partners who opted in; never with select("*").
+    const { data, error } = await supabase().from("partners").select(
+      "id,name,entity_type,partner_kind,industries,personas,segment,location,intro_via_mvc,contact_public,contact,blurb,status,is_example",
+    );
     if (error) {
       console.error("load partners error", error);
       return NextResponse.json({ error: "Could not load partners." }, { status: 500 });
     }
 
-    const results = matchPartners(intake, (data ?? []) as Partner[]);
+    // Consent gate, enforced server-side: a partner's contact details leave the
+    // server only if they opted in (contact_public). The UI check alone is not
+    // enough, since the raw JSON is visible in the browser's network tab.
+    const results = matchPartners(intake, (data ?? []) as Partner[]).map((r) => ({
+      ...r,
+      partner: { ...r.partner, contact: r.partner.contact_public ? r.partner.contact : null },
+    }));
     return NextResponse.json({ results });
   } catch (err) {
     console.error("partner match error", err);
