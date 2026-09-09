@@ -19,10 +19,7 @@ export async function POST(req: Request) {
       founder_name: contact.name ?? null,
       founder_email: contact.email,
       company_name: contact.company ?? null,
-      customer_industry: intake?.customer_industry ?? null,
-      buyer_persona: intake?.buyer_persona ?? null,
-      target_segment: intake?.target_segment ?? null,
-      validation_goal: intake?.validation_goal ?? null,
+      intake: intake ?? null,
       requested_partner_ids: requested_partner_ids ?? [],
     });
 

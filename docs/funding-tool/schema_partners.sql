@@ -10,10 +10,9 @@ create table if not exists public.partner_intro_requests (
   founder_email text,
   company_name text,
 
-  customer_industry text,
-  buyer_persona text,
-  target_segment text,
-  validation_goal text,
+  -- raw intake answers (customer_industry, buyer_persona, target_segment,
+  -- validation_goal), stored as JSON so multi-select answers fit.
+  intake jsonb,
 
   requested_partner_ids text[],
   source text default 'partner_matcher'

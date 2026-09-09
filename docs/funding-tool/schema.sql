@@ -15,13 +15,9 @@ create table if not exists public.funding_leads (
   founder_email text,
   company_name text,
 
-  -- raw intake answers
-  stage int,
-  sector text,
-  mcgill_affiliated boolean,
-  incorporated boolean,
-  has_canadian_rd boolean,
-  funding_preference text,
+  -- raw intake answers, stored as JSON. Every question is multi-select, so the
+  -- answers are arrays; one jsonb column keeps the table in step with the form.
+  intake jsonb,
 
   -- what the matcher returned, stored as json for later analysis
   matched_program_ids text[],
