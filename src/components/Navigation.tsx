@@ -146,7 +146,7 @@ export default function Navigation({ currentPage }: NavigationProps) {
               className={cn(
                 // shrink-0: without it flex compresses the wordmark to absorb overflow
                 "w-auto shrink-0 object-contain transition-[height] duration-300",
-                isScrolled ? "h-5 xl:h-6" : "h-6 xl:h-7"
+                isScrolled ? "h-5 xl:h-7" : "h-6 xl:h-8"
               )}
               sizes="(max-width: 640px) 210px, 260px"
               priority
@@ -195,14 +195,14 @@ export default function Navigation({ currentPage }: NavigationProps) {
           </div>
 
           <div className="ml-auto flex items-center gap-2">
-            <div className="hidden items-center gap-2 lg:flex">
+            <div className="hidden grid-flow-col auto-cols-fr items-center gap-2 lg:grid">
               {VENTURES.map((v) => (
                 <Link
                   key={v.href}
                   href={v.href}
                   target={v.external ? "_blank" : undefined}
                   rel={v.external ? "noopener noreferrer" : undefined}
-                  className={cn(PILL_BASE, v.pill, "px-5 py-2 text-base")}
+                  className={cn(PILL_BASE, v.pill, "justify-center px-5 text-base", isScrolled ? "py-1" : "py-1.5")}
                 >
                   <VentureMark logo={v.logo} className="size-7" />
                   {v.label}
