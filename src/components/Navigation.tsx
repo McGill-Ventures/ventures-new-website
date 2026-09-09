@@ -1,203 +1,303 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { cn, getActiveLinkClasses } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { NavigationProps } from "@/types";
-import { ANIMATION_CLASSES } from "@/constants";
 import { Icon } from "@/components/ui";
 
-const TOP_NAV_ITEMS = [
-  { href: "/about", label: "About", comingSoon: false },
-  { href: "https://www.project-atlas.ca/", label: "Project ATLAS", comingSoon: false },
-  { href: "/contact", label: "Contact", comingSoon: false },
-];
+type NavLink = { href: string; label: string };
 
-const DROPDOWN_ITEMS = [
-  { href: "/programs", label: "Programs" },
+type Venture = NavLink & {
+  tagline: string;
+  logo: { src: string; width: number; height: number };
+  external: boolean;
+  /** Each property wears its own brand colours rather than McGill Ventures purple. */
+  pill: string;
+  taglineClass: string;
+};
+
+const SITE_LINKS: NavLink[] = [
+  { href: "/about", label: "About Us" },
+  { href: "/programs", label: "Our Programs" },
   { href: "/fund", label: "Fund" },
   { href: "/events", label: "Events" },
-  { href: "/team", label: "Team" },
-  { href: "/sponsors", label: "Sponsorships & Partners" },
-  { href: "/growth-studio", label: "Growth Studio" },
 ];
 
-const MOBILE_ALL_ITEMS = [
-  { href: "/about", label: "About", comingSoon: false },
-  { href: "/programs", label: "Programs", comingSoon: false },
-  { href: "/growth-studio", label: "Growth Studio", comingSoon: false },
-  { href: "/fund", label: "Fund", comingSoon: false },
-  { href: "/events", label: "Events", comingSoon: false },
-  { href: "/team", label: "Team", comingSoon: false },
-  { href: "/sponsors", label: "Sponsorships & Partners", comingSoon: false },
-  { href: "https://www.project-atlas.ca/", label: "Project ATLAS", comingSoon: false },
-  { href: "/contact", label: "Contact", comingSoon: false },
+/** Secondary pages: nav-bar space is tight, so these live in the drawer and the footer. */
+const DRAWER_LINKS: NavLink[] = [
+  ...SITE_LINKS,
+  { href: "/team", label: "Team" },
+  { href: "/sponsors", label: "Sponsors" },
+  { href: "/contact", label: "Contact" },
 ];
+
+const VENTURES: Venture[] = [
+  {
+    href: "https://www.project-atlas.ca/",
+    label: "Project ATLAS",
+    tagline: "Our flagship research initiative",
+    logo: { src: "/logos/project-atlas-mark.png", width: 320, height: 320 },
+    external: true,
+    // project-atlas.ca grounds on #0a0a0a; that flat black is heavy against a
+    // light nav, so this leans it toward the violet in their logo mark. The
+    // inset highlight fakes a glass edge — a real backdrop-filter nested inside
+    // the already-glass header would blur a uniform backdrop for nothing.
+    pill:
+      "border border-white/12 bg-gradient-to-br from-[#2c2358] via-[#1a1238] to-[#120c26] text-[#f2f0fa] shadow-[0_4px_16px_-4px_rgba(26,18,56,0.55),inset_0_1px_0_rgba(255,255,255,0.14)] hover:border-[#8b5cf6]/45 hover:shadow-[0_10px_26px_-6px_rgba(139,92,246,0.6),inset_0_1px_0_rgba(255,255,255,0.2)] focus-visible:outline-[#8b5cf6]",
+    taglineClass: "text-[#f2f0fa]/60",
+  },
+  {
+    href: "/growth-studio",
+    label: "Growth Studio",
+    tagline: "Hands-on support for founders",
+    logo: { src: "/growth-studio/logo-mark.webp", width: 88, height: 85 },
+    external: false,
+    // Growth Studio brand: white ground, #241454 ink, #f3f13a yellow. The
+    // yellow is held back to a hover ring so it never sits next to McGill
+    // Ventures purple at full strength.
+    pill:
+      "border border-[#241454]/15 bg-white text-[#241454] shadow-[0_4px_14px_-4px_rgba(36,20,84,0.18)] hover:border-[#ddd94f] hover:shadow-[0_10px_26px_-6px_rgba(224,220,90,0.7)] focus-visible:outline-[#3a1fb0]",
+    taglineClass: "text-[#241454]/60",
+  },
+];
+
+const PILL_BASE =
+  "group inline-flex items-center gap-2 whitespace-nowrap rounded-full font-heading font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2";
+
+const ROLL =
+  "block transition-transform duration-[260ms] ease-[cubic-bezier(.6,0,.2,1)] motion-reduce:transition-none";
+
+function VentureMark({ logo, className }: { logo: Venture["logo"]; className?: string }) {
+  return (
+    <Image
+      src={logo.src}
+      alt=""
+      width={logo.width}
+      height={logo.height}
+      className={cn("shrink-0 object-contain", className)}
+    />
+  );
+}
 
 export default function Navigation({ currentPage }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
-  const moreRef = useRef<HTMLDivElement>(null);
-
-  const toggleMobileMenu = useCallback(() => {
-    setIsMobileMenuOpen(prev => !prev);
-  }, []);
-
-  const closeMobileMenu = useCallback(() => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
+  // inert blurs focus to <body>, so hand it back to the control that opened it.
+  const dismissMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
+    toggleRef.current?.focus();
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
-        setIsMoreOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    // Separate enter/exit thresholds. With one threshold, sub-pixel scroll
+    // jitter crosses it repeatedly and restarts the transition each time.
+    const onScroll = () =>
+      setIsScrolled((prev) => (prev ? window.scrollY > 8 : window.scrollY > 64));
+    // Seed off the exit threshold: entering needs >64, so reloading at e.g.
+    // scrollY 40 would otherwise render the at-rest bar over a scrolled page.
+    setIsScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinkClasses = "transition-all duration-300 relative group font-heading text-lg font-semibold cursor-pointer px-4 py-2 rounded-lg";
-  const activeClasses = "text-white bg-purple-800/50";
-  const inactiveClasses = "text-purple-100 hover:text-white hover:bg-purple-800/30";
-  const mobileNavLinkClasses = "block px-4 py-3 rounded-lg transition-all duration-200 font-heading text-lg font-semibold cursor-pointer";
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => e.key === "Escape" && dismissMobileMenu();
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isMobileMenuOpen, dismissMobileMenu]);
 
   return (
-    <nav className="flex items-center justify-between px-6 py-8 md:px-12 lg:px-24 relative z-50 bg-purple-900 border-b border-purple-950/50">
-      <div className={cn(ANIMATION_CLASSES.FADE_IN_LEFT, "mr-auto")}>
-        <Link href="/" className={cn("flex items-center cursor-pointer overflow-hidden", ANIMATION_CLASSES.HOVER_SCALE)}>
-          <Image
-            src="/logos/white_logo_transparent.png"
-            alt="McGill Ventures Logo"
-            width={120}
-            height={40}
-            className="h-8 w-auto object-contain"
-            priority
-          />
-        </Link>
-      </div>
-
-      {/* Desktop Nav */}
-      <div className={cn("hidden md:flex items-center space-x-4", ANIMATION_CLASSES.FADE_IN_UP)}>
-        {TOP_NAV_ITEMS.map((item) => (
+    <>
+      {/* Reserves the header's at-rest height. The header is fixed so that its
+          shrink-on-scroll cannot change document height — scroll anchoring would
+          subtract that from scrollY and oscillate the scrolled state. */}
+      <div aria-hidden className="h-20" />
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+          isScrolled
+            ? "border-b border-purple-950/10 bg-gradient-to-b from-white/80 to-white/80 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)] backdrop-blur-xl backdrop-saturate-150"
+            : // Matches the top of every hero's white -> purple-50 wash, so the
+              // bar dissolves into the page instead of seaming against it.
+              "bg-gradient-to-b from-white to-purple-50"
+        )}
+      >
+        <nav
+          aria-label="Main"
+          className={cn(
+            "mx-auto flex max-w-7xl items-center gap-3 px-6 transition-[height] duration-300",
+            isScrolled ? "h-16" : "h-20"
+          )}
+        >
+          {/* flex-1 on both outer groups is what centres the links */}
           <Link
-            key={item.href}
-            href={item.comingSoon ? "#" : item.href}
-            title={item.comingSoon ? "Coming Soon" : undefined}
-            target={item.href.startsWith("http") ? "_blank" : undefined}
-            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-            onClick={item.comingSoon ? (e) => e.preventDefault() : undefined}
-            className={cn(
-              navLinkClasses,
-              item.comingSoon
-                ? "opacity-50 cursor-not-allowed text-purple-100"
-                : getActiveLinkClasses(currentPage, item.href, activeClasses, inactiveClasses)
-            )}
+            href="/"
+            onClick={closeMobileMenu}
+            className="flex flex-1 shrink-0 items-center justify-start transition-transform duration-300 hover:scale-[1.03]"
           >
-            {item.label}
-            {!item.comingSoon && (
-              <span className={cn(
-                "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-300 to-purple-200 transition-all duration-300 rounded-full",
-                currentPage === item.href ? "w-full" : "w-0 group-hover:w-full"
-              )} />
-            )}
+            <Image
+              src="/logos/main_logo_wordmark.png"
+              alt="McGill Ventures"
+              width={2576}
+              height={302}
+              className={cn(
+                // shrink-0: without it flex compresses the wordmark to absorb overflow
+                "w-auto shrink-0 object-contain transition-[height] duration-300",
+                isScrolled ? "h-5 xl:h-6" : "h-6 xl:h-7"
+              )}
+              sizes="(max-width: 640px) 210px, 260px"
+              priority
+            />
           </Link>
-        ))}
 
-        {/* More Dropdown */}
-        <div ref={moreRef} className="relative">
-          <button
-            onClick={() => setIsMoreOpen(prev => !prev)}
-            className={cn(
-              navLinkClasses,
-              "flex items-center gap-1",
-              isMoreOpen ? activeClasses : inactiveClasses
-            )}
-          >
-            More
-            <span className="text-sm transition-transform duration-200" style={{ transform: isMoreOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
-              ▾
-            </span>
-            <span className={cn(
-              "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-300 to-purple-200 transition-all duration-300 rounded-full",
-              "w-0 group-hover:w-full"
-            )} />
-          </button>
+          <div className="hidden items-center gap-4 lg:flex xl:gap-8">
+            {SITE_LINKS.map(({ href, label }) => {
+              const isActive = currentPage === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  aria-current={isActive ? "page" : undefined}
+                  className="group relative px-1 py-2 font-heading text-lg font-semibold whitespace-nowrap xl:px-2"
+                >
+                  {/* leading-8 keeps descenders clear of the clip edge */}
+                  <span className="relative block overflow-hidden leading-8">
+                    <span
+                      className={cn(
+                        ROLL,
+                        "text-purple-950/70",
+                        isActive
+                          ? "-translate-y-full"
+                          : "group-hover:-translate-y-full group-focus-visible:-translate-y-full"
+                      )}
+                    >
+                      {label}
+                    </span>
+                    <span
+                      aria-hidden
+                      className={cn(
+                        ROLL,
+                        "absolute inset-0 text-purple-900",
+                        isActive
+                          ? "translate-y-0"
+                          : "translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0"
+                      )}
+                    >
+                      {label}
+                    </span>
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
 
-          {/* Dropdown Menu */}
-          <div
-            className={cn(
-              "absolute right-0 top-full mt-2 min-w-[220px] bg-white rounded-lg border border-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.1)] z-50 py-2 transition-all duration-200 ease-in-out origin-top-right",
-              isMoreOpen ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"
-            )}
-          >
-            {DROPDOWN_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsMoreOpen(false)}
-                className="block px-5 py-3 text-[15px] font-medium text-gray-700 hover:bg-[#F9F5FF] hover:text-[#5A189A] transition-all duration-150 cursor-pointer"
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div className="flex flex-1 items-center justify-end gap-2">
+            <div className="hidden items-center gap-2 lg:flex">
+              {VENTURES.map((v) => (
+                <Link
+                  key={v.href}
+                  href={v.href}
+                  target={v.external ? "_blank" : undefined}
+                  rel={v.external ? "noopener noreferrer" : undefined}
+                  className={cn(PILL_BASE, v.pill, "py-1.5 pr-3 pl-1 text-base xl:pr-4 xl:pl-1.5")}
+                >
+                  <VentureMark logo={v.logo} className="h-6 w-6 xl:h-7 xl:w-7" />
+                  {v.label}
+                  {v.external && <span className="sr-only">(opens in a new tab)</span>}
+                </Link>
+              ))}
+            </div>
+
+            <button
+              ref={toggleRef}
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              className="rounded-xl p-2.5 text-purple-950 transition-colors hover:bg-purple-100 lg:hidden"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              <Icon name={isMobileMenuOpen ? "close" : "menu"} size="lg" />
+            </button>
+          </div>
+        </nav>
+
+        <div
+          aria-hidden
+          onClick={dismissMobileMenu}
+          className={cn(
+            "absolute inset-x-0 top-full h-[100dvh] bg-purple-950/25 transition-opacity duration-300 lg:hidden",
+            isMobileMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+          )}
+        />
+        <div
+          id="mobile-menu"
+          inert={!isMobileMenuOpen}
+          className={cn(
+            "absolute inset-x-0 top-full overflow-y-auto overscroll-contain border-b border-purple-950/10 bg-white/95 backdrop-blur-xl transition-all duration-300 lg:hidden",
+            isMobileMenuOpen
+              ? "max-h-[calc(100dvh-100%)] opacity-100"
+              : "pointer-events-none max-h-0 opacity-0"
+          )}
+        >
+          <div className="px-6 pt-2 pb-6">
+            {DRAWER_LINKS.map(({ href, label }) => {
+              const isActive = currentPage === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={closeMobileMenu}
+                  aria-current={isActive ? "page" : undefined}
+                  className={cn(
+                    "block rounded-xl px-4 py-3 font-heading text-lg font-semibold transition-colors",
+                    isActive
+                      ? "bg-purple-100 text-purple-900"
+                      : "text-purple-950/80 hover:bg-purple-50 hover:text-purple-900"
+                  )}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+
+            <p className="mt-5 mb-3 px-4 font-heading text-xs font-semibold tracking-[0.16em] text-purple-950/45 uppercase">
+              Our ventures
+            </p>
+            <div className="space-y-3">
+              {VENTURES.map((v) => (
+                <Link
+                  key={v.href}
+                  href={v.href}
+                  onClick={closeMobileMenu}
+                  target={v.external ? "_blank" : undefined}
+                  rel={v.external ? "noopener noreferrer" : undefined}
+                  className={cn(PILL_BASE, v.pill, "w-full gap-3 rounded-2xl py-3 pr-5 pl-3 text-left whitespace-normal")}
+                >
+                  <VentureMark logo={v.logo} className="h-10 w-10" />
+                  <span>
+                    <span className="block text-base">
+                      {v.label}
+                      {v.external && <span className="sr-only">(opens in a new tab)</span>}
+                    </span>
+                    <span className={cn("block text-xs font-medium", v.taglineClass)}>
+                      {v.tagline}
+                    </span>
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Mobile Hamburger */}
-      <button
-        onClick={toggleMobileMenu}
-        className={cn(
-          "md:hidden p-3 rounded-xl hover:bg-purple-800 transition-colors cursor-pointer",
-          ANIMATION_CLASSES.SLIDE_IN_RIGHT
-        )}
-        aria-label="Toggle mobile menu"
-        aria-expanded={isMobileMenuOpen}
-      >
-        <Icon
-          name={isMobileMenuOpen ? "close" : "menu"}
-          className={cn(
-            "text-white transition-transform duration-300",
-            isMobileMenuOpen && "rotate-90"
-          )}
-          size="lg"
-        />
-      </button>
-
-      {/* Mobile Menu */}
-      <div className={cn(
-        "absolute top-full left-0 right-0 bg-purple-900 border-b border-purple-950/50 md:hidden transition-all duration-300 ease-in-out",
-        isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-      )}>
-        <div className="px-6 py-4 space-y-2">
-          {MOBILE_ALL_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.comingSoon ? "#" : item.href}
-              target={item.href.startsWith("http") ? "_blank" : undefined}
-              rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              onClick={(e) => {
-                if (item.comingSoon) {
-                  e.preventDefault();
-                } else {
-                  closeMobileMenu();
-                }
-              }}
-              className={cn(
-                mobileNavLinkClasses,
-                item.comingSoon
-                  ? "opacity-50 cursor-not-allowed text-purple-100"
-                  : getActiveLinkClasses(currentPage, item.href, activeClasses, inactiveClasses)
-              )}
-            >
-              {item.label}
-              {item.comingSoon && <span className="sr-only">(Coming Soon)</span>}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </nav>
+      </header>
+    </>
   );
 }

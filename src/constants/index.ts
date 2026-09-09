@@ -1,16 +1,4 @@
-import { NavigationItem, ExecutiveTeamMember, AnalystTeamMember, DeveloperTeamMember, GovernanceTeamMember } from '@/types';
-
-export const NAVIGATION_ITEMS: NavigationItem[] = [
-  { href: "/about", label: "About" },
-  { href: "/programs", label: "Programs" },
-  { href: "/sponsors", label: "Sponsorships & Partners" },
-  { href: "/fund", label: "Fund" },
-  // new navigation item inserted between Fund and Team
-  { href: "/events", label: "Events" },
-  { href: "/team", label: "Team" },
-  { href: "https://www.project-atlas.ca/", label: "Project ATLAS" },
-  { href: "/contact", label: "Contact" },
-];
+import { ExecutiveTeamMember, AnalystTeamMember, DeveloperTeamMember, GovernanceTeamMember } from '@/types';
 
 export const TEAM_TYPES = {
   FOUNDERS: 'founders' as const,
@@ -710,7 +698,6 @@ export const ANALYST_TEAM: AnalystTeamMember[] = [
     linkedinUrl: "https://www.linkedin.com/in/nicholas-mandalenakis-989a2a2b9/"
   },
 ];
-
 
 export const HEAD_OF_ENGINEERING: DeveloperTeamMember = {
   name: "Wasif Somji",
