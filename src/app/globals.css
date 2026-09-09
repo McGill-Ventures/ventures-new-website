@@ -256,7 +256,6 @@ a[href],
   cursor: pointer;
 }
 
-/* Honour the OS reduced-motion setting site-wide. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
