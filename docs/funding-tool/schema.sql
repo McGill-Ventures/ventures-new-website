@@ -1,8 +1,10 @@
 -- schema.sql
--- Supabase is used for ONE thing in v1: capturing leads.
--- The program data lives as static JSON in the repo (funding_programs.json),
--- so matching needs no database read. This keeps the matcher instant and free.
--- Run this in the Supabase SQL editor.
+-- Creates the funding_leads table (founder contact details captured after a match).
+-- Program data lives in the funding_programs table (created by schema_data.sql)
+-- and is loaded once from data/funding-programs.json via `npm run funding:seed`.
+-- The /api/funding/match route reads that table on every request, so edits
+-- made in the admin console take effect immediately without a redeploy.
+-- Run this in the Supabase SQL editor (see SETUP.md, Part 2).
 
 create table if not exists public.funding_leads (
   id uuid primary key default gen_random_uuid(),
