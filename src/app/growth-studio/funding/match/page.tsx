@@ -194,7 +194,7 @@ function Results({ results, answers, onRestart }: { results: MatchResult[]; answ
         {sent ? (
           <div>
             <h2 style={{ margin: 0, fontSize: 21, fontWeight: 750 }}>You are on our radar</h2>
-            <p style={{ marginTop: 10, fontSize: 15.5, color: "#E9E4FD", lineHeight: 1.55 }}>The McGill Ventures Advisory will reach out to help you prepare and polish your application materials.</p>
+            <p style={{ marginTop: 10, fontSize: 15.5, color: "#E9E4FD", lineHeight: 1.55 }}>The Growth Studio team will reach out to help you prepare and polish your application materials.</p>
           </div>
         ) : (
           <div>
