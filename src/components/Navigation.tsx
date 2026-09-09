@@ -134,15 +134,14 @@ export default function Navigation({ currentPage }: NavigationProps) {
         <nav
           aria-label="Main"
           className={cn(
-            "mx-auto flex max-w-7xl items-center gap-3 px-6 transition-[height] duration-300",
+            "mx-auto flex max-w-7xl items-center gap-6 px-6 transition-[height] duration-300 xl:gap-10",
             isScrolled ? "h-16" : "h-20"
           )}
         >
-          {/* flex-1 on both outer groups is what centres the links */}
           <Link
             href="/"
             onClick={closeMobileMenu}
-            className="flex flex-1 shrink-0 items-center justify-start transition-transform duration-300 hover:scale-[1.03]"
+            className="flex shrink-0 items-center transition-transform duration-300 hover:scale-[1.03]"
           >
             <Image
               src="/logos/main_logo_wordmark.png"
@@ -200,7 +199,7 @@ export default function Navigation({ currentPage }: NavigationProps) {
             })}
           </div>
 
-          <div className="flex flex-1 items-center justify-end gap-2">
+          <div className="ml-auto flex items-center gap-2">
             <div className="hidden items-center gap-2 lg:flex">
               {VENTURES.map((v) => (
                 <Link
