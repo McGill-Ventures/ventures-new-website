@@ -206,7 +206,7 @@ function Results({ results, answers, onRestart }: { results: MatchResult[]; answ
               <input placeholder="Company (optional)" value={contact.company} onChange={(e) => setContact({ ...contact, company: e.target.value })} style={inputStyle} />
               {err && <p style={{ color: "#FECACA", fontSize: 13.5, margin: 0 }}>{err}</p>}
               <button onClick={save} disabled={saving} style={{ ...btnPrimary, background: "#fff", color: T.primary, boxShadow: "none", opacity: saving ? 0.7 : 1, padding: "14px 20px" }}>
-                {saving ? "Sending..." : "Connect with McGill Ventures Advisory"}
+                {saving ? "Sending..." : "Connect with McGill Growth Studio"}
               </button>
             </div>
           </div>
