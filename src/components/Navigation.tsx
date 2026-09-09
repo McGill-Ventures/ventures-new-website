@@ -69,6 +69,34 @@ const PILL_BASE =
 const ROLL =
   "block transition-transform duration-[260ms] ease-[cubic-bezier(.6,0,.2,1)] motion-reduce:transition-none";
 
+/**
+ * Hover/focus label for the icon-only venture buttons. aria-hidden because the
+ * trigger already carries an aria-label; announcing both would double it up.
+ * The right-most button aligns its tooltip to its own right edge, otherwise a
+ * centred one runs past the viewport.
+ */
+function Tooltip({ children, align }: { children: React.ReactNode; align: "center" | "right" }) {
+  const isRight = align === "right";
+  return (
+    <span
+      aria-hidden
+      className={cn(
+        "pointer-events-none absolute top-full z-10 mt-2 translate-y-1 rounded-lg bg-purple-950 px-2.5 py-1.5 font-heading text-xs font-semibold whitespace-nowrap text-white opacity-0 shadow-[0_8px_20px_-6px_rgba(88,28,135,0.5)] transition-[opacity,transform] duration-150 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 motion-reduce:transition-none",
+        isRight ? "right-0" : "left-1/2 -translate-x-1/2 group-hover:-translate-x-1/2 group-focus-visible:-translate-x-1/2"
+      )}
+    >
+      <span
+        className={cn(
+          "absolute -top-1 size-2 rotate-45 rounded-[2px] bg-purple-950",
+          // half the 2.75rem button, less half the arrow, keeps it on the icon
+          isRight ? "right-[1.125rem]" : "left-1/2 -translate-x-1/2"
+        )}
+      />
+      {children}
+    </span>
+  );
+}
+
 function VentureMark({ logo, className }: { logo: Venture["logo"]; className?: string }) {
   return (
     <Image
@@ -201,17 +229,19 @@ export default function Navigation({ currentPage }: NavigationProps) {
 
           <div className="ml-auto flex items-center gap-2">
             <div className="hidden items-center gap-2 lg:flex">
-              {VENTURES.map((v) => (
+              {VENTURES.map((v, i) => (
                 <Link
                   key={v.href}
                   href={v.href}
                   target={v.external ? "_blank" : undefined}
                   rel={v.external ? "noopener noreferrer" : undefined}
-                  className={cn(PILL_BASE, v.pill, "py-1.5 pr-3 pl-1 text-base xl:pr-4 xl:pl-1.5")}
+                  // The label is gone from the surface, so it has to live here
+                  // or the control is unnamed for assistive tech.
+                  aria-label={v.external ? `${v.label} (opens in a new tab)` : v.label}
+                  className={cn(PILL_BASE, v.pill, "relative size-11 justify-center")}
                 >
-                  <VentureMark logo={v.logo} className="h-6 w-6 xl:h-7 xl:w-7" />
-                  {v.label}
-                  {v.external && <span className="sr-only">(opens in a new tab)</span>}
+                  <VentureMark logo={v.logo} className="size-6 xl:size-7" />
+                  <Tooltip align={i === VENTURES.length - 1 ? "right" : "center"}>{v.label}</Tooltip>
                 </Link>
               ))}
             </div>
