@@ -99,8 +99,16 @@ function deadlineDisplay(p: Program, live: MatchResult["liveness"]): string {
     const nice = new Date(p.next_deadline + "T00:00:00").toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" });
     return days <= 30 ? "Closes " + nice + " (soon)" : "Closes " + nice;
   }
-  if (p.window_notes) return String(p.window_notes);
+  const win = note(p.window_notes);
+  if (win) return win;
   return "Check the program page for timing.";
+}
+
+// Free-text notes in the dataset use the literal "not_specified" as a
+// placeholder. Treat it (and blanks) as "no note" so it never reaches the UI.
+function note(v: string | null | undefined): string | null {
+  const t = (v ?? "").trim();
+  return t && t.toLowerCase() !== "not_specified" ? t : null;
 }
 
 function amountDisplay(p: Program): string {
@@ -108,7 +116,8 @@ function amountDisplay(p: Program): string {
   if (p.amount_min != null && p.amount_max != null) return `${fmt(p.amount_min)} to ${fmt(p.amount_max)}`;
   if (p.amount_max != null) return `Up to ${fmt(p.amount_max)}`;
   if (p.amount_min != null) return `From ${fmt(p.amount_min)}`;
-  if (p.amount_notes) return String(p.amount_notes);
+  const amt = note(p.amount_notes);
+  if (amt) return amt;
   return "Amount varies";
 }
 
@@ -142,7 +151,7 @@ function excluded(p: Program, intake: FounderIntake, live: MatchResult["liveness
 function caveats(p: Program): string[] {
   const c: string[] = [];
   if ((p.status ?? "").toLowerCase() === "unclear") c.push("Status unconfirmed. Verify it is still open before applying.");
-  if (p.amount_min == null && p.amount_max == null && !p.amount_notes) c.push("Funding amount not confirmed.");
+  if (p.amount_min == null && p.amount_max == null && !note(p.amount_notes)) c.push("Funding amount not confirmed.");
   if ((p.incorporation_required ?? "").toLowerCase() === "y") c.push("Requires an incorporated company.");
   if ((p.canadian_rd_required ?? "").toLowerCase() === "y") c.push("Requires R&D activity in Canada.");
   if (empty(p.applicant_types)) c.push("Eligibility details unconfirmed.");
