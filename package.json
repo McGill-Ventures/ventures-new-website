@@ -11,6 +11,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
+    "test": "node --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test",
     "funding:seed": "node --env-file=.env.local scripts/funding-seed.mjs"
   },
   "dependencies": {

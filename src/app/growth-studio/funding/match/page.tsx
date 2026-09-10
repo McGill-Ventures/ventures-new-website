@@ -25,6 +25,7 @@ interface MatchResult {
   deadline_display: string;
   closing_soon: boolean;
   amount_text: string;
+  stream_text: string | null;
 }
 
 function liveBadge(live: MatchResult["liveness"]) {

@@ -1,7 +1,7 @@
 // app/api/match/route.ts
 import { NextResponse } from "next/server";
 import { supabase, isSupabaseConfigured, NOT_CONFIGURED_BODY } from "@/lib/funding/supabaseServer";
-import { matchFunding, amountDisplay, type FounderIntake, type Program } from "@/lib/funding/matcher";
+import { matchFunding, amountDisplay, note, PROGRAM_COLUMNS, type FounderIntake, type Program } from "@/lib/funding/matcher";
 
 export const dynamic = "force-dynamic";
 
@@ -15,9 +15,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Incomplete intake. Please answer every question." }, { status: 400 });
     }
 
-    const { data, error } = await supabase().from("funding_programs").select(
-      "id,program_name,stream_component,administering_body,jurisdiction,province_territory,official_url,status,last_reviewed,instrument,non_dilutive,short_description,eligible_activities,amount_min,amount_max,amount_notes,applicant_types,company_stage,sectors,incorporation_required,canadian_rd_required,deadline_type,next_deadline,open_date,window_notes",
-    );
+    const { data, error } = await supabase().from("funding_programs").select(PROGRAM_COLUMNS);
     if (error) {
       console.error("load programs error", error);
       return NextResponse.json({ error: "Could not load programs." }, { status: 500 });
@@ -26,6 +24,9 @@ export async function POST(req: Request) {
     const results = matchFunding(intake, (data ?? []) as Program[]).map((r) => ({
       ...r,
       amount_text: amountDisplay(r.program),
+      // Sub-stream of a program family (e.g. Mitacs Accelerate · Entrepreneur);
+      // shown on the card so same-named programs are distinguishable.
+      stream_text: note(r.program.stream_component),
     }));
     return NextResponse.json({ results });
   } catch (err) {

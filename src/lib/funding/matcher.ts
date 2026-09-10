@@ -6,6 +6,7 @@
 export interface Program {
   id: string;
   program_name: string;
+  stream_component?: string | null;
   administering_body?: string | null;
   jurisdiction?: string | null;
   province_territory?: string | null;
@@ -106,7 +107,7 @@ function deadlineDisplay(p: Program, live: MatchResult["liveness"]): string {
 
 // Free-text notes in the dataset use the literal "not_specified" as a
 // placeholder. Treat it (and blanks) as "no note" so it never reaches the UI.
-function note(v: string | null | undefined): string | null {
+export function note(v: string | null | undefined): string | null {
   const t = (v ?? "").trim();
   return t && t.toLowerCase() !== "not_specified" ? t : null;
 }
@@ -226,6 +227,12 @@ export function matchFunding(intake: FounderIntake, programs: Program[]): MatchR
     .sort((a, b) => b.score - a.score)
     .slice(0, MAX_RESULTS);
 }
+
+// The columns the matcher scores on and the result cards render. The match
+// route selects exactly these, so anything a card shows must be listed here.
+// test/funding-matcher.test.mts fails if a rendered column is dropped.
+export const PROGRAM_COLUMNS =
+  "id,program_name,stream_component,administering_body,jurisdiction,province_territory,official_url,status,last_reviewed,instrument,non_dilutive,short_description,eligible_activities,amount_min,amount_max,amount_notes,applicant_types,company_stage,sectors,incorporation_required,canadian_rd_required,deadline_type,next_deadline,open_date,window_notes";
 
 // Helpers the UI can reuse.
 export { amountDisplay };
