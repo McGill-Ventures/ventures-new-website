@@ -63,7 +63,7 @@ owns the project, so it does not depend on any one person's personal account.
    repository folder:
 
    ```bash
-   npm run funding:seed
+   pnpm funding:seed
    ```
 
    It counts up in batches and ends with `Done. Seeded 502 programs.`
