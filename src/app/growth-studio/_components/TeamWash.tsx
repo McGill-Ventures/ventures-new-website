@@ -29,9 +29,6 @@ const BLOB_DEFS: BlobDef[] = [
  */
 export default function TeamWash() {
   useEffect(() => {
-    // Below 900px there is no hover reveal and no cursor wash; growth-studio.css
-    // shows colour photos there instead. Keep this breakpoint identical to the CSS.
-    if (window.matchMedia("(max-width: 900px)").matches) return;
     const page = document.querySelector<HTMLElement>("[data-team-page]");
     if (!page) return;
 
@@ -63,6 +60,9 @@ export default function TeamWash() {
 
     // Watercolour wash following the cursor
     const layer = document.createElement("div");
+    // growth-studio.css hides [data-splash] below 900px, so the breakpoint lives
+    // in CSS only and survives a resize. A JS check here would not.
+    layer.setAttribute("data-splash", "");
     layer.style.cssText =
       "position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .6s ease;overflow:hidden;";
 

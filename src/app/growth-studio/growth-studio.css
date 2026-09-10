@@ -17,7 +17,8 @@
   color: #241454;
   font-family: var(--font-hanken-grotesk), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip, not hidden: hidden makes this a scrollport and kills the nav's position:sticky */
+  overflow-x: clip;
   position: relative;
 }
 
@@ -130,9 +131,14 @@ html:has(.gs-root) { scroll-behavior: smooth; }
 }
 
 /* ---- Phone/tablet refinements (review round 2) ---- */
+/* Tablets keep a 2-up footer; below 640px .gs-grid drops it to one column. */
+@media (min-width: 641px) and (max-width: 900px) {
+  .gs-root .gs-footer-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
 @media (max-width: 900px) {
   /* Footer: larger, easier-to-tap text */
-  .gs-root footer a, .gs-root footer p { font-size: 17px !important; }
+  .gs-root footer .gs-grid a, .gs-root footer p { font-size: 17px !important; }
   .gs-root footer h4 { font-size: 15px !important; }
   .gs-root footer span { font-size: 14.5px !important; }
 
