@@ -154,6 +154,10 @@ body {
 
 html {
   scroll-behavior: smooth;
+  /* Keeps in-page anchor targets clear of the fixed header. */
+  scroll-padding-top: 5rem;
+  /* Reserves the scrollbar track so locking body scroll can't shift the page. */
+  scrollbar-gutter: stable;
 }
 
 .bg-gradient-radial {
@@ -250,4 +254,19 @@ a[href],
 .hover-scale:hover,
 .hover-lift:hover {
   cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
