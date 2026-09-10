@@ -29,9 +29,9 @@ const BLOB_DEFS: BlobDef[] = [
  */
 export default function TeamWash() {
   useEffect(() => {
-    // Phones/tablets: no cursor, so no hover reveal and no cursor wash. The
-    // CSS in growth-studio.css shows colour photos there instead.
-    if (window.matchMedia("(hover: none), (max-width: 900px)").matches) return;
+    // Below 900px there is no hover reveal and no cursor wash; growth-studio.css
+    // shows colour photos there instead. Keep this breakpoint identical to the CSS.
+    if (window.matchMedia("(max-width: 900px)").matches) return;
     const page = document.querySelector<HTMLElement>("[data-team-page]");
     if (!page) return;
 

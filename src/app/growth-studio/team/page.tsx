@@ -103,7 +103,7 @@ export default function TeamPage() {
             <div className="gs-team-group">
               <p className="gs-team-label" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 32px', paddingLeft: '28px' }}>ADVISORS</p>
               <div data-team-row="" style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr', gap: '16px' }}>
-                <a href="https://www.linkedin.com/in/gaelhgonzalez/" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="0" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
+                <a href="https://www.linkedin.com/in/gaelhgonzalez/" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="180" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
                   <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
                   </span>
                   <div data-photo="" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)' }}>

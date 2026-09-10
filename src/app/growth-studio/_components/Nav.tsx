@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,6 +38,21 @@ export default function Nav({
   // Phone menu state. On wide screens the links are always visible (see
   // growth-studio.css: .gs-nav-*), so this only matters below 900px.
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Close the phone menu when the route changes (the funding pages share one
+  // Nav via their layout, so it is not remounted) and on Escape.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <nav

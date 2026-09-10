@@ -138,7 +138,7 @@ html:has(.gs-root) { scroll-behavior: smooth; }
 
   /* Partners page: "Get in touch by email" button stacks label over address */
   .gs-root .gs-cta-email {
-    flex-direction: column; align-items: flex-start;
+    flex-direction: column !important; align-items: flex-start !important;
     gap: 4px !important; width: 100%;
     padding: 14px 18px !important; font-size: 15px !important;
     overflow-wrap: anywhere;
@@ -150,7 +150,6 @@ html:has(.gs-root) { scroll-behavior: smooth; }
     filter: none !important; transform: none !important; transition: none !important;
     width: 84px !important; height: 84px !important; margin: 0 auto 10px !important;
   }
-  .gs-root [data-team-row] { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
   .gs-root [data-team-card] {
     padding: 8px 4px 12px !important; border-radius: 8px !important; text-align: center;
   }
