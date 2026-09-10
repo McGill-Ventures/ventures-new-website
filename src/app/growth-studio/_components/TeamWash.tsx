@@ -60,6 +60,9 @@ export default function TeamWash() {
 
     // Watercolour wash following the cursor
     const layer = document.createElement("div");
+    // growth-studio.css hides [data-splash] below 900px, so the breakpoint lives
+    // in CSS only and survives a resize. A JS check here would not.
+    layer.setAttribute("data-splash", "");
     layer.style.cssText =
       "position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .6s ease;overflow:hidden;";
 

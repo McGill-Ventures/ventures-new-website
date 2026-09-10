@@ -31,7 +31,7 @@ export default function CareersPage() {
         <div style={{ background: 'var(--yellow,#f3f13a)', padding: '12px 32px', textAlign: 'center' }}>
           <a href={INTEREST_FORM_URL} target="_blank" rel="noopener" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '14px', letterSpacing: '.08em', color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>FUTURE CONSULTANTS: INTEREST FORM IS NOW LIVE</a>
         </div>
-        <header id="c-top" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '88px 32px 96px', overflow: 'hidden' }}>
+        <header className="gs-wrap" id="c-top" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '88px 32px 96px', overflow: 'hidden' }}>
           <div aria-hidden="true" style={{ position: 'absolute', right: '0', top: 'calc(50% - 190px)', width: '380px', height: '380px', pointerEvents: 'none', opacity: '.2' }}>
             <Image src="/growth-studio/logo-mark-large.png" alt="" width={512} height={492} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', animation: 'gs-floatY 11s ease-in-out infinite' }} />
           </div>
@@ -54,7 +54,7 @@ export default function CareersPage() {
           </div>
           <div style={{ position: 'absolute', left: '-60px', bottom: '-60px', width: '180px', height: '180px', borderRadius: '50%', background: 'rgba(243,241,58,.14)' }}>
           </div>
-          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '96px 32px', position: 'relative', display: 'grid', gridTemplateColumns: '.85fr 1.15fr', gap: '56px', alignItems: 'start' }}>
+          <div className="gs-grid gs-wrap" style={{ maxWidth: '1200px', margin: '0 auto', padding: '96px 32px', position: 'relative', display: 'grid', gridTemplateColumns: '.85fr 1.15fr', gap: '56px', alignItems: 'start' }}>
             <div data-reveal="">
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--yellow,#f3f13a)', margin: '0 0 16px' }}>WHY JOIN</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(30px,3.6vw,44px)', lineHeight: '1.05', letterSpacing: '-.02em', margin: '0' }}>You own the work, start to finish.</h2>
@@ -68,12 +68,12 @@ export default function CareersPage() {
           </div>
         </section>
         <div style={{ background: '#f6f5fb' }}>
-          <section id="c-gain" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px' }}>
+          <section className="gs-wrap" id="c-gain" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px' }}>
             <div data-reveal="" style={{ maxWidth: '720px', marginBottom: '56px' }}>
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>AVAILABLE OPPORTUNITIES</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4vw,52px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0' }}>Start as a consultant, grow to lead your own team.</h2>
             </div>
-            <div data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '20px', alignItems: 'stretch' }}>
+            <div className="gs-grid" data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '20px', alignItems: 'stretch' }}>
               <div style={{ background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '36px 34px' }}>
                 <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.14em', fontSize: '12px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 8px' }}>ROLE WE RECRUIT FOR</p>
                 <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '24px', margin: '0 0 22px' }}>As a junior consultant</h3>
@@ -97,13 +97,13 @@ export default function CareersPage() {
             </div>
           </section>
         </div>
-        <section id="c-what" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px' }}>
+        <section className="gs-wrap" id="c-what" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px' }}>
           <div data-reveal="" style={{ maxWidth: '720px', marginBottom: '60px' }}>
             <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>TIMELINE</p>
             <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4vw,52px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0 0 20px' }}>How the program runs.</h2>
             <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'rgba(36,20,84,.75)', margin: '0' }}>We recruit from the McGill Ventures Analyst Program and beyond, then run two to three startup mandates a year. We do background work online and collaborate in-person for brainstorming, peer feedback, and presentation refinement.</p>
           </div>
-          <div data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '32px' }}>
+          <div className="gs-grid" data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '32px' }}>
             <div>
               <div style={{ height: '2px', background: 'rgba(58,31,176,.16)', marginBottom: '28px', position: 'relative' }}>
                 <div style={{ position: 'absolute', left: '0', top: '-5px', width: '12px', height: '12px', borderRadius: '50%', background: 'var(--yellow,#f3f13a)', boxShadow: '0 0 0 2px var(--purple,#3a1fb0)' }}>
@@ -133,8 +133,8 @@ export default function CareersPage() {
             </div>
           </div>
         </section>
-        <section id="c-fit" style={{ maxWidth: '1200px', margin: '0 auto 120px', padding: '0 32px' }}>
-          <div data-reveal="" style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: '48px', alignItems: 'center', background: '#f6f5fb', border: '1px solid rgba(36,20,84,.12)', borderRadius: '4px', padding: '56px 48px' }}>
+        <section className="gs-wrap" id="c-fit" style={{ maxWidth: '1200px', margin: '0 auto 120px', padding: '0 32px' }}>
+          <div className="gs-grid gs-card-pad" data-reveal="" style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: '48px', alignItems: 'center', background: '#f6f5fb', border: '1px solid rgba(36,20,84,.12)', borderRadius: '4px', padding: '56px 48px' }}>
             <div>
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>WHAT WE LOOK FOR</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(26px,3vw,38px)', lineHeight: '1.08', letterSpacing: '-.02em', margin: '0 0 16px' }}>Dedication & Adaptability</h2>
@@ -148,8 +148,8 @@ export default function CareersPage() {
             </div>
           </div>
         </section>
-        <section id="c-apply" style={{ maxWidth: '1200px', margin: '0 auto 120px', padding: '0 32px' }}>
-          <div data-reveal="" style={{ position: 'relative', overflow: 'hidden', background: 'var(--yellow,#f3f13a)', color: 'var(--purple,#3a1fb0)', borderRadius: '4px', padding: '84px 64px' }}>
+        <section className="gs-wrap" id="c-apply" style={{ maxWidth: '1200px', margin: '0 auto 120px', padding: '0 32px' }}>
+          <div className="gs-card-pad" data-reveal="" style={{ position: 'relative', overflow: 'hidden', background: 'var(--yellow,#f3f13a)', color: 'var(--purple,#3a1fb0)', borderRadius: '4px', padding: '84px 64px' }}>
             <div data-float="" style={{ position: 'absolute', right: '-70px', top: '-70px', width: '260px', height: '260px', borderRadius: '50%', border: '1.5px solid rgba(36,20,84,.18)', animation: 'gs-spinR 50s linear infinite' }}>
             </div>
             <div data-float="" style={{ position: 'absolute', right: '120px', bottom: '-50px', width: '120px', height: '120px', background: 'rgba(36,20,84,.08)', transform: 'rotate(20deg)', animation: 'gs-floatY 8s ease-in-out infinite' }}>
