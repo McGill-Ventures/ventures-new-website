@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Icon } from "@/components/ui";
+import { fadeUp, hoverLift, revealOnScroll } from "@/lib/motion";
 import graphiteVenturesLogo from "@/app/sponsors/graphite_ventures.png";
 
 const WEEKLY_MODULES = [
@@ -30,7 +32,12 @@ export default function AnalystProgramCard() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="rounded-3xl p-10 hover-lift animate-fade-in-up border border-purple-200 bg-white">
+    <motion.div
+      variants={fadeUp}
+      {...revealOnScroll}
+      {...hoverLift}
+      className="cursor-pointer rounded-3xl border border-purple-200 bg-white p-10"
+    >
       <div className="bg-purple-200 text-purple-800 px-4 py-2 rounded-full text-sm font-heading font-semibold mb-6 inline-block">
         Applications Open
       </div>
@@ -125,6 +132,6 @@ export default function AnalystProgramCard() {
       >
         Applications Open
       </a>
-    </div>
+    </motion.div>
   );
 }

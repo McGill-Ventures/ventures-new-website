@@ -44,3 +44,6 @@ _reference/
 # this project uses pnpm
 package-lock.json
 yarn.lock
+
+# playwright-mcp scratch output
+.playwright-mcp/
