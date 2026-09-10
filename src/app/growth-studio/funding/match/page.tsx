@@ -143,7 +143,7 @@ function Results({ results, answers, onRestart }: { results: MatchResult[]; answ
                 <span style={{ flexShrink: 0, width: 34, height: 34, borderRadius: 10, background: T.primary, color: "#fff", fontSize: 15, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center" }}>{i + 1}</span>
                 <div style={{ minWidth: 0 }}>
                   <h2 style={{ margin: 0, fontSize: 19, fontWeight: 750, letterSpacing: "-0.01em" }}>{r.program.program_name}</h2>
-                  <p style={{ margin: "3px 0 0", fontSize: 14, color: T.muted }}>{r.program.administering_body}</p>
+                  <p style={{ margin: "3px 0 0", fontSize: 14, color: T.muted }}>{[r.program.administering_body, r.stream_text].filter(Boolean).join(" \u00b7 ")}</p>
                 </div>
               </div>
               <Pill label={b.label} fg={b.fg} bg={b.bg} />
