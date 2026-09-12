@@ -27,6 +27,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.mcgillvc.ca"),
   title: "McGill Ventures",
   description: "McGill Ventures partners with exceptional entrepreneurs to build transformative companies that shape tomorrow's world. Leading venture capital firm focused on innovation and growth.",
   keywords: "venture capital, investment, startup funding, innovation, McGill, Montreal, VC",

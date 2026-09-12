@@ -1,5 +1,7 @@
 export interface NavigationProps {
   currentPage?: string;
+  /** "dark" makes the unscrolled bar transparent with white text, for pages whose hero is dark. */
+  variant?: "light" | "dark";
 }
 
 export interface TeamMember {
