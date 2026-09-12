@@ -566,7 +566,8 @@ a[href],
   content: "";
   position: absolute;
   /* Vertical only: a sideways margin would let one button claim the gap
-     next to its neighbour. */
+     next to its neighbour. Deliberately square, not `border-radius:
+     inherit` -- on a pill the curve leaves the bottom corners uncovered,
+     which is exactly where the bounce came back. */
   inset: -4px 0 -10px;
-  border-radius: inherit;
 }
