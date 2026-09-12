@@ -25,7 +25,7 @@ type Props = {
   variant?: RevealVariant;
   /** "view" animates when scrolled into view, "load" animates immediately on page load. */
   trigger?: "view" | "load";
-  /** Milliseconds. Stagger siblings with `index * 80`. */
+  /** Milliseconds. */
   delay?: number;
   /** Milliseconds. */
   duration?: number;
