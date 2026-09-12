@@ -8,9 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@tsparticles/effect-trail':
+        specifier: ^4.4.0
+        version: 4.4.0(@tsparticles/engine@4.4.0)
       '@tsparticles/engine':
         specifier: ^4.4.0
         version: 4.4.0
+      '@tsparticles/plugin-emitters':
+        specifier: ^4.4.0
+        version: 4.4.0(@tsparticles/engine@4.4.0)(@tsparticles/plugin-interactivity@4.4.0(@tsparticles/engine@4.4.0))
+      '@tsparticles/plugin-emitters-shape-square':
+        specifier: ^4.4.0
+        version: 4.4.0(@tsparticles/engine@4.4.0)(@tsparticles/plugin-emitters@4.4.0(@tsparticles/engine@4.4.0)(@tsparticles/plugin-interactivity@4.4.0(@tsparticles/engine@4.4.0)))
       '@tsparticles/react':
         specifier: ^4.4.0
         version: 4.4.0(@tsparticles/engine@4.4.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -522,6 +531,11 @@ packages:
     peerDependencies:
       '@tsparticles/engine': 4.4.0
 
+  '@tsparticles/effect-trail@4.4.0':
+    resolution: {integrity: sha512-gKlw7Am4GVq0EFX1snfzb8FYqJUXMmfumR7P1VqrrQRLDbaWV0EbUBOwJQ1w76DCcDrVvK75dsVC7yvCtc0rmw==}
+    peerDependencies:
+      '@tsparticles/engine': 4.4.0
+
   '@tsparticles/engine@4.4.0':
     resolution: {integrity: sha512-zUDykZ7qBqHYMXr6NveXg51kBlvfaQKMmWkMJ8nT7fC4dXdNayb1+TxOfAoqH9/U/u0Eyr0YE+72ai/ymS0uww==}
 
@@ -624,6 +638,21 @@ packages:
     resolution: {integrity: sha512-kdKuM4gKd3Y8x1WfbWgs72EhezBZ8HU0dsvECFsfVMuWa0/gB960BRz+XlyjVOIDBw8dIvx7EUoVgXsRg2WAOA==}
     peerDependencies:
       '@tsparticles/engine': 4.4.0
+
+  '@tsparticles/plugin-emitters-shape-square@4.4.0':
+    resolution: {integrity: sha512-9T8J2IySf3drKGLsUVAH8a75aIh10iGiVIX0SyCjwiumb8J6Ma5OOxM32njOeRiNUjOcYTh5kjw1W4eHiw2KPw==}
+    peerDependencies:
+      '@tsparticles/engine': 4.4.0
+      '@tsparticles/plugin-emitters': 4.4.0
+
+  '@tsparticles/plugin-emitters@4.4.0':
+    resolution: {integrity: sha512-R1zuvQ00s0BRlmQ5W5WUg+w9j5q9HNJk0KQf61+H397wcLeUj4c+qafdW6XhXJxqBEBCbRnhygGIHgP7VSPUeA==}
+    peerDependencies:
+      '@tsparticles/engine': 4.4.0
+      '@tsparticles/plugin-interactivity': 4.4.0
+    peerDependenciesMeta:
+      '@tsparticles/plugin-interactivity':
+        optional: true
 
   '@tsparticles/plugin-hex-color@4.4.0':
     resolution: {integrity: sha512-sbRW6fi/YOS/hvFi6GCQiKI2zMCrmydrhlzqWyw2UUyg4Rr3FviQbIC2VRZrMc30Cm6kSkR3SovXIFDpZzO94Q==}
@@ -2504,6 +2533,10 @@ snapshots:
     dependencies:
       '@tsparticles/engine': 4.4.0
 
+  '@tsparticles/effect-trail@4.4.0(@tsparticles/engine@4.4.0)':
+    dependencies:
+      '@tsparticles/engine': 4.4.0
+
   '@tsparticles/engine@4.4.0': {}
 
   '@tsparticles/interaction-external-attract@4.4.0(@tsparticles/engine@4.4.0)(@tsparticles/plugin-interactivity@4.4.0(@tsparticles/engine@4.4.0))':
@@ -2591,6 +2624,17 @@ snapshots:
   '@tsparticles/plugin-easing-quad@4.4.0(@tsparticles/engine@4.4.0)':
     dependencies:
       '@tsparticles/engine': 4.4.0
+
+  '@tsparticles/plugin-emitters-shape-square@4.4.0(@tsparticles/engine@4.4.0)(@tsparticles/plugin-emitters@4.4.0(@tsparticles/engine@4.4.0)(@tsparticles/plugin-interactivity@4.4.0(@tsparticles/engine@4.4.0)))':
+    dependencies:
+      '@tsparticles/engine': 4.4.0
+      '@tsparticles/plugin-emitters': 4.4.0(@tsparticles/engine@4.4.0)(@tsparticles/plugin-interactivity@4.4.0(@tsparticles/engine@4.4.0))
+
+  '@tsparticles/plugin-emitters@4.4.0(@tsparticles/engine@4.4.0)(@tsparticles/plugin-interactivity@4.4.0(@tsparticles/engine@4.4.0))':
+    dependencies:
+      '@tsparticles/engine': 4.4.0
+    optionalDependencies:
+      '@tsparticles/plugin-interactivity': 4.4.0(@tsparticles/engine@4.4.0)
 
   '@tsparticles/plugin-hex-color@4.4.0(@tsparticles/engine@4.4.0)':
     dependencies:
