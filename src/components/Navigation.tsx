@@ -73,9 +73,11 @@ function VentureMark({ logo, className }: { logo: Venture["logo"]; className?: s
   );
 }
 
-export default function Navigation({ currentPage }: NavigationProps) {
+export default function Navigation({ currentPage, variant = "light" }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  // Once scrolled, both variants share the glass bar so it works over any section.
+  const dark = variant === "dark" && !isScrolled;
   const toggleRef = useRef<HTMLButtonElement>(null);
   const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
   // inert blurs focus to <body>, so hand it back to the control that opened it.
@@ -115,8 +117,10 @@ export default function Navigation({ currentPage }: NavigationProps) {
           "fixed inset-x-0 top-0 z-50 transition-all duration-300",
           isScrolled
             ? "border-b border-purple-950/10 bg-gradient-to-b from-white/85 to-purple-50/85 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)] backdrop-blur-xl backdrop-saturate-150"
-            : // Matches the top of every hero's wash, so the bar leaves no seam.
-              "bg-gradient-to-b from-white to-purple-50"
+            : dark
+              ? "bg-gradient-to-b from-black/60 to-transparent"
+              : // Matches the top of every hero's wash, so the bar leaves no seam.
+                "bg-gradient-to-b from-white to-purple-50"
         )}
       >
         <nav
@@ -139,7 +143,8 @@ export default function Navigation({ currentPage }: NavigationProps) {
               className={cn(
                 // shrink-0: without it flex compresses the wordmark to absorb overflow
                 "w-auto shrink-0 object-contain transition-[height] duration-300",
-                isScrolled ? "h-5 xl:h-7" : "h-6 xl:h-8"
+                isScrolled ? "h-5 xl:h-7" : "h-6 xl:h-8",
+                dark && "brightness-0 invert"
               )}
               sizes="(max-width: 640px) 210px, 260px"
               priority
@@ -161,7 +166,7 @@ export default function Navigation({ currentPage }: NavigationProps) {
                     <span
                       className={cn(
                         ROLL,
-                        "text-purple-950/70",
+                        dark ? "text-white/70" : "text-purple-950/70",
                         isActive
                           ? "-translate-y-full"
                           : "group-hover:-translate-y-full group-focus-visible:-translate-y-full"
@@ -173,7 +178,8 @@ export default function Navigation({ currentPage }: NavigationProps) {
                       aria-hidden
                       className={cn(
                         ROLL,
-                        "absolute inset-0 text-purple-900",
+                        "absolute inset-0",
+                        dark ? "text-white" : "text-purple-900",
                         isActive
                           ? "translate-y-0"
                           : "translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0"
@@ -207,7 +213,10 @@ export default function Navigation({ currentPage }: NavigationProps) {
             <button
               ref={toggleRef}
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="rounded-xl p-2.5 text-purple-950 transition-colors hover:bg-purple-100 lg:hidden"
+              className={cn(
+                "rounded-xl p-2.5 transition-colors lg:hidden",
+                dark ? "text-white hover:bg-white/10" : "text-purple-950 hover:bg-purple-100"
+              )}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
