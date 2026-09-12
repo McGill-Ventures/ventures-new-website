@@ -130,19 +130,22 @@ const STRIP_BOTTOM = [
 
 const WHY_FEATURES = [
   {
-    title: "Learn from investors",
+    title: "The people around you",
     description:
-      "Weekly Analyst Program classes taught by practising VCs, with founder pitches and real cases.",
+      "Sixty-five students who are ambitious, curious and building things.",
   },
   {
-    title: "Work on real deals",
-    description:
-      "Source and diligence startups for the Venture Fund, or advise founders through Growth Studio client projects.",
+    title: "Taught by investors",
+    description: "Weekly sessions led by VCs who invest for a living.",
   },
   {
-    title: "Build the ecosystem",
+    title: "Real deals, not just theory",
     description:
-      "18 events last year, from North Star to Scarlet Pitch, plus a builders' cohort at Toronto Tech Week with Project Atlas.",
+      "Diligence startups for the fund, advise founders through the studio.",
+  },
+  {
+    title: "A network that outlasts school",
+    description: "Investors, founders and alumni across Montreal and beyond.",
   },
 ];
 
@@ -445,22 +448,22 @@ export default function Home() {
                 delay={200}
                 className="mt-6 max-w-xl font-body text-lg text-purple-100/85 md:text-xl"
               >
-                McGill Ventures educates and connects students to the venture
-                capital and startup ecosystem in Canada and beyond.
+                Students who are serious about building companies, and about
+                backing them.
               </Reveal>
               {/* Stacked, not columned: three columns inside this half-width block
                 squeeze each blurb to five ragged lines. */}
-              <div className="mt-8 grid gap-5">
+              <div className="mt-8 grid gap-4">
                 {WHY_FEATURES.map((feature, i) => (
                   <Reveal
                     key={feature.title}
                     delay={350 + i * 120}
-                    className="border-t border-white/15 pt-4"
+                    className="border-t border-white/15 pt-3"
                   >
-                    <h3 className="font-heading text-xl text-purple-200">
+                    <h3 className="font-heading text-lg text-purple-200">
                       {feature.title}
                     </h3>
-                    <p className="mt-2 font-body text-purple-300">
+                    <p className="mt-1.5 font-body text-purple-300">
                       {feature.description}
                     </p>
                   </Reveal>
