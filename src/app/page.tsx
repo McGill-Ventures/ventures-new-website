@@ -211,9 +211,9 @@ export default function Home() {
 
         <div className="relative grid min-h-[100dvh] lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
           <div className="flex flex-col justify-center px-6 pt-28 pb-12 sm:px-10 lg:py-24 lg:pl-16 xl:pl-24">
-            <h1 className="font-display text-[clamp(2.75rem,min(6.4vw,10vh),6.5rem)] leading-[0.95]">
+            <h1 className="font-display text-[clamp(2.5rem,min(5vw,8vh),5rem)] leading-[0.98] text-balance">
               <SplitText
-                text="Building the Future of Venture Capital"
+                text="Shaping the Next Generation of Builders and Backers"
                 trigger="load"
                 delay={150}
               />
