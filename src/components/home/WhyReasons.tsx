@@ -23,7 +23,7 @@ const REASONS = [
     title: "A network that travels",
     description:
       "Members and alumni in Montreal, Toronto, New York and San Francisco who keep showing up for each other.",
-    photo: "/events/project_atlas/atlas_02.jpg",
+    photo: "/community/members_01.jpg",
   },
 ];
 
