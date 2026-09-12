@@ -14,7 +14,7 @@ type Props = {
 };
 
 const BASE =
-  "group inline-flex items-center gap-3 rounded-full font-heading whitespace-nowrap transition-[transform,box-shadow,border-color,background-color,color] duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400";
+  "lift-guard group relative inline-flex items-center gap-3 rounded-full font-heading whitespace-nowrap transition-[transform,box-shadow,border-color,background-color,color] duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400";
 
 const VARIANT = {
   // Same family as the Project ATLAS pill in the nav: deep purple to black,

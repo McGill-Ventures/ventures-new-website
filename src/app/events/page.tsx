@@ -272,7 +272,7 @@ const EVENTS_2024: EventCard[] = [
 function EventCardComponent({ event, index }: { event: EventCard; index: number }) {
   return (
     <div
-      className="group rounded-2xl shadow-lg overflow-hidden bg-white animate-fade-in-up flex flex-col hover:-translate-y-2 hover:shadow-2xl"
+      className="lift-guard group relative rounded-2xl shadow-lg overflow-hidden bg-white animate-fade-in-up flex flex-col hover:-translate-y-2 hover:shadow-2xl"
       style={{
         animationDelay: `${index * 0.1}s`,
         transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",

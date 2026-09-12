@@ -140,7 +140,7 @@ export function FeaturedMembers() {
                   href={founder.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-black text-white transition-transform duration-500 hover:-translate-y-1"
+                  className="lift-guard group relative flex h-full flex-col overflow-hidden rounded-3xl bg-black text-white transition-transform duration-500 hover:-translate-y-1"
                 >
                   <div
                     aria-hidden
