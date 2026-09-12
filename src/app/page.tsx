@@ -74,7 +74,7 @@ const PROGRAMS = [
     name: "Project Atlas",
     href: "https://www.project-atlas.ca/",
     external: true,
-    photo: "/events/technova2025/tn2025_04.jpg",
+    photo: "/events/project_atlas/atlas_02.jpg",
     blurb:
       "Montreal's young builders, connected to the wider Canadian ecosystem through year-round events and a 30-person cohort sent to Toronto Tech Week.",
   },
