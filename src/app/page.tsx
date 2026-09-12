@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import { Button } from "@/components/ui";
 import Footer from "@/components/Footer";
 import { Marquee, Parallax, Reveal, SplitText } from "@/components/motion";
 
@@ -233,19 +234,13 @@ export default function Home() {
               delay={850}
               className="mt-8 flex flex-wrap gap-4"
             >
-              <Link
-                href="/programs"
-                className="group inline-flex items-center gap-3 rounded-full bg-purple-600 px-7 py-4 font-heading text-lg text-white transition-colors duration-300 hover:bg-purple-500"
-              >
+              <Button href="/programs">
                 Explore Programs
                 <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center rounded-full border border-white/30 px-7 py-4 font-heading text-lg text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
-              >
+              </Button>
+              <Button href="/about" variant="secondary">
                 Learn More
-              </Link>
+              </Button>
             </Reveal>
           </div>
 
@@ -318,13 +313,10 @@ export default function Home() {
           duration={1000}
           className="absolute bottom-8 left-6 hidden sm:left-10 lg:block lg:left-16 xl:left-24"
         >
-          <a
-            href="#programs"
-            className="group inline-flex items-center gap-3 rounded-full border border-white/30 px-5 py-2.5 font-heading text-sm text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
-          >
+          <Button href="#programs" variant="secondary" size="sm">
             Discover more
             <ArrowDown className="size-4 transition-transform duration-300 group-hover:translate-y-0.5" />
-          </a>
+          </Button>
         </Reveal>
       </section>
 
@@ -412,13 +404,10 @@ export default function Home() {
               </Reveal>
             </div>
             <Reveal delay={300}>
-              <Link
-                href="/events"
-                className="group inline-flex items-center gap-3 rounded-full border border-white/30 px-6 py-3 font-heading text-base text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
-              >
+              <Button href="/events" variant="secondary" size="sm">
                 See all events
                 <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+              </Button>
             </Reveal>
           </div>
         </div>

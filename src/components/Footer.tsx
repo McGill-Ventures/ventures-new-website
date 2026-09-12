@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight, Instagram, Linkedin, Mail, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal, SplitText } from "@/components/motion";
+import { Button } from "@/components/ui";
 
 const footerLinks = {
   company: [
@@ -86,19 +87,13 @@ export default function Footer({
             <SplitText text="Join the team behind McGill's startup scene." />
           </h2>
           <Reveal delay={300} className="flex flex-wrap gap-4 lg:justify-end">
-            <Link
-              href="/programs"
-              className="group inline-flex items-center gap-3 rounded-full bg-purple-600 px-7 py-4 font-heading text-lg text-white transition-colors duration-300 hover:bg-purple-500"
-            >
+            <Button href="/programs">
               Explore Programs
               <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-full border border-white/30 px-7 py-4 font-heading text-lg text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
-            >
+            </Button>
+            <Button href="/contact" variant="secondary">
               Get in touch
-            </Link>
+            </Button>
           </Reveal>
         </div>
 
@@ -163,7 +158,9 @@ export default function Footer({
                     className={cn(LINK, "inline-flex items-center gap-2")}
                   >
                     <Mail className="size-4 shrink-0 text-purple-300" />
-                    <span className="break-all lg:break-normal">{contactInfo.email}</span>
+                    <span className="break-all lg:break-normal">
+                      {contactInfo.email}
+                    </span>
                   </a>
                 </li>
                 <li className="inline-flex items-center gap-2 font-body text-white/80">
