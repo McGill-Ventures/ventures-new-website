@@ -22,14 +22,8 @@ const REASONS = [
   {
     title: "A network that travels",
     description:
-      "Members and alumni in Montreal, Toronto, New York and San Francisco.",
+      "Members and alumni in Montreal, Toronto, New York and San Francisco who keep showing up for each other.",
     photo: "/events/project_atlas/atlas_02.jpg",
-  },
-  {
-    title: "People who back you",
-    description:
-      "The introductions, the references and the first calls keep coming long after you leave.",
-    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_01.jpg",
   },
 ];
 
@@ -55,31 +49,21 @@ export function WhyReasons() {
             >
               <div
                 onMouseEnter={() => setActive(i)}
-                className="group relative flex gap-4 py-5 pr-2 pl-5 transition-colors duration-500"
+                className={cn(
+                  "py-6 transition-all duration-500",
+                  on ? "translate-x-1.5 opacity-100" : "reason-dim",
+                )}
               >
-                {/* Marks the active reason and doubles as the bullet. */}
-                <span
-                  aria-hidden
-                  className={cn(
-                    "absolute top-1/2 left-0 -translate-y-1/2 text-purple-300 transition-all duration-500",
-                    on ? "scale-100 opacity-100" : "reason-dim scale-90",
-                  )}
-                >
-                  <Sparkle className="size-4 fill-current" />
-                </span>
-                <div
-                  className={cn(
-                    "transition-all duration-500",
-                    on ? "translate-x-1 opacity-100" : "reason-dim",
-                  )}
-                >
-                  <h3 className="font-display text-xl text-white md:text-2xl">
-                    {reason.title}
-                  </h3>
-                  <p className="mt-2 max-w-md font-body text-sm leading-relaxed text-purple-200">
-                    {reason.description}
-                  </p>
-                </div>
+                <h3 className="flex items-center gap-3 font-display text-xl text-white md:text-2xl">
+                  <Sparkle
+                    aria-hidden
+                    className="size-4 shrink-0 fill-purple-300 text-purple-300"
+                  />
+                  {reason.title}
+                </h3>
+                <p className="mt-2 max-w-md pl-7 font-body text-sm leading-relaxed text-purple-200">
+                  {reason.description}
+                </p>
               </div>
             </Reveal>
           );
