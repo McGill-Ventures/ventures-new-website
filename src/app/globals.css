@@ -270,3 +270,246 @@ a[href],
     scroll-behavior: auto !important;
   }
 }
+
+/* ------------------------------------------------------------------
+   Motion primitives, used by src/components/motion. Hidden states sit
+   behind `@media (scripting: enabled)` so content stays visible without JS.
+   ------------------------------------------------------------------ */
+:root {
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* <Reveal> */
+[data-reveal="up"] { --reveal-from: translateY(36px); }
+[data-reveal="down"] { --reveal-from: translateY(-36px); }
+[data-reveal="left"] { --reveal-from: translateX(-48px); }
+[data-reveal="right"] { --reveal-from: translateX(48px); }
+[data-reveal="scale"] { --reveal-from: scale(0.9); }
+[data-reveal="blur"] { --reveal-from: translateY(20px); --reveal-filter: blur(14px); }
+
+[data-reveal]:not([data-reveal="clip"]) {
+  transition:
+    opacity var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms),
+    transform var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms),
+    filter var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms);
+}
+
+/* Clip variant wipes an inner wrapper upward while its content settles from a slight zoom. */
+.reveal-clip {
+  /* Transparent to layout: against an auto-height parent this resolves to
+     auto, and against a sized one it fills, so `h-full` children work. */
+  height: 100%;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms);
+}
+
+.reveal-clip > * {
+  transition: transform var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms);
+}
+
+@media (scripting: enabled) {
+  [data-reveal]:not([data-reveal="clip"])[data-trigger="view"]:not([data-inview]) {
+    opacity: 0;
+    transform: var(--reveal-from, none);
+    filter: var(--reveal-filter, none);
+  }
+  [data-reveal]:not([data-reveal="clip"])[data-trigger="load"] {
+    animation: reveal-enter var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms) both;
+  }
+  [data-reveal="clip"][data-trigger="view"]:not([data-inview]) > .reveal-clip {
+    clip-path: inset(100% 0 0 0);
+  }
+  [data-reveal="clip"][data-trigger="view"]:not([data-inview]) > .reveal-clip > * {
+    transform: scale(1.08);
+  }
+  [data-reveal="clip"][data-trigger="load"] > .reveal-clip {
+    animation: reveal-clip-enter var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms) both;
+  }
+  [data-reveal="clip"][data-trigger="load"] > .reveal-clip > * {
+    animation: reveal-clip-zoom var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms) both;
+  }
+}
+
+@keyframes reveal-enter {
+  from {
+    opacity: 0;
+    transform: var(--reveal-from, none);
+    filter: var(--reveal-filter, none);
+  }
+}
+
+@keyframes reveal-clip-enter {
+  from { clip-path: inset(100% 0 0 0); }
+}
+
+@keyframes reveal-clip-zoom {
+  from { transform: scale(1.08); }
+}
+
+/* <SplitText> */
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Room for descenders inside the clip box without changing line height. */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.split-inner {
+  display: inline-block;
+}
+
+@media (scripting: enabled) {
+  .split-inner {
+    transform: translateY(120%);
+  }
+  .split[data-inview] .split-inner {
+    animation: split-rise var(--split-duration, 1000ms) var(--ease-out-expo) both;
+    animation-delay: calc(var(--split-delay, 0ms) + var(--i, 0) * var(--split-stagger, 70ms));
+  }
+}
+
+@keyframes split-rise {
+  from { transform: translateY(120%); }
+  to { transform: translateY(0); }
+}
+
+/* <Marquee> */
+.marquee {
+  display: flex;
+  gap: var(--marquee-gap, 1rem);
+  overflow: hidden;
+}
+
+.marquee-y {
+  flex-direction: column;
+}
+
+.marquee-track {
+  display: flex;
+  flex: none;
+  gap: var(--marquee-gap, 1rem);
+  animation: marquee-x var(--marquee-duration, 40s) linear infinite;
+}
+
+.marquee-track > * {
+  flex: none;
+}
+
+.marquee-y .marquee-track {
+  flex-direction: column;
+  animation-name: marquee-y;
+}
+
+[data-direction="right"] .marquee-track,
+[data-direction="down"] .marquee-track {
+  animation-direction: reverse;
+}
+
+[data-pause]:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-fade.marquee-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee-fade.marquee-y {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+}
+
+@keyframes marquee-x {
+  to { transform: translateX(calc(-100% - var(--marquee-gap, 1rem))); }
+}
+
+@keyframes marquee-y {
+  to { transform: translateY(calc(-100% - var(--marquee-gap, 1rem))); }
+}
+
+/* <FlipCard> */
+.flip {
+  perspective: 1600px;
+}
+
+.flip-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transition: transform 750ms var(--ease-out-expo);
+  transform-style: preserve-3d;
+}
+
+.flip[data-flipped] .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  /* Chrome still needs the prefix to hide the reversed face. */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* The hit area sits beneath the content, so a click anywhere turns the card
+   over while links and buttons on the face keep taking their own clicks. */
+.flip-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  cursor: pointer;
+  border-radius: inherit;
+}
+
+.flip-hit:focus-visible {
+  outline: 2px solid var(--color-purple-500);
+  outline-offset: 2px;
+}
+
+.flip-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.flip-content a,
+.flip-content button {
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner,
+  .flip[data-flipped] .flip-inner {
+    transform: none;
+  }
+
+  .flip-face {
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+    transition: opacity 200ms linear;
+  }
+
+  .flip-back {
+    opacity: 0;
+    transform: none;
+  }
+
+  .flip[data-flipped] .flip-front {
+    opacity: 0;
+  }
+
+  .flip[data-flipped] .flip-back {
+    opacity: 1;
+  }
+}
