@@ -30,8 +30,8 @@ export default function GrowthStudioPage() {
         <div style={{ background: 'var(--yellow,#f3f13a)', padding: '12px 32px', textAlign: 'center' }}>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform?usp=header" target="_blank" rel="noopener" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '14px', letterSpacing: '.08em', color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>STARTUPS: INTAKE APPLICATIONS ARE NOW OPEN</a>
         </div>
-        <header id="top" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '56px 32px 80px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.08fr .92fr', gap: '56px', alignItems: 'center' }}>
+        <header className="gs-wrap" id="top" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '56px 32px 80px' }}>
+          <div className="gs-grid" style={{ display: 'grid', gridTemplateColumns: '1.08fr .92fr', gap: '56px', alignItems: 'center' }}>
             <div>
               <h1 data-reveal="" data-delay="80" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(42px,5.6vw,74px)', lineHeight: '.98', letterSpacing: '-.025em', margin: '0 0 24px' }}>
                 We help founders become <span style={{ color: 'var(--purple,#3a1fb0)' }}>investor-ready.</span>
@@ -46,7 +46,7 @@ export default function GrowthStudioPage() {
               <a href="#how" data-hover={`{"background":"rgba(36,20,84,.05)"}`} style={{ textDecoration: 'none', color: '#241454', fontWeight: '600', fontSize: '16px', padding: '15px 24px', borderRadius: '2px', border: '1px solid rgba(36,20,84,.25)', transition: 'background .18s ease,border-color .18s ease' }}>How we help</a>
             </div>
           </div>
-          <div style={{ position: 'relative', height: '480px', borderRadius: '4px', overflow: 'hidden' }}>
+          <div className="gs-hero-img" style={{ position: 'relative', height: '480px', borderRadius: '4px', overflow: 'hidden' }}>
             <Image src="/growth-studio/hero-founders.webp" alt="Growth Studio founders working together" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: 'cover' }} priority />
             <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(160deg,rgba(58,31,176,.22),rgba(36,20,84,0) 55%)', pointerEvents: 'none' }}>
             </div>
@@ -58,7 +58,7 @@ export default function GrowthStudioPage() {
           </div>
           <div style={{ position: 'absolute', left: '-60px', bottom: '-60px', width: '180px', height: '180px', borderRadius: '50%', background: 'rgba(243,241,58,.14)' }}>
           </div>
-          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '96px 32px', position: 'relative', display: 'grid', gridTemplateColumns: '.85fr 1.15fr', gap: '56px', alignItems: 'start' }}>
+          <div className="gs-grid gs-wrap" style={{ maxWidth: '1200px', margin: '0 auto', padding: '96px 32px', position: 'relative', display: 'grid', gridTemplateColumns: '.85fr 1.15fr', gap: '56px', alignItems: 'start' }}>
             <div data-reveal="">
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--yellow,#f3f13a)', margin: '0 0 16px' }}>WHO WE WORK WITH</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(30px,3.6vw,44px)', lineHeight: '1.05', letterSpacing: '-.02em', margin: '0' }}>Sector agnostic. Founder focused.</h2>
@@ -72,13 +72,13 @@ export default function GrowthStudioPage() {
           </div>
         </section>
         <div style={{ background: '#f6f5fb' }}>
-          <section id="network" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px 100px' }}>
+          <section className="gs-wrap" id="network" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px 100px' }}>
             <div data-reveal="" style={{ maxWidth: '720px', marginBottom: '40px' }}>
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>OUR NETWORK</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4vw,52px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0 0 20px' }}>We live and breathe the startup world.</h2>
               <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'rgba(36,20,84,.75)', margin: '0' }}>Growth Studio sits inside McGill Ventures&apos; network of investors, accelerators, and founder communities.</p>
             </div>
-            <div data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: '14px' }}>
+            <div className="gs-grid gs-grid-logos" data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: '14px' }}>
               <a href="https://frontrow.ventures/" target="_blank" rel="noopener" data-hover={`{"borderColor":"var(--purple,#3a1fb0)"}`} style={{ textDecoration: 'none', color: '#241454', textAlign: 'center', background: '#fff', border: '1px solid rgba(36,20,84,.14)', borderRadius: '3px', padding: '22px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'border-color .18s ease' }}>
                 <Image src="/growth-studio/front-row-ventures.webp" alt="Front Row Ventures" width={670} height={235} style={{ maxWidth: '100%', maxHeight: '36px', objectFit: 'contain' }} />
               </a>
@@ -126,12 +126,12 @@ export default function GrowthStudioPage() {
               </div>
             </section>
           </div>
-          <section id="how" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px' }}>
+          <section className="gs-wrap" id="how" style={{ maxWidth: '1200px', margin: '0 auto', padding: '120px 32px' }}>
             <div data-reveal="" style={{ maxWidth: '680px', marginBottom: '56px' }}>
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 16px' }}>HOW WE HELP</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4vw,52px)', lineHeight: '1.02', letterSpacing: '-.02em', margin: '0' }}>Eight ways we get founders investor-ready.</h2>
             </div>
-            <div data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '56px', alignItems: 'center' }}>
+            <div className="gs-grid gs-radar-grid" data-reveal="" data-delay="80" style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '56px', alignItems: 'center' }}>
               <div data-radar="" style={{ position: 'relative', width: '560px', height: '560px', flex: 'none', maxWidth: '100%' }}>
                 <svg viewBox="0 0 560 560" width="560" height="560" style={{ maxWidth: '100%', height: 'auto', display: 'block', overflow: 'visible' }}>
                   <polygon points="280,112 398.8,161.2 448,280 398.8,398.8 280,448 161.2,398.8 112,280 161.2,161.2" fill="none" stroke="rgba(36,20,84,.16)" />
@@ -171,7 +171,7 @@ export default function GrowthStudioPage() {
               <div>
                 <p data-active-num-2="" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.14em', fontSize: '12.5px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 14px', minHeight: '16px' }}>
                 </p>
-                <h3 data-active-title="" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: 'clamp(24px,2.6vw,32px)', lineHeight: '1.15', margin: '0 0 16px', minHeight: '1.15em' }}>Hover over a facet to learn more</h3>
+                <h3 data-active-title="" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: 'clamp(24px,2.6vw,32px)', lineHeight: '1.15', margin: '0 0 16px', minHeight: '1.15em' }}>Tap or hover a facet to learn more</h3>
                 <p data-active-desc="" style={{ fontSize: '17px', lineHeight: '1.6', color: 'rgba(36,20,84,.72)', margin: '0', maxWidth: '440px' }}>A customizable menu of support options to help you build traction and investor readiness.</p>
                 <p style={{ fontSize: '14px', lineHeight: '1.5', color: 'rgba(36,20,84,.55)', margin: '64px 0 0', maxWidth: '440px' }}>This is just a starting point! Don&apos;t see what you need here? Reach out to us directly at <a href="mailto:hello.growthstudio@gmail.com" style={{ color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>hello.growthstudio@gmail.com</a>
               </p>
@@ -181,7 +181,7 @@ export default function GrowthStudioPage() {
         <section id="impact" style={{ background: 'var(--purple,#3a1fb0)', color: '#fff', position: 'relative', overflow: 'hidden' }}>
           <div data-float="" style={{ position: 'absolute', right: '-70px', bottom: '-70px', width: '260px', height: '260px', borderRadius: '50%', border: '1.5px solid rgba(255,255,255,.16)', animation: 'gs-spinR 55s linear infinite' }}>
           </div>
-          <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '96px 32px', position: 'relative', display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: '48px', alignItems: 'center' }}>
+          <div className="gs-grid gs-wrap" style={{ maxWidth: '1200px', margin: '0 auto', padding: '96px 32px', position: 'relative', display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: '48px', alignItems: 'center' }}>
             <div data-reveal="">
               <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--yellow,#f3f13a)', margin: '0 0 18px' }}>RECENT IMPACT</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(28px,3.2vw,40px)', lineHeight: '1.12', letterSpacing: '-.02em', margin: '0 0 22px' }}>Market research, commercial strategy, and pitch-ready founders.</h2>
@@ -199,8 +199,8 @@ export default function GrowthStudioPage() {
         </div>
         </div>
         </section>
-        <section id="apply" data-signup="" style={{ maxWidth: '1200px', margin: '0 auto 120px', padding: '130px 32px 0' }}>
-          <div data-reveal="" style={{ position: 'relative', overflow: 'hidden', background: 'var(--yellow,#f3f13a)', color: 'var(--purple,#3a1fb0)', borderRadius: '4px', padding: '84px 64px' }}>
+        <section className="gs-wrap" id="apply" data-signup="" style={{ maxWidth: '1200px', margin: '0 auto 120px', padding: '130px 32px 0' }}>
+          <div className="gs-card-pad" data-reveal="" style={{ position: 'relative', overflow: 'hidden', background: 'var(--yellow,#f3f13a)', color: 'var(--purple,#3a1fb0)', borderRadius: '4px', padding: '84px 64px' }}>
             <div data-float="" style={{ position: 'absolute', right: '-70px', top: '-70px', width: '260px', height: '260px', borderRadius: '50%', border: '1.5px solid rgba(36,20,84,.18)', animation: 'gs-spinR 50s linear infinite' }}>
             </div>
             <div data-float="" style={{ position: 'absolute', right: '120px', bottom: '-50px', width: '120px', height: '120px', background: 'rgba(36,20,84,.08)', transform: 'rotate(20deg)', animation: 'gs-floatY 8s ease-in-out infinite' }}>

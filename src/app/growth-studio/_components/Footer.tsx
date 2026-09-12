@@ -34,8 +34,9 @@ export default function Footer({
         color: "#fff",
       }}
     >
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "72px 32px 40px" }}>
+      <div className="gs-wrap" style={{ maxWidth: "1200px", margin: "0 auto", padding: "72px 32px 40px" }}>
         <div
+          className="gs-grid gs-footer-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1.4fr 1fr 1fr 1fr",

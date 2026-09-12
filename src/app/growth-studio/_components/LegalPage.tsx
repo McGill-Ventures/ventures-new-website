@@ -122,7 +122,7 @@ export default function LegalPage({
     <>
       <Nav active={null} ctaHref={`mailto:${LEGAL_EMAIL}`} />
       <main>
-        <header
+        <header className="gs-wrap"
           style={{
             position: "relative",
             maxWidth: "1200px",
@@ -181,7 +181,7 @@ export default function LegalPage({
         </header>
 
         <div style={{ borderTop: "1px solid rgba(36,20,84,.12)" }}>
-          <div
+          <div className="gs-wrap"
             style={{
               maxWidth: "1200px",
               margin: "0 auto",
