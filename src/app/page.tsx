@@ -130,22 +130,24 @@ const STRIP_BOTTOM = [
 
 const WHY_FEATURES = [
   {
-    title: "The people around you",
+    title: "Ambition rubs off",
     description:
-      "Sixty-five students who are ambitious, curious and building things.",
+      "You end up like the people you spend your time with. Here that means students who are already building, raising and shipping.",
   },
   {
-    title: "Taught by investors",
-    description: "Weekly sessions led by VCs who invest for a living.",
-  },
-  {
-    title: "Real deals, not just theory",
+    title: "Learn from people who invest",
     description:
-      "Diligence startups for the fund, advise founders through the studio.",
+      "Weekly sessions led by VCs who do this for a living, and founders who pitch you the way they pitch a fund.",
   },
   {
-    title: "A network that outlasts school",
-    description: "Investors, founders and alumni across Montreal and beyond.",
+    title: "More than theory",
+    description:
+      "Diligence real startups for the fund. Advise real founders through the studio.",
+  },
+  {
+    title: "A network that travels",
+    description:
+      "Members and alumni in Montreal, Toronto, New York and San Francisco, who keep showing up for each other.",
   },
 ];
 
@@ -437,28 +439,20 @@ export default function Home() {
           aria-hidden
           className="animate-orb pointer-events-none absolute -top-40 right-0 size-[34rem] rounded-full bg-purple-600/35 blur-3xl"
         />
-        <div className="relative flex min-h-[100dvh] items-center px-6 py-10 md:px-12 lg:px-24">
-          <div className="mx-auto grid w-full max-w-7xl gap-14 lg:grid-cols-2 lg:gap-16">
+        <div className="relative flex min-h-[100dvh] items-center px-6 py-8 md:px-12 lg:px-24">
+          <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-12">
             <div className="flex flex-col justify-center">
               <h2 className={SECTION_HEADING}>
                 <SplitText text="Why McGill Ventures" />
               </h2>
-              <Reveal
-                as="p"
-                delay={200}
-                className="mt-6 max-w-xl font-body text-lg text-purple-100/85 md:text-xl"
-              >
-                Students who are serious about building companies, and about
-                backing them.
-              </Reveal>
-              {/* Stacked, not columned: three columns inside this half-width block
-                squeeze each blurb to five ragged lines. */}
-              <div className="mt-8 grid gap-4">
+              {/* Stacked, not columned: side by side inside this block squeezes
+                  each line to a ragged few words. */}
+              <div className="mt-10 grid gap-5">
                 {WHY_FEATURES.map((feature, i) => (
                   <Reveal
                     key={feature.title}
                     delay={350 + i * 120}
-                    className="border-t border-white/15 pt-3"
+                    className="border-t border-white/15 pt-4"
                   >
                     <h3 className="font-heading text-lg text-purple-200">
                       {feature.title}
