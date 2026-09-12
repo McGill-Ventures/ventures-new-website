@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight, Sparkle } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui";
 import Footer from "@/components/Footer";
@@ -445,21 +445,27 @@ export default function Home() {
               <h2 className={SECTION_HEADING}>
                 <SplitText text="Why McGill Ventures" />
               </h2>
-              {/* Stacked, not columned: side by side inside this block squeezes
-                  each line to a ragged few words. */}
-              <div className="mt-10 grid gap-5">
+              {/* Bubbles rather than a stacked list: four short arguments read
+                  better side by side than as rows of a list. */}
+              <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 {WHY_FEATURES.map((feature, i) => (
                   <Reveal
                     key={feature.title}
-                    delay={350 + i * 120}
-                    className="border-t border-white/15 pt-4"
+                    delay={250 + i * 110}
+                    className="h-full"
                   >
-                    <h3 className="font-heading text-lg text-purple-200">
-                      {feature.title}
-                    </h3>
-                    <p className="mt-1.5 font-body text-purple-300">
-                      {feature.description}
-                    </p>
+                    <div className="h-full rounded-2xl border border-white/12 bg-white/[0.04] p-5 transition-colors duration-500 hover:border-white/25 hover:bg-white/[0.07]">
+                      <Sparkle
+                        aria-hidden
+                        className="size-5 fill-purple-300 text-purple-300"
+                      />
+                      <h3 className="mt-4 font-heading text-lg text-white">
+                        {feature.title}
+                      </h3>
+                      <p className="mt-2 font-body text-sm leading-relaxed text-purple-200/80">
+                        {feature.description}
+                      </p>
+                    </div>
                   </Reveal>
                 ))}
               </div>
