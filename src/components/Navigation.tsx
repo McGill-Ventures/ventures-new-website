@@ -76,8 +76,9 @@ function VentureMark({ logo, className }: { logo: Venture["logo"]; className?: s
 export default function Navigation({ currentPage, variant = "light" }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  // Once scrolled, both variants share the glass bar so it works over any section.
-  const dark = variant === "dark" && !isScrolled;
+  // Stays true once scrolled too: the bar goes to dark glass, so the links and
+  // the inverted wordmark must not flip to purple half way down the hero.
+  const dark = variant === "dark";
   const toggleRef = useRef<HTMLButtonElement>(null);
   const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
   // inert blurs focus to <body>, so hand it back to the control that opened it.
@@ -114,19 +115,26 @@ export default function Navigation({ currentPage, variant = "light" }: Navigatio
       <div aria-hidden className="h-20" />
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+          // Only what actually changes: transition-all also interpolated the
+          // 0->1px bottom border out of the UA's near-white default colour,
+          // which drew a white hairline across the bar in both directions.
+          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow] duration-500 ease-out",
           isScrolled
-            ? "border-b border-purple-950/10 bg-gradient-to-b from-white/85 to-purple-50/85 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)] backdrop-blur-xl backdrop-saturate-150"
+            ? dark
+              ? "border-b border-white/10 bg-black/55 shadow-[0_8px_30px_-14px_rgba(0,0,0,0.6)] backdrop-blur-xl backdrop-saturate-150"
+              : "border-b border-purple-950/10 bg-gradient-to-b from-white/85 to-purple-50/85 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)] backdrop-blur-xl backdrop-saturate-150"
             : dark
-              ? "bg-gradient-to-b from-black/60 to-transparent"
+              ? // Flat colour, not a gradient: background-image is not
+                // interpolable, so a scrim here would snap to the glass.
+                "border-b-transparent bg-transparent"
               : // Matches the top of every hero's wash, so the bar leaves no seam.
-                "bg-gradient-to-b from-white to-purple-50"
+                "border-b-transparent bg-gradient-to-b from-white to-purple-50"
         )}
       >
         <nav
           aria-label="Main"
           className={cn(
-            "mx-auto flex max-w-7xl items-center gap-6 px-6 transition-[height] duration-300 xl:gap-10",
+            "mx-auto flex max-w-7xl items-center gap-6 px-6 transition-[height] duration-500 ease-out xl:gap-10",
             isScrolled ? "h-16" : "h-20"
           )}
         >
@@ -142,7 +150,7 @@ export default function Navigation({ currentPage, variant = "light" }: Navigatio
               height={302}
               className={cn(
                 // shrink-0: without it flex compresses the wordmark to absorb overflow
-                "w-auto shrink-0 object-contain transition-[height] duration-300",
+                "w-auto shrink-0 object-contain transition-[height] duration-500 ease-out",
                 isScrolled ? "h-5 xl:h-7" : "h-6 xl:h-8",
                 dark && "brightness-0 invert"
               )}

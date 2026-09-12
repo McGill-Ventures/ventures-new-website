@@ -7,9 +7,7 @@ import { HOME_STATS } from "@/constants";
 import {
   CountUp,
   Marquee,
-  MouseParallax,
   Parallax,
-  ParallaxLayer,
   Reveal,
   SplitText,
 } from "@/components/motion";
@@ -144,20 +142,13 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <MouseParallax
-            strength={18}
-            className="relative h-[54vh] min-h-[24rem] overflow-hidden lg:h-auto"
-          >
+          <div className="relative h-[54vh] min-h-[24rem] overflow-hidden lg:h-auto">
             <div
               aria-hidden
               className="absolute inset-0 flex justify-center gap-3 px-5 [transform:perspective(1400px)_rotateY(-12deg)_rotateX(4deg)_rotateZ(3deg)_scale(1.15)] lg:px-0"
             >
               {RAILS.map((column, i) => (
-                <ParallaxLayer
-                  key={i}
-                  depth={[1.4, 0.6, 1][i]}
-                  className="h-full w-1/3 max-w-[15rem]"
-                >
+                <div key={i} className="h-full w-1/3 max-w-[15rem]">
                   <Reveal
                     trigger="load"
                     delay={200 + i * 160}
@@ -195,7 +186,7 @@ export default function Home() {
                       ))}
                     </Marquee>
                   </Reveal>
-                </ParallaxLayer>
+                </div>
               ))}
             </div>
             <div
@@ -210,7 +201,7 @@ export default function Home() {
               aria-hidden
               className="pointer-events-none absolute inset-y-0 left-0 hidden w-40 bg-gradient-to-r from-black to-transparent lg:block"
             />
-          </MouseParallax>
+          </div>
         </div>
 
         <Reveal
