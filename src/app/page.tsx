@@ -429,20 +429,21 @@ export default function Home() {
       </section>
 
       {/* Events */}
-      <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-black py-14 text-white">
+      <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-black py-10 text-white">
         <div className="px-6 md:px-12 lg:px-24">
           <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-x-12 gap-y-6">
             <div>
               <h2 className={SECTION_HEADING}>
-                <SplitText text="18 events last year" />
+                <SplitText text="Open to every student" />
               </h2>
               <Reveal
                 as="p"
                 delay={200}
-                className="mt-4 max-w-xl font-body text-lg text-purple-100/75 md:text-xl"
+                className="mt-4 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
               >
-                North Star, Scarlet Pitch, Women in VC, Startup Showcase and
-                more.
+                Talks, panels and pitch nights with investors, founders and
+                builders in the room. Come to find an internship, funding, a
+                cofounder, or just people worth knowing.
               </Reveal>
             </div>
             <Reveal delay={300}>
