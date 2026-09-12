@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from "react";
 type Options = {
   /** Stop observing after the first intersection. */
   once?: boolean;
-  /** Fraction of the element that must be visible (0-1). */
+  /** Fraction of the element that must be visible. */
   amount?: number;
-  /** IntersectionObserver rootMargin. Negative bottom margin delays the trigger until the element is well inside the viewport. */
+  /** A negative bottom margin delays the trigger until the element is well
+   *  inside the viewport. */
   margin?: string;
 };
 
@@ -35,7 +36,7 @@ export function useInView<T extends HTMLElement>({
           setInView(false);
         }
       },
-      { threshold: amount, rootMargin: margin }
+      { threshold: amount, rootMargin: margin },
     );
     io.observe(el);
     return () => io.disconnect();

@@ -10,11 +10,10 @@ import type { Engine, ISourceOptions } from "@tsparticles/engine";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  /** Stars for a 1440 by 900 area, scaled with the actual size. */
+  /** Stars per 1440x900, scaled to the actual size. */
   count?: number;
-  /** Drift multiplier. 1 is a slow ambient drift. */
+  /** Drift multiplier. */
   speed?: number;
-  /** A comet crosses the field every few seconds. */
   comets?: boolean;
   className?: string;
 };
@@ -26,9 +25,7 @@ const init = async (engine: Engine) => {
   await loadTrailEffect(engine);
 };
 
-// One comet at a time, spawned in the upper middle and flying down-left
-// until it leaves through the left edge. It never fades mid-flight: only the
-// trail tapers, and the particle is destroyed once it is off the canvas.
+// A comet never fades mid-flight: it is destroyed only once off canvas.
 const COMETS = {
   position: { x: 55, y: 12 },
   size: { width: 40, height: 24, mode: "percent" },
@@ -43,13 +40,13 @@ const COMETS = {
     effect: {
       type: "trail",
       options: {
-        // Width ramps up over the buffer, so keep it close to the visible streak.
+        // Trail width ramps up over the buffer, so keep it near the visible streak.
         trail: { length: 16, fade: true, minWidth: 0.6, maxWidth: 3 },
       },
     },
     move: {
       enable: true,
-      // Degrees, 0 is right and 90 is down: a shallow dive to the left corner.
+      // Degrees, 0 is right and 90 is down.
       direction: 155,
       angle: { value: 10, offset: 0 },
       straight: true,
@@ -59,10 +56,7 @@ const COMETS = {
   },
 };
 
-/**
- * Ambient starfield on tsParticles. Sits behind content as `absolute inset-0`.
- * Still under reduced motion, and the engine pauses it while off screen.
- */
+/** Sits behind content as `absolute inset-0`. Still under reduced motion. */
 export function Starfield({
   count = 220,
   speed = 1,

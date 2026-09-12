@@ -9,15 +9,12 @@ type Props = {
   /** Space between items, any CSS length. */
   gap?: string;
   pauseOnHover?: boolean;
-  /** Fade the edges into the background. */
   fade?: boolean;
   className?: string;
 };
 
-/**
- * Infinite CSS scroller. Children are rendered twice so the loop is seamless.
- * Give it enough children to fill the container or the loop will show gaps.
- */
+/** Children render twice to close the loop, so pass enough to fill the
+ *  container or the seam shows. */
 export function Marquee({
   children,
   direction = "left",
@@ -30,10 +27,20 @@ export function Marquee({
   const vertical = direction === "up" || direction === "down";
   return (
     <div
-      className={cn("marquee", vertical ? "marquee-y" : "marquee-x", fade && "marquee-fade", className)}
+      className={cn(
+        "marquee",
+        vertical ? "marquee-y" : "marquee-x",
+        fade && "marquee-fade",
+        className,
+      )}
       data-direction={direction}
       data-pause={pauseOnHover ? "" : undefined}
-      style={{ "--marquee-duration": `${duration}s`, "--marquee-gap": gap } as CSSProperties}
+      style={
+        {
+          "--marquee-duration": `${duration}s`,
+          "--marquee-gap": gap,
+        } as CSSProperties
+      }
     >
       <div className="marquee-track">{children}</div>
       <div className="marquee-track" aria-hidden>

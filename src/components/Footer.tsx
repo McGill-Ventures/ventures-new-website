@@ -66,7 +66,7 @@ function FooterLink({
   );
 }
 
-/** Closing screen. `fullHeight` stretches it to the viewport for full-screen pages. */
+/** `fullHeight` stretches it to the viewport, for pages built of full screens. */
 export default function Footer({
   fullHeight = false,
 }: {
@@ -177,7 +177,6 @@ export default function Footer({
         </div>
       </div>
 
-      {/* Ghost wordmark behind the whole section, wider than the viewport. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 flex items-center justify-center"

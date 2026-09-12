@@ -4,21 +4,17 @@ import { useId, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  /** Visible at rest. Clicking anywhere on it turns the card over. */
+  /** Clicking anywhere on it turns the card over. */
   front: ReactNode;
-  /** Revealed on the back. Links inside stay clickable, the rest flips back. */
+  /** Links inside stay clickable, the rest of the face flips back. */
   back: ReactNode;
-  /** Sizing for the card, usually an aspect ratio. */
   className?: string;
-  /** Names the flip control for screen readers, e.g. the card's title. */
+  /** Names the flip control for screen readers. */
   label?: string;
 };
 
-/**
- * Card that turns over on click, either way. Styles live in globals.css under
- * `.flip`. The hidden face is inert so it stays out of the tab order, and
- * reduced motion turns the flip into a crossfade.
- */
+/** Styles live in globals.css under `.flip`. The hidden face is inert so it
+ *  stays out of the tab order. */
 export function FlipCard({ front, back, className, label }: Props) {
   const [flipped, setFlipped] = useState(false);
   const backId = useId();

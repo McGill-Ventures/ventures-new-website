@@ -27,11 +27,7 @@ const REASONS = [
   },
 ];
 
-/**
- * Reasons on the left, a photo on the right that follows whichever reason the
- * pointer is on. Every reason stays readable at once, so the photo is pure
- * enhancement and nothing is hidden behind the interaction.
- */
+/** Every reason stays readable at once, so the photo is pure enhancement. */
 export function WhyReasons() {
   const [active, setActive] = useState(0);
 
@@ -74,7 +70,7 @@ export function WhyReasons() {
         variant="clip"
         delay={260}
         duration={1300}
-        // 3:2 matches the source photos, so nothing is cropped away.
+        // 3:2 is the source photos' own ratio, so nothing is cropped.
         className="relative mx-auto aspect-[3/2] w-full max-w-[38rem] lg:mx-0 lg:ml-auto"
       >
         <div className="relative size-full overflow-hidden rounded-3xl">

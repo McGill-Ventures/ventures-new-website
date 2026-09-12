@@ -27,14 +27,6 @@ Headline whose words rise out of a clipped line one by one.
 <h2><SplitText text="Why Choose McGill Ventures" stagger={90} /></h2>
 ```
 
-## `<CountUp>`
-
-Counts to the number inside any string once in view: `"2.6K+"`, `"$40M"`, `"2nd"`.
-
-```tsx
-<CountUp value="2.6K+" delay={200} />
-```
-
 ## `<Marquee>`
 
 Infinite CSS scroller in any direction.
@@ -45,26 +37,6 @@ Pass enough children to fill the container.
 <Marquee direction="up" fade className="h-full">{photos}</Marquee>
 ```
 
-## `<Parallax>`
-
-Shifts children vertically with scroll.
-Positive `speed` lags behind the page, negative runs ahead.
-
-```tsx
-<Parallax speed={0.1}><Image ... /></Parallax>
-```
-
-## `<MouseParallax>` and `<ParallaxLayer>`
-
-The wrapper tracks the pointer, each layer drifts by its `depth`.
-
-```tsx
-<MouseParallax strength={18}>
-  <ParallaxLayer depth={1.4}>...</ParallaxLayer>
-  <ParallaxLayer depth={0.6}>...</ParallaxLayer>
-</MouseParallax>
-```
-
 ## `<Starfield>`
 
 Ambient starfield rendered by tsParticles (`@tsparticles/react` with the slim engine).
@@ -73,4 +45,12 @@ Slow drift and twinkle, still under reduced motion, paused while off screen.
 
 ```tsx
 <Starfield count={220} className="[mask-image:linear-gradient(to_right,#000_40%,transparent_65%)]" />
+```
+
+## `<FlipCard>`
+
+Card that turns over on click, either way. Links on the back keep their own clicks.
+
+```tsx
+<FlipCard className="aspect-[3/4]" label="Analyst Program" front={<Front />} back={<Back />} />
 ```

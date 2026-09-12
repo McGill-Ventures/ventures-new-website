@@ -4,20 +4,32 @@ import { createElement, type CSSProperties, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { useInView } from "@/hooks/useInView";
 
-export type RevealVariant = "up" | "down" | "left" | "right" | "fade" | "scale" | "blur" | "clip";
+export type RevealVariant =
+  "up" | "down" | "left" | "right" | "fade" | "scale" | "blur" | "clip";
 
 type Props = {
   children: ReactNode;
-  as?: "div" | "section" | "span" | "p" | "li" | "ul" | "figure" | "h1" | "h2" | "h3" | "article";
-  /** How the element enters. Styles live in globals.css under `[data-reveal]`. */
+  as?:
+    | "div"
+    | "section"
+    | "span"
+    | "p"
+    | "li"
+    | "ul"
+    | "figure"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "article";
+  /** Styles live in globals.css under `[data-reveal]`. */
   variant?: RevealVariant;
   /** "view" animates when scrolled into view, "load" animates immediately on page load. */
   trigger?: "view" | "load";
-  /** Milliseconds. Stagger siblings by passing `index * 80`. */
+  /** Milliseconds. Stagger siblings with `index * 80`. */
   delay?: number;
   /** Milliseconds. */
   duration?: number;
-  /** Replay every time it re-enters the viewport. */
+  /** False replays every time it re-enters the viewport. */
   once?: boolean;
   /** Fraction of the element that must be visible before it reveals. */
   amount?: number;
@@ -25,10 +37,8 @@ type Props = {
   style?: CSSProperties;
 };
 
-/**
- * Scroll or load triggered entrance. The hidden state only applies when
- * scripting is enabled, so content stays visible without JS.
- */
+/** The hidden state only applies when scripting is enabled, so content
+ *  stays visible without JS. */
 export function Reveal({
   children,
   as = "div",
@@ -45,7 +55,12 @@ export function Reveal({
   const active = trigger === "load" || inView;
   // Clip lives on an inner wrapper: a clip-path on the observed element
   // reports zero intersection, so it would never reveal.
-  const content = variant === "clip" ? <div className="reveal-clip">{children}</div> : children;
+  const content =
+    variant === "clip" ? (
+      <div className="reveal-clip">{children}</div>
+    ) : (
+      children
+    );
   return createElement(
     as,
     {
@@ -60,6 +75,6 @@ export function Reveal({
         ...style,
       } as CSSProperties,
     },
-    content
+    content,
   );
 }

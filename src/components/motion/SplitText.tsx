@@ -9,19 +9,16 @@ type Props = {
   as?: "h1" | "h2" | "h3" | "p" | "span";
   /** "view" animates when scrolled into view, "load" animates immediately on page load. */
   trigger?: "view" | "load";
-  /** Milliseconds before the first word starts. */
+  /** Milliseconds. */
   delay?: number;
-  /** Milliseconds between each word. */
+  /** Milliseconds between words. */
   stagger?: number;
   /** Milliseconds per word. */
   duration?: number;
   className?: string;
 };
 
-/**
- * Headline whose words rise out of a clipped line, one after another.
- * Screen readers get the plain text through aria-label.
- */
+/** Words rise out of a clipped line. Screen readers get `text` via aria-label. */
 export function SplitText({
   text,
   as = "span",
@@ -54,6 +51,6 @@ export function SplitText({
           </span>
         </span>{" "}
       </span>
-    ))
+    )),
   );
 }

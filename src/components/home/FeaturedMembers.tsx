@@ -8,8 +8,6 @@ const FOUNDERS = [
     company: "General Magic",
     photo: "/headshots/founders/anthony_azrak.jpg",
     linkedin: "https://www.linkedin.com/in/anthony-azrak/",
-    // White mark on a black plate, so it melts into the card and reads as
-    // type rather than as a pasted-on logo.
     backer: {
       src: "/logos/companies/a16z_speedrun.png",
       width: 600,
@@ -24,8 +22,7 @@ const FOUNDERS = [
     company: "GrayPass",
     photo: "/headshots/founders/aditya_ranjan.jpg",
     linkedin: "https://www.linkedin.com/in/ad1tyaranjan/",
-    // Inline, not the extracted bitmap: the only copy in the deck is 69px
-    // square, which visibly blurs at the size this card wants.
+    // Inline: the only bitmap of this mark is 69px square and visibly blurs.
     backer: { mark: "yc" as const, label: "Y Combinator" },
   },
 ];
@@ -81,8 +78,6 @@ const GROUPS = [
   },
 ];
 
-/* Redrawn from the deck's badge: same orange and the same Y proportions,
-   but sharp at any size. */
 function YCombinatorMark() {
   return (
     <svg
@@ -121,7 +116,7 @@ export function FeaturedMembers() {
     <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden py-6">
       <div className="px-6 md:px-12 lg:px-24">
         <div className="mx-auto max-w-7xl">
-          <h2 className="font-display text-[clamp(2.25rem,4.5vw,4.25rem)] leading-[1] text-black text-balance">
+          <h2 className="section-heading text-black">
             <SplitText text="Featured members" />
           </h2>
           <Reveal
@@ -169,7 +164,6 @@ export function FeaturedMembers() {
                     </div>
                   </div>
 
-                  {/* The backer, given the room the name deserves. */}
                   <div className="relative mt-auto flex min-h-24 items-center justify-center overflow-hidden px-6 pb-5">
                     {"mark" in founder.backer ? (
                       <YCombinatorMark />
@@ -206,8 +200,6 @@ export function FeaturedMembers() {
             {GROUPS.map((group, i) => {
               const fromLeft = i % 2 === 1;
               return (
-                /* Each row slides in from the side its marquee then travels
-                   towards, so the entrance runs straight into the loop. */
                 <Reveal
                   key={group.label}
                   variant={fromLeft ? "left" : "right"}

@@ -30,6 +30,15 @@ body {
   letter-spacing: -0.03em;
 }
 
+.section-heading {
+  font-family: var(--font-plus-jakarta), var(--font-space-grotesk), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-size: clamp(2.25rem, 4.5vw, 4.25rem);
+  line-height: 1;
+  text-wrap: balance;
+}
+
 .font-body {
   font-family: var(--font-manrope), var(--font-inter), sans-serif;
   font-weight: 400;
@@ -428,16 +437,6 @@ a[href],
 
 @keyframes marquee-y {
   to { transform: translateY(calc(-100% - var(--marquee-gap, 1rem))); }
-}
-
-/* <ParallaxLayer> inside <MouseParallax> */
-[data-depth] {
-  transform: translate3d(
-    calc(var(--mx, 0) * var(--mp-strength, 24px) * var(--depth, 1)),
-    calc(var(--my, 0) * var(--mp-strength, 24px) * var(--depth, 1)),
-    0
-  );
-  transition: transform 700ms var(--ease-out);
 }
 
 /* Slow-breathing background glow. */
