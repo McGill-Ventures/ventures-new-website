@@ -193,36 +193,55 @@ export function FeaturedMembers() {
         </div>
       </div>
 
-      <Reveal delay={200} className="mt-6 px-6 md:px-12 lg:px-24">
+      <div className="mt-6 px-6 md:px-12 lg:px-24">
         <div className="mx-auto max-w-7xl">
-          <p className="font-heading text-sm text-purple-900/60">
+          <Reveal
+            as="p"
+            delay={120}
+            className="font-heading text-sm text-purple-900/60"
+          >
             And the rest of us landed internships and full-time roles here
-          </p>
+          </Reveal>
           <div className="mt-3 space-y-1.5">
-            {GROUPS.map((group, i) => (
-              <div
-                key={group.label}
-                className="flex items-center gap-4 border-t border-black/8 pt-2 md:gap-8"
-              >
-                <p className="w-24 shrink-0 font-heading text-xs text-purple-900/45 md:w-40 md:text-sm">
-                  {group.label}
-                </p>
-                <Marquee
-                  direction={i % 2 ? "right" : "left"}
-                  duration={56 + i * 8}
-                  gap="0.25rem"
-                  fade
-                  className="min-w-0 flex-1"
+            {GROUPS.map((group, i) => {
+              const fromLeft = i % 2 === 1;
+              return (
+                /* Each row slides in from the side its marquee then travels
+                   towards, so the entrance runs straight into the loop. */
+                <Reveal
+                  key={group.label}
+                  variant={fromLeft ? "left" : "right"}
+                  delay={200 + i * 140}
+                  duration={1100}
+                  className="flex items-center gap-4 border-t border-black/8 pt-2 md:gap-8"
+                  style={
+                    {
+                      "--reveal-from": fromLeft
+                        ? "translateX(-120px)"
+                        : "translateX(120px)",
+                    } as React.CSSProperties
+                  }
                 >
-                  {group.logos.map((name) => (
-                    <WallLogo key={name} name={name} />
-                  ))}
-                </Marquee>
-              </div>
-            ))}
+                  <p className="w-24 shrink-0 font-heading text-xs text-purple-900/45 md:w-40 md:text-sm">
+                    {group.label}
+                  </p>
+                  <Marquee
+                    direction={fromLeft ? "right" : "left"}
+                    duration={56 + i * 8}
+                    gap="0.25rem"
+                    fade
+                    className="min-w-0 flex-1"
+                  >
+                    {group.logos.map((name) => (
+                      <WallLogo key={name} name={name} />
+                    ))}
+                  </Marquee>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }
