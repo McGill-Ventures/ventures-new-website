@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowDown, ArrowRight, Sparkle } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui";
 import Footer from "@/components/Footer";
+import { WhyReasons } from "@/components/home/WhyReasons";
 import {
   FlipCard,
   Marquee,
-  Parallax,
   Reveal,
   SplitText,
   Starfield,
@@ -126,29 +126,6 @@ const STRIP_BOTTOM = [
   "/events/women_5a7_cocktail2026/women_5a7_cocktail2025_01.JPG",
   "/events/scarlet_pitch2025/sp2025_06.jpg",
   "/events/technova2025/tn2025_01.jpg",
-];
-
-const WHY_FEATURES = [
-  {
-    title: "Ambition rubs off",
-    description:
-      "You end up like the people you spend your time with. Here that means students who are already building, raising and shipping.",
-  },
-  {
-    title: "Learn from people who invest",
-    description:
-      "Weekly sessions led by VCs who do this for a living, and founders who pitch you the way they pitch a fund.",
-  },
-  {
-    title: "More than theory",
-    description:
-      "Diligence real startups for the fund. Advise real founders through the studio.",
-  },
-  {
-    title: "A network that travels",
-    description:
-      "Members and alumni in Montreal, Toronto, New York and San Francisco, who keep showing up for each other.",
-  },
 ];
 
 const SECTION_HEADING =
@@ -440,83 +417,12 @@ export default function Home() {
           className="animate-orb pointer-events-none absolute -top-40 right-0 size-[34rem] rounded-full bg-purple-600/35 blur-3xl"
         />
         <div className="relative flex min-h-[100dvh] items-center px-6 py-8 md:px-12 lg:px-24">
-          <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-12">
-            <div className="flex flex-col justify-center">
-              <h2 className={SECTION_HEADING}>
-                <SplitText text="Why McGill Ventures" />
-              </h2>
-              {/* Bubbles rather than a stacked list: four short arguments read
-                  better side by side than as rows of a list. */}
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
-                {WHY_FEATURES.map((feature, i) => (
-                  <Reveal
-                    key={feature.title}
-                    delay={250 + i * 110}
-                    className="h-full"
-                  >
-                    <div className="h-full rounded-2xl border border-white/12 bg-white/[0.04] p-5 transition-colors duration-500 hover:border-white/25 hover:bg-white/[0.07]">
-                      <Sparkle
-                        aria-hidden
-                        className="size-5 fill-purple-300 text-purple-300"
-                      />
-                      <h3 className="mt-4 font-heading text-lg text-white">
-                        {feature.title}
-                      </h3>
-                      <p className="mt-2 font-body text-sm leading-relaxed text-purple-200/80">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative mx-auto aspect-[10/9] w-full max-w-[36rem] lg:self-center">
-              <Parallax speed={0.06} className="absolute top-0 left-0 w-[70%]">
-                <Reveal variant="clip" duration={1300}>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-                    <Image
-                      src="/events/homeLanding.jpg"
-                      alt="McGill Ventures Community Event"
-                      fill
-                      sizes="(max-width: 1024px) 70vw, 520px"
-                      className="object-cover object-[75%_center]"
-                    />
-                  </div>
-                </Reveal>
-              </Parallax>
-              <Parallax
-                speed={-0.05}
-                className="absolute top-[26%] right-0 w-[44%]"
-              >
-                <Reveal variant="clip" delay={200} duration={1300}>
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl ring-8 ring-purple-950">
-                    <Image
-                      src="/events/scarlet_pitch_2026/sp26_07.jpeg"
-                      alt=""
-                      fill
-                      sizes="(max-width: 1024px) 45vw, 330px"
-                      className="object-cover"
-                    />
-                  </div>
-                </Reveal>
-              </Parallax>
-              <Parallax
-                speed={0.1}
-                className="absolute top-[48%] left-[4%] w-[40%]"
-              >
-                <Reveal variant="clip" delay={350} duration={1300}>
-                  <div className="relative aspect-square overflow-hidden rounded-3xl ring-8 ring-purple-950">
-                    <Image
-                      src="/events/pizza.jpg"
-                      alt=""
-                      fill
-                      sizes="(max-width: 1024px) 40vw, 290px"
-                      className="object-cover"
-                    />
-                  </div>
-                </Reveal>
-              </Parallax>
+          <div className="mx-auto w-full max-w-7xl">
+            <h2 className={SECTION_HEADING}>
+              <SplitText text="Why McGill Ventures" />
+            </h2>
+            <div className="mt-10">
+              <WhyReasons />
             </div>
           </div>
         </div>

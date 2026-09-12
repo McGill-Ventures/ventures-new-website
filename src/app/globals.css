@@ -297,6 +297,9 @@ a[href],
 
 /* Clip variant wipes an inner wrapper upward while its content settles from a slight zoom. */
 .reveal-clip {
+  /* Transparent to layout: against an auto-height parent this resolves to
+     auto, and against a sized one it fills, so `h-full` children work. */
+  height: 100%;
   clip-path: inset(0 0 0 0);
   transition: clip-path var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms);
 }
@@ -527,6 +530,18 @@ a[href],
   }
 
   .flip[data-flipped] .flip-back {
+    opacity: 1;
+  }
+}
+
+/* <WhyReasons>: pointer-driven dimming means nothing without a pointer, so
+   touch devices get every reason at full strength. */
+.reason-dim {
+  opacity: 0.4;
+}
+
+@media (hover: none) {
+  .reason-dim {
     opacity: 1;
   }
 }

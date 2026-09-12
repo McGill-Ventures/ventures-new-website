@@ -11,7 +11,7 @@ Entrance animation, triggered on scroll (`trigger="view"`, default) or on page l
 ```tsx
 <Reveal variant="up" delay={120}>...</Reveal>
 <Reveal as="p" trigger="load" delay={600}>...</Reveal>
-<Reveal variant="clip" duration={1300}><Image ... /></Reveal>
+<Reveal variant="clip" duration={1300} className="aspect-[4/5]"><Image ... /></Reveal>
 ```
 
 Variants: `up`, `down`, `left`, `right`, `fade`, `scale`, `blur`, `clip`.
