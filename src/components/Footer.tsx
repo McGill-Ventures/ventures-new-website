@@ -83,7 +83,7 @@ export default function Footer({
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-between gap-10 px-6 pt-16 pb-8 md:px-12 lg:px-24 lg:pt-20">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end">
           <h2 className="max-w-4xl font-display text-[clamp(2rem,4vw,3.75rem)] leading-[1.02] text-balance">
-            <SplitText text="Building the companies of tomorrow through strategic partnerships and visionary leadership." />
+            <SplitText text="Join the team behind McGill's startup scene." />
           </h2>
           <Reveal delay={300} className="flex flex-wrap gap-4 lg:justify-end">
             <Link
@@ -180,15 +180,19 @@ export default function Footer({
         </div>
       </div>
 
-      {/* Ghost wordmark, half clipped by the bottom edge. */}
-      <Image
-        src="/logos/white_logo_transparent.png"
-        alt=""
+      {/* Ghost wordmark behind the whole section, wider than the viewport. */}
+      <div
         aria-hidden
-        width={2592}
-        height={340}
-        className="pointer-events-none absolute bottom-0 left-1/2 w-[110%] max-w-none -translate-x-1/2 translate-y-[48%] opacity-[0.05]"
-      />
+        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+      >
+        <Image
+          src="/logos/white_logo_transparent.png"
+          alt=""
+          width={2592}
+          height={340}
+          className="w-[115%] max-w-none opacity-[0.06]"
+        />
+      </div>
     </footer>
   );
 }
