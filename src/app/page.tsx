@@ -3,12 +3,7 @@ import Image from "next/image";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import {
-  Marquee,
-  Parallax,
-  Reveal,
-  SplitText,
-} from "@/components/motion";
+import { Marquee, Parallax, Reveal, SplitText } from "@/components/motion";
 
 // Three vertical rails in the hero. Middle one scrolls the other way.
 const RAILS = [
@@ -172,12 +167,12 @@ const SECTION_HEADING =
 
 function StripPhoto({ src, caption }: StripItem) {
   return (
-    <div className="relative h-52 w-[19.5rem] overflow-hidden rounded-2xl md:h-64 md:w-96">
+    <div className="relative h-40 w-60 overflow-hidden rounded-2xl md:h-48 md:w-72">
       <Image
         src={src}
         alt=""
         fill
-        sizes="(max-width: 768px) 312px, 384px"
+        sizes="(max-width: 768px) 240px, 288px"
         className="object-cover transition-transform duration-700 ease-out hover:scale-105"
       />
       {caption && (
@@ -201,7 +196,10 @@ export default function Home() {
       <Navigation currentPage="/" darkOver="#hero" />
 
       {/* Hero: full-bleed, pulled up under the transparent nav. */}
-      <section id="hero" className="relative -mt-20 overflow-hidden bg-black text-white">
+      <section
+        id="hero"
+        className="relative -mt-20 overflow-hidden bg-black text-white"
+      >
         <div
           aria-hidden
           className="animate-orb pointer-events-none absolute -top-48 -left-48 size-[36rem] rounded-full bg-purple-600/40 blur-3xl"
@@ -335,23 +333,25 @@ export default function Home() {
           out of view. */}
       <section
         id="programs"
-        className="-scroll-mt-20 px-6 py-24 md:px-12 lg:px-24 lg:py-32"
+        className="flex min-h-[100dvh] -scroll-mt-20 items-center px-6 py-16 md:px-12 lg:px-24"
       >
-        <div className="mx-auto max-w-7xl">
-          <h2 className={`${SECTION_HEADING} max-w-4xl text-black`}>
-            <SplitText text="Five programs, from VC to STEM" />
-          </h2>
-          <Reveal
-            as="p"
-            delay={200}
-            className="mt-6 max-w-2xl font-body text-lg text-purple-900/75 md:text-xl"
-          >
-            Weekly classes, a student-led fund, a startup consulting studio, a
-            health tech lab and a builders&apos; community. Pick your entry
-            point.
-          </Reveal>
+        <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
+          <div className="lg:self-center">
+            <h2 className={`${SECTION_HEADING} text-black`}>
+              <SplitText text="Five programs, from VC to STEM" />
+            </h2>
+            <Reveal
+              as="p"
+              delay={200}
+              className="mt-6 max-w-md font-body text-lg text-purple-900/75 md:text-xl"
+            >
+              Weekly classes, a student-led fund, a startup consulting studio, a
+              health tech lab and a builders&apos; community. Pick your entry
+              point.
+            </Reveal>
+          </div>
 
-          <ul className="mt-14 border-b border-black/10">
+          <ul className="border-b border-black/10 lg:self-center">
             {PROGRAMS.map((program, i) => (
               <Reveal
                 as="li"
@@ -364,29 +364,29 @@ export default function Home() {
                   {...(program.external
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="group grid items-center gap-x-10 gap-y-4 py-8 md:grid-cols-[minmax(0,26rem)_minmax(0,1fr)_auto] lg:py-10"
+                  className="group flex items-center gap-5 py-3.5 lg:py-4"
                 >
-                  <div className="flex items-center gap-5">
-                    <div className="relative size-16 shrink-0 overflow-hidden rounded-xl md:size-20">
-                      <Image
-                        src={program.photo}
-                        alt=""
-                        fill
-                        sizes="80px"
-                        className="object-cover"
-                      />
-                    </div>
-                    <h3 className="font-display text-2xl text-black md:text-3xl">
+                  <div className="relative size-14 shrink-0 overflow-hidden rounded-xl md:size-16">
+                    <Image
+                      src={program.photo}
+                      alt=""
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-display text-xl text-black md:text-2xl">
                       {program.name}
                     </h3>
+                    <p className="mt-1 font-body text-sm text-purple-900/70">
+                      {program.blurb}
+                    </p>
                   </div>
-                  <p className="font-body text-purple-900/75 md:text-lg">
-                    {program.blurb}
-                  </p>
-                  <span className="inline-flex items-center gap-2 font-heading text-sm whitespace-nowrap text-purple-700">
-                    {program.external ? "Visit site" : "Learn more"}
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
+                  <ArrowRight className="size-5 shrink-0 text-purple-700 transition-transform duration-300 group-hover:translate-x-1" />
+                  {program.external && (
+                    <span className="sr-only">(opens in a new tab)</span>
+                  )}
                 </Link>
               </Reveal>
             ))}
@@ -394,83 +394,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Outcomes: credibility strip, deliberately compact. */}
-      <section className="bg-black px-6 py-24 text-white md:px-12 lg:px-24 lg:py-28">
-        <div className="mx-auto max-w-7xl">
-          <h2 className={`${SECTION_HEADING} max-w-3xl`}>
-            <SplitText text="Where our members go" />
-          </h2>
-          <Reveal
-            as="p"
-            delay={200}
-            className="mt-6 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
-          >
-            Team members go on to venture capital, startups and traditional
-            careers. Two founders from our team each raised millions in the past
-            year.
-          </Reveal>
-
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:max-w-4xl">
-            {ALUMNI.map((person, i) => (
-              <Reveal
-                as="article"
-                key={person.name}
-                delay={350 + i * 120}
-                className="flex items-center gap-5 rounded-2xl border border-white/15 p-5"
-              >
-                {/* Headshot placeholder. Replace this block with an <Image fill /> once we have the photo. */}
-                <div className="flex aspect-[4/5] w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-purple-900 font-display text-4xl text-white">
-                  {person.initial}
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl">{person.name}</h3>
-                  <p className="mt-2 font-heading text-purple-200">
-                    {person.role}
-                  </p>
-                  <p className="mt-1 font-body text-sm text-purple-100/70">
-                    {person.detail}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={600} className="mt-16 border-t border-white/15 pt-8">
-            <p className="font-heading text-sm text-purple-100/70">
-              Members and alumni have landed at
-            </p>
-            <ul className="mt-6 flex flex-wrap gap-3">
-              {FIRMS.map((firm) => (
-                <li
-                  key={firm}
-                  className="rounded-full border border-white/20 px-5 py-2 font-heading text-sm text-purple-100/80"
-                >
-                  {firm}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Events */}
-      <section className="overflow-hidden py-24 lg:py-32">
+      <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-black py-14 text-white">
         <div className="px-6 md:px-12 lg:px-24">
-          <div className="mx-auto max-w-7xl">
-            <h2 className={`${SECTION_HEADING} text-black`}>
-              <SplitText text="18 events last year" />
-            </h2>
-            <Reveal
-              as="p"
-              delay={200}
-              className="mt-6 max-w-2xl font-body text-lg text-purple-900/75 md:text-xl"
-            >
-              North Star, Scarlet Pitch, Women in VC, Startup Showcase and more.
-            </Reveal>
-            <Reveal delay={300} className="mt-6">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-x-12 gap-y-6">
+            <div>
+              <h2 className={SECTION_HEADING}>
+                <SplitText text="18 events last year" />
+              </h2>
+              <Reveal
+                as="p"
+                delay={200}
+                className="mt-4 max-w-xl font-body text-lg text-purple-100/75 md:text-xl"
+              >
+                North Star, Scarlet Pitch, Women in VC, Startup Showcase and
+                more.
+              </Reveal>
+            </div>
+            <Reveal delay={300}>
               <Link
                 href="/events"
-                className="group inline-flex items-center gap-2 font-heading text-lg text-purple-700"
+                className="group inline-flex items-center gap-3 rounded-full border border-white/30 px-6 py-3 font-heading text-base text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
               >
                 See all events
                 <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -479,7 +423,7 @@ export default function Home() {
           </div>
         </div>
 
-        <Reveal variant="fade" duration={1400} className="mt-14">
+        <Reveal variant="fade" duration={1400} className="mt-10 lg:mt-12">
           <Marquee duration={75} pauseOnHover={false}>
             {STRIP_TOP.map((photo) => (
               <StripPhoto key={photo.src} {...photo} />
@@ -504,8 +448,8 @@ export default function Home() {
           aria-hidden
           className="animate-orb pointer-events-none absolute -top-40 right-0 size-[34rem] rounded-full bg-purple-600/35 blur-3xl"
         />
-        <div className="relative px-6 py-24 md:px-12 lg:px-24 lg:py-32">
-          <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
+        <div className="relative flex min-h-[100dvh] items-center px-6 py-10 md:px-12 lg:px-24">
+          <div className="mx-auto grid w-full max-w-7xl gap-14 lg:grid-cols-2 lg:gap-16">
             <div className="flex flex-col justify-center">
               <h2 className={SECTION_HEADING}>
                 <SplitText text="Why McGill Ventures" />
@@ -513,24 +457,24 @@ export default function Home() {
               <Reveal
                 as="p"
                 delay={200}
-                className="mt-8 max-w-xl font-body text-lg text-purple-100/85 md:text-xl"
+                className="mt-6 max-w-xl font-body text-lg text-purple-100/85 md:text-xl"
               >
                 McGill Ventures educates and connects students to the venture
                 capital and startup ecosystem in Canada and beyond.
               </Reveal>
               {/* Stacked, not columned: three columns inside this half-width block
                 squeeze each blurb to five ragged lines. */}
-              <div className="mt-12 grid gap-8">
+              <div className="mt-8 grid gap-5">
                 {WHY_FEATURES.map((feature, i) => (
                   <Reveal
                     key={feature.title}
                     delay={350 + i * 120}
-                    className="border-t border-white/15 pt-6"
+                    className="border-t border-white/15 pt-4"
                   >
                     <h3 className="font-heading text-xl text-purple-200">
                       {feature.title}
                     </h3>
-                    <p className="mt-3 font-body text-purple-300">
+                    <p className="mt-2 font-body text-purple-300">
                       {feature.description}
                     </p>
                   </Reveal>
@@ -589,38 +533,68 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Closing call to action */}
-      <section className="px-6 py-24 md:px-12 lg:px-24 lg:py-32">
-        <div className="mx-auto max-w-7xl">
-          <h2 className={`${SECTION_HEADING} max-w-4xl text-black`}>
-            <SplitText text="Join the team behind McGill's startup scene." />
+      {/* Outcomes: credibility strip, deliberately compact. */}
+      <section className="flex min-h-[100dvh] items-center px-6 py-16 md:px-12 lg:px-24">
+        <div className="mx-auto w-full max-w-7xl">
+          <h2 className={`${SECTION_HEADING} max-w-3xl text-black`}>
+            <SplitText text="Where our members go" />
           </h2>
           <Reveal
             as="p"
             delay={200}
             className="mt-6 max-w-2xl font-body text-lg text-purple-900/75 md:text-xl"
           >
-            Applications for programs and associate roles open every fall.
+            Team members go on to venture capital, startups and traditional
+            careers. Two founders from our team each raised millions in the past
+            year.
           </Reveal>
-          <Reveal delay={320} className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/programs"
-              className="group inline-flex items-center gap-3 rounded-full bg-purple-600 px-7 py-4 font-heading text-lg text-white transition-colors duration-300 hover:bg-purple-500"
-            >
-              Explore Programs
-              <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-full border border-black/20 px-7 py-4 font-heading text-lg text-black transition-colors duration-300 hover:border-black hover:bg-black hover:text-white"
-            >
-              Get in touch
-            </Link>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:max-w-4xl">
+            {ALUMNI.map((person, i) => (
+              <Reveal
+                as="article"
+                key={person.name}
+                delay={350 + i * 120}
+                className="flex items-center gap-5 rounded-2xl border border-black/10 p-5"
+              >
+                {/* Headshot placeholder. Replace this block with an <Image fill /> once we have the photo. */}
+                <div className="flex aspect-[4/5] w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-purple-900 font-display text-4xl text-white">
+                  {person.initial}
+                </div>
+                <div>
+                  <h3 className="font-display text-2xl text-black">
+                    {person.name}
+                  </h3>
+                  <p className="mt-2 font-heading text-purple-700">
+                    {person.role}
+                  </p>
+                  <p className="mt-1 font-body text-sm text-purple-900/70">
+                    {person.detail}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={600} className="mt-12 border-t border-black/10 pt-8">
+            <p className="font-heading text-sm text-purple-900/70">
+              Members and alumni have landed at
+            </p>
+            <ul className="mt-5 flex flex-wrap gap-3">
+              {FIRMS.map((firm) => (
+                <li
+                  key={firm}
+                  className="rounded-full border border-black/15 px-5 py-2 font-heading text-sm text-purple-900/80"
+                >
+                  {firm}
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </section>
 
-      <Footer />
+      <Footer fullHeight />
     </div>
   );
 }
