@@ -343,21 +343,25 @@ export default function Home() {
       </section>
 
       {/* Events */}
-      <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-black py-10 text-white">
-        <div className="px-6 md:px-12 lg:px-24">
+      <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-black py-10 text-white">
+        <Starfield
+          count={170}
+          className="[mask-image:linear-gradient(to_bottom,#000_38%,transparent_62%)]"
+        />
+        <div className="relative px-6 md:px-12 lg:px-24">
           <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-x-12 gap-y-6">
             <div>
               <h2 className={SECTION_HEADING}>
-                <SplitText text="Open to every student" />
+                <SplitText text="Open to all students" />
               </h2>
               <Reveal
                 as="p"
                 delay={200}
                 className="mt-4 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
               >
-                Talks, panels and pitch nights with investors, founders and
-                builders in the room. Come to find an internship, funding, a
-                cofounder, or just people worth knowing.
+                Built by students, for students. Talks, panels and pitch nights
+                with investors and founders in the room, whether you come for an
+                internship, funding, a cofounder, or just people worth knowing.
               </Reveal>
             </div>
             <Reveal delay={300}>

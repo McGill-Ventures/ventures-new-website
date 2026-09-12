@@ -30,41 +30,55 @@ const FOUNDERS = [
   },
 ];
 
-// Interleaved so the handful of black-only marks never sit side by side.
-const WALL = [
-  "inovia",
-  "bdc",
-  "brightspark",
-  "framework",
-  "rbc",
-  "betakit",
-  "triptyq",
-  "td",
-  "mckinsey",
-  "checksammy",
-  "ubs",
-  "front_row_ventures",
-  "boxone",
-  "citi",
-  "afterquery",
-  "dorm_room_fund",
-  "bmo",
-  "carbon6",
-  "nationgraph",
-  "lightspeed",
-  "attain",
-  "optionality",
-  "bank_of_america",
-  "next",
-  "quantacet",
-  "cibc",
-  "boreal_ventures",
-  "novateur",
-  "bnp_paribas",
-  "z_fellows",
-  "white_star_capital",
-  "ey_parthenon",
-  "brio",
+const GROUPS = [
+  {
+    label: "Venture capital",
+    logos: [
+      "inovia",
+      "bdc",
+      "brightspark",
+      "framework",
+      "novateur",
+      "triptyq",
+      "quantacet",
+      "boreal_ventures",
+      "boxone",
+      "front_row_ventures",
+      "dorm_room_fund",
+      "white_star_capital",
+    ],
+  },
+  {
+    label: "Startups",
+    logos: [
+      "checksammy",
+      "betakit",
+      "attain",
+      "afterquery",
+      "z_fellows",
+      "nationgraph",
+      "next",
+      "carbon6",
+      "optionality",
+      "brio",
+    ],
+  },
+  {
+    label: "Traditional careers",
+    logos: [
+      "mckinsey",
+      "rbc",
+      "ubs",
+      "td",
+      "lightspeed",
+      "citi",
+      "bmo",
+      "ey_parthenon",
+      "bank_of_america",
+      "bnp_paribas",
+      "cibc",
+    ],
+  },
 ];
 
 /* Redrawn from the deck's badge: same orange and the same Y proportions,
@@ -75,7 +89,7 @@ function YCombinatorMark() {
       viewBox="0 0 100 100"
       role="img"
       aria-label="Y Combinator"
-      className="h-28 w-28 rounded-md"
+      className="h-[5.5rem] w-[5.5rem] rounded-md"
     >
       <rect width="100" height="100" fill="#FC651E" />
       <path
@@ -90,7 +104,7 @@ function YCombinatorMark() {
 
 function WallLogo({ name }: { name: string }) {
   return (
-    <div className="flex h-14 w-36 items-center justify-center md:h-16 md:w-44">
+    <div className="flex h-11 w-32 items-center justify-center md:h-12 md:w-40">
       <Image
         src={`/logos/companies/${name}.png`}
         alt=""
@@ -104,7 +118,7 @@ function WallLogo({ name }: { name: string }) {
 
 export function FeaturedMembers() {
   return (
-    <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden py-12">
+    <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden py-6">
       <div className="px-6 md:px-12 lg:px-24">
         <div className="mx-auto max-w-7xl">
           <h2 className="font-display text-[clamp(2.25rem,4.5vw,4.25rem)] leading-[1] text-black text-balance">
@@ -115,11 +129,11 @@ export function FeaturedMembers() {
             delay={200}
             className="mt-4 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
           >
-            Some of them did not wait for a job offer. They left and started the
-            company themselves.
+            Our alumni are ambitious builders, backed by some of the best
+            accelerators and funds in the world.
           </Reveal>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <div className="mt-6 grid gap-4 lg:grid-cols-2">
             {FOUNDERS.map((founder, i) => (
               <Reveal key={founder.name} delay={300 + i * 130}>
                 <a
@@ -132,8 +146,8 @@ export function FeaturedMembers() {
                     aria-hidden
                     className="animate-orb pointer-events-none absolute -top-24 -right-16 size-72 rounded-full bg-purple-700/40 blur-3xl"
                   />
-                  <div className="relative flex items-center gap-5 p-6 md:gap-6 md:p-7">
-                    <div className="relative size-20 shrink-0 overflow-hidden rounded-2xl md:size-24">
+                  <div className="relative flex items-center gap-5 p-5 md:gap-6 md:p-6">
+                    <div className="relative size-[4.5rem] shrink-0 overflow-hidden rounded-2xl md:size-20">
                       <Image
                         src={founder.photo}
                         alt={founder.name}
@@ -156,7 +170,7 @@ export function FeaturedMembers() {
                   </div>
 
                   {/* The backer, given the room the name deserves. */}
-                  <div className="relative mt-auto flex min-h-32 items-center justify-center overflow-hidden px-6 pb-7">
+                  <div className="relative mt-auto flex min-h-24 items-center justify-center overflow-hidden px-6 pb-5">
                     {"mark" in founder.backer ? (
                       <YCombinatorMark />
                     ) : (
@@ -179,15 +193,35 @@ export function FeaturedMembers() {
         </div>
       </div>
 
-      <Reveal delay={200} className="mt-12">
-        <p className="px-6 font-heading text-sm text-purple-900/60 md:px-12 lg:px-24">
-          <span className="mx-auto block max-w-7xl">And the rest are at</span>
-        </p>
-        <Marquee duration={70} gap="0.5rem" fade className="mt-5">
-          {WALL.map((name) => (
-            <WallLogo key={name} name={name} />
-          ))}
-        </Marquee>
+      <Reveal delay={200} className="mt-6 px-6 md:px-12 lg:px-24">
+        <div className="mx-auto max-w-7xl">
+          <p className="font-heading text-sm text-purple-900/60">
+            And the rest of us landed internships and full-time roles here
+          </p>
+          <div className="mt-3 space-y-1.5">
+            {GROUPS.map((group, i) => (
+              <div
+                key={group.label}
+                className="flex items-center gap-4 border-t border-black/8 pt-2 md:gap-8"
+              >
+                <p className="w-24 shrink-0 font-heading text-xs text-purple-900/45 md:w-40 md:text-sm">
+                  {group.label}
+                </p>
+                <Marquee
+                  direction={i % 2 ? "right" : "left"}
+                  duration={56 + i * 8}
+                  gap="0.25rem"
+                  fade
+                  className="min-w-0 flex-1"
+                >
+                  {group.logos.map((name) => (
+                    <WallLogo key={name} name={name} />
+                  ))}
+                </Marquee>
+              </div>
+            ))}
+          </div>
+        </div>
       </Reveal>
     </section>
   );
