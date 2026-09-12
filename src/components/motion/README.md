@@ -64,3 +64,12 @@ The wrapper tracks the pointer, each layer drifts by its `depth`.
   <ParallaxLayer depth={0.6}>...</ParallaxLayer>
 </MouseParallax>
 ```
+
+## `<Starfield>`
+
+Ambient starfield on a canvas, meant to sit behind content inside a `relative` dark section.
+Slow drift, twinkle and the odd shooting star. Static under reduced motion, paused while off screen.
+
+```tsx
+<Starfield density={2.4} className="[mask-image:linear-gradient(to_right,#000_40%,transparent_65%)]" />
+```

@@ -4,7 +4,13 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui";
 import Footer from "@/components/Footer";
-import { Marquee, Parallax, Reveal, SplitText } from "@/components/motion";
+import {
+  Marquee,
+  Parallax,
+  Reveal,
+  SplitText,
+  Starfield,
+} from "@/components/motion";
 
 // Three vertical rails in the hero. Middle one scrolls the other way.
 const RAILS = [
@@ -209,6 +215,8 @@ export default function Home() {
           aria-hidden
           className="animate-orb pointer-events-none absolute -right-24 -bottom-56 size-[32rem] rounded-full bg-purple-800/50 blur-3xl [animation-delay:-8s]"
         />
+        {/* Fades out before the photo rails: to the right on desktop, downward on mobile. */}
+        <Starfield className="[mask-image:linear-gradient(to_bottom,#000_55%,transparent_80%)] lg:[mask-image:linear-gradient(to_right,#000_42%,transparent_62%)]" />
 
         <div className="relative grid min-h-[100dvh] lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
           <div className="flex flex-col justify-center px-6 pt-28 pb-12 sm:px-10 lg:py-24 lg:pl-16 xl:pl-24">
