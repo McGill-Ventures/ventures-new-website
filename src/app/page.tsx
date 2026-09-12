@@ -3,9 +3,7 @@ import Image from "next/image";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { HOME_STATS } from "@/constants";
 import {
-  CountUp,
   Marquee,
   MouseParallax,
   Parallax,
@@ -39,42 +37,142 @@ const RAILS = [
   ],
 ];
 
-const STRIP_TOP = [
-  "/events/northstar_2026/ns26_01.jpg",
-  "/events/scarlet_pitch2025/sp2025_02.jpg",
-  "/events/image_carousel_pic3.jpg",
-  "/events/clipxhealthtech_2026/clipxhealthtech_2026_01.jpg",
-  "/events/northstar_2026/ns26_09.jpg",
-  "/events/scarlet_pitch_2026/sp26_11.jpg",
-  "/events/technova2025/tn2025_09.jpg",
-  "/events/pizza.jpg",
+const PROGRAMS = [
+  {
+    name: "Analyst Program",
+    href: "/programs",
+    external: false,
+    photo: "/events/image_carousel_pic2.jpg",
+    blurb:
+      "Weekly classes taught by leading VCs. Deal flow, due diligence, valuation and investment memos, with founders pitching directly to analysts.",
+  },
+  {
+    name: "McGill Venture Fund",
+    href: "/fund",
+    external: false,
+    photo: "/events/scarlet_pitch_2026/sp26_02.jpg",
+    blurb:
+      "A student-led fund backed by McGill alumni and faculty, investing in pre-seed startups from the McGill community.",
+  },
+  {
+    name: "Growth Studio",
+    href: "/growth-studio",
+    external: false,
+    photo: "/events/startup_showcase2025/startup_showcase2025_03.jpg",
+    blurb:
+      "Startup consulting that gets pre-seed and seed founders investor-ready: pitch decks, investor CRM, go-to-market and AI adoption.",
+  },
+  {
+    name: "HealthTech Innovation Lab",
+    href: "/programs",
+    external: false,
+    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_05.jpg",
+    blurb:
+      "A selective fellowship where interdisciplinary teams tackle real challenges from health ventures and clinical innovators.",
+  },
+  {
+    name: "Project Atlas",
+    href: "https://www.project-atlas.ca/",
+    external: true,
+    photo: "/events/technova2025/tn2025_04.jpg",
+    blurb:
+      "Montreal's young builders, connected to the wider Canadian ecosystem through year-round events and a 30-person cohort sent to Toronto Tech Week.",
+  },
 ];
 
-const STRIP_BOTTOM = [
-  "/events/contact_us_photo.jpg",
-  "/events/northstar_2026/ns26_03.jpg",
-  "/events/scarlet_pitch2025/sp2025_06.jpg",
-  "/events/scarlet_pitch_2026/sp26_08.jpeg",
-  "/events/women_in_vc2026/winvc_2026_01.JPG",
-  "/events/startup_showcase2025/startup_showcase2025_hero.jpg",
-  "/events/technova2025/tn2025_01.jpg",
-  "/events/scarlet_pitch_2024/sp24_01.jpg",
+const ALUMNI = [
+  {
+    // Placeholder card. Drop the real headshot into /public/headshots/alumni/
+    // and swap the gradient block below for an <Image fill />.
+    initial: "A",
+    name: "Person A",
+    role: "Founder, General Magic",
+    detail: "Backed by a16z.",
+  },
+  {
+    initial: "B",
+    name: "Person B",
+    role: "Co-founder, GrayPass",
+    detail: "Y Combinator, F26 batch.",
+  },
+];
+
+// Placeholder pills. Swap each for the firm's logo once we have the assets.
+const FIRMS = Array.from(
+  { length: 8 },
+  (_, i) => `Firm ${String.fromCharCode(65 + i)}`,
+);
+
+type StripItem = { src: string; caption?: string };
+
+const STRIP_TOP: StripItem[] = [
+  { src: "/events/northstar_2026/ns26_01.jpg", caption: "North Star 2026" },
+  {
+    src: "/events/scarlet_pitch2025/sp2025_02.jpg",
+    caption: "Scarlet Pitch 2025",
+  },
+  { src: "/events/image_carousel_pic3.jpg" },
+  {
+    src: "/events/clipxhealthtech_2026/clipxhealthtech_2026_01.jpg",
+    caption: "The Clip x HealthTech 2026",
+  },
+  { src: "/events/northstar_2026/ns26_09.jpg", caption: "North Star 2026" },
+  {
+    src: "/events/scarlet_pitch_2026/sp26_11.jpg",
+    caption: "Scarlet Pitch 2026",
+  },
+  { src: "/events/technova2025/tn2025_09.jpg", caption: "TechNova 2025" },
+  { src: "/events/pizza.jpg" },
+];
+
+const STRIP_BOTTOM: StripItem[] = [
+  { src: "/events/contact_us_photo.jpg" },
+  { src: "/events/northstar_2026/ns26_03.jpg", caption: "North Star 2026" },
+  {
+    src: "/events/scarlet_pitch2025/sp2025_06.jpg",
+    caption: "Scarlet Pitch 2025",
+  },
+  {
+    src: "/events/scarlet_pitch_2026/sp26_08.jpeg",
+    caption: "Scarlet Pitch 2026",
+  },
+  {
+    src: "/events/women_in_vc2026/winvc_2026_01.JPG",
+    caption: "Women in VC 2026",
+  },
+  {
+    src: "/events/startup_showcase2025/startup_showcase2025_hero.jpg",
+    caption: "Startup Showcase 2025",
+  },
+  { src: "/events/technova2025/tn2025_01.jpg", caption: "TechNova 2025" },
+  {
+    src: "/events/scarlet_pitch_2024/sp24_01.jpg",
+    caption: "Scarlet Pitch 2024",
+  },
 ];
 
 const WHY_FEATURES = [
   {
-    title: "Real Experience",
+    title: "Learn from investors",
     description:
-      "Work directly with startups, conduct due diligence, and participate in investment decisions.",
+      "Weekly Analyst Program classes taught by practising VCs, with founder pitches and real cases.",
   },
   {
-    title: "Expert Network",
+    title: "Work on real deals",
     description:
-      "Connect with industry professionals, successful entrepreneurs, and leading investors.",
+      "Source and diligence startups for the Venture Fund, or advise founders through Growth Studio client projects.",
+  },
+  {
+    title: "Build the ecosystem",
+    description:
+      "18 events last year, from North Star to Scarlet Pitch, plus a builders' cohort at Toronto Tech Week with Project Atlas.",
   },
 ];
 
-function StripPhoto({ src }: { src: string }) {
+const SECTION_HEADING =
+  "font-display text-[clamp(2.25rem,4.5vw,4.25rem)] leading-[1] text-balance";
+
+function StripPhoto({ src, caption }: StripItem) {
   return (
     <div className="relative h-52 w-[19.5rem] overflow-hidden rounded-2xl md:h-64 md:w-96">
       <Image
@@ -84,6 +182,17 @@ function StripPhoto({ src }: { src: string }) {
         sizes="(max-width: 768px) 312px, 384px"
         className="object-cover transition-transform duration-700 ease-out hover:scale-105"
       />
+      {caption && (
+        <>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent"
+          />
+          <span className="pointer-events-none absolute bottom-3 left-4 font-heading text-sm text-white">
+            {caption}
+          </span>
+        </>
+      )}
     </div>
   );
 }
@@ -230,137 +339,291 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* Stats */}
-      <section id="stats" className="px-6 py-20 md:px-12 lg:px-24 lg:py-28">
+      {/* Programs. Keeps id="stats" so the hero's "Discover more" anchor lands here. */}
+      <section
+        id="stats"
+        className="scroll-mt-24 px-6 py-24 md:px-12 lg:px-24 lg:py-32"
+      >
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-2 gap-x-6 gap-y-12 border-t border-black/10 pt-12 lg:grid-cols-4 lg:gap-0">
-            {HOME_STATS.map((stat, i) => (
+          <h2 className={`${SECTION_HEADING} max-w-4xl text-black`}>
+            <SplitText text="Five programs, from VC to STEM" />
+          </h2>
+          <Reveal
+            as="p"
+            delay={200}
+            className="mt-6 max-w-2xl font-body text-lg text-purple-900/75 md:text-xl"
+          >
+            Weekly classes, a student-led fund, a startup consulting studio, a
+            health tech lab and a builders&apos; community. Pick your entry
+            point.
+          </Reveal>
+
+          <ul className="mt-14 border-b border-black/10">
+            {PROGRAMS.map((program, i) => (
               <Reveal
-                key={stat.label}
-                delay={i * 110}
-                className="lg:border-l lg:border-black/10 lg:px-8 lg:first:border-l-0 lg:first:pl-0"
+                as="li"
+                key={program.name}
+                delay={i * 90}
+                className="border-t border-black/10"
               >
-                <div className="font-display text-5xl text-black sm:text-6xl md:text-7xl">
-                  <CountUp value={stat.value} delay={i * 110} />
-                </div>
-                <p className="mt-4 max-w-[16rem] font-body text-purple-900/80">
-                  {stat.label}
-                </p>
+                <Link
+                  href={program.href}
+                  {...(program.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="group grid items-center gap-x-10 gap-y-4 py-8 md:grid-cols-[minmax(0,26rem)_minmax(0,1fr)_auto] lg:py-10"
+                >
+                  <div className="flex items-center gap-5">
+                    <div className="relative size-16 shrink-0 overflow-hidden rounded-xl md:size-20">
+                      <Image
+                        src={program.photo}
+                        alt=""
+                        fill
+                        sizes="80px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <h3 className="font-display text-2xl text-black md:text-3xl">
+                      {program.name}
+                    </h3>
+                  </div>
+                  <p className="font-body text-purple-900/75 md:text-lg">
+                    {program.blurb}
+                  </p>
+                  <span className="inline-flex items-center gap-2 font-heading text-sm whitespace-nowrap text-purple-700">
+                    {program.external ? "Visit site" : "Learn more"}
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </Link>
               </Reveal>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* Photo strip */}
-      <Reveal
-        as="section"
-        variant="fade"
-        duration={1400}
-        className="overflow-hidden pb-24 lg:pb-32"
-      >
-        <Marquee duration={75} pauseOnHover={false}>
-          {STRIP_TOP.map((src) => (
-            <StripPhoto key={src} src={src} />
-          ))}
-        </Marquee>
-        <Marquee
-          direction="right"
-          duration={85}
-          pauseOnHover={false}
-          className="mt-4"
-        >
-          {STRIP_BOTTOM.map((src) => (
-            <StripPhoto key={src} src={src} />
-          ))}
-        </Marquee>
-      </Reveal>
+      {/* Outcomes: credibility strip, deliberately compact. */}
+      <section className="bg-black px-6 py-24 text-white md:px-12 lg:px-24 lg:py-28">
+        <div className="mx-auto max-w-7xl">
+          <h2 className={`${SECTION_HEADING} max-w-3xl`}>
+            <SplitText text="Where our members go" />
+          </h2>
+          <Reveal
+            as="p"
+            delay={200}
+            className="mt-6 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
+          >
+            Team members go on to venture capital, startups and traditional
+            careers. Two founders from our team each raised millions in the past
+            year.
+          </Reveal>
 
-      {/* Why Choose McGill Ventures */}
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:max-w-4xl">
+            {ALUMNI.map((person, i) => (
+              <Reveal
+                as="article"
+                key={person.name}
+                delay={350 + i * 120}
+                className="flex items-center gap-5 rounded-2xl border border-white/15 p-5"
+              >
+                {/* Headshot placeholder. Replace this block with an <Image fill /> once we have the photo. */}
+                <div className="flex aspect-[4/5] w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-purple-900 font-display text-4xl text-white">
+                  {person.initial}
+                </div>
+                <div>
+                  <h3 className="font-display text-2xl">{person.name}</h3>
+                  <p className="mt-2 font-heading text-purple-200">
+                    {person.role}
+                  </p>
+                  <p className="mt-1 font-body text-sm text-purple-100/70">
+                    {person.detail}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={600} className="mt-16 border-t border-white/15 pt-8">
+            <p className="font-heading text-sm tracking-wide text-purple-100/70 uppercase">
+              Members and alumni have landed at
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-3">
+              {FIRMS.map((firm) => (
+                <li
+                  key={firm}
+                  className="rounded-full border border-white/20 px-5 py-2 font-heading text-sm text-purple-100/80"
+                >
+                  {firm}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Events */}
+      <section className="overflow-hidden py-24 lg:py-32">
+        <div className="px-6 md:px-12 lg:px-24">
+          <div className="mx-auto max-w-7xl">
+            <h2 className={`${SECTION_HEADING} text-black`}>
+              <SplitText text="18 events last year" />
+            </h2>
+            <Reveal
+              as="p"
+              delay={200}
+              className="mt-6 max-w-2xl font-body text-lg text-purple-900/75 md:text-xl"
+            >
+              North Star, Scarlet Pitch, Women in VC, Startup Showcase and more.
+            </Reveal>
+            <Reveal delay={300} className="mt-6">
+              <Link
+                href="/events"
+                className="group inline-flex items-center gap-2 font-heading text-lg text-purple-700"
+              >
+                See all events
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+
+        <Reveal variant="fade" duration={1400} className="mt-14">
+          <Marquee duration={75} pauseOnHover={false}>
+            {STRIP_TOP.map((photo) => (
+              <StripPhoto key={photo.src} {...photo} />
+            ))}
+          </Marquee>
+          <Marquee
+            direction="right"
+            duration={85}
+            pauseOnHover={false}
+            className="mt-4"
+          >
+            {STRIP_BOTTOM.map((photo) => (
+              <StripPhoto key={photo.src} {...photo} />
+            ))}
+          </Marquee>
+        </Reveal>
+      </section>
+
+      {/* Why McGill Ventures */}
       <section className="relative overflow-hidden bg-purple-950 text-white">
         <div
           aria-hidden
           className="animate-orb pointer-events-none absolute -top-40 right-0 size-[34rem] rounded-full bg-purple-600/35 blur-3xl"
         />
-        <div className="relative mx-auto grid max-w-7xl gap-16 px-6 py-24 md:px-12 lg:grid-cols-2 lg:gap-16 lg:px-24 lg:py-32">
-          <div className="flex flex-col justify-center">
-            <h2 className="font-display text-[clamp(2.25rem,4.5vw,4.25rem)] leading-[1]">
-              <SplitText text="Why Choose McGill Ventures" />
-            </h2>
-            <Reveal
-              as="p"
-              delay={200}
-              className="mt-8 max-w-xl font-body text-lg text-purple-100/85 md:text-xl"
-            >
-              Join Montreal&apos;s most dynamic student venture capital
-              community. Gain real-world experience, build lasting connections,
-              and develop the skills to shape the future of entrepreneurship.
-            </Reveal>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2">
-              {WHY_FEATURES.map((feature, i) => (
-                <Reveal
-                  key={feature.title}
-                  delay={350 + i * 120}
-                  className="border-t border-white/15 pt-6"
-                >
-                  <h3 className="font-heading text-xl text-purple-200">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-3 font-body text-purple-300">
-                    {feature.description}
-                  </p>
+        <div className="relative px-6 py-24 md:px-12 lg:px-24 lg:py-32">
+          <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
+            <div className="flex flex-col justify-center">
+              <h2 className={SECTION_HEADING}>
+                <SplitText text="Why McGill Ventures" />
+              </h2>
+              <Reveal
+                as="p"
+                delay={200}
+                className="mt-8 max-w-xl font-body text-lg text-purple-100/85 md:text-xl"
+              >
+                McGill Ventures educates and connects students to the venture
+                capital and startup ecosystem in Canada and beyond.
+              </Reveal>
+              {/* Stacked, not columned: three columns inside this half-width block
+                squeeze each blurb to five ragged lines. */}
+              <div className="mt-12 grid gap-8">
+                {WHY_FEATURES.map((feature, i) => (
+                  <Reveal
+                    key={feature.title}
+                    delay={350 + i * 120}
+                    className="border-t border-white/15 pt-6"
+                  >
+                    <h3 className="font-heading text-xl text-purple-200">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-3 font-body text-purple-300">
+                      {feature.description}
+                    </p>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative mx-auto aspect-[10/9] w-full max-w-[36rem] lg:self-center">
+              <Parallax speed={0.06} className="absolute top-0 left-0 w-[70%]">
+                <Reveal variant="clip" duration={1300}>
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
+                    <Image
+                      src="/events/homeLanding.jpg"
+                      alt="McGill Ventures Community Event"
+                      fill
+                      sizes="(max-width: 1024px) 70vw, 520px"
+                      className="object-cover object-[75%_center]"
+                    />
+                  </div>
                 </Reveal>
-              ))}
+              </Parallax>
+              <Parallax
+                speed={-0.05}
+                className="absolute top-[26%] right-0 w-[44%]"
+              >
+                <Reveal variant="clip" delay={200} duration={1300}>
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl ring-8 ring-purple-950">
+                    <Image
+                      src="/events/scarlet_pitch_2026/sp26_07.jpeg"
+                      alt=""
+                      fill
+                      sizes="(max-width: 1024px) 45vw, 330px"
+                      className="object-cover"
+                    />
+                  </div>
+                </Reveal>
+              </Parallax>
+              <Parallax
+                speed={0.1}
+                className="absolute top-[48%] left-[4%] w-[40%]"
+              >
+                <Reveal variant="clip" delay={350} duration={1300}>
+                  <div className="relative aspect-square overflow-hidden rounded-3xl ring-8 ring-purple-950">
+                    <Image
+                      src="/events/pizza.jpg"
+                      alt=""
+                      fill
+                      sizes="(max-width: 1024px) 40vw, 290px"
+                      className="object-cover"
+                    />
+                  </div>
+                </Reveal>
+              </Parallax>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="relative mx-auto aspect-[10/9] w-full max-w-[36rem] lg:self-center">
-            <Parallax speed={0.06} className="absolute top-0 left-0 w-[70%]">
-              <Reveal variant="clip" duration={1300}>
-                <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
-                  <Image
-                    src="/events/homeLanding.jpg"
-                    alt="McGill Ventures Community Event"
-                    fill
-                    sizes="(max-width: 1024px) 70vw, 520px"
-                    className="object-cover object-[75%_center]"
-                  />
-                </div>
-              </Reveal>
-            </Parallax>
-            <Parallax
-              speed={-0.05}
-              className="absolute top-[26%] right-0 w-[44%]"
+      {/* Closing call to action */}
+      <section className="px-6 py-24 md:px-12 lg:px-24 lg:py-32">
+        <div className="mx-auto max-w-7xl">
+          <h2 className={`${SECTION_HEADING} max-w-4xl text-black`}>
+            <SplitText text="Join the team behind McGill's startup scene." />
+          </h2>
+          <Reveal
+            as="p"
+            delay={200}
+            className="mt-6 max-w-2xl font-body text-lg text-purple-900/75 md:text-xl"
+          >
+            Applications for programs and associate roles open every fall.
+          </Reveal>
+          <Reveal delay={320} className="mt-10 flex flex-wrap gap-4">
+            <Link
+              href="/programs"
+              className="group inline-flex items-center gap-3 rounded-full bg-purple-600 px-7 py-4 font-heading text-lg text-white transition-colors duration-300 hover:bg-purple-500"
             >
-              <Reveal variant="clip" delay={200} duration={1300}>
-                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl ring-8 ring-purple-950">
-                  <Image
-                    src="/events/scarlet_pitch_2026/sp26_07.jpeg"
-                    alt=""
-                    fill
-                    sizes="(max-width: 1024px) 45vw, 330px"
-                    className="object-cover"
-                  />
-                </div>
-              </Reveal>
-            </Parallax>
-            <Parallax
-              speed={0.1}
-              className="absolute top-[48%] left-[4%] w-[40%]"
+              Explore Programs
+              <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center rounded-full border border-black/20 px-7 py-4 font-heading text-lg text-black transition-colors duration-300 hover:border-black hover:bg-black hover:text-white"
             >
-              <Reveal variant="clip" delay={350} duration={1300}>
-                <div className="relative aspect-square overflow-hidden rounded-3xl ring-8 ring-purple-950">
-                  <Image
-                    src="/events/pizza.jpg"
-                    alt=""
-                    fill
-                    sizes="(max-width: 1024px) 40vw, 290px"
-                    className="object-cover"
-                  />
-                </div>
-              </Reveal>
-            </Parallax>
-          </div>
+              Get in touch
+            </Link>
+          </Reveal>
         </div>
       </section>
 
