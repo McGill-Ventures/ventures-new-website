@@ -16,7 +16,7 @@ const FOUNDERS = [
       height: 83,
       className: "w-[104%] max-w-none",
       label: "a16z speedrun",
-    },
+    } as const,
   },
   {
     name: "Aditya Ranjan",
@@ -24,13 +24,9 @@ const FOUNDERS = [
     company: "GrayPass",
     photo: "/headshots/founders/aditya_ranjan.jpg",
     linkedin: "https://www.linkedin.com/in/ad1tyaranjan/",
-    backer: {
-      src: "/logos/companies/y_combinator_mark.png",
-      width: 69,
-      height: 72,
-      className: "h-28 w-auto rounded-md",
-      label: "Y Combinator",
-    },
+    // Inline, not the extracted bitmap: the only copy in the deck is 69px
+    // square, which visibly blurs at the size this card wants.
+    backer: { mark: "yc" as const, label: "Y Combinator" },
   },
 ];
 
@@ -70,6 +66,27 @@ const WALL = [
   "ey_parthenon",
   "brio",
 ];
+
+/* Redrawn from the deck's badge: same orange and the same Y proportions,
+   but sharp at any size. */
+function YCombinatorMark() {
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      role="img"
+      aria-label="Y Combinator"
+      className="h-28 w-28 rounded-md"
+    >
+      <rect width="100" height="100" fill="#FC651E" />
+      <path
+        d="M29.7 25 L50 48.5 L70.3 25 M50 48.5 L50 73.5"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="7.4"
+      />
+    </svg>
+  );
+}
 
 function WallLogo({ name }: { name: string }) {
   return (
@@ -140,13 +157,17 @@ export function FeaturedMembers() {
 
                   {/* The backer, given the room the name deserves. */}
                   <div className="relative mt-auto flex min-h-32 items-center justify-center overflow-hidden px-6 pb-7">
-                    <Image
-                      src={founder.backer.src}
-                      alt={founder.backer.label}
-                      width={founder.backer.width}
-                      height={founder.backer.height}
-                      className={`object-contain ${founder.backer.className}`}
-                    />
+                    {"mark" in founder.backer ? (
+                      <YCombinatorMark />
+                    ) : (
+                      <Image
+                        src={founder.backer.src}
+                        alt={founder.backer.label}
+                        width={founder.backer.width}
+                        height={founder.backer.height}
+                        className={`object-contain ${founder.backer.className}`}
+                      />
+                    )}
                   </div>
                   <span className="sr-only">
                     {founder.name} on LinkedIn (opens in a new tab)
