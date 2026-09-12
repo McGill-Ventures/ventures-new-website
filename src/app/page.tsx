@@ -58,7 +58,7 @@ const PROGRAMS = [
     name: "Growth Studio",
     href: "/growth-studio",
     external: false,
-    photo: "/events/startup_showcase2025/startup_showcase2025_03.jpg",
+    photo: "/growth-studio/hero-founders.webp",
     blurb:
       "Startup consulting that gets pre-seed and seed founders investor-ready: pitch decks, investor CRM, go-to-market and AI adoption.",
   },
@@ -66,7 +66,7 @@ const PROGRAMS = [
     name: "HealthTech Innovation Lab",
     href: "/programs",
     external: false,
-    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_05.jpg",
+    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
     blurb:
       "A selective fellowship where interdisciplinary teams tackle real challenges from health ventures and clinical innovators.",
   },
