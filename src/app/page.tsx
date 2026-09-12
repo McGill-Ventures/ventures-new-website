@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui";
 import Footer from "@/components/Footer";
 import {
+  FlipCard,
   Marquee,
   Parallax,
   Reveal,
@@ -172,6 +173,57 @@ const WHY_FEATURES = [
 const SECTION_HEADING =
   "font-display text-[clamp(2.25rem,4.5vw,4.25rem)] leading-[1] text-balance";
 
+type Program = (typeof PROGRAMS)[number];
+
+/* Both faces are their own components. Elements built inline in one component
+   and handed to another as props trip React's key validation. */
+function ProgramFront({ program }: { program: Program }) {
+  return (
+    <div className="absolute inset-0">
+      <Image
+        src={program.photo}
+        alt=""
+        fill
+        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 240px"
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"
+      />
+      <h3 className="absolute inset-x-4 bottom-4 font-display text-xl leading-tight text-white text-balance transition-transform duration-500 ease-out group-hover:-translate-y-1">
+        {program.name}
+      </h3>
+    </div>
+  );
+}
+
+function ProgramBack({ program }: { program: Program }) {
+  return (
+    <div className="flex h-full flex-col bg-purple-950 p-4 text-white">
+      <h3 className="font-display text-lg leading-tight text-balance">
+        {program.name}
+      </h3>
+      <p className="mt-3 font-body text-sm leading-snug text-purple-200">
+        {program.blurb}
+      </p>
+      <Link
+        href={program.href}
+        {...(program.external
+          ? { target: "_blank", rel: "noopener noreferrer" }
+          : {})}
+        className="group/link mt-auto inline-flex w-fit items-center gap-2 font-heading text-sm text-purple-300 transition-colors hover:text-white"
+      >
+        {program.external ? "Visit site" : "Learn more"}
+        <ArrowRight className="size-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+        {program.external && (
+          <span className="sr-only">(opens in a new tab)</span>
+        )}
+      </Link>
+    </div>
+  );
+}
+
 function StripPhoto({ src, caption }: StripItem) {
   return (
     <div className="relative h-40 w-60 overflow-hidden rounded-2xl md:h-48 md:w-72">
@@ -333,61 +385,32 @@ export default function Home() {
           out of view. */}
       <section
         id="programs"
-        className="flex min-h-[100dvh] -scroll-mt-20 items-center px-6 py-16 md:px-12 lg:px-24"
+        className="flex min-h-[100dvh] -scroll-mt-20 flex-col justify-center px-6 py-16 md:px-12 lg:px-24"
       >
-        <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
-          <div className="lg:self-center">
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="max-w-3xl">
             <h2 className={`${SECTION_HEADING} text-black`}>
               <SplitText text="Five programs, from VC to STEM" />
             </h2>
             <Reveal
               as="p"
               delay={200}
-              className="mt-6 max-w-md font-body text-lg text-purple-900/75 md:text-xl"
+              className="mt-6 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
             >
               Weekly classes, a student-led fund, a startup consulting studio, a
-              health tech lab and a builders&apos; community. Pick your entry
-              point.
+              health tech lab and a builders&apos; community.
             </Reveal>
           </div>
 
-          <ul className="border-b border-black/10 lg:self-center">
+          <ul className="mt-12 grid gap-4 sm:grid-cols-3 lg:mt-14 lg:grid-cols-5">
             {PROGRAMS.map((program, i) => (
-              <Reveal
-                as="li"
-                key={program.name}
-                delay={i * 90}
-                className="border-t border-black/10"
-              >
-                <Link
-                  href={program.href}
-                  {...(program.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  className="group flex items-center gap-5 py-3.5 lg:py-4"
-                >
-                  <div className="relative size-14 shrink-0 overflow-hidden rounded-xl md:size-16">
-                    <Image
-                      src={program.photo}
-                      alt=""
-                      fill
-                      sizes="64px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-display text-xl text-black md:text-2xl">
-                      {program.name}
-                    </h3>
-                    <p className="mt-1 font-body text-sm text-purple-900/70">
-                      {program.blurb}
-                    </p>
-                  </div>
-                  <ArrowRight className="size-5 shrink-0 text-purple-700 transition-transform duration-300 group-hover:translate-x-1" />
-                  {program.external && (
-                    <span className="sr-only">(opens in a new tab)</span>
-                  )}
-                </Link>
+              <Reveal as="li" key={program.name} delay={i * 90}>
+                <FlipCard
+                  className="group aspect-[16/10] w-full rounded-2xl sm:aspect-[3/4]"
+                  label={program.name}
+                  front={<ProgramFront program={program} />}
+                  back={<ProgramBack program={program} />}
+                />
               </Reveal>
             ))}
           </ul>

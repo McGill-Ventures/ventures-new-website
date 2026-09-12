@@ -446,3 +446,87 @@ a[href],
 .animate-orb {
   animation: orb-drift 16s ease-in-out infinite;
 }
+
+/* <FlipCard> */
+.flip {
+  perspective: 1600px;
+}
+
+.flip-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transition: transform 750ms var(--ease-out-expo);
+  transform-style: preserve-3d;
+}
+
+.flip[data-flipped] .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  /* Chrome still needs the prefix to hide the reversed face. */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* The hit area sits beneath the content, so a click anywhere turns the card
+   over while links and buttons on the face keep taking their own clicks. */
+.flip-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  cursor: pointer;
+  border-radius: inherit;
+}
+
+.flip-hit:focus-visible {
+  outline: 2px solid var(--color-purple-500);
+  outline-offset: 2px;
+}
+
+.flip-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.flip-content a,
+.flip-content button {
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner,
+  .flip[data-flipped] .flip-inner {
+    transform: none;
+  }
+
+  .flip-face {
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+    transition: opacity 200ms linear;
+  }
+
+  .flip-back {
+    opacity: 0;
+    transform: none;
+  }
+
+  .flip[data-flipped] .flip-front {
+    opacity: 0;
+  }
+
+  .flip[data-flipped] .flip-back {
+    opacity: 1;
+  }
+}
