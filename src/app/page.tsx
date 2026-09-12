@@ -104,63 +104,28 @@ const FIRMS = Array.from(
   (_, i) => `Firm ${String.fromCharCode(65 + i)}`,
 );
 
-type StripItem = { src: string; caption?: string };
-
-// Top row is 2026, bottom row is 2025. Captions follow the dates on the
-// events page, which disagree with two of the folder names.
-const STRIP_TOP: StripItem[] = [
-  { src: "/events/northstar_2026/ns26_01.jpg", caption: "North Star 2026" },
-  {
-    src: "/events/women_in_vc2026/winvc_2026_01.JPG",
-    caption: "Women in VC 2026",
-  },
-  {
-    src: "/events/scarlet_pitch_2026/sp26_11.jpg",
-    caption: "Scarlet Pitch 2026",
-  },
-  { src: "/events/northstar_2026/ns26_09.jpg", caption: "North Star 2026" },
-  {
-    src: "/events/women_in_vc2026/winvc_2026_04.JPG",
-    caption: "Women in VC 2026",
-  },
-  {
-    src: "/events/scarlet_pitch_2026/sp26_08.jpeg",
-    caption: "Scarlet Pitch 2026",
-  },
-  { src: "/events/northstar_2026/ns26_03.jpg", caption: "North Star 2026" },
-  {
-    src: "/events/women_in_vc2026/winvc_2026_06.JPG",
-    caption: "Women in VC 2026",
-  },
+// Top row is 2026, bottom row is 2025, each interleaving its events so no
+// two neighbours come from the same one.
+const STRIP_TOP = [
+  "/events/northstar_2026/ns26_01.jpg",
+  "/events/women_in_vc2026/winvc_2026_01.JPG",
+  "/events/scarlet_pitch_2026/sp26_11.jpg",
+  "/events/northstar_2026/ns26_09.jpg",
+  "/events/women_in_vc2026/winvc_2026_04.JPG",
+  "/events/scarlet_pitch_2026/sp26_08.jpeg",
+  "/events/northstar_2026/ns26_03.jpg",
+  "/events/women_in_vc2026/winvc_2026_06.JPG",
 ];
 
-const STRIP_BOTTOM: StripItem[] = [
-  {
-    src: "/events/scarlet_pitch2025/sp2025_02.jpg",
-    caption: "Scarlet Pitch 2025",
-  },
-  { src: "/events/technova2025/tn2025_09.jpg", caption: "TechNova 2025" },
-  {
-    src: "/events/women_in_vc2025/winvc2025_09.jpg",
-    caption: "Women in VC 2025",
-  },
-  {
-    src: "/events/clipxhealthtech_2026/clipxhealthtech_2026_01.jpg",
-    caption: "CLIP x Health Tech 2025",
-  },
-  {
-    src: "/events/startup_showcase2025/startup_showcase2025_hero.jpg",
-    caption: "Startup Showcase 2025",
-  },
-  {
-    src: "/events/women_5a7_cocktail2026/women_5a7_cocktail2025_01.JPG",
-    caption: "Women 5à7 Cocktail 2025",
-  },
-  {
-    src: "/events/scarlet_pitch2025/sp2025_06.jpg",
-    caption: "Scarlet Pitch 2025",
-  },
-  { src: "/events/technova2025/tn2025_01.jpg", caption: "TechNova 2025" },
+const STRIP_BOTTOM = [
+  "/events/scarlet_pitch2025/sp2025_02.jpg",
+  "/events/technova2025/tn2025_09.jpg",
+  "/events/women_in_vc2025/winvc2025_09.jpg",
+  "/events/clipxhealthtech_2026/clipxhealthtech_2026_01.jpg",
+  "/events/startup_showcase2025/startup_showcase2025_hero.jpg",
+  "/events/women_5a7_cocktail2026/women_5a7_cocktail2025_01.JPG",
+  "/events/scarlet_pitch2025/sp2025_06.jpg",
+  "/events/technova2025/tn2025_01.jpg",
 ];
 
 const WHY_FEATURES = [
@@ -235,7 +200,7 @@ function ProgramBack({ program }: { program: Program }) {
   );
 }
 
-function StripPhoto({ src, caption }: StripItem) {
+function StripPhoto({ src }: { src: string }) {
   return (
     <div className="relative h-40 w-60 overflow-hidden rounded-2xl md:h-48 md:w-72">
       <Image
@@ -245,17 +210,6 @@ function StripPhoto({ src, caption }: StripItem) {
         sizes="(max-width: 768px) 240px, 288px"
         className="object-cover transition-transform duration-700 ease-out hover:scale-105"
       />
-      {caption && (
-        <>
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent"
-          />
-          <span className="pointer-events-none absolute bottom-3 left-4 font-heading text-sm text-white">
-            {caption}
-          </span>
-        </>
-      )}
     </div>
   );
 }
@@ -457,8 +411,8 @@ export default function Home() {
 
         <Reveal variant="fade" duration={1400} className="mt-10 lg:mt-12">
           <Marquee duration={75} pauseOnHover={false}>
-            {STRIP_TOP.map((photo) => (
-              <StripPhoto key={photo.src} {...photo} />
+            {STRIP_TOP.map((src) => (
+              <StripPhoto key={src} src={src} />
             ))}
           </Marquee>
           <Marquee
@@ -467,8 +421,8 @@ export default function Home() {
             pauseOnHover={false}
             className="mt-4"
           >
-            {STRIP_BOTTOM.map((photo) => (
-              <StripPhoto key={photo.src} {...photo} />
+            {STRIP_BOTTOM.map((src) => (
+              <StripPhoto key={src} src={src} />
             ))}
           </Marquee>
         </Reveal>
