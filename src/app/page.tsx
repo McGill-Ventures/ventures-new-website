@@ -321,7 +321,7 @@ export default function Home() {
           className="absolute bottom-8 left-6 hidden sm:left-10 lg:block lg:left-16 xl:left-24"
         >
           <a
-            href="#stats"
+            href="#programs"
             className="group inline-flex items-center gap-3 rounded-full border border-white/30 px-5 py-2.5 font-heading text-sm text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-black"
           >
             Discover more
@@ -330,9 +330,9 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* Programs. Keeps id="stats" so the hero's "Discover more" anchor lands here. */}
+      {/* Programs. Keeps id="programs" so the hero's "Discover more" anchor lands here. */}
       <section
-        id="stats"
+        id="programs"
         className="scroll-mt-24 px-6 py-24 md:px-12 lg:px-24 lg:py-32"
       >
         <div className="mx-auto max-w-7xl">
@@ -434,7 +434,7 @@ export default function Home() {
           </div>
 
           <Reveal delay={600} className="mt-16 border-t border-white/15 pt-8">
-            <p className="font-heading text-sm tracking-wide text-purple-100/70 uppercase">
+            <p className="font-heading text-sm text-purple-100/70">
               Members and alumni have landed at
             </p>
             <ul className="mt-6 flex flex-wrap gap-3">
