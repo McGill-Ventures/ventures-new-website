@@ -8,28 +8,28 @@ import { Reveal } from "@/components/motion";
 
 const REASONS = [
   {
-    title: "Ambition rubs off",
+    title: "Ambition is contagious",
     description:
-      "You end up like the people you spend your time with. Here that means students who are already building, raising and shipping.",
+      "You become the people you spend your time around. Here that is founders, investors and students who are all building something.",
     photo: "/events/northstar_2026/ns26_02.jpg",
   },
   {
-    title: "Learn from people who invest",
+    title: "You are in the room",
     description:
-      "Weekly sessions led by VCs who do this for a living, and founders who pitch you the way they pitch a fund.",
-    photo: "/events/women_in_vc2025/winvc2025_09.jpg",
-  },
-  {
-    title: "More than theory",
-    description:
-      "Diligence real startups for the fund. Advise real founders through the studio.",
+      "Close enough to how decisions actually get made that it stops being abstract.",
     photo: "/events/scarlet_pitch_2026/sp26_02.jpg",
   },
   {
     title: "A network that travels",
     description:
-      "Members and alumni in Montreal, Toronto, New York and San Francisco, who keep showing up for each other.",
+      "Members and alumni in Montreal, Toronto, New York and San Francisco.",
     photo: "/events/project_atlas/atlas_02.jpg",
+  },
+  {
+    title: "People who back you",
+    description:
+      "The introductions, the references and the first calls keep coming long after you leave.",
+    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_01.jpg",
   },
 ];
 
