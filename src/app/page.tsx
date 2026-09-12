@@ -4,6 +4,7 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui";
 import Footer from "@/components/Footer";
+import { FeaturedMembers } from "@/components/home/FeaturedMembers";
 import { WhyReasons } from "@/components/home/WhyReasons";
 import {
   FlipCard,
@@ -80,29 +81,6 @@ const PROGRAMS = [
       "Montreal's young builders, connected to the wider Canadian ecosystem through year-round events and a 30-person cohort sent to Toronto Tech Week.",
   },
 ];
-
-const ALUMNI = [
-  {
-    // Placeholder card. Drop the real headshot into /public/headshots/alumni/
-    // and swap the gradient block below for an <Image fill />.
-    initial: "A",
-    name: "Person A",
-    role: "Founder, General Magic",
-    detail: "Backed by a16z.",
-  },
-  {
-    initial: "B",
-    name: "Person B",
-    role: "Co-founder, GrayPass",
-    detail: "Y Combinator, F26 batch.",
-  },
-];
-
-// Placeholder pills. Swap each for the firm's logo once we have the assets.
-const FIRMS = Array.from(
-  { length: 8 },
-  (_, i) => `Firm ${String.fromCharCode(65 + i)}`,
-);
 
 // Top row is 2026, bottom row is 2025, each interleaving its events so no
 // two neighbours come from the same one.
@@ -428,66 +406,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Outcomes: credibility strip, deliberately compact. */}
-      <section className="flex min-h-[100dvh] items-center px-6 py-16 md:px-12 lg:px-24">
-        <div className="mx-auto w-full max-w-7xl">
-          <h2 className={`${SECTION_HEADING} max-w-3xl text-black`}>
-            <SplitText text="Where our members go" />
-          </h2>
-          <Reveal
-            as="p"
-            delay={200}
-            className="mt-6 max-w-2xl font-body text-lg text-purple-900/75 md:text-xl"
-          >
-            Team members go on to venture capital, startups and traditional
-            careers. Two founders from our team each raised millions in the past
-            year.
-          </Reveal>
-
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:max-w-4xl">
-            {ALUMNI.map((person, i) => (
-              <Reveal
-                as="article"
-                key={person.name}
-                delay={350 + i * 120}
-                className="flex items-center gap-5 rounded-2xl border border-black/10 p-5"
-              >
-                {/* Headshot placeholder. Replace this block with an <Image fill /> once we have the photo. */}
-                <div className="flex aspect-[4/5] w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-purple-900 font-display text-4xl text-white">
-                  {person.initial}
-                </div>
-                <div>
-                  <h3 className="font-display text-2xl text-black">
-                    {person.name}
-                  </h3>
-                  <p className="mt-2 font-heading text-purple-700">
-                    {person.role}
-                  </p>
-                  <p className="mt-1 font-body text-sm text-purple-900/70">
-                    {person.detail}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={600} className="mt-12 border-t border-black/10 pt-8">
-            <p className="font-heading text-sm text-purple-900/70">
-              Members and alumni have landed at
-            </p>
-            <ul className="mt-5 flex flex-wrap gap-3">
-              {FIRMS.map((firm) => (
-                <li
-                  key={firm}
-                  className="rounded-full border border-black/15 px-5 py-2 font-heading text-sm text-purple-900/80"
-                >
-                  {firm}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
+      <FeaturedMembers />
 
       <Footer fullHeight />
     </div>
