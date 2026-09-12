@@ -198,10 +198,10 @@ function StripPhoto({ src, caption }: StripItem) {
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation currentPage="/" variant="dark" />
+      <Navigation currentPage="/" darkOver="#hero" />
 
       {/* Hero: full-bleed, pulled up under the transparent nav. */}
-      <section className="relative -mt-20 overflow-hidden bg-black text-white">
+      <section id="hero" className="relative -mt-20 overflow-hidden bg-black text-white">
         <div
           aria-hidden
           className="animate-orb pointer-events-none absolute -top-48 -left-48 size-[36rem] rounded-full bg-purple-600/40 blur-3xl"
@@ -330,10 +330,12 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* Programs. Keeps id="programs" so the hero's "Discover more" anchor lands here. */}
+      {/* Programs. The hero's "Discover more" anchor lands here; the negative
+          scroll margin cancels the global scroll-padding so the hero is fully
+          out of view. */}
       <section
         id="programs"
-        className="scroll-mt-24 px-6 py-24 md:px-12 lg:px-24 lg:py-32"
+        className="-scroll-mt-20 px-6 py-24 md:px-12 lg:px-24 lg:py-32"
       >
         <div className="mx-auto max-w-7xl">
           <h2 className={`${SECTION_HEADING} max-w-4xl text-black`}>

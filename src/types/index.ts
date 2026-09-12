@@ -1,7 +1,11 @@
 export interface NavigationProps {
   currentPage?: string;
-  /** "dark" makes the unscrolled bar transparent with white text, for pages whose hero is dark. */
-  variant?: "light" | "dark";
+  /**
+   * CSS selector of a dark section at the top of the page. While the bar overlaps it the
+   * chrome is transparent, then dark glass, with white text; past it the bar returns to the
+   * light design used everywhere else.
+   */
+  darkOver?: string;
 }
 
 export interface TeamMember {

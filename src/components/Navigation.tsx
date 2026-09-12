@@ -73,12 +73,11 @@ function VentureMark({ logo, className }: { logo: Venture["logo"]; className?: s
   );
 }
 
-export default function Navigation({ currentPage, variant = "light" }: NavigationProps) {
+export default function Navigation({ currentPage, darkOver }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  // Stays true once scrolled too: the bar goes to dark glass, so the links and
-  // the inverted wordmark must not flip to purple half way down the hero.
-  const dark = variant === "dark";
+  // Dark chrome only while the bar still overlaps the darkOver section.
+  const [dark, setDark] = useState(Boolean(darkOver));
   const toggleRef = useRef<HTMLButtonElement>(null);
   const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
   // inert blurs focus to <body>, so hand it back to the control that opened it.
@@ -96,6 +95,20 @@ export default function Navigation({ currentPage, variant = "light" }: Navigatio
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const section = darkOver && document.querySelector(darkOver);
+    if (!section) return;
+    // 64 is the condensed bar: swap once the section has cleared it.
+    const update = () => setDark(section.getBoundingClientRect().bottom > 64);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [darkOver]);
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
@@ -118,19 +131,26 @@ export default function Navigation({ currentPage, variant = "light" }: Navigatio
           // Only what actually changes: transition-all also interpolated the
           // 0->1px bottom border out of the UA's near-white default colour,
           // which drew a white hairline across the bar in both directions.
-          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow] duration-500 ease-out",
-          isScrolled
-            ? dark
-              ? "border-b border-white/10 bg-black/55 shadow-[0_8px_30px_-14px_rgba(0,0,0,0.6)] backdrop-blur-xl backdrop-saturate-150"
-              : "border-b border-purple-950/10 bg-gradient-to-b from-white/85 to-purple-50/85 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)] backdrop-blur-xl backdrop-saturate-150"
-            : dark
-              ? // Flat colour, not a gradient: background-image is not
-                // interpolable, so a scrim here would snap to the glass.
-                "border-b-transparent bg-transparent"
-              : // Matches the top of every hero's wash, so the bar leaves no seam.
-                "border-b-transparent bg-gradient-to-b from-white to-purple-50"
+          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-500 ease-out",
+          isScrolled && "backdrop-blur-xl backdrop-saturate-150",
+          isScrolled && dark && "border-white/10 bg-black/55 shadow-[0_8px_30px_-14px_rgba(0,0,0,0.6)]",
+          isScrolled && !dark && "border-purple-950/10 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)]",
+          !isScrolled && "border-transparent"
         )}
       >
+        {/* The light wash is its own layer so it can fade when the bar leaves a
+            dark section: gradients cannot interpolate, opacity can. */}
+        <div
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-0 -z-10 transition-opacity duration-500 ease-out",
+            isScrolled
+              ? "bg-gradient-to-b from-white/85 to-purple-50/85"
+              : // Matches the top of every hero's wash, so the bar leaves no seam.
+                "bg-gradient-to-b from-white to-purple-50",
+            dark ? "opacity-0" : "opacity-100"
+          )}
+        />
         <nav
           aria-label="Main"
           className={cn(
@@ -141,7 +161,7 @@ export default function Navigation({ currentPage, variant = "light" }: Navigatio
           <Link
             href="/"
             onClick={closeMobileMenu}
-            className="flex shrink-0 items-center transition-transform duration-300 hover:scale-[1.03]"
+            className="relative flex shrink-0 items-center transition-transform duration-300 hover:scale-[1.03]"
           >
             <Image
               src="/logos/main_logo_wordmark.png"
@@ -150,12 +170,26 @@ export default function Navigation({ currentPage, variant = "light" }: Navigatio
               height={302}
               className={cn(
                 // shrink-0: without it flex compresses the wordmark to absorb overflow
-                "w-auto shrink-0 object-contain transition-[height] duration-500 ease-out",
+                "w-auto shrink-0 object-contain transition-[height,opacity] duration-500 ease-out",
                 isScrolled ? "h-5 xl:h-7" : "h-6 xl:h-8",
-                dark && "brightness-0 invert"
+                dark && "opacity-0"
               )}
               sizes="(max-width: 640px) 210px, 260px"
               priority
+            />
+            {/* Same file inverted to white, cross-faded instead of animating the
+                filter, which passes through grey. */}
+            <Image
+              src="/logos/main_logo_wordmark.png"
+              alt=""
+              aria-hidden
+              width={2576}
+              height={302}
+              className={cn(
+                "absolute inset-0 size-full object-contain brightness-0 invert transition-opacity duration-500 ease-out",
+                dark ? "opacity-100" : "opacity-0"
+              )}
+              sizes="(max-width: 640px) 210px, 260px"
             />
           </Link>
 
@@ -167,14 +201,17 @@ export default function Navigation({ currentPage, variant = "light" }: Navigatio
                   key={href}
                   href={href}
                   aria-current={isActive ? "page" : undefined}
-                  className="group relative px-1 py-2 font-heading text-lg font-semibold whitespace-nowrap xl:px-2"
+                  className={cn(
+                    "group relative px-1 py-2 font-heading text-lg font-semibold whitespace-nowrap transition-colors duration-500 ease-out xl:px-2",
+                    dark ? "text-white" : "text-purple-900"
+                  )}
                 >
                   {/* leading-8 keeps descenders clear of the clip edge */}
                   <span className="relative block overflow-hidden leading-8">
                     <span
                       className={cn(
                         ROLL,
-                        dark ? "text-white/70" : "text-purple-950/70",
+                        "opacity-70",
                         isActive
                           ? "-translate-y-full"
                           : "group-hover:-translate-y-full group-focus-visible:-translate-y-full"
@@ -187,7 +224,6 @@ export default function Navigation({ currentPage, variant = "light" }: Navigatio
                       className={cn(
                         ROLL,
                         "absolute inset-0",
-                        dark ? "text-white" : "text-purple-900",
                         isActive
                           ? "translate-y-0"
                           : "translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0"
@@ -222,7 +258,7 @@ export default function Navigation({ currentPage, variant = "light" }: Navigatio
               ref={toggleRef}
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               className={cn(
-                "rounded-xl p-2.5 transition-colors lg:hidden",
+                "rounded-xl p-2.5 transition-colors duration-500 lg:hidden",
                 dark ? "text-white hover:bg-white/10" : "text-purple-950 hover:bg-purple-100"
               )}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
