@@ -106,12 +106,40 @@ const FIRMS = Array.from(
 
 type StripItem = { src: string; caption?: string };
 
+// Top row is 2026, bottom row is 2025. Captions follow the dates on the
+// events page, which disagree with two of the folder names.
 const STRIP_TOP: StripItem[] = [
   { src: "/events/northstar_2026/ns26_01.jpg", caption: "North Star 2026" },
+  {
+    src: "/events/women_in_vc2026/winvc_2026_01.JPG",
+    caption: "Women in VC 2026",
+  },
+  {
+    src: "/events/scarlet_pitch_2026/sp26_11.jpg",
+    caption: "Scarlet Pitch 2026",
+  },
+  { src: "/events/northstar_2026/ns26_09.jpg", caption: "North Star 2026" },
+  {
+    src: "/events/women_in_vc2026/winvc_2026_04.JPG",
+    caption: "Women in VC 2026",
+  },
+  {
+    src: "/events/scarlet_pitch_2026/sp26_08.jpeg",
+    caption: "Scarlet Pitch 2026",
+  },
+  { src: "/events/northstar_2026/ns26_03.jpg", caption: "North Star 2026" },
+  {
+    src: "/events/women_in_vc2026/winvc_2026_06.JPG",
+    caption: "Women in VC 2026",
+  },
+];
+
+const STRIP_BOTTOM: StripItem[] = [
   {
     src: "/events/scarlet_pitch2025/sp2025_02.jpg",
     caption: "Scarlet Pitch 2025",
   },
+  { src: "/events/technova2025/tn2025_09.jpg", caption: "TechNova 2025" },
   {
     src: "/events/women_in_vc2025/winvc2025_09.jpg",
     caption: "Women in VC 2025",
@@ -120,48 +148,19 @@ const STRIP_TOP: StripItem[] = [
     src: "/events/clipxhealthtech_2026/clipxhealthtech_2026_01.jpg",
     caption: "CLIP x Health Tech 2025",
   },
-  { src: "/events/northstar_2026/ns26_09.jpg", caption: "North Star 2026" },
   {
-    src: "/events/scarlet_pitch_2026/sp26_11.jpg",
-    caption: "Scarlet Pitch 2026",
-  },
-  { src: "/events/technova2025/tn2025_09.jpg", caption: "TechNova 2025" },
-  {
-    src: "/events/startup_showcase2025/startup_showcase2025_02.jpg",
+    src: "/events/startup_showcase2025/startup_showcase2025_hero.jpg",
     caption: "Startup Showcase 2025",
   },
-];
-
-const STRIP_BOTTOM: StripItem[] = [
   {
     src: "/events/women_5a7_cocktail2026/women_5a7_cocktail2025_01.JPG",
     caption: "Women 5à7 Cocktail 2025",
   },
   {
-    src: "/events/women_in_vc2026/winvc_2026_01.JPG",
-    caption: "Women in VC 2026",
-  },
-  {
     src: "/events/scarlet_pitch2025/sp2025_06.jpg",
     caption: "Scarlet Pitch 2025",
   },
-  {
-    src: "/events/scarlet_pitch_2026/sp26_08.jpeg",
-    caption: "Scarlet Pitch 2026",
-  },
-  {
-    src: "/events/women_in_vc2026/winvc_2026_04.JPG",
-    caption: "Women in VC 2026",
-  },
-  {
-    src: "/events/startup_showcase2025/startup_showcase2025_hero.jpg",
-    caption: "Startup Showcase 2025",
-  },
   { src: "/events/technova2025/tn2025_01.jpg", caption: "TechNova 2025" },
-  {
-    src: "/events/women_in_vc2025/winvc2025_02.jpg",
-    caption: "Women in VC 2025",
-  },
 ];
 
 const WHY_FEATURES = [
