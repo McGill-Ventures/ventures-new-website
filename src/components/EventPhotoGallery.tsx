@@ -18,7 +18,6 @@ interface EventPhotoGalleryProps {
 }
 
 export default function EventPhotoGallery({
-  eventId: _eventId,
   photos,
   buttonText = "View Photos",
 }: EventPhotoGalleryProps) {
