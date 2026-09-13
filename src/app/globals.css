@@ -439,16 +439,6 @@ a[href],
   to { transform: translateY(calc(-100% - var(--marquee-gap, 1rem))); }
 }
 
-/* Slow-breathing background glow. */
-@keyframes orb-drift {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(8%, -6%, 0) scale(1.15); }
-}
-
-.animate-orb {
-  animation: orb-drift 16s ease-in-out infinite;
-}
-
 /* <FlipCard> */
 .flip {
   perspective: 1600px;
@@ -533,6 +523,16 @@ a[href],
   }
 }
 
+/* Slow-breathing background glow. */
+@keyframes orb-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(8%, -6%, 0) scale(1.15); }
+}
+
+.animate-orb {
+  animation: orb-drift 16s ease-in-out infinite;
+}
+
 /* <WhyReasons>: pointer-driven dimming means nothing without a pointer, so
    touch devices get every reason at full strength. */
 .reason-dim {
@@ -556,19 +556,4 @@ a[href],
   opacity: 0.4;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.42'/></svg>");
-}
-
-/* Mitigation for hover lifts on elements whose markup cannot easily be
-   split. A lift moves the element out from under the pointer, hover drops,
-   it falls back, and it bounces. Widening the hit area pushes that edge out
-   into dead space, but it does not remove it. The complete fix is to keep
-   the hover target still and move a child instead, as Button does. */
-.lift-guard::after {
-  content: "";
-  position: absolute;
-  /* Vertical only: a sideways margin would let one button claim the gap
-     next to its neighbour. Deliberately square, not `border-radius:
-     inherit` -- on a pill the curve leaves the bottom corners uncovered,
-     which is exactly where the bounce came back. */
-  inset: -4px 0 -10px;
 }

@@ -56,7 +56,7 @@ const VENTURES: Venture[] = [
 ];
 
 const PILL_BASE =
-  "lift-guard group relative inline-flex items-center gap-2 whitespace-nowrap rounded-xl font-heading font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2";
+  "group inline-flex items-center gap-2 whitespace-nowrap rounded-xl font-heading font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2";
 
 const ROLL =
   "block transition-transform duration-[260ms] ease-[cubic-bezier(.6,0,.2,1)] motion-reduce:transition-none";

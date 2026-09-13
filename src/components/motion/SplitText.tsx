@@ -18,7 +18,7 @@ type Props = {
   className?: string;
 };
 
-/** Words rise out of a clipped line. Screen readers get `text` via aria-label. */
+/** Words rise out of a clipped line. */
 export function SplitText({
   text,
   as = "span",
@@ -35,7 +35,6 @@ export function SplitText({
     {
       ref,
       className: cn("split", className),
-      "aria-label": text,
       "data-inview": active ? "" : undefined,
       style: {
         "--split-delay": `${delay}ms`,
@@ -43,14 +42,20 @@ export function SplitText({
         "--split-duration": `${duration}ms`,
       } as CSSProperties,
     },
-    text.split(" ").map((word, i) => (
-      <span key={i} aria-hidden>
-        <span className="split-word">
-          <span className="split-inner" style={{ "--i": i } as CSSProperties}>
-            {word}
-          </span>
-        </span>{" "}
-      </span>
-    )),
+    <>
+      {/* The animated words are hidden from assistive tech, and a span cannot
+          be named by aria-label, so the text is carried by a visually hidden
+          copy instead. */}
+      <span className="sr-only">{text}</span>
+      {text.split(" ").map((word, i) => (
+        <span key={i} aria-hidden>
+          <span className="split-word">
+            <span className="split-inner" style={{ "--i": i } as CSSProperties}>
+              {word}
+            </span>
+          </span>{" "}
+        </span>
+      ))}
+    </>,
   );
 }

@@ -135,50 +135,52 @@ export function FeaturedMembers() {
                   href={founder.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="lift-guard group relative flex h-full flex-col overflow-hidden rounded-3xl bg-black text-white transition-transform duration-500 hover:-translate-y-1"
+                  className="group relative flex h-full rounded-3xl"
                 >
-                  <div
-                    aria-hidden
-                    className="animate-orb pointer-events-none absolute -top-24 -right-16 size-72 rounded-full bg-purple-700/40 blur-3xl"
-                  />
-                  <div className="relative flex items-center gap-5 p-5 md:gap-6 md:p-6">
-                    <div className="relative size-[4.5rem] shrink-0 overflow-hidden rounded-2xl md:size-20">
-                      <Image
-                        src={founder.photo}
-                        alt={founder.name}
-                        fill
-                        sizes="96px"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
+                  <span className="relative flex w-full flex-col overflow-hidden rounded-3xl bg-black text-white transition-transform duration-500 group-hover:-translate-y-1">
+                    <div
+                      aria-hidden
+                      className="animate-orb pointer-events-none absolute -top-24 -right-16 size-72 rounded-full bg-purple-700/40 blur-3xl"
+                    />
+                    <div className="relative flex items-center gap-5 p-5 md:gap-6 md:p-6">
+                      <div className="relative size-[4.5rem] shrink-0 overflow-hidden rounded-2xl md:size-20">
+                        <Image
+                          src={founder.photo}
+                          alt={founder.name}
+                          fill
+                          sizes="96px"
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="font-display text-2xl leading-tight md:text-3xl">
+                          {founder.name}
+                        </h3>
+                        <p className="mt-1.5 font-heading text-purple-300">
+                          {founder.role}
+                        </p>
+                        <p className="font-body text-purple-100/70">
+                          {founder.company}
+                        </p>
+                      </div>
                     </div>
-                    <div className="min-w-0">
-                      <h3 className="font-display text-2xl leading-tight md:text-3xl">
-                        {founder.name}
-                      </h3>
-                      <p className="mt-1.5 font-heading text-purple-300">
-                        {founder.role}
-                      </p>
-                      <p className="font-body text-purple-100/70">
-                        {founder.company}
-                      </p>
-                    </div>
-                  </div>
 
-                  <div className="relative mt-auto flex min-h-24 items-center justify-center overflow-hidden px-6 pb-5">
-                    {"mark" in founder.backer ? (
-                      <YCombinatorMark />
-                    ) : (
-                      <Image
-                        src={founder.backer.src}
-                        alt={founder.backer.label}
-                        width={founder.backer.width}
-                        height={founder.backer.height}
-                        className={`object-contain ${founder.backer.className}`}
-                      />
-                    )}
-                  </div>
-                  <span className="sr-only">
-                    {founder.name} on LinkedIn (opens in a new tab)
+                    <div className="relative mt-auto flex min-h-24 items-center justify-center overflow-hidden px-6 pb-5">
+                      {"mark" in founder.backer ? (
+                        <YCombinatorMark />
+                      ) : (
+                        <Image
+                          src={founder.backer.src}
+                          alt={founder.backer.label}
+                          width={founder.backer.width}
+                          height={founder.backer.height}
+                          className={`object-contain ${founder.backer.className}`}
+                        />
+                      )}
+                    </div>
+                    <span className="sr-only">
+                      {founder.name} on LinkedIn (opens in a new tab)
+                    </span>
                   </span>
                 </a>
               </Reveal>

@@ -192,7 +192,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               }
             }}
             className={`w-full px-8 py-4 rounded-xl transition-all duration-300 font-heading text-lg font-semibold shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:ring-offset-2 flex items-center justify-center ${
-              'lift-guard relative bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800 hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-purple-600 disabled:hover:to-purple-700 disabled:transform-none'
+              'bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800 hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-purple-600 disabled:hover:to-purple-700 disabled:transform-none'
             }`}
             tabIndex={5}
           >
