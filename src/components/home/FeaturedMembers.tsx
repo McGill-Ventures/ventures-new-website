@@ -99,7 +99,7 @@ function YCombinatorMark() {
 
 function WallLogo({ name }: { name: string }) {
   return (
-    <div className="flex h-11 w-32 items-center justify-center md:h-12 md:w-40">
+    <div className="flex h-11 w-auto shrink-0 items-center justify-center md:h-12">
       <Image
         src={`/logos/companies/${name}.png`}
         alt=""
@@ -222,7 +222,7 @@ export function FeaturedMembers() {
                   <Marquee
                     direction={fromLeft ? "right" : "left"}
                     duration={56 + i * 8}
-                    gap="0.25rem"
+                    gap="4rem"
                     fade
                     className="min-w-0 flex-1"
                   >
