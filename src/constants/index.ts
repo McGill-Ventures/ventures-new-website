@@ -935,12 +935,6 @@ export const APPLICATION_STEPS = [
     description: "Join our community and begin your journey in venture capital and startups"
   }
 ] as const;
-export const HOME_STATS = [
-  { value: "2.6K+", label: "LinkedIn Followers" },
-  { value: "2K+", label: "Instagram Followers" },
-  { value: "2nd", label: "Largest Club in Desautels Faculty of Management" },
-  { value: "70+", label: "Club Members" }
-] as const;
 
 // Governance Team Data
 export const MANAGING_DIRECTORS: GovernanceTeamMember[] = [
