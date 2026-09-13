@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   try {
     const intake = (await req.json()) as FounderIntake;
 
-    const answers = [intake.stage, intake.sector, intake.province, intake.funding_preference];
+    const answers = [intake.stage, intake.sector, intake.province, intake.applicant_type, intake.activity, intake.funding_preference];
     if (answers.some((a) => !Array.isArray(a) || a.length === 0)) {
       return NextResponse.json({ error: "Incomplete intake. Please answer every question." }, { status: 400 });
     }

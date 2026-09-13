@@ -7,8 +7,8 @@ import { computeActionItems, type ProgramRow } from "@/lib/funding/reviewAlgorit
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  if (!isSupabaseConfigured()) return NextResponse.json(NOT_CONFIGURED_BODY, { status: 503 });
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!isSupabaseConfigured()) return NextResponse.json(NOT_CONFIGURED_BODY, { status: 503 });
   const { data, error } = await supabase()
     .from("funding_programs")
     .select("id,program_name,status,last_reviewed,next_deadline,deadline_type,official_url,amount_min,amount_max,amount_notes,applicant_types,company_stage");

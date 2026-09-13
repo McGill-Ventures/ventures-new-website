@@ -10,6 +10,27 @@ import { ISSUE_LABELS, type ActionItem, type Priority } from "@/lib/funding/revi
 type Row = Record<string, unknown>;
 type Tab = "attention" | "programs" | "partners";
 
+
+// Turn a failed admin API response into a sentence the data manager can act on.
+// Without this, an error body (no .items / .rows) used to render as the empty
+// state, which reads as "everything is fine".
+function describeFailure(status: number, serverMessage?: string): string {
+  if (status === 401) return "Your session has expired. Log in again to continue.";
+  if (status === 503) return "The funding tool is not configured on this deployment (database settings missing).";
+  if (status >= 500) return "The database could not be reached. Your data is unchanged; try again in a moment.";
+  return serverMessage || `Request failed (HTTP ${status}).`;
+}
+
+function ErrorCard({ message, onRetry }: { message: string; onRetry: () => void }) {
+  return (
+    <Card>
+      <p style={{ margin: 0, fontWeight: 700, color: T.danger }}>Could not load the data.</p>
+      <p style={{ margin: "8px 0 16px", color: T.inkSoft }}>{message}</p>
+      <button onClick={onRetry} style={btnGhost}>Try again</button>
+    </Card>
+  );
+}
+
 export default function AdminPage() {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [password, setPassword] = useState("");
@@ -99,12 +120,22 @@ function AttentionDashboard({ onEdit }: { onEdit: (id: string) => void }) {
   const [filter, setFilter] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
 
+  const [loadError, setLoadError] = useState<string | null>(null);
+
   const load = useCallback(async () => {
     setLoading(true);
-    const r = await fetch("/api/funding/admin/review");
-    const d = await r.json();
-    setItems(d.items ?? []); setSummary(d.summary ?? null); setTotal(d.total_programs ?? 0);
-    setLoading(false);
+    setLoadError(null);
+    try {
+      const r = await fetch("/api/funding/admin/review");
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(describeFailure(r.status, d?.error));
+      setItems(d.items ?? []); setSummary(d.summary ?? null); setTotal(d.total_programs ?? 0);
+    } catch (e) {
+      setItems([]); setSummary(null); setTotal(0);
+      setLoadError(e instanceof Error ? e.message : "Could not load the review list.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
   useEffect(() => { load(); }, [load]);
 
@@ -144,7 +175,9 @@ function AttentionDashboard({ onEdit }: { onEdit: (id: string) => void }) {
         </div>
       </Card>
 
-      {shown.length === 0 ? (
+      {loadError ? (
+        <ErrorCard message={loadError} onRetry={load} />
+      ) : shown.length === 0 ? (
         <Card><p style={{ margin: 0, color: T.muted }}>Nothing in this view. The data is in good shape.</p></Card>
       ) : (
         <div style={{ background: T.surface, borderRadius: T.radiusCard, boxShadow: T.shadow, overflow: "hidden" }}>
@@ -216,14 +249,24 @@ function CrudTab({
   const [isNew, setIsNew] = useState(false);
   const [query, setQuery] = useState("");
 
+  const [loadError, setLoadError] = useState<string | null>(null);
+
   const load = useCallback(async () => {
     setLoading(true);
-    const r = await fetch(endpoint);
-    const d = await r.json();
-    setRows(d.rows ?? []);
+    setLoadError(null);
+    let rows: Row[] = [];
+    try {
+      const r = await fetch(endpoint);
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(describeFailure(r.status, d?.error));
+      rows = d.rows ?? [];
+    } catch (e) {
+      setLoadError(e instanceof Error ? e.message : "Could not load this list.");
+    }
+    setRows(rows);
     setLoading(false);
     if (jumpToId) {
-      const hit = (d.rows ?? []).find((x: Row) => String(x.id) === jumpToId);
+      const hit = rows.find((x: Row) => String(x.id) === jumpToId);
       if (hit) { setEditing({ ...hit }); setIsNew(false); }
     }
   }, [endpoint, jumpToId]);
@@ -251,6 +294,8 @@ function CrudTab({
   const filtered = query
     ? rows.filter((r) => String(r[nameKey] ?? "").toLowerCase().includes(query.toLowerCase()))
     : rows;
+
+  if (loadError) return <ErrorCard message={loadError} onRetry={load} />;
 
   return (
     <Card padding={0}>

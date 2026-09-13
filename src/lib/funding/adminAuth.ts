@@ -27,8 +27,13 @@ function safeEqual(a: string, b: string): boolean {
 /**
  * Token stored in the cookie. Derived from the password with a fixed
  * application-specific prefix (HMAC-SHA256) rather than a bare hash, so the
- * cookie value cannot be reused as a generic password hash. Changing the
- * password logs every admin session out.
+ * cookie value cannot be reused as a generic password hash.
+ *
+ * The token is deterministic (no nonce or timestamp), so the 12-hour maxAge is
+ * enforced by the browser only and logout just clears the client's copy. A
+ * captured cookie stays valid until ADMIN_PASSWORD changes: rotating the
+ * password is the one revocation lever. Acceptable for a single shared-password
+ * console; revisit if per-user admin accounts are ever added.
  */
 export function expectedToken(): string {
   return crypto.createHmac("sha256", "mcgillvc-funding-admin-v1").update(adminPassword()).digest("hex");

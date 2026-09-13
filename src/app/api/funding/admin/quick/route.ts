@@ -6,8 +6,8 @@ import { isAdmin } from "@/lib/funding/adminAuth";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
-  if (!isSupabaseConfigured()) return NextResponse.json(NOT_CONFIGURED_BODY, { status: 503 });
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!isSupabaseConfigured()) return NextResponse.json(NOT_CONFIGURED_BODY, { status: 503 });
   const { id, action } = await req.json();
   if (!id || !action) return NextResponse.json({ error: "id and action required" }, { status: 400 });
 
