@@ -26,15 +26,6 @@ export function formatSkills(skills: string[]): string {
   return skills.join(", ");
 }
 
-export function getActiveLinkClasses(
-  currentPage: string | undefined,
-  href: string,
-  activeClasses: string,
-  inactiveClasses: string
-): string {
-  return currentPage === href ? activeClasses : inactiveClasses;
-}
-
 export function truncateText(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength).trim() + "...";

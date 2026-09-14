@@ -1,16 +1,11 @@
-export interface NavigationItem {
-  href: string;
-  label: string;
-  /**
-   * When true the link is not yet active; it will render with reduced
-   * opacity and show a tooltip indicating "Coming Soon". The href is kept
-   * as `#` or similar placeholder.
-   */
-  comingSoon?: boolean;
-}
-
 export interface NavigationProps {
   currentPage?: string;
+  /**
+   * CSS selector of a dark section at the top of the page. While the bar overlaps it the
+   * chrome is transparent, then dark glass, with white text; past it the bar returns to the
+   * light design used everywhere else.
+   */
+  darkOver?: string;
 }
 
 export interface TeamMember {

@@ -17,7 +17,8 @@
   color: #241454;
   font-family: var(--font-hanken-grotesk), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip, not hidden: hidden makes this a scrollport and kills the nav's position:sticky */
+  overflow-x: clip;
   position: relative;
 }
 
@@ -38,4 +39,146 @@ html:has(.gs-root) { scroll-behavior: smooth; }
   0%,100% { border-radius: 48% 52% 43% 57% / 53% 45% 55% 47%; }
   33%     { border-radius: 57% 43% 52% 48% / 45% 55% 46% 54%; }
   66%     { border-radius: 43% 57% 49% 51% / 56% 44% 58% 42%; }
+}
+
+/* =====================================================================
+ * Responsive layer.
+ * The pages are styled inline (ported from the design bundle), and inline
+ * styles beat class selectors, so the overrides below use !important on
+ * purpose. Elements opt in with small hook classes: .gs-wrap (1200px
+ * containers), .gs-grid (multi-column grids), .gs-grid-logos (partner logo
+ * wall), .gs-radar-grid (the "eight facets" diagram + text), .gs-card-pad
+ * (big padded CTA cards), .gs-hero-img (home hero photo), .gs-nav-* (nav).
+ * ===================================================================== */
+
+/* Radar labels: positions as percentages of the 560px design box so the
+ * diagram can scale to any width while the label text stays full size. */
+.gs-root [data-radar] [data-label="0"] { left: 50% !important;    top: 9.82% !important; }
+.gs-root [data-radar] [data-label="1"] { left: 80.93% !important; top: 19.07% !important; }
+.gs-root [data-radar] [data-label="2"] { left: 94.64% !important; top: 50% !important; }
+.gs-root [data-radar] [data-label="3"] { left: 80.93% !important; top: 80.93% !important; }
+.gs-root [data-radar] [data-label="4"] { left: 50% !important;    top: 90.18% !important; }
+.gs-root [data-radar] [data-label="5"] { left: 19.07% !important; top: 80.93% !important; }
+.gs-root [data-radar] [data-label="6"] { left: 5.36% !important;  top: 50% !important; }
+.gs-root [data-radar] [data-label="7"] { left: 19.07% !important; top: 19.07% !important; }
+
+/* Phone menu: hidden on wide screens. */
+.gs-root .gs-nav-burger {
+  display: none;
+  width: 42px; height: 42px;
+  align-items: center; justify-content: center;
+  background: #fff;
+  border: 1px solid rgba(36,20,84,.22);
+  border-radius: 2px;
+  color: #241454;
+  cursor: pointer;
+  padding: 0;
+}
+.gs-root .gs-nav-panel { display: none; }
+
+@media (max-width: 900px) {
+  /* Nav */
+  .gs-root .gs-nav-links, .gs-root .gs-nav-cta { display: none !important; }
+  .gs-root .gs-nav-burger { display: inline-flex; }
+  .gs-root .gs-nav-panel[data-open="true"] {
+    display: flex; flex-direction: column;
+    padding: 6px 20px 20px;
+    border-top: 1px solid rgba(36,20,84,.12);
+    background: #fff;
+  }
+  .gs-root .gs-nav-panel a {
+    padding: 14px 4px;
+    font-weight: 600; font-size: 17px;
+    color: #241454; text-decoration: none;
+    border-bottom: 1px solid rgba(36,20,84,.08);
+  }
+  .gs-root .gs-nav-panel a.gs-nav-panel-cta {
+    margin-top: 14px; padding: 14px;
+    background: var(--purple); color: var(--yellow);
+    text-align: center; font-weight: 700; border: 0; border-radius: 2px;
+  }
+
+  /* Layout */
+  .gs-root .gs-wrap { padding-left: 20px !important; padding-right: 20px !important; }
+  .gs-root .gs-grid { grid-template-columns: 1fr !important; }
+  .gs-root .gs-grid-logos { grid-template-columns: repeat(2, 1fr) !important; }
+  .gs-root .gs-card-pad { padding: 44px 24px !important; }
+  .gs-root .gs-hero-img { height: 300px !important; }
+
+  /* Radar: full width of the column, square, text panel drops below it. */
+  .gs-root .gs-radar-grid { gap: 28px !important; justify-items: center; }
+  .gs-root [data-radar] {
+    width: 100% !important; max-width: 560px !important;
+    height: auto !important; aspect-ratio: 1 / 1;
+  }
+  .gs-root .gs-radar-grid > div:last-child { width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .gs-root section.gs-wrap, .gs-root header.gs-wrap {
+    padding-top: 56px !important; padding-bottom: 56px !important;
+  }
+  .gs-root .gs-grid-logos { gap: 10px !important; }
+  .gs-root .gs-hero-img { height: 240px !important; }
+
+  /* Radar labels on a ~335px box: smaller boxes, edge labels anchored inward
+   * so nothing is clipped by the viewport. */
+  .gs-root [data-radar] [data-label] {
+    width: 92px !important; font-size: 10.5px !important; padding: 6px 4px !important;
+  }
+  .gs-root [data-radar] [data-label="6"] { left: 0 !important;    transform: translate(0, -50%) !important; }
+  .gs-root [data-radar] [data-label="2"] { left: 100% !important; transform: translate(-100%, -50%) !important; }
+}
+
+/* ---- Phone/tablet refinements (review round 2) ---- */
+/* Tablets keep a 2-up footer; below 640px .gs-grid drops it to one column. */
+@media (min-width: 641px) and (max-width: 900px) {
+  .gs-root .gs-footer-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (max-width: 900px) {
+  /* Footer: larger, easier-to-tap text */
+  .gs-root footer .gs-grid a, .gs-root footer p { font-size: 17px !important; }
+  .gs-root footer h4 { font-size: 15px !important; }
+  .gs-root footer span { font-size: 14.5px !important; }
+
+  /* Partners page: "Get in touch by email" button stacks label over address */
+  .gs-root .gs-cta-email {
+    flex-direction: column !important; align-items: flex-start !important;
+    gap: 4px !important; width: 100%;
+    padding: 14px 18px !important; font-size: 15px !important;
+    overflow-wrap: anywhere;
+  }
+
+  /* Team page: no hover dynamics, colour photos, 3-up compact cards */
+  .gs-root [data-splash] { display: none !important; }
+  .gs-root [data-photo] {
+    filter: none !important; transform: none !important; transition: none !important;
+    width: 84px !important; height: 84px !important; margin: 0 auto 10px !important;
+  }
+  .gs-root [data-team-card] {
+    padding: 8px 4px 12px !important; border-radius: 8px !important; text-align: center;
+  }
+  .gs-root [data-team-card] h3 { font-size: 14px !important; line-height: 1.2 !important; margin: 0 0 4px !important; }
+  .gs-root [data-team-card] p { font-size: 11px !important; line-height: 1.35 !important; margin: 0 0 6px !important; }
+  .gs-root [data-team-card] p:last-child { font-size: 10px !important; letter-spacing: .02em !important; margin: 0 !important; }
+
+  /* Team page: tighter spacing, bigger section headers. Directors stay 3-up;
+   * consultants and advisors become separate stacked groups, 2-up. */
+  .gs-root header.gs-team-head { padding-bottom: 4px !important; }
+  .gs-root #directors { padding-top: 8px !important; }
+  .gs-root #directors > div[data-reveal]:first-child { margin-bottom: 14px !important; }
+  .gs-root .gs-team-label {
+    font-size: 16px !important; letter-spacing: .1em !important;
+    padding-left: 4px !important; margin: 0 0 12px !important;
+  }
+  .gs-root .gs-team-groups { grid-template-columns: 1fr !important; gap: 0 !important; margin: 36px 0 0 !important; padding-bottom: 40px !important; }
+  .gs-root .gs-team-group { grid-column: auto !important; margin-bottom: 28px; }
+  .gs-root [data-team-row] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+  .gs-root #directors > [data-team-row] { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+  /* 2-up cards get a little more room than the 3-up directors */
+  .gs-root .gs-team-group [data-photo] { width: 112px !important; height: 112px !important; }
+  .gs-root .gs-team-group [data-team-card] h3 { font-size: 16px !important; }
+  .gs-root .gs-team-group [data-team-card] p { font-size: 12.5px !important; }
+  .gs-root .gs-team-group [data-team-card] p:last-child { font-size: 11px !important; }
 }
