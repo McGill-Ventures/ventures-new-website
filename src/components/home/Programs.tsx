@@ -57,7 +57,7 @@ function ProgramFront({ program }: { program: Program }) {
         src={program.photo}
         alt=""
         fill
-        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 240px"
+        sizes="(max-width: 639px) 100vw, (max-width: 1023px) 60vw, 480px"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
       />
       <div
