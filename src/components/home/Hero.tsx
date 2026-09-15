@@ -113,7 +113,7 @@ export function Hero() {
                           src={src}
                           alt=""
                           fill
-                          sizes="240px"
+                          sizes="(max-width: 639px) 60vw, 600px"
                           className="object-cover"
                           priority={j < 2}
                           loading={j < 2 ? undefined : "eager"}
