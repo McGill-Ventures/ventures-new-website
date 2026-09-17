@@ -417,8 +417,10 @@ a[href],
   animation-direction: reverse;
 }
 
-[data-pause]:hover .marquee-track {
-  animation-play-state: paused;
+@media (hover: hover) {
+  [data-pause]:hover .marquee-track {
+    animation-play-state: paused;
+  }
 }
 
 .marquee-fade.marquee-x {
@@ -531,6 +533,12 @@ a[href],
 
 .animate-orb {
   animation: orb-drift 16s ease-in-out infinite;
+}
+
+@media (max-width: 767px) {
+  .animate-orb {
+    animation: none;
+  }
 }
 
 /* <WhyReasons>: pointer-driven dimming means nothing without a pointer, so

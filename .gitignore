@@ -46,3 +46,7 @@ _reference/
 # this project uses pnpm
 package-lock.json
 yarn.lock
+
+# local agent tooling
+.claude/
+.playwright-mcp/
