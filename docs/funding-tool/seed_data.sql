@@ -1,6 +1,6 @@
 -- seed_data.sql
 -- Run after schema_data.sql. Seeds the 6 placeholder partners.
--- (Funding programs are loaded separately with: npm run seed)
+-- (Funding programs are loaded separately with: pnpm funding:seed)
 
 insert into public.partners (id,name,entity_type,partner_kind,industries,personas,segment,location,intro_via_mvc,contact_public,contact,blurb,status,last_reviewed,is_example) values ('ex_health_clinic', '[EXAMPLE] Montreal multi-site medical clinic', 'company', ARRAY['customer','pilot_site']::text[], ARRAY['healthcare']::text[], ARRAY['clinical','operations']::text[], 'mid_market', 'Montreal', true, false, null, 'Replace with a real clinic contact. Useful for founders validating a clinical or patient-facing product with practising clinicians.', 'active', null, true) on conflict (id) do nothing;
 insert into public.partners (id,name,entity_type,partner_kind,industries,personas,segment,location,intro_via_mvc,contact_public,contact,blurb,status,last_reviewed,is_example) values ('ex_logistics_ops', '[EXAMPLE] Mid-size Quebec logistics operator', 'company', ARRAY['customer','pilot_site']::text[], ARRAY['logistics','manufacturing']::text[], ARRAY['operations','procurement']::text[], 'mid_market', 'Quebec', true, false, null, 'Replace with a real operations lead. Good for founders selling supply chain, routing, or warehouse tools.', 'active', null, true) on conflict (id) do nothing;

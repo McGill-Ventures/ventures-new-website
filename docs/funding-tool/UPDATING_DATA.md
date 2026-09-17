@@ -14,7 +14,7 @@ When you have made many changes in Excel at once:
    columns (sectors, applicant_types, company_stage, employee_band, revenue_band,
    eligible_activities, tags) must be pipe-delimited in Excel, e.g. "sme|nonprofit".
    The seed script splits them into arrays.
-2. Run `npm run seed`. It upserts by id: existing programs are updated in place,
+2. Run `pnpm funding:seed`. It upserts by id: existing programs are updated in place,
    new ids are added. It does not delete rows. To retire a program, set its status
    to closed or archived in the sheet (or in /admin) rather than deleting it.
 

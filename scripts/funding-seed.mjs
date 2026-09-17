@@ -1,6 +1,6 @@
 // scripts/funding-seed.mjs
 // Loads the funding programs from data/funding-programs.json into Supabase.
-// Run with: npm run funding:seed   (after filling .env.local and running docs/funding-tool/schema_data.sql)
+// Run with: pnpm funding:seed   (after filling .env.local and running docs/funding-tool/schema_data.sql)
 // Uses Node's built-in --env-file flag, so no dotenv dependency is needed.
 import { createClient } from "@supabase/supabase-js";
 import { readFileSync } from "node:fs";

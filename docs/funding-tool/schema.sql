@@ -1,7 +1,7 @@
 -- schema.sql
 -- Creates the funding_leads table (founder contact details captured after a match).
 -- Program data lives in the funding_programs table (created by schema_data.sql)
--- and is loaded once from data/funding-programs.json via `npm run funding:seed`.
+-- and is loaded once from data/funding-programs.json via `pnpm funding:seed`.
 -- The /api/funding/match route reads that table on every request, so edits
 -- made in the admin console take effect immediately without a redeploy.
 -- Run this in the Supabase SQL editor (see SETUP.md, Part 2).

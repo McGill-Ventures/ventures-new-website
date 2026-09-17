@@ -17,7 +17,7 @@ this site in September 2026.
 | Matching logic, questions, theme, auth | `src/lib/funding/` |
 | API routes | `src/app/api/funding/**` |
 | Program dataset (for seeding) | `data/funding-programs.json` |
-| Seed script | `scripts/funding-seed.mjs` (`npm run funding:seed`) |
+| Seed script | `scripts/funding-seed.mjs` (`pnpm funding:seed`) |
 | Database SQL + guides | this folder |
 
 ## Configuration
@@ -37,7 +37,7 @@ In Supabase's SQL editor run, in order: `schema.sql`, `schema_partners.sql`,
 `schema_data.sql`, `seed_data.sql`. Then load the programs once:
 
 ```bash
-npm run funding:seed
+pnpm funding:seed
 ```
 
 Re-running is safe; it upserts by program id.

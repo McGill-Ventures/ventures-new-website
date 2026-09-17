@@ -108,7 +108,7 @@ someone with access to the McGill Ventures project on Vercel.
 | Symptom | Likely cause |
 |---|---|
 | "The funding tool is not configured on this deployment yet." | One of the three settings is missing where the site is running (`.env.local` locally, Vercel for the live site). Restart the dev server after editing `.env.local`. |
-| `npm run funding:seed` says "Missing Supabase env vars" | `.env.local` is missing, misnamed, or not in the repo root. |
+| `pnpm funding:seed` says "Missing Supabase env vars" | `.env.local` is missing, misnamed, or not in the repo root. |
 | Seed fails with a table error | Part 2 was not completed; run `schema_data.sql`. |
 | Admin login always says "Wrong password" | `ADMIN_PASSWORD` is not set, or differs between where you set it and where the site runs. After 5 failed attempts, wait 15 minutes. |
 | Matches come back empty | Programs were not seeded, or every program was filtered out by the answers. Check `funding_programs` has ~502 rows. |
