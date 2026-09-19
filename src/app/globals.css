@@ -578,9 +578,9 @@ a[href],
   mask-composite: intersect;
 }
 
-/* <Hero>: the photo shows through the headline, then the screen pins while
-   scrolling zooms through the type into the photo. Without scroll timelines,
-   or with reduced motion, it stays one still screen with the copy showing. */
+/* <Hero>: the screen pins while scrolling zooms through the headline into
+   the photo. With reduced motion, or without scroll timelines, it is one
+   still screen. */
 .room-scrim,
 .room-cue {
   opacity: 0;
@@ -656,8 +656,7 @@ a[href],
   to { opacity: 0; }
 }
 
-/* Echoes the headline in the sentence: a purple marker stroke that sweeps
-   in once the copy has landed. */
+/* A purple marker stroke that sweeps in once the sentence has landed. */
 .room-hl {
   color: var(--color-purple-300);
   font-weight: 700;
@@ -669,8 +668,8 @@ a[href],
   from { background-size: 0% 100%; }
 }
 
-/* <Manifesto>: each word lights up as the heading scrolls towards the middle
-   of the screen. Browsers without scroll timelines show it fully lit. */
+/* <Manifesto>: words light up as the heading scrolls up the screen. With
+   reduced motion, or without scroll timelines, they start lit. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .lit {

@@ -3,8 +3,7 @@ import { ArrowDown } from "lucide-react";
 import { SplitText } from "@/components/motion";
 
 /** Pulled up under the transparent header, so `-mt-20` tracks its height.
- *  The photo shows through the headline, then scrolling zooms through the
- *  type into the room. Styles live in globals.css under `.room`. */
+ *  Scroll styles live in globals.css under `.room`. */
 export function Hero() {
   return (
     <section id="hero" className="room relative -mt-20 bg-black text-white">
@@ -24,7 +23,7 @@ export function Hero() {
 
         {/* Multiply keeps the photo only where the white type is. */}
         <div className="room-mask absolute inset-0 flex items-center justify-center bg-black px-4 pb-[10vh] mix-blend-multiply">
-          {/* w-min stacks one word per line, sized by whichever runs out first. */}
+          {/* One word per line, sized to the tighter of width and height. */}
           <h1 className="w-min text-center [font-family:var(--font-plus-jakarta)] text-[min(22vw,30vh)] leading-[0.82] font-extrabold tracking-[-0.055em] text-white">
             <SplitText text="McGill Ventures" trigger="load" delay={200} stagger={110} />
           </h1>
