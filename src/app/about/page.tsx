@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./about.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Hero } from "@/components/about/Hero";
