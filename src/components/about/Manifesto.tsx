@@ -18,7 +18,7 @@ export function Manifesto() {
     <section className="bg-grain relative overflow-clip bg-purple-950 text-white">
       <div
         aria-hidden
-        className="contour pointer-events-none absolute -inset-x-[20%] -inset-y-[10%] text-purple-200 opacity-[0.14]"
+        className="about-contour pointer-events-none absolute -inset-x-[20%] -inset-y-[10%] text-purple-200 opacity-[0.14]"
       />
       <div
         aria-hidden
@@ -26,11 +26,11 @@ export function Manifesto() {
       />
       <div className="relative z-10 flex min-h-[100dvh] items-center px-6 py-24 md:px-12 lg:px-24">
         <div className="mx-auto w-full max-w-7xl">
-          <h2 className="lit max-w-[22ch] font-display text-[clamp(2.25rem,5vw,4.75rem)] leading-[1.04] text-balance">
+          <h2 className="about-lit max-w-[22ch] font-display text-[clamp(2.25rem,5vw,4.75rem)] leading-[1.04] text-balance">
             {words.map((word, i) => (
               <span
                 key={i}
-                className="lit-word"
+                className="about-lit-word"
                 style={{
                   animationRange: `cover ${LIT_FROM + i * step}% cover ${LIT_FROM + (i + 2.5) * step}%`,
                 }}

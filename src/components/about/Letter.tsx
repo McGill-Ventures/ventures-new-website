@@ -2,7 +2,9 @@ import Image from "next/image";
 import { Reveal, SplitText } from "@/components/motion";
 import { FOUNDERS } from "@/constants";
 
-const [AARON] = FOUNDERS;
+// By name, not by index: the quote below is his, and FOUNDERS is ordered
+// for the team page.
+const AARON = FOUNDERS.find((f) => f.name.startsWith("Aaron"))!;
 
 export function Letter() {
   return (

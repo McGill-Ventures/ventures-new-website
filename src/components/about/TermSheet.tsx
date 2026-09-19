@@ -60,6 +60,7 @@ export function TermSheet() {
                 alt="McGill Ventures"
                 width={2576}
                 height={302}
+                sizes="256px"
                 className="h-5 w-auto md:h-6"
               />
             </header>
@@ -76,7 +77,10 @@ export function TermSheet() {
             <ol className="mt-6 space-y-5">
               {TERMS.map((term, i) => (
                 <li key={term.title} className="grid grid-cols-[2rem_minmax(0,1fr)]">
-                  <span className="font-heading text-purple-600">{i + 1}.</span>
+                  {/* The list already numbers itself for assistive tech. */}
+                  <span aria-hidden className="font-heading text-purple-600">
+                    {i + 1}.
+                  </span>
                   <div>
                     <h4 className="font-heading text-lg text-black">
                       {term.title}
@@ -99,7 +103,7 @@ export function TermSheet() {
           >
             <div
               aria-hidden
-              className="stamp -rotate-12 rounded-lg border-[5px] border-double border-purple-700 px-5 py-1.5 font-display text-4xl tracking-[0.06em] text-purple-700 uppercase mix-blend-multiply md:text-5xl"
+              className="about-stamp -rotate-12 rounded-lg border-[5px] border-double border-purple-700 px-5 py-1.5 font-display text-4xl tracking-[0.06em] text-purple-700 uppercase mix-blend-multiply md:text-5xl"
             >
               Backed
             </div>
