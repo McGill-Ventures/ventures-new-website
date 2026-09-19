@@ -18,7 +18,7 @@ export function Manifesto() {
     <section className="bg-grain relative overflow-clip bg-purple-950 text-white">
       <div
         aria-hidden
-        className="topo pointer-events-none absolute -inset-x-[20%] -inset-y-[10%] text-purple-200 opacity-[0.14]"
+        className="contour pointer-events-none absolute -inset-x-[20%] -inset-y-[10%] text-purple-200 opacity-[0.14]"
       />
       <div
         aria-hidden
