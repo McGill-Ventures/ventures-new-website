@@ -562,8 +562,8 @@ a[href],
    About page, src/components/about.
    ------------------------------------------------------------------ */
 
-/* Mount Royal contour lines, painted in currentColor through the SVG as a
-   mask and faded out towards the edges. */
+/* Stylised Mount Royal contour lines, painted in currentColor through the
+   SVG as a mask and faded out towards the edges. */
 .topo {
   background-color: currentColor;
   -webkit-mask-image: url("/about/mount-royal-topo.svg"), radial-gradient(closest-side, #000 35%, transparent);
