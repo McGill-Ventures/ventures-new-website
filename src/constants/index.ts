@@ -765,13 +765,6 @@ export const DEVELOPMENT_TEAM: DeveloperTeamMember[] = [
   },
 ];
 
-export const ANIMATION_CLASSES = {
-  FADE_IN_UP: 'animate-fade-in-up',
-  FADE_IN_LEFT: 'animate-fade-in-left',
-  SLIDE_IN_RIGHT: 'animate-slide-in-right',
-  HOVER_SCALE: 'hover-scale',
-} as const;
-
 export const COMMON_STYLES = {
   GLASS: 'glass',
   GRADIENT_HERO: 'bg-gradient-hero',
