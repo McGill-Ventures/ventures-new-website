@@ -16,7 +16,7 @@ export const GOVERNANCE_TYPES = {
   GET_INVOLVED: 'get-involved' as const,
 } as const;
 
-export const FOUNDERS: ExecutiveTeamMember[] = [
+export const FOUNDERS = [
   {
     name: "Aaron Anandji",
     image: "/headshots/founders/aaron_anandji.png",
@@ -44,7 +44,7 @@ export const FOUNDERS: ExecutiveTeamMember[] = [
     education: "",
     linkedinUrl: "https://www.linkedin.com/in/zfaucillion/",
   },
-];
+] satisfies ExecutiveTeamMember[];
 
 export const EXECUTIVE_TEAM: ExecutiveTeamMember[] = [
   {
