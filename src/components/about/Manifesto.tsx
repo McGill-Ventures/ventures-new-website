@@ -39,18 +39,23 @@ export function Manifesto() {
               </span>
             ))}
           </h2>
+          {/* Two paragraphs at a ~65 character measure, full strength against
+              the contour lines behind them. */}
           <Reveal
-            as="p"
             delay={150}
-            className="mt-10 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
+            className="mt-10 max-w-xl space-y-5 font-body text-lg text-purple-100 md:text-xl"
           >
-            With innovation accelerating across industries, global uncertainty
-            rising and AI progressing at frightening speed, it has never
-            mattered more to stay plugged into emerging innovation, build a
-            multidisciplinary skill set and cultivate an antifragile mindset.
-            Venture capital and startups run on these qualities, and they will
-            matter in whatever field you choose, from finance to engineering
-            and everything in between.
+            <p className="leading-[1.75]">
+              With innovation accelerating across industries, global uncertainty
+              rising and AI progressing at frightening speed, it has never
+              mattered more to stay plugged into emerging innovation, build a
+              multidisciplinary skill set and cultivate an antifragile mindset.
+            </p>
+            <p className="leading-[1.75]">
+              Venture capital and startups run on these qualities, and they will
+              matter in whatever field you choose, from finance to engineering
+              and everything in between.
+            </p>
           </Reveal>
         </div>
       </div>
