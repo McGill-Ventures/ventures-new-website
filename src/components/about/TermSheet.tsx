@@ -77,7 +77,6 @@ export function TermSheet() {
             <ol className="mt-6 space-y-5">
               {TERMS.map((term, i) => (
                 <li key={term.title} className="grid grid-cols-[2rem_minmax(0,1fr)]">
-                  {/* The list already numbers itself for assistive tech. */}
                   <span aria-hidden className="font-heading text-purple-600">
                     {i + 1}.
                   </span>

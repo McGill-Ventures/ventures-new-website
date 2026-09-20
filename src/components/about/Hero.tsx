@@ -4,10 +4,6 @@ import { SplitText } from "@/components/motion";
 
 const ALT = "The judges’ table at Scarlet Pitch 2026";
 
-/** A phone crops two thirds off a landscape photo, so portrait screens get
- *  their own crop rather than downloading pixels they never see. Each `sizes`
- *  is the width `object-cover` paints, which the taller side drives once the
- *  screen is narrower than the photo. */
 function RoomPhoto() {
   const shared = { alt: ALT, fill: true, priority: true } as const;
   const { props: portrait } = getImageProps({
@@ -33,8 +29,6 @@ function RoomPhoto() {
   );
 }
 
-/** Pulled up under the transparent header, so `-mt-20` tracks its height.
- *  Scroll styles live in about.css under `.about-hero`. */
 export function Hero() {
   return (
     <section
@@ -42,14 +36,11 @@ export function Hero() {
       className="about-hero relative -mt-20 bg-black text-white"
     >
       <div className="about-hero-stage relative h-[100dvh] overflow-hidden">
-        {/* Zooms around the judges' faces, so they stay inside the letters. */}
         <div className="about-hero-photo absolute inset-0 origin-[50%_42%]">
           <RoomPhoto />
         </div>
 
-        {/* Multiply keeps the photo only where the white type is. */}
         <div className="about-hero-mask absolute inset-0 flex items-center justify-center bg-black px-4 pb-[10vh] mix-blend-multiply">
-          {/* One word per line, sized to the tighter of width and height. */}
           <h1 className="w-min text-center [font-family:var(--font-plus-jakarta)] text-[min(22vw,30vh)] leading-[0.82] font-extrabold tracking-[-0.055em] text-white">
             <SplitText
               text="McGill Ventures"

@@ -2,8 +2,6 @@ import Image from "next/image";
 import { Reveal, SplitText } from "@/components/motion";
 import { FOUNDERS } from "@/constants";
 
-// By name, not by index: the quote below is his, and FOUNDERS is ordered
-// for the team page.
 const AARON = FOUNDERS.find((f) => f.name.startsWith("Aaron"))!;
 
 export function Letter() {
@@ -15,7 +13,6 @@ export function Letter() {
         </h2>
 
         <Reveal as="figure" delay={200} duration={1100}>
-          {/* Hung quote mark, so the text edge stays flush with the heading. */}
           <blockquote className="relative [font-family:var(--font-plus-jakarta)] text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.2] font-medium tracking-[-0.02em] text-pretty text-black">
             <span
               aria-hidden

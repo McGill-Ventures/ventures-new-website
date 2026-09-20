@@ -3,8 +3,6 @@ import { Reveal } from "@/components/motion";
 const MISSION =
   "McGill Ventures educates and connects students to the venture capital and startup ecosystem in Canada and beyond";
 
-/** Words light up one after another while the heading travels from the
- *  bottom of the screen to the middle, in % of its view timeline. */
 const LIT_FROM = 10;
 const LIT_TO = 46;
 
@@ -12,8 +10,6 @@ export function Manifesto() {
   const words = MISSION.split(" ");
   const step = (LIT_TO - LIT_FROM) / words.length;
 
-  // Clip, not hidden: a hidden overflow is a scroll container and would
-  // capture the heading's view timeline, so the words would never light up.
   return (
     <section className="bg-grain relative overflow-clip bg-purple-950 text-white">
       <div
@@ -39,8 +35,6 @@ export function Manifesto() {
               </span>
             ))}
           </h2>
-          {/* Two paragraphs at a ~65 character measure, full strength against
-              the contour lines behind them. */}
           <Reveal
             delay={150}
             className="mt-10 max-w-xl space-y-5 font-body text-lg text-purple-100 md:text-xl"
