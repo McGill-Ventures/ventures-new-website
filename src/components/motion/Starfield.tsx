@@ -65,9 +65,11 @@ export function Starfield({
 }: Props) {
   const id = useId();
   const [still, setStill] = useState(false);
+  const [small, setSmall] = useState(false);
 
   useEffect(() => {
     setStill(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setSmall(window.matchMedia("(max-width: 767px)").matches);
   }, []);
 
   const options = useMemo(
@@ -83,7 +85,7 @@ export function Starfield({
         },
         particles: {
           number: {
-            value: count,
+            value: small ? Math.round(count * 0.4) : count,
             density: { enable: true, width: 1440, height: 900 },
           },
           color: { value: ["#ffffff", "#ffffff", "#d8b4fe"] },
@@ -108,9 +110,9 @@ export function Starfield({
           },
         },
         // Plugin options are not part of the engine's types.
-        emitters: comets && !still ? COMETS : [],
+        emitters: comets && !still && !small ? COMETS : [],
       }) as ISourceOptions,
-    [count, speed, comets, still],
+    [count, speed, comets, still, small],
   );
 
   return (
