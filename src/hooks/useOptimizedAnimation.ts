@@ -27,9 +27,6 @@ export function useOptimizedAnimation(
 export const useStaggeredFadeIn = (index: number, baseDelay = 0) => 
   useOptimizedAnimation(index, { baseDelay, staggerDelay: 0.1, className: 'animate-fade-in-up' });
 
-export const useStaggeredSlideIn = (index: number, baseDelay = 0) => 
-  useOptimizedAnimation(index, { baseDelay, staggerDelay: 0.15, className: 'animate-slide-in-right' });
-
 export const getOptimizedStyles = {
   cardGrid: (columns: number) => ({
     display: 'grid',
