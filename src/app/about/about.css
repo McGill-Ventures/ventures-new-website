@@ -1,0 +1,147 @@
+.about-contour {
+  background-color: currentColor;
+  -webkit-mask-image: url("/about/mountain-contour.svg"), radial-gradient(closest-side, #000 35%, transparent);
+  mask-image: url("/about/mountain-contour.svg"), radial-gradient(closest-side, #000 35%, transparent);
+  -webkit-mask-size: cover, 100% 100%;
+  mask-size: cover, 100% 100%;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.about-hero .about-hero-stage {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 100dvh;
+}
+
+.about-hero .about-hero-mask {
+  position: relative;
+  flex: 1;
+  padding-block: 4rem;
+}
+
+.about-hero .about-hero-copy {
+  position: relative;
+  background-color: #000;
+}
+
+.about-hero-scrim,
+.about-hero-cue {
+  opacity: 0;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .about-hero {
+      height: 240vh;
+      view-timeline: --about-hero block;
+      view-timeline-inset: 0;
+    }
+    .about-hero .about-hero-stage {
+      display: block;
+      height: 100dvh;
+      position: sticky;
+      top: 0;
+    }
+    .about-hero .about-hero-mask {
+      position: absolute;
+      inset: 0;
+      padding-block: 0 10vh;
+    }
+    .about-hero .about-hero-copy {
+      position: absolute;
+      background-color: transparent;
+    }
+    .about-hero-cue {
+      opacity: 1;
+    }
+    .about-hero-mask {
+      animation: about-hero-mask linear both;
+      animation-timeline: --about-hero;
+      animation-range: contain 0% contain 55%;
+    }
+    .about-hero-photo {
+      animation: about-hero-photo linear both;
+      animation-timeline: --about-hero;
+      animation-range: contain 0% contain 60%;
+    }
+    .about-hero-scrim {
+      animation: about-hero-scrim linear both;
+      animation-timeline: --about-hero;
+      animation-range: contain 45% contain 70%;
+    }
+    .about-hero-copy {
+      animation: about-hero-copy linear both;
+      animation-timeline: --about-hero;
+      animation-range: contain 50% contain 75%;
+    }
+    .about-hero-cue {
+      animation: about-hero-cue linear both;
+      animation-timeline: --about-hero;
+      animation-range: contain 0% contain 8%;
+    }
+    .about-hero-hl {
+      animation: about-hero-hl linear both;
+      animation-timeline: --about-hero;
+      animation-range: contain 64% contain 84%;
+    }
+  }
+}
+
+@keyframes about-hero-mask {
+  30% { opacity: 1; }
+  to { opacity: 0; transform: scale(3); }
+}
+
+@keyframes about-hero-photo {
+  from { transform: scale(1.3); }
+}
+
+@keyframes about-hero-scrim {
+  to { opacity: 1; }
+}
+
+@keyframes about-hero-copy {
+  from { opacity: 0; transform: translateY(32px); }
+}
+
+@keyframes about-hero-cue {
+  to { opacity: 0; }
+}
+
+.about-hero-hl {
+  color: var(--color-purple-300);
+  font-weight: 700;
+  white-space: nowrap;
+  background: linear-gradient(to top, transparent 0.08em, rgb(126 34 206 / 0.6) 0.08em, rgb(126 34 206 / 0.6) 0.58em, transparent 0.58em) left bottom / 100% 100% no-repeat;
+}
+
+@keyframes about-hero-hl {
+  from { background-size: 0% 100%; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .about-lit {
+      view-timeline: --about-lit block;
+    }
+    .about-lit-word {
+      animation: about-lit-word linear both;
+      animation-timeline: --about-lit;
+    }
+  }
+}
+
+@keyframes about-lit-word {
+  from { opacity: 0.16; }
+}
+
+.about-stamp {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.6 2.1'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.6 2.1'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+}
