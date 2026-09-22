@@ -1,5 +1,7 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import Image from "next/image";
-import { Marquee, Reveal, SplitText } from "@/components/motion";
+import { Reveal, SplitText } from "@/components/motion";
 
 const FOUNDERS = [
   {
@@ -31,52 +33,52 @@ const GROUPS = [
   {
     label: "Venture capital",
     logos: [
-      "inovia",
-      "bdc",
-      "brightspark",
-      "framework",
-      "novateur",
-      "triptyq",
-      "quantacet",
-      "boreal_ventures",
-      "boxone",
-      "front_row_ventures",
-      "dorm_room_fund",
-      "white_star_capital",
+      ["inovia", "Inovia"],
+      ["bdc", "BDC"],
+      ["brightspark", "Brightspark"],
+      ["framework", "Framework Venture Partners"],
+      ["novateur", "Novateur Ventures"],
+      ["triptyq", "Triptyq Capital"],
+      ["quantacet", "Quantacet"],
+      ["boreal_ventures", "Boreal Ventures"],
+      ["boxone", "BoxOne Ventures"],
+      ["front_row_ventures", "Front Row Ventures"],
+      ["dorm_room_fund", "Dorm Room Fund"],
+      ["white_star_capital", "White Star Capital"],
     ],
   },
   {
     label: "Startups",
     logos: [
-      "checksammy",
-      "betakit",
-      "attain",
-      "afterquery",
-      "z_fellows",
-      "nationgraph",
-      "next",
-      "carbon6",
-      "optionality",
-      "brio",
+      ["checksammy", "CheckSammy"],
+      ["betakit", "BetaKit"],
+      ["attain", "Attain"],
+      ["afterquery", "AfterQuery"],
+      ["z_fellows", "Z Fellows"],
+      ["nationgraph", "NationGraph"],
+      ["next", "NEXT Canada"],
+      ["carbon6", "Carbon6"],
+      ["optionality", "Optionality"],
+      ["brio", "Brio"],
     ],
   },
   {
     label: "Traditional careers",
     logos: [
-      "mckinsey",
-      "rbc",
-      "ubs",
-      "td",
-      "lightspeed",
-      "citi",
-      "bmo",
-      "ey_parthenon",
-      "bank_of_america",
-      "bnp_paribas",
-      "cibc",
+      ["mckinsey", "McKinsey & Company"],
+      ["rbc", "RBC"],
+      ["ubs", "UBS"],
+      ["td", "TD"],
+      ["lightspeed", "Lightspeed"],
+      ["citi", "Citi"],
+      ["bmo", "BMO"],
+      ["ey_parthenon", "EY-Parthenon"],
+      ["bank_of_america", "Bank of America"],
+      ["bnp_paribas", "BNP Paribas"],
+      ["cibc", "CIBC"],
     ],
   },
-];
+] satisfies { label: string; logos: [string, string][] }[];
 
 function YCombinatorMark() {
   return (
@@ -97,15 +99,31 @@ function YCombinatorMark() {
   );
 }
 
-function WallLogo({ name }: { name: string }) {
+function pngSize(file: string) {
+  const png = readFileSync(
+    join(process.cwd(), "public/logos/companies", `${file}.png`),
+  );
+  return { width: png.readUInt32BE(16), height: png.readUInt32BE(20) };
+}
+
+// Same area for every logo so wide wordmarks and square marks read at equal weight.
+const LOGO_AREA = 2600;
+
+function WallLogo({ file, name }: { file: string; name: string }) {
+  const { width, height } = pngSize(file);
+  const ratio = width / height;
+  const w = Math.min(Math.sqrt(LOGO_AREA * ratio), 150, 40 * ratio);
   return (
-    <div className="flex h-11 w-auto shrink-0 items-center justify-center md:h-12">
+    <div className="flex h-12 w-1/3 items-center justify-center px-2 sm:w-1/4 md:h-14 lg:w-1/7">
       <Image
-        src={`/logos/companies/${name}.png`}
-        alt=""
-        width={220}
-        height={64}
-        className="max-h-8 w-auto object-contain md:max-h-9"
+        src={`/logos/companies/${file}.png`}
+        alt={name}
+        title={name}
+        width={width}
+        height={height}
+        sizes="160px"
+        style={{ "--w": `${w}px` } as React.CSSProperties}
+        className="h-auto w-[calc(var(--w)*0.8)] max-w-full object-contain mix-blend-multiply md:w-(--w)"
       />
     </div>
   );
@@ -196,9 +214,9 @@ export function FeaturedMembers() {
             delay={120}
             className="font-heading text-sm text-purple-900/60"
           >
-            And the rest of us landed internships and full-time roles here
+            And the rest of us landed opportunities here
           </Reveal>
-          <div className="mt-3 space-y-1.5">
+          <div className="mt-4 space-y-3 md:space-y-5">
             {GROUPS.map((group, i) => {
               const fromLeft = i % 2 === 1;
               return (
@@ -207,7 +225,7 @@ export function FeaturedMembers() {
                   variant={fromLeft ? "left" : "right"}
                   delay={200 + i * 140}
                   duration={1100}
-                  className="flex items-center gap-4 border-t border-black/8 pt-2 md:gap-8"
+                  className="@container relative"
                   style={
                     {
                       "--reveal-from": fromLeft
@@ -216,20 +234,14 @@ export function FeaturedMembers() {
                     } as React.CSSProperties
                   }
                 >
-                  <p className="w-24 shrink-0 font-heading text-xs text-purple-900/45 md:w-40 md:text-sm">
+                  <h3 className="pointer-events-none absolute top-0 left-0 font-display text-[15cqi] leading-[0.95] text-purple-100 select-none sm:text-[8.5cqi] sm:leading-none sm:whitespace-nowrap">
                     {group.label}
-                  </p>
-                  <Marquee
-                    direction={fromLeft ? "right" : "left"}
-                    duration={56 + i * 8}
-                    gap="4rem"
-                    fade
-                    className="min-w-0 flex-1"
-                  >
-                    {group.logos.map((name) => (
-                      <WallLogo key={name} name={name} />
+                  </h3>
+                  <div className="relative flex flex-wrap justify-center pt-[16cqi] sm:pt-[5cqi]">
+                    {group.logos.map(([file, name]) => (
+                      <WallLogo key={file} file={file} name={name} />
                     ))}
-                  </Marquee>
+                  </div>
                 </Reveal>
               );
             })}
