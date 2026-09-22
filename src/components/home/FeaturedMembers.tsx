@@ -239,7 +239,7 @@ export function FeaturedMembers() {
                     } as React.CSSProperties
                   }
                 >
-                  <h3 className="pointer-events-none absolute top-0 left-0 font-display text-[15cqi] leading-[0.95] text-purple-100 select-none sm:text-[8.5cqi] sm:leading-none sm:whitespace-nowrap">
+                  <h3 className="pointer-events-none absolute top-0 left-0 font-display text-[15cqi] leading-[0.95] text-purple-200 select-none sm:text-[8.5cqi] sm:leading-none sm:whitespace-nowrap">
                     {group.label}
                   </h3>
                   <div className="relative flex flex-wrap justify-center pt-[16cqi] sm:pt-[5cqi]">
