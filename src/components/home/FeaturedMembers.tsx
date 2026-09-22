@@ -45,6 +45,7 @@ const GROUPS = [
       ["front_row_ventures", "Front Row Ventures"],
       ["dorm_room_fund", "Dorm Room Fund"],
       ["white_star_capital", "White Star Capital"],
+      ["northside_ventures", "Northside Ventures"],
     ],
   },
   {
@@ -60,6 +61,7 @@ const GROUPS = [
       ["carbon6", "Carbon6"],
       ["optionality", "Optionality"],
       ["brio", "Brio"],
+      ["planned", "Planned"],
     ],
   },
   {
