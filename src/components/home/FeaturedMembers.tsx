@@ -62,6 +62,7 @@ const GROUPS = [
       ["optionality", "Optionality"],
       ["brio", "Brio"],
       ["planned", "Planned"],
+      ["botpress", "Botpress"],
     ],
   },
   {
