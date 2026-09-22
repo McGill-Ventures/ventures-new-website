@@ -105,6 +105,9 @@ function pngSize(file: string) {
   const png = readFileSync(
     join(process.cwd(), "public/logos/companies", `${file}.png`),
   );
+  if (png.toString("latin1", 12, 16) !== "IHDR") {
+    throw new Error(`public/logos/companies/${file}.png is not a PNG`);
+  }
   return { width: png.readUInt32BE(16), height: png.readUInt32BE(20) };
 }
 
