@@ -120,7 +120,7 @@ function WallLogo({ file, name }: { file: string; name: string }) {
   const ratio = width / height;
   const w = Math.min(Math.sqrt(LOGO_AREA * ratio), 150, 40 * ratio);
   return (
-    <div className="flex h-12 w-1/3 items-center justify-center px-2 sm:w-1/4 md:h-14 lg:w-1/7">
+    <div className="flex h-12 items-center justify-center px-2 md:h-14">
       <Image
         src={`/logos/companies/${file}.png`}
         alt={name}
@@ -129,7 +129,7 @@ function WallLogo({ file, name }: { file: string; name: string }) {
         height={height}
         sizes="160px"
         style={{ "--w": `${w}px` } as React.CSSProperties}
-        className="h-auto w-[calc(var(--w)*0.8)] max-w-full object-contain mix-blend-multiply md:w-(--w)"
+        className="h-auto w-[calc(var(--w)*0.8)] max-w-full object-contain opacity-60 mix-blend-multiply grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:w-(--w)"
       />
     </div>
   );
@@ -222,7 +222,7 @@ export function FeaturedMembers() {
           >
             And the rest of us landed opportunities here
           </Reveal>
-          <div className="mt-4 space-y-3 md:space-y-5">
+          <div className="mt-6 space-y-8 md:space-y-10">
             {GROUPS.map((group, i) => {
               const fromLeft = i % 2 === 1;
               return (
@@ -240,10 +240,10 @@ export function FeaturedMembers() {
                     } as React.CSSProperties
                   }
                 >
-                  <h3 className="pointer-events-none absolute top-0 left-0 font-display text-[15cqi] leading-[0.95] text-purple-200 select-none sm:text-[8.5cqi] sm:leading-none sm:whitespace-nowrap">
+                  <h3 className="font-display text-[10cqi] leading-none text-purple-300 sm:text-[5cqi]">
                     {group.label}
                   </h3>
-                  <div className="relative flex flex-wrap justify-center pt-[16cqi] sm:pt-[5cqi]">
+                  <div className="mt-3 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7">
                     {group.logos.map(([file, name]) => (
                       <WallLogo key={file} file={file} name={name} />
                     ))}
