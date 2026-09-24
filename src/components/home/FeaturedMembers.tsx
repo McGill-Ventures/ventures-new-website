@@ -135,7 +135,7 @@ function WallLogo({ file, name }: { file: string; name: string }) {
   );
 }
 
-// Cells the label spans so it fills the last row's gap at 3, 4 and 7 columns.
+// Cells the label spans so every row closes at 3, 4 and 7 columns.
 const labelSpan = (logos: number, cols: number) => cols - (logos % cols);
 
 export function FeaturedMembers() {
@@ -216,7 +216,7 @@ export function FeaturedMembers() {
         </div>
       </div>
 
-      <div className="mt-6 px-6 md:px-12 lg:px-24">
+      <div className="mt-12 px-6 md:mt-16 md:px-12 lg:px-24">
         <div className="mx-auto max-w-7xl">
           <Reveal
             as="p"
