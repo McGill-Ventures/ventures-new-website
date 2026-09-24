@@ -1,6 +1,7 @@
 import Nav from "../_components/Nav";
 import Footer from "../_components/Footer";
 import Interactions from "../_components/Interactions";
+import FundingDisclaimer from "./_components/FundingDisclaimer";
 
 /**
  * Wraps every funding-tool page (landing, matcher, partner matcher, admin) in
@@ -11,6 +12,7 @@ export default function FundingLayout({ children }: { children: React.ReactNode 
     <>
       <Nav active={null} ctaHref="mailto:hello.growthstudio@gmail.com" />
       {children}
+      <FundingDisclaimer />
       <Footer />
       <Interactions />
     </>
