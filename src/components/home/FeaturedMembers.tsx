@@ -135,18 +135,8 @@ function WallLogo({ file, name }: { file: string; name: string }) {
   );
 }
 
-// Blank cells that close each grid's last row at 3, 4 and 7 columns.
-function Fillers({ count }: { count: number }) {
-  const gap = (cols: number) => (cols - (count % cols)) % cols;
-  const [p3, p4, p7] = [gap(3), gap(4), gap(7)];
-  return Array.from({ length: Math.max(p3, p4, p7) }, (_, k) => (
-    <div
-      key={k}
-      aria-hidden
-      className={`border-r border-b border-white/10 ${k < p3 ? "" : "hidden"} ${k < p4 ? "sm:block" : "sm:hidden"} ${k < p7 ? "lg:block" : "lg:hidden"}`}
-    />
-  ));
-}
+// Cells the label spans so it fills the last row's gap at 3, 4 and 7 columns.
+const labelSpan = (logos: number, cols: number) => cols - (logos % cols);
 
 export function FeaturedMembers() {
   return (
@@ -253,18 +243,23 @@ export function FeaturedMembers() {
                     } as React.CSSProperties
                   }
                 >
-                  <div className="flex flex-col justify-between border-r border-b border-white/10 p-3 md:p-4">
-                    <h3 className="font-heading text-sm text-white/80 md:text-base">
+                  <div
+                    className="col-span-(--span-3) flex items-center border-r border-b border-white/10 p-4 sm:col-span-(--span-4) lg:col-span-(--span-7)"
+                    style={
+                      {
+                        "--span-3": labelSpan(group.logos.length, 3),
+                        "--span-4": labelSpan(group.logos.length, 4),
+                        "--span-7": labelSpan(group.logos.length, 7),
+                      } as React.CSSProperties
+                    }
+                  >
+                    <h3 className="font-heading text-sm text-purple-300 md:text-base">
                       {group.label}
                     </h3>
-                    <p className="font-body text-xs text-white/40 md:text-sm">
-                      {group.logos.length}
-                    </p>
                   </div>
                   {group.logos.map(([file, name]) => (
                     <WallLogo key={file} file={file} name={name} />
                   ))}
-                  <Fillers count={group.logos.length + 1} />
                 </Reveal>
               );
             })}
