@@ -113,14 +113,14 @@ function pngSize(file: string) {
 }
 
 // Same area for every logo so wide wordmarks and square marks read at equal weight.
-const LOGO_AREA = 2600;
+const LOGO_AREA = 2200;
 
 function WallLogo({ file, name }: { file: string; name: string }) {
   const { width, height } = pngSize(file);
   const ratio = width / height;
-  const w = Math.min(Math.sqrt(LOGO_AREA * ratio), 150, 40 * ratio);
+  const w = Math.min(Math.sqrt(LOGO_AREA * ratio), 140, 36 * ratio);
   return (
-    <div className="flex h-12 items-center justify-center px-2 md:h-14">
+    <div className="flex h-20 items-center justify-center border-r border-b border-white/10 px-3 md:h-24">
       <Image
         src={`/logos/companies/${file}.png`}
         alt={name}
@@ -129,24 +129,37 @@ function WallLogo({ file, name }: { file: string; name: string }) {
         height={height}
         sizes="160px"
         style={{ "--w": `${w}px` } as React.CSSProperties}
-        className="h-auto w-[calc(var(--w)*0.8)] max-w-full object-contain opacity-60 mix-blend-multiply grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:w-(--w)"
+        className="h-auto w-[calc(var(--w)*0.8)] max-w-full object-contain opacity-70 transition-opacity duration-300 hover:opacity-100 md:w-(--w)"
       />
     </div>
   );
 }
 
+// Blank cells that close each grid's last row at 3, 4 and 7 columns.
+function Fillers({ count }: { count: number }) {
+  const gap = (cols: number) => (cols - (count % cols)) % cols;
+  const [p3, p4, p7] = [gap(3), gap(4), gap(7)];
+  return Array.from({ length: Math.max(p3, p4, p7) }, (_, k) => (
+    <div
+      key={k}
+      aria-hidden
+      className={`border-r border-b border-white/10 ${k < p3 ? "" : "hidden"} ${k < p4 ? "sm:block" : "sm:hidden"} ${k < p7 ? "lg:block" : "lg:hidden"}`}
+    />
+  ));
+}
+
 export function FeaturedMembers() {
   return (
-    <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden py-6">
+    <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-black py-16 text-white">
       <div className="px-6 md:px-12 lg:px-24">
         <div className="mx-auto max-w-7xl">
-          <h2 className="section-heading text-black">
+          <h2 className="section-heading">
             <SplitText text="Featured members" />
           </h2>
           <Reveal
             as="p"
             delay={200}
-            className="mt-4 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
+            className="mt-4 max-w-xl font-body text-lg text-white/60 md:text-xl"
           >
             Our alumni are ambitious builders, backed by some of the best
             accelerators and funds in the world.
@@ -161,7 +174,7 @@ export function FeaturedMembers() {
                   rel="noopener noreferrer"
                   className="group relative flex h-full rounded-3xl"
                 >
-                  <span className="relative flex w-full flex-col overflow-hidden rounded-3xl bg-black text-white transition-transform duration-500 group-hover:-translate-y-1">
+                  <span className="relative flex w-full flex-col overflow-hidden rounded-3xl bg-black text-white ring-1 ring-white/10 ring-inset transition-transform duration-500 group-hover:-translate-y-1">
                     <div
                       aria-hidden
                       className="animate-orb pointer-events-none absolute -top-24 -right-16 size-72 rounded-full bg-purple-700/40 blur-3xl"
@@ -218,11 +231,11 @@ export function FeaturedMembers() {
           <Reveal
             as="p"
             delay={120}
-            className="font-heading text-sm text-purple-900/60"
+            className="font-heading text-sm text-white/50"
           >
             And the rest of us landed opportunities here
           </Reveal>
-          <div className="mt-6 space-y-8 md:space-y-10">
+          <div className="mt-4 space-y-6">
             {GROUPS.map((group, i) => {
               const fromLeft = i % 2 === 1;
               return (
@@ -231,7 +244,7 @@ export function FeaturedMembers() {
                   variant={fromLeft ? "left" : "right"}
                   delay={200 + i * 140}
                   duration={1100}
-                  className="@container relative"
+                  className="grid grid-cols-3 border-t border-l border-white/10 sm:grid-cols-4 lg:grid-cols-7"
                   style={
                     {
                       "--reveal-from": fromLeft
@@ -240,14 +253,18 @@ export function FeaturedMembers() {
                     } as React.CSSProperties
                   }
                 >
-                  <h3 className="font-display text-[10cqi] leading-none text-purple-300 sm:text-[5cqi]">
-                    {group.label}
-                  </h3>
-                  <div className="mt-3 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7">
-                    {group.logos.map(([file, name]) => (
-                      <WallLogo key={file} file={file} name={name} />
-                    ))}
+                  <div className="flex flex-col justify-between border-r border-b border-white/10 p-3 md:p-4">
+                    <h3 className="font-heading text-sm text-white/80 md:text-base">
+                      {group.label}
+                    </h3>
+                    <p className="font-body text-xs text-white/40 md:text-sm">
+                      {group.logos.length}
+                    </p>
                   </div>
+                  {group.logos.map(([file, name]) => (
+                    <WallLogo key={file} file={file} name={name} />
+                  ))}
+                  <Fillers count={group.logos.length + 1} />
                 </Reveal>
               );
             })}
