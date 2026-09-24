@@ -39,7 +39,6 @@ const GROUPS = [
       ["framework", "Framework Venture Partners"],
       ["novateur", "Novateur Ventures"],
       ["triptyq", "Triptyq Capital"],
-      ["quantacet", "Quantacet"],
       ["boreal_ventures", "Boreal Ventures"],
       ["boxone", "BoxOne Ventures"],
       ["front_row_ventures", "Front Row Ventures"],
@@ -79,6 +78,7 @@ const GROUPS = [
       ["bank_of_america", "Bank of America"],
       ["bnp_paribas", "BNP Paribas"],
       ["cibc", "CIBC"],
+      ["pwc", "PwC"],
     ],
   },
 ] satisfies { label: string; logos: [string, string][] }[];
