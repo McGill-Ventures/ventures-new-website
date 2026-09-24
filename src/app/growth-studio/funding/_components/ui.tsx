@@ -115,24 +115,33 @@ export function Card({
 
 /* ---------- Brand line ---------- */
 
+const BRAND_TEXT: CSSProperties = {
+  fontSize: 12,
+  letterSpacing: "0.14em",
+  textTransform: "uppercase",
+  fontWeight: 700,
+  fontFamily: T.headingFont,
+};
+
 export function Brand({ href = "/growth-studio/funding" }: { href?: string }) {
   return (
-    <a
-      href={href}
-      style={{
-        display: "inline-block",
-        marginBottom: 22,
-        fontSize: 12,
-        letterSpacing: "0.14em",
-        textTransform: "uppercase",
-        color: T.primary,
-        fontWeight: 700,
-        textDecoration: "none",
-        fontFamily: T.headingFont,
-      }}
-    >
-      Growth Studio · Funding tool
-    </a>
+    <div style={{ marginBottom: 22 }}>
+      <a href={href} style={{ ...BRAND_TEXT, display: "inline-block", color: T.primary, textDecoration: "none" }}>
+        Growth Studio · Funding tool
+      </a>
+      <p style={{ ...BRAND_TEXT, fontWeight: 600, margin: "6px 0 0", color: T.muted }}>
+        Powered by{" "}
+        <a
+          href="https://www.linkedin.com/in/ronardyabellard/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: T.primary, fontWeight: 800, textDecoration: "underline", textUnderlineOffset: 3 }}
+        >
+          Ronardy Abellard
+        </a>{" "}
+        from the Growth Studio Team
+      </p>
+    </div>
   );
 }
 
