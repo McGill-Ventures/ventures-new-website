@@ -244,7 +244,7 @@ export function FeaturedMembers() {
                   }
                 >
                   <div
-                    className="col-span-(--span-3) flex items-center border-r border-b border-white/10 p-4 sm:col-span-(--span-4) lg:col-span-(--span-7)"
+                    className="col-span-(--span-3) flex items-center justify-center border-r border-b border-white/10 p-4 sm:col-span-(--span-4) lg:col-span-(--span-7)"
                     style={
                       {
                         "--span-3": labelSpan(group.logos.length, 3),
@@ -253,7 +253,7 @@ export function FeaturedMembers() {
                       } as React.CSSProperties
                     }
                   >
-                    <h3 className="font-heading text-sm text-purple-300 md:text-base">
+                    <h3 className="text-center font-heading text-sm text-purple-300 md:text-base">
                       {group.label}
                     </h3>
                   </div>
