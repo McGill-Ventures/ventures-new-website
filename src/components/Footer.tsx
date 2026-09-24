@@ -70,8 +70,8 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-black text-white">
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 pt-16 pb-8 md:px-12 lg:px-24 lg:pt-20">
+    <footer className="relative overflow-hidden bg-black px-6 text-white md:px-12 lg:px-24">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-10 pt-16 pb-8 lg:pt-20">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-end">
           <h2 className="max-w-4xl font-display text-[clamp(2rem,4vw,3.75rem)] leading-[1.02] text-balance">
             <SplitText text="Join the team behind McGill's startup scene." />
