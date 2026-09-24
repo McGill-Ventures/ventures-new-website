@@ -1,7 +1,19 @@
+import type { Metadata } from "next";
+import { ArrowRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import Image from "next/image";
-import EventPhotoGallery from "@/components/EventPhotoGallery";
+import { EventGrid } from "@/components/events/EventGrid";
+import { UpcomingEvent } from "@/components/events/UpcomingEvent";
+import { Reveal, SplitText, Starfield } from "@/components/motion";
+import { Button } from "@/components/ui";
+
+export const metadata: Metadata = {
+  title: "Events | McGill Ventures",
+};
+
+// Upcoming vs past is decided on the server, so re-render daily or an event
+// would stay "upcoming" until the next deploy.
+export const revalidate = 86400;
 
 interface EventPhoto {
   src: string;
@@ -9,29 +21,41 @@ interface EventPhoto {
   caption: string;
 }
 
-interface EventCard {
+export interface EventData {
   id: string;
   title: string;
-  category: "Conference" | "Competition" | "Panel" | "Info Session" | "Industry Event";
+  category: "Conference" | "Competition" | "Panel" | "Fireside Chat" | "Info Session" | "Industry Event";
+  /** ISO date, `YYYY-MM-DD`. */
   date: string;
   location: string;
   description: string;
-  image: string;
+  coverImage: string;
   photos: EventPhoto[];
   imagePosition?: string;
   imageScale?: number;
   ticketsUrl?: string;
 }
 
-const EVENTS_2026: EventCard[] = [
+const EVENTS: EventData[] = [
+  {
+    id: "polyfinances-harley-finkelstein-2026",
+    title: "Polyfinances x McGill Ventures: Harley Finkelstein",
+    category: "Fireside Chat",
+    date: "2026-10-01",
+    location: "Atrium de Polytechnique Montréal (3e étage du pavillon Lassonde)",
+    description: "A fireside chat and networking evening with Harley Finkelstein, President of Shopify, co-hosted with Polyfinances.",
+    coverImage: "/events/polytechniquexventures_2026/financinginnovation.webp",
+    photos: [],
+    ticketsUrl: "https://www.zeffy.com/fr-CA/ticketing/polyfinances-x-mgv",
+  },
   {
     id: "scarlet-pitch-2026",
     title: "Scarlet Pitch 2026",
     category: "Competition",
-    date: "April 10, 2026",
+    date: "2026-04-10",
     location: "AX.C",
     description: "McGill's premier pitch competition where student founders compete for funding, mentorship, and the chance to pitch their ventures to leading investors.",
-    image: "/events/scarlet_pitch_2026/sp26_01.jpg",
+    coverImage: "/events/scarlet_pitch_2026/sp26_01.jpg",
     photos: [
       { src: "/events/scarlet_pitch_2026/sp26_01.jpg", alt: "Scarlet Pitch 2026 - Photo 1", caption: "" },
       { src: "/events/scarlet_pitch_2026/sp26_02.jpg", alt: "Scarlet Pitch 2026 - Photo 2", caption: "" },
@@ -50,10 +74,10 @@ const EVENTS_2026: EventCard[] = [
     id: "women-in-vc-2026",
     title: "Women in VC 2026",
     category: "Panel",
-    date: "February 26, 2026",
+    date: "2026-02-26",
     location: "Dobson Center",
     description: "An inspiring panel bringing together seasoned women investors and founders to share their journeys in venture capital and the startup ecosystem. Join us for an evening of insight, empowerment, and meaningful connection.",
-    image: "/events/women_in_vc2026/winvc_2026_hero.JPG",
+    coverImage: "/events/women_in_vc2026/winvc_2026_hero.JPG",
     photos: [
       { src: "/events/women_in_vc2026/winvc_2026_01.JPG", alt: "Women in VC 2026 - Panel discussion", caption: "" },
       { src: "/events/women_in_vc2026/winvc_2026_02.JPG", alt: "Women in VC 2026 - Networking", caption: "" },
@@ -68,10 +92,10 @@ const EVENTS_2026: EventCard[] = [
     id: "north-star-2026",
     title: "North Star 2026",
     category: "Conference",
-    date: "January 29, 2026",
+    date: "2026-01-29",
     location: "Arsenal Contemporary Art Gallery",
     description: "McGill Ventures' flagship entrepreneurship conference bringing together 500+ students with top-tier VCs, founders, and industry leaders. Featuring keynote speakers, founder panels, and exclusive networking.",
-    image: "/events/northstar_cover2026.jpg",
+    coverImage: "/events/northstar_cover2026.jpg",
     photos: [
       { src: "/events/northstar_2026/ns26_01.jpg", alt: "North Star 2026 - Photo 1", caption: "" },
       { src: "/events/northstar_2026/ns26_02.jpg", alt: "North Star 2026 - Photo 2", caption: "" },
@@ -85,17 +109,14 @@ const EVENTS_2026: EventCard[] = [
       { src: "/events/northstar_2026/ns26_10.jpg", alt: "North Star 2026 - Photo 10", caption: "" },
     ],
   },
-];
-
-const EVENTS_2025: EventCard[] = [
   {
     id: "clip-medtech-2024",
     title: "CLIP x Health Tech Innovation Lab",
     category: "Panel",
-    date: "December 4, 2025",
+    date: "2025-12-04",
     location: "McGill University",
     description: "McGill Ventures and The Clinical Innovation Platform (CLIP) partner to connect McGill's entrepreneurial and medical communities with CLIP's clinical ecosystem and leading MedTech founders and venture capitalists.",
-    image: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
+    coverImage: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
     photos: [
       { src: "/events/clipxhealthtech_2026/clipxhealthtech_2026_01.jpg", alt: "CLIP MedTech Event - Panel discussion", caption: "Bridging the gap between clinical innovation and business strategy" },
       { src: "/events/clipxhealthtech_2026/clipxhealthtech_2026_02.jpg", alt: "CLIP MedTech Event - Speakers", caption: "" },
@@ -113,10 +134,10 @@ const EVENTS_2025: EventCard[] = [
     id: "startup-showcase-2025",
     title: "McGill Startup Showcase",
     category: "Industry Event",
-    date: "November 7, 2025",
+    date: "2025-11-07",
     location: "Espace CDPQ",
     description: "Connect with rising startup entrepreneurs and Montreal's leading venture capitalists. Discover the missions, product differentiators, and future plans of startup founders, along with investment perspectives from VCs.",
-    image: "/events/startup_showcase2025/startup_showcase2025_hero.jpg",
+    coverImage: "/events/startup_showcase2025/startup_showcase2025_hero.jpg",
     photos: [
       { src: "/events/startup_showcase2025/startup_showcase2025_01.jpg", alt: "Startup Showcase - Founders presenting", caption: "Student entrepreneurs pitch to VCs at Espace CDPQ" },
       { src: "/events/startup_showcase2025/startup_showcase2025_02.jpg", alt: "Startup Showcase - Networking session", caption: "" },
@@ -132,10 +153,10 @@ const EVENTS_2025: EventCard[] = [
     id: "scarlet-pitch-2025",
     title: "Scarlet Pitch 2025",
     category: "Competition",
-    date: "March 27, 2025",
+    date: "2025-03-27",
     location: "EY Offices, 23rd Floor",
     description: "McGill's premier pitch competition where student founders compete for funding, mentorship, and the chance to pitch their ventures to leading investors.",
-    image: "/events/scarlet_pitch_cover2025.jpg",
+    coverImage: "/events/scarlet_pitch_cover2025.jpg",
     photos: [
       { src: "/events/scarlet_pitch2025/sp2025_01.jpg", alt: "Scarlet Pitch 2025 - Photo 1", caption: "" },
       { src: "/events/scarlet_pitch2025/sp2025_02.jpg", alt: "Scarlet Pitch 2025 - Photo 2", caption: "" },
@@ -153,10 +174,10 @@ const EVENTS_2025: EventCard[] = [
     id: "technova-2025",
     title: "TechNova 2025",
     category: "Conference",
-    date: "March 21, 2025",
+    date: "2025-03-21",
     location: "Escape CDPQ",
     description: "An intimate tech conference exploring emerging technologies, AI innovation, and the future of the Canadian startup ecosystem.",
-    image: "/events/technova_cover2025.jpg",
+    coverImage: "/events/technova2025/tn2025_01.jpg",
     photos: [
       { src: "/events/technova2025/DSC05314.jpg", alt: "TechNova 2025 - Photo 1", caption: "" },
       { src: "/events/technova2025/tn2025_01.jpg", alt: "TechNova 2025 - Photo 2", caption: "" },
@@ -175,10 +196,10 @@ const EVENTS_2025: EventCard[] = [
     id: "women-cocktail-2025",
     title: "Women 5à7 Cocktail",
     category: "Panel",
-    date: "February 16, 2025",
+    date: "2025-02-16",
     location: "Thomson House",
     description: "A networking cocktail evening with Geraldine J. (Co-founder of AssetWaves) and Lin Sok (CEO & Co-founder of Owni.ai). A room full of women who build, lead, and move things forward.",
-    image: "/events/women_5a7_cocktail2026/women_5a7_cocktail2025_hero.JPG",
+    coverImage: "/events/women_5a7_cocktail2026/women_5a7_cocktail2025_hero.JPG",
     photos: [
       { src: "/events/women_5a7_cocktail2026/women_5a7_cocktail2025_01.JPG", alt: "Women 5à7 Cocktail - Group photo", caption: "Women in entrepreneurship and VC connect at Thomson House" },
       { src: "/events/women_5a7_cocktail2026/women_5a7_cocktail2025_02.JPG", alt: "Women 5à7 Cocktail - Featured speakers", caption: "" },
@@ -191,10 +212,10 @@ const EVENTS_2025: EventCard[] = [
     id: "women-in-vc-2025",
     title: "Women in VC 2025",
     category: "Panel",
-    date: "February 7, 2025",
+    date: "2025-02-07",
     location: "Dobson Center",
     description: "A panel discussion featuring female investors and VCs sharing insights on breaking into venture capital and supporting underrepresented founders.",
-    image: "/events/women_in_vc_cover2025.jpg",
+    coverImage: "/events/women_in_vc_cover2025.jpg",
     photos: [
       { src: "/events/women_in_vc2025/winvc2025_01.jpg", alt: "Women in VC 2025 - Photo 1", caption: "" },
       { src: "/events/women_in_vc2025/winvc2025_02.jpg", alt: "Women in VC 2025 - Photo 2", caption: "" },
@@ -212,24 +233,21 @@ const EVENTS_2025: EventCard[] = [
     id: "north-star-2025",
     title: "North Star 2025: Harley Finkelstein",
     category: "Conference",
-    date: "January 23, 2025",
+    date: "2025-01-23",
     location: "HEC Montréal",
     description: "Our flagship entrepreneurship conference featuring keynote speaker Harley Finkelstein, President of Shopify. 500+ students connected with industry leaders, VCs, and successful founders through keynotes, panels, and networking.",
-    image: "/events/northstar_cover2025.jpg",
+    coverImage: "/events/northstar_cover2025.jpg",
     photos: [],
     imagePosition: "center 30%",
   },
-];
-
-const EVENTS_2024: EventCard[] = [
   {
     id: "scarlet-pitch-2024",
     title: "Scarlet Pitch 2024",
     category: "Competition",
-    date: "March 20, 2024",
+    date: "2024-03-20",
     location: "Desjardins Lounge",
     description: "McGill's premier pitch competition where student founders compete for funding, mentorship, and the chance to pitch their ventures to leading investors.",
-    image: "/events/scarlet_pitch_2024/sp24_01.jpg",
+    coverImage: "/events/scarlet_pitch_2024/sp24_01.jpg",
     photos: [
       { src: "/events/scarlet_pitch_2024/sp24_01.jpg", alt: "Scarlet Pitch 2024 - Photo 1", caption: "" },
       { src: "/events/scarlet_pitch_2024/sp24_02.jpg", alt: "Scarlet Pitch 2024 - Photo 2", caption: "" },
@@ -242,10 +260,10 @@ const EVENTS_2024: EventCard[] = [
     id: "women-in-vc-2024",
     title: "Women in VC 2024",
     category: "Panel",
-    date: "February 13, 2024",
+    date: "2024-02-13",
     location: "Armstrong Building",
     description: "A panel discussion featuring female investors and VCs sharing insights on breaking into venture capital and supporting underrepresented founders.",
-    image: "/events/women_in_vc2024/wvc24_01.JPG",
+    coverImage: "/events/women_in_vc2024/wvc24_01.JPG",
     photos: [
       { src: "/events/women_in_vc2024/wvc24_01.JPG", alt: "Women in VC 2024 - Photo 1", caption: "" },
       { src: "/events/women_in_vc2024/wvc24_02.JPG", alt: "Women in VC 2024 - Photo 2", caption: "" },
@@ -256,10 +274,10 @@ const EVENTS_2024: EventCard[] = [
     id: "startup-showcase-2023",
     title: "Startup Showcase 2023",
     category: "Industry Event",
-    date: "October 27, 2023",
+    date: "2023-10-27",
     location: "Thomson House",
     description: "Connect with rising startup entrepreneurs and Montreal's leading venture capitalists. Discover the missions, product differentiators, and future plans of startup founders, along with investment perspectives from VCs.",
-    image: "/events/startup_showcase2023/showcase23_01.JPG",
+    coverImage: "/events/startup_showcase2023/showcase23_01.JPG",
     photos: [
       { src: "/events/startup_showcase2023/showcase23_01.JPG", alt: "Startup Showcase 2023 - Photo 1", caption: "" },
       { src: "/events/startup_showcase2023/showcase23_02.JPG", alt: "Startup Showcase 2023 - Photo 2", caption: "" },
@@ -269,188 +287,110 @@ const EVENTS_2024: EventCard[] = [
   },
 ];
 
-function EventCardComponent({ event, index }: { event: EventCard; index: number }) {
-  return (
-    <div
-      className="group rounded-2xl shadow-lg overflow-hidden bg-white animate-fade-in-up flex flex-col hover:-translate-y-2 hover:shadow-2xl"
-      style={{
-        animationDelay: `${index * 0.1}s`,
-        transition: "all 300ms cubic-bezier(0.4, 0, 0.2, 1)",
-      }}
-    >
-      {/* Cover photo */}
-      <div className="relative aspect-video w-full flex-shrink-0 overflow-hidden bg-gray-100">
-        <Image
-          src={event.image}
-          alt={event.title}
-          fill
-          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-          style={{ objectPosition: event.imagePosition ?? "center", transform: event.imageScale ? `scale(${event.imageScale})` : undefined }}
-        />
-      </div>
+/** Today in Montreal as `YYYY-MM-DD`; en-CA formats dates that way. */
+function today() {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Montreal" }).format(new Date());
+}
 
-      {/* Card body */}
-      <div className="p-6 flex flex-col flex-grow">
-        {/* Category badge */}
-        <span className="inline-block self-start px-3 py-1 rounded-full text-xs font-heading font-semibold uppercase tracking-wider bg-[#F3E8FF] group-hover:bg-[#5A189A] text-[#5A189A] group-hover:text-white mb-3 transition-all duration-300">
-          {event.category}
-        </span>
-
-        {/* Title */}
-        <h3 className="text-2xl font-heading font-semibold text-[#1F2937] mb-3 leading-snug">
-          {event.title}
-        </h3>
-
-        {/* Date & Location */}
-        <div className="flex flex-col gap-2 mb-4">
-          <div className="flex items-center text-gray-500 text-sm font-body">
-            <svg className="w-4 h-4 mr-2 flex-shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            {event.date}
-          </div>
-          <div className="flex items-center text-gray-500 text-sm font-body">
-            <svg className="w-4 h-4 mr-2 flex-shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            {event.location}
-          </div>
-        </div>
-
-        {/* Description */}
-        {event.description && (
-          <p className="text-[#4B5563] font-body text-base leading-relaxed mt-3 mb-5 flex-grow">
-            {event.description}
-          </p>
-        )}
-
-        {/* Tickets button */}
-        {event.ticketsUrl && (
-          <a
-            href={event.ticketsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 self-start px-4 py-2 mb-4 rounded-lg bg-[#5A189A] text-white text-sm font-heading font-semibold hover:bg-[#3D1551] transition-colors duration-200"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-            </svg>
-            Get Tickets
-          </a>
-        )}
-
-        {/* Photo gallery */}
-        <EventPhotoGallery eventId={event.id} photos={event.photos} />
-      </div>
-    </div>
-  );
+/** Newest year first, newest event first within each year. */
+function groupByYear(events: EventData[]) {
+  const groups = new Map<string, EventData[]>();
+  for (const event of [...events].sort((a, b) => b.date.localeCompare(a.date))) {
+    const year = event.date.slice(0, 4);
+    groups.set(year, [...(groups.get(year) ?? []), event]);
+  }
+  return [...groups].map(([year, events]) => ({ year, events }));
 }
 
 export default function Events() {
+  const now = today();
+  // Soonest first; an event stays upcoming through its own day.
+  const upcoming = EVENTS.filter((e) => e.date >= now).sort((a, b) => a.date.localeCompare(b.date));
+  const pastByYear = groupByYear(EVENTS.filter((e) => e.date < now));
+
   return (
-    <div className="min-h-screen bg-white">
-      <Navigation currentPage="/events" />
+    <div className="min-h-screen bg-black">
+      <Navigation currentPage="/events" darkOver="#events" />
 
-      {/* Hero */}
-      <section className="px-6 pt-10 sm:pt-14 pb-8 sm:pb-14 md:px-12 lg:px-24 relative bg-gradient-hero">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10 sm:mb-16 animate-fade-in-up">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display text-purple-950 mb-2">
-              Our Events
+      {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
+      <main id="events" className="relative -mt-20 overflow-hidden bg-black text-white">
+        <section className="relative flex min-h-[72dvh] flex-col justify-end px-6 pt-28 pb-20 md:px-12 lg:px-24">
+          <div
+            aria-hidden
+            className="animate-orb pointer-events-none absolute -top-48 -left-48 size-[36rem] rounded-full bg-purple-600/40 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="animate-orb pointer-events-none absolute -right-24 -bottom-40 size-[32rem] rounded-full bg-purple-800/40 blur-3xl [animation-delay:-8s]"
+          />
+          <Starfield className="[mask-image:linear-gradient(to_bottom,#000_60%,transparent)]" />
+
+          <div className="relative mx-auto w-full max-w-7xl">
+            <h1 className="font-display text-[clamp(3rem,9vw,7.5rem)] leading-[0.95]">
+              <SplitText text="Events" trigger="load" delay={150} />
             </h1>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full mb-6"></div>
-            <p className="text-base sm:text-xl md:text-2xl text-purple-800 leading-relaxed font-body max-w-4xl mx-auto">
-              From intimate workshops to large-scale conferences, we bring together the McGill entrepreneurship community with industry leaders, investors, and founders.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 2026 Events */}
-      <section className="px-6 pt-6 sm:pt-10 pb-10 sm:pb-[60px] md:px-12 lg:px-24 bg-gradient-hero">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-purple-950 mb-4">2026 Events</h2>
-            <p className="text-base sm:text-xl text-purple-800 leading-relaxed font-body max-w-3xl mx-auto">
-              This year&apos;s lineup of events and programming for the McGill Ventures community
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 [&>*:last-child:nth-child(odd)]:md:col-span-2 [&>*:last-child:nth-child(odd)]:md:mx-auto [&>*:last-child:nth-child(odd)]:md:w-1/2">
-            {EVENTS_2026.map((event, index) => (
-              <EventCardComponent key={event.id} event={event} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 2025 Events */}
-      <section className="px-6 pt-10 sm:pt-[40px] pb-10 sm:pb-[100px] md:px-12 lg:px-24 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-purple-950 mb-4">2025 Events</h2>
-            <p className="text-base sm:text-xl text-purple-800 leading-relaxed font-body max-w-3xl mx-auto">
-              A look back at the events and experiences that have shaped our community
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 [&>*:last-child:nth-child(odd)]:md:col-span-2 [&>*:last-child:nth-child(odd)]:md:mx-auto [&>*:last-child:nth-child(odd)]:md:w-1/2">
-            {EVENTS_2025.map((event, index) => (
-              <EventCardComponent key={event.id} event={event} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 2024 Events */}
-      <section className="px-6 pt-10 sm:pt-[40px] pb-10 sm:pb-[100px] md:px-12 lg:px-24 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8 sm:mb-12 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display text-purple-950 mb-4">2023–2024 Events</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 [&>*:last-child:nth-child(odd)]:md:col-span-2 [&>*:last-child:nth-child(odd)]:md:mx-auto [&>*:last-child:nth-child(odd)]:md:w-1/2">
-            {EVENTS_2024.map((event, index) => (
-              <EventCardComponent key={event.id} event={event} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section
-        className="px-6 py-10 sm:py-20 md:px-12 lg:px-24 text-white"
-        style={{ background: "linear-gradient(to bottom right, #5A189A, #3D1551)" }}
-      >
-        <div className="max-w-[900px] mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white">Stay Updated on Our Events</h2>
-          <p className="text-purple-100 text-lg mt-4">
-            Follow us for event announcements, speaker reveals, and exclusive behind-the-scenes content from the McGill entrepreneurship community.
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-            <a
-              href="https://www.instagram.com/mcgillvc/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-white text-[#5A189A] px-8 py-4 rounded-lg text-base font-semibold hover:bg-[#5A189A] hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+            <Reveal
+              as="p"
+              trigger="load"
+              delay={450}
+              className="mt-6 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-              </svg>
-              Follow on Instagram
-            </a>
-            <a
-              href="https://www.linkedin.com/company/mcgillvc/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-white text-[#5A189A] px-8 py-4 rounded-lg text-base font-semibold hover:bg-[#5A189A] hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-              </svg>
-              Connect on LinkedIn
-            </a>
+              From intimate workshops to large-scale conferences, we bring together the McGill
+              entrepreneurship community with industry leaders, investors, and founders.
+            </Reveal>
+            <Reveal trigger="load" delay={650} className="mt-8 flex flex-wrap gap-4">
+              <Button href="https://www.instagram.com/mcgillvc/" variant="secondary" size="sm" external>
+                Follow on Instagram
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+              <Button href="https://www.linkedin.com/company/mcgillvc/" variant="secondary" size="sm" external>
+                Connect on LinkedIn
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section aria-labelledby="upcoming" className="relative px-6 pb-20 md:px-12 lg:px-24">
+          <div className="mx-auto max-w-7xl">
+            <h2 id="upcoming" className="section-heading">
+              <SplitText text="Upcoming" />
+            </h2>
+            {upcoming.length > 0 ? (
+              <div className="mt-10 flex flex-col gap-16">
+                {upcoming.map((event) => (
+                  <UpcomingEvent key={event.id} event={event} />
+                ))}
+              </div>
+            ) : (
+              <Reveal
+                as="p"
+                delay={200}
+                className="mt-6 max-w-xl font-body text-lg text-purple-100/75"
+              >
+                Nothing on the calendar right now. New events are announced on Instagram and
+                LinkedIn first.
+              </Reveal>
+            )}
+          </div>
+        </section>
+
+        <section aria-labelledby="past" className="relative px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
+          <div className="mx-auto max-w-7xl">
+            <h2 id="past" className="section-heading">
+              <SplitText text="Past events" />
+            </h2>
+            {pastByYear.map(({ year, events }) => (
+              <div key={year} className="mt-12 border-t border-white/10 pt-6 lg:mt-16">
+                <h3 className="font-display text-3xl text-white/90 md:text-4xl">
+                  <SplitText text={year} />
+                </h3>
+                <EventGrid events={events} headingAs="h4" className="mt-6" />
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>
