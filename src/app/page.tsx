@@ -15,7 +15,7 @@ export default function Home() {
       <Events />
       <Why />
       <FeaturedMembers />
-      <Footer fullHeight />
+      <Footer />
     </div>
   );
 }

@@ -1,5 +1,7 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import Image from "next/image";
-import { Marquee, Reveal, SplitText } from "@/components/motion";
+import { Reveal, SplitText } from "@/components/motion";
 
 const FOUNDERS = [
   {
@@ -31,52 +33,55 @@ const GROUPS = [
   {
     label: "Venture capital",
     logos: [
-      "inovia",
-      "bdc",
-      "brightspark",
-      "framework",
-      "novateur",
-      "triptyq",
-      "quantacet",
-      "boreal_ventures",
-      "boxone",
-      "front_row_ventures",
-      "dorm_room_fund",
-      "white_star_capital",
+      ["inovia", "Inovia"],
+      ["bdc", "BDC"],
+      ["brightspark", "Brightspark"],
+      ["framework", "Framework Venture Partners"],
+      ["novateur", "Novateur Ventures"],
+      ["triptyq", "Triptyq Capital"],
+      ["boreal_ventures", "Boreal Ventures"],
+      ["boxone", "BoxOne Ventures"],
+      ["front_row_ventures", "Front Row Ventures"],
+      ["dorm_room_fund", "Dorm Room Fund"],
+      ["white_star_capital", "White Star Capital"],
+      ["northside_ventures", "Northside Ventures"],
     ],
   },
   {
     label: "Startups",
     logos: [
-      "checksammy",
-      "betakit",
-      "attain",
-      "afterquery",
-      "z_fellows",
-      "nationgraph",
-      "next",
-      "carbon6",
-      "optionality",
-      "brio",
+      ["checksammy", "CheckSammy"],
+      ["betakit", "BetaKit"],
+      ["attain", "Attain"],
+      ["afterquery", "AfterQuery"],
+      ["z_fellows", "Z Fellows"],
+      ["nationgraph", "NationGraph"],
+      ["next", "NEXT Canada"],
+      ["carbon6", "Carbon6"],
+      ["optionality", "Optionality"],
+      ["brio", "Brio"],
+      ["planned", "Planned"],
+      ["botpress", "Botpress"],
     ],
   },
   {
     label: "Traditional careers",
     logos: [
-      "mckinsey",
-      "rbc",
-      "ubs",
-      "td",
-      "lightspeed",
-      "citi",
-      "bmo",
-      "ey_parthenon",
-      "bank_of_america",
-      "bnp_paribas",
-      "cibc",
+      ["mckinsey", "McKinsey & Company"],
+      ["rbc", "RBC"],
+      ["ubs", "UBS"],
+      ["td", "TD"],
+      ["lightspeed", "Lightspeed"],
+      ["citi", "Citi"],
+      ["bmo", "BMO"],
+      ["ey_parthenon", "EY-Parthenon"],
+      ["bank_of_america", "Bank of America"],
+      ["bnp_paribas", "BNP Paribas"],
+      ["cibc", "CIBC"],
+      ["pwc", "PwC"],
     ],
   },
-];
+] satisfies { label: string; logos: [string, string][] }[];
 
 function YCombinatorMark() {
   return (
@@ -97,32 +102,54 @@ function YCombinatorMark() {
   );
 }
 
-function WallLogo({ name }: { name: string }) {
+function pngSize(file: string) {
+  const png = readFileSync(
+    join(process.cwd(), "public/logos/companies", `${file}.png`),
+  );
+  if (png.toString("latin1", 12, 16) !== "IHDR") {
+    throw new Error(`public/logos/companies/${file}.png is not a PNG`);
+  }
+  return { width: png.readUInt32BE(16), height: png.readUInt32BE(20) };
+}
+
+// Same area for every logo so wide wordmarks and square marks read at equal weight.
+const LOGO_AREA = 2200;
+
+function WallLogo({ file, name }: { file: string; name: string }) {
+  const { width, height } = pngSize(file);
+  const ratio = width / height;
+  const w = Math.min(Math.sqrt(LOGO_AREA * ratio), 140, 36 * ratio);
   return (
-    <div className="flex h-11 w-auto shrink-0 items-center justify-center md:h-12">
+    <div className="flex h-20 items-center justify-center border-r border-b border-white/10 px-3 md:h-24">
       <Image
-        src={`/logos/companies/${name}.png`}
-        alt=""
-        width={220}
-        height={64}
-        className="max-h-8 w-auto object-contain md:max-h-9"
+        src={`/logos/companies/${file}.png`}
+        alt={name}
+        title={name}
+        width={width}
+        height={height}
+        sizes="160px"
+        style={{ "--w": `${w}px` } as React.CSSProperties}
+        className="h-auto w-[calc(var(--w)*0.8)] max-w-full object-contain opacity-70 transition-opacity duration-300 hover:opacity-100 md:w-(--w)"
       />
     </div>
   );
 }
 
+// Cells the label spans so every row closes at 3, 4 and 7 columns.
+const labelSpan = (logos: number, cols: number) => cols - (logos % cols);
+
 export function FeaturedMembers() {
   return (
-    <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden py-6">
+    <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-black py-16 text-white">
       <div className="px-6 md:px-12 lg:px-24">
         <div className="mx-auto max-w-7xl">
-          <h2 className="section-heading text-black">
+          <h2 className="section-heading">
             <SplitText text="Featured members" />
           </h2>
           <Reveal
             as="p"
             delay={200}
-            className="mt-4 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
+            className="mt-4 max-w-xl font-body text-lg text-white/60 md:text-xl"
           >
             Our alumni are ambitious builders, backed by some of the best
             accelerators and funds in the world.
@@ -137,7 +164,7 @@ export function FeaturedMembers() {
                   rel="noopener noreferrer"
                   className="group relative flex h-full rounded-3xl"
                 >
-                  <span className="relative flex w-full flex-col overflow-hidden rounded-3xl bg-black text-white transition-transform duration-500 group-hover:-translate-y-1">
+                  <span className="relative flex w-full flex-col overflow-hidden rounded-3xl bg-black text-white ring-1 ring-white/10 ring-inset transition-transform duration-500 group-hover:-translate-y-1">
                     <div
                       aria-hidden
                       className="animate-orb pointer-events-none absolute -top-24 -right-16 size-72 rounded-full bg-purple-700/40 blur-3xl"
@@ -189,16 +216,16 @@ export function FeaturedMembers() {
         </div>
       </div>
 
-      <div className="mt-6 px-6 md:px-12 lg:px-24">
+      <div className="mt-12 px-6 md:mt-16 md:px-12 lg:px-24">
         <div className="mx-auto max-w-7xl">
           <Reveal
             as="p"
             delay={120}
-            className="font-heading text-sm text-purple-900/60"
+            className="font-heading text-sm text-white/50"
           >
-            And the rest of us landed internships and full-time roles here
+            And the rest of us landed opportunities here
           </Reveal>
-          <div className="mt-3 space-y-1.5">
+          <div className="mt-4 space-y-6">
             {GROUPS.map((group, i) => {
               const fromLeft = i % 2 === 1;
               return (
@@ -207,7 +234,7 @@ export function FeaturedMembers() {
                   variant={fromLeft ? "left" : "right"}
                   delay={200 + i * 140}
                   duration={1100}
-                  className="flex items-center gap-4 border-t border-black/8 pt-2 md:gap-8"
+                  className="grid grid-cols-3 border-t border-l border-white/10 sm:grid-cols-4 lg:grid-cols-7"
                   style={
                     {
                       "--reveal-from": fromLeft
@@ -216,20 +243,23 @@ export function FeaturedMembers() {
                     } as React.CSSProperties
                   }
                 >
-                  <p className="w-24 shrink-0 font-heading text-xs text-purple-900/45 md:w-40 md:text-sm">
-                    {group.label}
-                  </p>
-                  <Marquee
-                    direction={fromLeft ? "right" : "left"}
-                    duration={56 + i * 8}
-                    gap="4rem"
-                    fade
-                    className="min-w-0 flex-1"
+                  <div
+                    className="col-span-(--span-3) flex items-center justify-center border-r border-b border-white/10 p-4 sm:col-span-(--span-4) lg:col-span-(--span-7)"
+                    style={
+                      {
+                        "--span-3": labelSpan(group.logos.length, 3),
+                        "--span-4": labelSpan(group.logos.length, 4),
+                        "--span-7": labelSpan(group.logos.length, 7),
+                      } as React.CSSProperties
+                    }
                   >
-                    {group.logos.map((name) => (
-                      <WallLogo key={name} name={name} />
-                    ))}
-                  </Marquee>
+                    <h3 className="text-center font-heading text-sm text-purple-300 md:text-base">
+                      {group.label}
+                    </h3>
+                  </div>
+                  {group.logos.map(([file, name]) => (
+                    <WallLogo key={file} file={file} name={name} />
+                  ))}
                 </Reveal>
               );
             })}
