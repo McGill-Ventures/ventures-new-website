@@ -197,7 +197,7 @@ export default function Programs() {
       <Navigation currentPage="/programs" darkOver="#programs" />
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
-      <main id="programs" className="relative -mt-20 overflow-hidden bg-black text-white">
+      <main id="programs" className="relative -mt-20 overflow-clip bg-black text-white">
         <section className="relative flex min-h-[72dvh] flex-col justify-end px-6 pt-28 pb-20 md:px-12 lg:px-24">
           <div
             aria-hidden
