@@ -437,3 +437,17 @@ a[href],
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.42'/></svg>");
 }
+
+/* <Stamp>: patchy ink, and a thump down onto the page. */
+.stamp-ink {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.6 2.1'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.6 2.1'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+}
+
+@keyframes stamp-in {
+  from { opacity: 0; scale: 2.6; }
+}
+
+.animate-stamp {
+  animation: stamp-in 450ms var(--ease-out-expo) both;
+}

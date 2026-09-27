@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui";
+import { Button, Stamp } from "@/components/ui";
 import { Reveal, SplitText } from "@/components/motion";
 
 const PARTIES = [
@@ -100,12 +100,9 @@ export function TermSheet() {
             className="pointer-events-none absolute -right-2 -bottom-8 md:right-10 md:-bottom-6"
             style={{ "--reveal-from": "scale(2.6)" } as CSSProperties}
           >
-            <div
-              aria-hidden
-              className="about-stamp -rotate-12 rounded-lg border-[5px] border-double border-purple-700 px-5 py-1.5 font-display text-4xl tracking-[0.06em] text-purple-700 uppercase mix-blend-multiply md:text-5xl"
-            >
+            <Stamp className="border-purple-700 text-4xl text-purple-700 mix-blend-multiply md:text-5xl">
               Backed
-            </div>
+            </Stamp>
           </Reveal>
         </Reveal>
       </div>

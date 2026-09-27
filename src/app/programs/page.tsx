@@ -3,10 +3,12 @@ import type { StaticImageData } from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import "./programs.css";
+import { DealFlow } from "@/components/programs/DealFlow";
+import { ProgramIndex } from "@/components/programs/ProgramIndex";
 import { ProgramSection } from "@/components/programs/ProgramSection";
 import { Reveal, SplitText, Starfield } from "@/components/motion";
 import { Button } from "@/components/ui";
-import { APPLICATION_STEPS } from "@/constants";
 import graphiteVenturesLogo from "@/app/sponsors/graphite_ventures.png";
 
 export const metadata: Metadata = {
@@ -24,9 +26,12 @@ export interface ProgramData {
   /** Also the section's anchor, e.g. `/programs#analyst`. */
   id: string;
   name: string;
-  status: string;
+  /** Stamped over the photo: a small line, then the big one. */
+  status: [kicker: string, headline: string];
   description: string;
   photo: string;
+  /** CSS object-position, when the default centre crop cuts something off. */
+  photoPosition?: string;
   facts: [term: string, value: string][];
   features: string[];
   sponsor?: { name: string; href: string; logo: StaticImageData };
@@ -42,7 +47,7 @@ const PROGRAMS: ProgramData[] = [
   {
     id: "analyst",
     name: "Analyst Program",
-    status: "Applications open",
+    status: ["Applications", "Open"],
     description:
       "A comprehensive program covering the fundamentals of venture capital, including deal sourcing, due diligence, portfolio management, and case study analysis.",
     photo: "/events/image_carousel_pic2.jpg",
@@ -96,10 +101,11 @@ const PROGRAMS: ProgramData[] = [
   {
     id: "htil",
     name: "Health Tech & Innovation Lab",
-    status: "Applications reopen Fall 2026",
+    status: ["Reopens", "Fall 2026"],
     description:
       "An intensive 7-week program bridging healthcare and venture capital through hands-on workshops with biotech and VC professionals, mentorship, and real-world project deliverables.",
     photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
+    photoPosition: "left center",
     facts: [
       ["Duration", "7 weeks"],
       ["Commitment", "4-6 hours/week"],
@@ -147,7 +153,7 @@ const PROGRAMS: ProgramData[] = [
   {
     id: "growth-studio",
     name: "Growth Studio",
-    status: "Applications reopen Fall 2026",
+    status: ["Reopens", "Fall 2026"],
     description:
       "Students work with early-stage startups on real scaling challenges, delivering actionable recommendations on go-to-market and venture capital fundraising.",
     photo: "/growth-studio/hero-founders.webp",
@@ -173,7 +179,7 @@ const PROGRAMS: ProgramData[] = [
   {
     id: "fund",
     name: "Fund Program",
-    status: "Applications reopen Fall 2026",
+    status: ["Reopens", "Fall 2026"],
     description:
       "McGill Ventures' student-run fund. Analysts learn deal sourcing, due diligence, financial modelling, and investment structuring while evaluating real startups.",
     photo: "/events/scarlet_pitch_2026/sp26_02.jpg",
@@ -222,7 +228,7 @@ export default function Programs() {
               Hands-on programs that develop the next generation of venture capitalists and
               entrepreneurs, taught by the investors and founders doing the work.
             </Reveal>
-            <Reveal as="ul" trigger="load" delay={650} className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+            <Reveal as="ul" trigger="load" delay={650} className="mt-8 flex flex-wrap gap-x-8 gap-y-3 lg:hidden">
               {PROGRAMS.map((program, i) => (
                 <li key={program.id}>
                   <a
@@ -238,12 +244,15 @@ export default function Programs() {
           </div>
         </section>
 
-        <div className="relative flex flex-col gap-24 px-6 pb-24 md:px-12 lg:gap-32 lg:px-24 lg:pb-32">
-          {PROGRAMS.map((program, i) => (
-            <div key={program.id} className="mx-auto w-full max-w-7xl border-t border-white/10 pt-12 lg:pt-16">
-              <ProgramSection program={program} flip={i % 2 === 1} />
+        <div className="relative px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
+          <div className="mx-auto grid max-w-7xl gap-24 lg:grid-cols-2 lg:gap-16">
+            <ProgramIndex programs={PROGRAMS.map(({ id, name, photo, photoPosition, status }) => ({ id, name, photo, photoPosition, status }))} />
+            <div className="flex flex-col gap-24">
+              {PROGRAMS.map((program) => (
+                <ProgramSection key={program.id} program={program} />
+              ))}
             </div>
-          ))}
+          </div>
         </div>
 
         <section aria-labelledby="apply" className="relative px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
@@ -251,15 +260,15 @@ export default function Programs() {
             <h2 id="apply" className="section-heading">
               <SplitText text="How to apply" />
             </h2>
-            <ol className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-              {APPLICATION_STEPS.map((step, i) => (
-                <Reveal as="li" key={step.step} delay={i * 100}>
-                  <span className="font-display text-5xl text-purple-400">{step.step}</span>
-                  <h3 className="mt-4 font-heading text-xl">{step.title}</h3>
-                  <p className="mt-2 font-body text-purple-100/75">{step.description}</p>
-                </Reveal>
-              ))}
-            </ol>
+            <Reveal
+              as="p"
+              delay={200}
+              className="mt-6 max-w-xl font-body text-lg text-purple-100/75 md:text-xl"
+            >
+              Every application runs through the same pipeline as a startup pitching us. This
+              time, you&apos;re the deal.
+            </Reveal>
+            <DealFlow />
             <Reveal delay={400} className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-white/10 pt-10">
               <p className="max-w-xl font-body text-lg text-purple-100/75">
                 New cohorts are announced on LinkedIn first.

@@ -909,21 +909,25 @@ export const PARTNERSHIP_BENEFITS = [
 export const APPLICATION_STEPS = [
   {
     step: "01",
+    stage: "Sourced",
     title: "Submit Application",
     description: "Complete our online application form with your background, interests, and goals"
   },
   {
     step: "02",
+    stage: "Screened",
     title: "Interview Process",
     description: "Participate in a brief interview to discuss your goals and passion for entrepreneurship"
   },
   {
     step: "03",
+    stage: "Diligence",
     title: "Case Study",
     description: "Complete a case study to demonstrate your analytical thinking and interest in venture capital"
   },
   {
     step: "04",
+    stage: "Closed",
     title: "Welcome & Onboarding",
     description: "Join our community and begin your journey in venture capital and startups"
   }

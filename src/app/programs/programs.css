@@ -1,0 +1,19 @@
+/* <DealFlow>: the deal card moves one stage at a time while it rises through
+   the viewport, pausing at each slot. Without scroll-driven animations it
+   waits at Sourced. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .deal-card {
+      animation: deal-advance linear both;
+      animation-timeline: view();
+      animation-range: contain 10% contain 65%;
+    }
+  }
+}
+
+@keyframes deal-advance {
+  0%, 12% { translate: 0; }
+  29%, 41% { translate: calc(100% + var(--deal-gap)); }
+  58%, 70% { translate: calc(2 * (100% + var(--deal-gap))); }
+  87%, 100% { translate: calc(3 * (100% + var(--deal-gap))); }
+}
