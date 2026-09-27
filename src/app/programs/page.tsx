@@ -3,7 +3,6 @@ import type { StaticImageData } from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import "./programs.css";
 import { DealFlow } from "@/components/programs/DealFlow";
 import { ProgramIndex } from "@/components/programs/ProgramIndex";
 import { ProgramSection } from "@/components/programs/ProgramSection";
