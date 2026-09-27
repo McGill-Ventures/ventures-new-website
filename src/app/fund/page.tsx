@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { ArrowRight, Mail } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Check, Mail } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { FitChecklist } from "@/components/fund/FitChecklist";
+import { Slide } from "@/components/fund/Slide";
 import { Reveal, SplitText, Starfield } from "@/components/motion";
 import { Button, Tag } from "@/components/ui";
 
@@ -9,23 +12,18 @@ export const metadata: Metadata = {
   title: "Fund | McGill Ventures",
 };
 
-const TERMS = [
-  ["$500K", "Pilot fund"],
-  ["12-18", "Investments over 3 years"],
-  ["$10-50K", "Per company, via SAFE"],
-  ["Pre-seed", "Stage"],
-];
+const SLIDES = 6;
 
 const PROBLEMS = [
   {
     side: "Founders",
     problem: "McGill founders often struggle to secure early funding and mentorship.",
-    answer: "The fund gives them capital.",
+    photo: "/events/scarlet_pitch2025/sp2025_04.jpg",
   },
   {
     side: "Students",
     problem: "Students interested in VC rarely get hands-on investment experience.",
-    answer: "The fund gives them real responsibility, not simulations.",
+    photo: "/events/image_carousel_pic3.jpg",
   },
 ];
 
@@ -42,30 +40,22 @@ const NEXT = [
   "Deploy capital responsibly and support founders through the early stages",
 ];
 
-const CRITERIA = [
-  ["Founders", "Must have a McGill connection"],
-  ["Stage", "Pre-seed"],
-  ["Check size", "$10K-$50K, via SAFE"],
-  ["Sectors", "Open to all. Often software, AI, health tech, climate, deep tech and fintech"],
+const TERMS = [
+  ["$500K", "Pilot fund"],
+  ["12-18", "Investments over 3 years"],
+  ["$10-50K", "Per company, via SAFE"],
+  ["Pre-seed", "Stage"],
 ];
 
-const AUDIENCES = [
-  {
-    who: "Students",
-    body: "Join the Analyst Program. No experience needed, we train you. Top analysts move onto the investment team and work directly on deals.",
-    cta: { label: "Explore the Analyst Program", href: "/programs#analyst" },
-  },
-  {
-    who: "Startups",
-    body: "McGill-connected and building something at pre-seed? We invest $10K-$50K per company.",
-    cta: { label: "Send us your deck", href: "mailto:mcgillventuresclub@gmail.com" },
-  },
-  {
-    who: "Alumni and sponsors",
-    body: "An alumni-driven initiative supported by University Advancement. Mentor and advise students, meet a talent pipeline for internships and hiring, see curated early-stage deal flow (no investing, under policy) and get quarterly updates.",
-    cta: { label: "Request the fund deck", href: "mailto:mcgillventuresfund@gmail.com" },
-  },
+const BACKER_PERKS = [
+  "Mentor and advise students",
+  "A talent pipeline for internships and hiring",
+  "Curated visibility into early-stage deal flow (no investing, under policy)",
+  "Quarterly updates on pipeline and progress",
+  "Access to the McGill founder ecosystem",
 ];
+
+const DECK_EMAIL = `mailto:mcgillventuresfund@gmail.com?subject=${encodeURIComponent("Fund deck request")}`;
 
 export default function Fund() {
   return (
@@ -84,6 +74,12 @@ export default function Fund() {
             className="animate-orb pointer-events-none absolute -right-24 -bottom-40 size-[32rem] rounded-full bg-purple-800/40 blur-3xl [animation-delay:-8s]"
           />
           <Starfield className="[mask-image:linear-gradient(to_bottom,#000_60%,transparent)]" />
+          <p
+            aria-hidden
+            className="pointer-events-none absolute top-20 -right-[0.04em] font-display text-[clamp(5rem,26vw,20rem)] leading-none text-transparent select-none [-webkit-text-stroke:1.5px_rgb(216_180_254/0.28)]"
+          >
+            $500K
+          </p>
 
           <div className="relative mx-auto w-full max-w-7xl">
             <Reveal trigger="load">
@@ -96,135 +92,165 @@ export default function Fund() {
               as="p"
               trigger="load"
               delay={450}
-              className="mt-6 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
+              className="mt-6 max-w-2xl font-body text-lg text-pretty text-purple-100/75 md:text-xl"
             >
-              A student-run pre-seed fund backed by McGill alumni. Founders get capital, and
-              students get real investment responsibility.
+              A student-run pre-seed fund backed by McGill alumni. Here is our pitch, in six
+              slides.
             </Reveal>
-            <Reveal trigger="load" delay={650}>
-              <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 pt-8 md:grid-cols-4">
+          </div>
+        </section>
+
+        <div className="px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
+          <div className="mx-auto flex max-w-7xl flex-col gap-8 lg:gap-12">
+            <Slide id="problem" number={1} total={SLIDES} title="Problem">
+              <div className="grid flex-1 gap-4 md:grid-cols-2">
+                {PROBLEMS.map((item) => (
+                  <figure
+                    key={item.side}
+                    className="relative min-h-80 overflow-hidden rounded-2xl bg-purple-950"
+                  >
+                    <Image
+                      src={item.photo}
+                      alt=""
+                      fill
+                      sizes="(max-width: 767px) 100vw, 600px"
+                      className="object-cover"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent"
+                    />
+                    <figcaption className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                      <span className="font-heading text-sm tracking-wider text-purple-300 uppercase">
+                        {item.side}
+                      </span>
+                      <p className="mt-2 font-display text-2xl leading-snug text-balance md:text-3xl">
+                        {item.problem}
+                      </p>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </Slide>
+
+            <Slide id="solution" number={2} total={SLIDES} title="Solution">
+              <div className="flex flex-1 flex-col justify-between gap-12">
+                <p className="max-w-4xl font-display text-[clamp(2.25rem,5.5vw,5rem)] leading-[1.02] text-balance">
+                  A student-run fund that fixes <span className="text-purple-300">both sides</span>{" "}
+                  of the problem.
+                </p>
+                <dl className="grid gap-8 border-t border-white/10 pt-8 md:grid-cols-2">
+                  {[
+                    ["Founders get", "Capital, $10K-$50K at pre-seed"],
+                    ["Students get", "Real responsibility, not simulations"],
+                  ].map(([term, value]) => (
+                    <div key={term}>
+                      <dt className="font-heading text-sm tracking-wider text-purple-300 uppercase">
+                        {term}
+                      </dt>
+                      <dd className="mt-2 font-display text-2xl md:text-3xl">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </Slide>
+
+            <Slide id="progress" number={3} total={SLIDES} title="Where we are">
+              <p className="font-display text-3xl md:text-5xl">Building the $500K pilot fund.</p>
+              <div className="mt-10 grid gap-10 md:grid-cols-2 lg:mt-auto lg:gap-16">
+                {[
+                  { label: "Now", items: NOW },
+                  { label: "Once the fund is active", items: NEXT },
+                ].map((column) => (
+                  <div key={column.label}>
+                    <h3 className="font-heading text-sm tracking-wider text-purple-300 uppercase">
+                      {column.label}
+                    </h3>
+                    <ol className="mt-4">
+                      {column.items.map((item, i) => (
+                        <li
+                          key={item}
+                          className="grid grid-cols-[2.5rem_minmax(0,1fr)] border-t border-white/10 py-3 font-body text-white/85"
+                        >
+                          <span className="font-heading text-purple-400">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          {item}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                ))}
+              </div>
+            </Slide>
+
+            <Slide id="terms" number={4} total={SLIDES} title="The fund">
+              <dl className="grid flex-1 content-center gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-y-12">
                 {TERMS.map(([value, label]) => (
                   <div key={label} className="flex flex-col-reverse">
-                    <dt className="mt-2 font-heading text-sm text-purple-200/80">{label}</dt>
-                    <dd className="font-display text-4xl md:text-5xl">{value}</dd>
+                    <dt className="mt-2 font-heading text-purple-200/80 md:text-lg">{label}</dt>
+                    <dd className="font-display text-[clamp(2.75rem,6vw,5.5rem)] leading-none whitespace-nowrap">
+                      {value}
+                    </dd>
                   </div>
                 ))}
               </dl>
-            </Reveal>
-          </div>
-        </section>
+            </Slide>
 
-        <section aria-labelledby="why" className="px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
-          <div className="mx-auto grid max-w-7xl gap-12 border-t border-white/10 pt-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20 lg:pt-16">
-            <div>
-              <h2 id="why" className="section-heading">
-                <SplitText text="Why we exist" />
-              </h2>
-              <Reveal as="p" delay={200} className="mt-6 font-display text-2xl text-purple-300 md:text-3xl">
-                We fix both sides of the problem.
-              </Reveal>
-            </div>
-            <ol className="space-y-10">
-              {PROBLEMS.map((item, i) => (
-                <Reveal as="li" key={item.side} delay={i * 120} className="border-t border-white/10 pt-6 first:border-0 first:pt-0">
-                  <h3 className="font-heading text-sm tracking-wider text-purple-300 uppercase">
-                    {item.side}
-                  </h3>
-                  <p className="mt-3 font-display text-2xl leading-snug md:text-3xl">{item.problem}</p>
-                  <p className="mt-3 font-body text-lg text-purple-100/75">{item.answer}</p>
-                </Reveal>
-              ))}
-            </ol>
-          </div>
-        </section>
+            <Slide id="criteria" number={5} total={SLIDES} title="What we invest in">
+              <div className="grid flex-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+                <div>
+                  <p className="font-display text-3xl leading-tight text-balance md:text-5xl">
+                    Tick all three, then pitch us.
+                  </p>
+                  <p className="mt-6 max-w-md font-body text-lg text-purple-100/75">
+                    Any sector works. We often see software, AI, health tech, climate, deep
+                    tech and fintech.
+                  </p>
+                </div>
+                <FitChecklist />
+              </div>
+            </Slide>
 
-        <section aria-labelledby="now" className="px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
-          <div className="mx-auto max-w-7xl border-t border-white/10 pt-12 lg:pt-16">
-            <h2 id="now" className="section-heading">
-              <SplitText text="Where we are" />
-            </h2>
-            <div className="mt-12 grid gap-12 md:grid-cols-2 lg:gap-20">
-              {[
-                { label: "Now", items: NOW },
-                { label: "Once the fund is active", items: NEXT },
-              ].map((column, c) => (
-                <Reveal key={column.label} delay={c * 150}>
-                  <h3 className="font-heading text-sm tracking-wider text-purple-300 uppercase">
-                    {column.label}
-                  </h3>
-                  <ol className="mt-4">
-                    {column.items.map((item, i) => (
-                      <li
-                        key={item}
-                        className="grid grid-cols-[2.5rem_minmax(0,1fr)] border-t border-white/10 py-4 font-body text-lg text-white/85"
-                      >
-                        <span className="font-heading text-base text-purple-400">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        {item}
+            <Slide id="ask" number={6} total={SLIDES} title="The ask">
+              <div className="grid flex-1 gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-0">
+                <div className="flex flex-col lg:pr-16">
+                  <h3 className="font-display text-3xl md:text-4xl">Alumni and sponsors</h3>
+                  <p className="mt-4 font-body text-lg text-purple-100/75">
+                    An alumni-driven initiative supported by University Advancement. Backers get:
+                  </p>
+                  <ul className="mt-5 space-y-2.5">
+                    {BACKER_PERKS.map((perk) => (
+                      <li key={perk} className="flex items-start gap-3 font-body text-white/85">
+                        <Check aria-hidden className="mt-1 size-4 shrink-0 text-purple-400" />
+                        {perk}
                       </li>
                     ))}
-                  </ol>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section aria-labelledby="criteria" className="px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
-          <div className="mx-auto grid max-w-7xl gap-12 border-t border-white/10 pt-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20 lg:pt-16">
-            <h2 id="criteria" className="section-heading">
-              <SplitText text="What we invest in" />
-            </h2>
-            <Reveal delay={150}>
-              <dl>
-                {CRITERIA.map(([term, value]) => (
-                  <div
-                    key={term}
-                    className="grid gap-2 border-t border-white/10 py-5 last:border-b sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6"
+                  </ul>
+                  <Button href={DECK_EMAIL} className="mt-8 self-start lg:mt-auto">
+                    Request the fund deck
+                    <Mail className="size-5" />
+                  </Button>
+                </div>
+                <div className="flex flex-col border-t border-white/10 pt-10 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-16">
+                  <h3 className="font-display text-3xl md:text-4xl">Students</h3>
+                  <p className="mt-4 font-body text-lg text-purple-100/75">
+                    Join the Analyst Program. No experience needed, we train you. Top analysts
+                    move onto the investment team and work directly on deals.
+                  </p>
+                  <Button
+                    href="/programs#analyst"
+                    variant="secondary"
+                    className="mt-8 self-start lg:mt-auto"
                   >
-                    <dt className="font-heading text-sm tracking-wider text-purple-300 uppercase sm:pt-1">
-                      {term}
-                    </dt>
-                    <dd className="font-display text-xl md:text-2xl">{value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
+                    Explore the Analyst Program
+                    <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Button>
+                </div>
+              </div>
+            </Slide>
           </div>
-        </section>
-
-        <section aria-labelledby="involved" className="px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
-          <div className="mx-auto max-w-7xl border-t border-white/10 pt-12 lg:pt-16">
-            <h2 id="involved" className="section-heading">
-              <SplitText text="Get involved" />
-            </h2>
-            <div className="mt-12 grid gap-12 lg:grid-cols-3 lg:gap-10">
-              {AUDIENCES.map((audience, i) => {
-                const email = audience.cta.href.startsWith("mailto:");
-                return (
-                  <Reveal key={audience.who} delay={i * 120} className="flex flex-col">
-                    <h3 className="font-display text-3xl">{audience.who}</h3>
-                    <p className="mt-4 mb-8 font-body text-lg text-purple-100/75">{audience.body}</p>
-                    <Button
-                      href={audience.cta.href}
-                      variant={i === 0 ? "primary" : "secondary"}
-                      size="sm"
-                      className="mt-auto self-start"
-                    >
-                      {audience.cta.label}
-                      {email ? (
-                        <Mail className="size-4" />
-                      ) : (
-                        <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      )}
-                    </Button>
-                  </Reveal>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        </div>
       </main>
 
       <Footer />
