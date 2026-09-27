@@ -28,7 +28,7 @@ export const GetInvolvedSection: React.FC = () => {
                 <h4 className="font-heading text-purple-900 mb-2">Apply to the Analyst Program</h4>
                 <p className="text-purple-800 font-body text-sm mb-3">Full training and hands-on investment experience needed — we train you.</p>
                 <Link 
-                  href="/programs#analyst-program"
+                  href="/programs#analyst"
                   className="inline-block text-purple-600 hover:text-purple-700 font-semibold text-sm underline"
                 >
                   Learn More About the Analyst Program →
@@ -148,7 +148,7 @@ export const GetInvolvedSection: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
-                href="/programs#analyst-program"
+                href="/programs#analyst"
                 className="inline-block bg-purple-600 text-white px-8 py-4 rounded-xl font-heading font-semibold hover:bg-purple-700 transition-colors duration-300 text-center"
               >
                 Apply as Student
