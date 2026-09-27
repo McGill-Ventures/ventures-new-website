@@ -53,13 +53,6 @@ export interface APIResponse<T = Record<string, unknown>> {
 
 export type TeamType = 'founders' | 'executive' | 'fund' | 'finance' | 'analyst' | 'dev' | 'htil';
 
-export type GovernanceType = 'fund-overview' | 'governance' | 'get-involved';
-
-export interface GovernanceSectionProps {
-  activeSection: GovernanceType;
-  setActiveSection: (section: GovernanceType) => void;
-}
-
 export interface TeamSectionProps {
   activeTeam: TeamType;
   setActiveTeam: (team: TeamType) => void;

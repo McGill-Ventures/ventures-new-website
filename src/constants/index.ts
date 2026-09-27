@@ -10,12 +10,6 @@ export const TEAM_TYPES = {
   HTIL: 'htil' as const,
 } as const;
 
-export const GOVERNANCE_TYPES = {
-  FUND_OVERVIEW: 'fund-overview' as const,
-  GOVERNANCE: 'governance' as const,
-  GET_INVOLVED: 'get-involved' as const,
-} as const;
-
 export const FOUNDERS = [
   {
     name: "Aaron Anandji",
