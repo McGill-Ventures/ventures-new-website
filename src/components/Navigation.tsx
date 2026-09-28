@@ -9,14 +9,6 @@ import { Icon } from "@/components/ui";
 
 type NavLink = { href: string; label: string };
 
-type Venture = NavLink & {
-  tagline: string;
-  logo: { src: string; width: number; height: number };
-  external: boolean;
-  pill: string;
-  taglineClass: string;
-};
-
 const SITE_LINKS: NavLink[] = [
   { href: "/about", label: "About Us" },
   { href: "/programs", label: "Our Programs" },
@@ -31,47 +23,8 @@ const DRAWER_LINKS: NavLink[] = [
   { href: "/contact", label: "Contact" },
 ];
 
-const VENTURES: Venture[] = [
-  {
-    href: "https://www.project-atlas.ca/",
-    label: "Project ATLAS",
-    tagline: "Our flagship research initiative",
-    logo: { src: "/logos/project-atlas-mark.png", width: 320, height: 320 },
-    external: true,
-    // No backdrop-filter here: nested inside the glass header it blurs nothing.
-    pill:
-      "animate-gradient border border-white/12 bg-gradient-to-br from-[#2c2358] via-[#332a72] to-[#120c26] text-[#f2f0fa] shadow-[0_4px_16px_-4px_rgba(26,18,56,0.55),inset_0_1px_0_rgba(255,255,255,0.14)] hover:border-[#8b5cf6]/45 hover:shadow-[0_10px_26px_-6px_rgba(139,92,246,0.6),inset_0_1px_0_rgba(255,255,255,0.2)] focus-visible:outline-[#8b5cf6]",
-    taglineClass: "text-[#f2f0fa]/60",
-  },
-  {
-    href: "/growth-studio",
-    label: "Growth Studio",
-    tagline: "Hands-on support for founders",
-    logo: { src: "/growth-studio/logo-mark.webp", width: 88, height: 85 },
-    external: false,
-    pill:
-      "animate-gradient border border-[#241454]/15 bg-gradient-to-br from-white via-[#fffef8] to-[#fbf9ec] text-[#241454] shadow-[0_4px_14px_-4px_rgba(36,20,84,0.18)] hover:border-[#ddd94f] hover:shadow-[0_10px_26px_-6px_rgba(224,220,90,0.7)] focus-visible:outline-[#3a1fb0]",
-    taglineClass: "text-[#241454]/60",
-  },
-];
-
-const PILL_BASE =
-  "group inline-flex items-center gap-2 whitespace-nowrap rounded-xl font-heading font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2";
-
 const ROLL =
   "block transition-transform duration-[260ms] ease-[cubic-bezier(.6,0,.2,1)] motion-reduce:transition-none";
-
-function VentureMark({ logo, className }: { logo: Venture["logo"]; className?: string }) {
-  return (
-    <Image
-      src={logo.src}
-      alt=""
-      width={logo.width}
-      height={logo.height}
-      className={cn("shrink-0 object-contain", className)}
-    />
-  );
-}
 
 export default function Navigation({ currentPage, darkOver }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -237,37 +190,19 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
             })}
           </div>
 
-          <div className="ml-auto flex items-center gap-2">
-            <div className="hidden grid-flow-col auto-cols-fr items-center gap-2 lg:grid">
-              {VENTURES.map((v) => (
-                <Link
-                  key={v.href}
-                  href={v.href}
-                  target={v.external ? "_blank" : undefined}
-                  rel={v.external ? "noopener noreferrer" : undefined}
-                  className={cn(PILL_BASE, v.pill, "justify-center px-5 text-base", isScrolled ? "py-1" : "py-1.5")}
-                >
-                  <VentureMark logo={v.logo} className="size-7" />
-                  {v.label}
-                  {v.external && <span className="sr-only">(opens in a new tab)</span>}
-                </Link>
-              ))}
-            </div>
-
-            <button
-              ref={toggleRef}
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className={cn(
-                "rounded-xl p-2.5 transition-colors duration-500 lg:hidden",
-                dark ? "text-white hover:bg-white/10" : "text-purple-950 hover:bg-purple-100"
-              )}
-              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              <Icon name={isMobileMenuOpen ? "close" : "menu"} size="lg" />
-            </button>
-          </div>
+          <button
+            ref={toggleRef}
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className={cn(
+              "ml-auto rounded-xl p-2.5 transition-colors duration-500 lg:hidden",
+              dark ? "text-white hover:bg-white/10" : "text-purple-950 hover:bg-purple-100"
+            )}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+          >
+            <Icon name={isMobileMenuOpen ? "close" : "menu"} size="lg" />
+          </button>
         </nav>
 
         <div
@@ -308,33 +243,6 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
                 </Link>
               );
             })}
-
-            <p className="mt-5 mb-3 px-4 font-heading text-xs font-semibold tracking-[0.16em] text-purple-950/45 uppercase">
-              Our ventures
-            </p>
-            <div className="space-y-3">
-              {VENTURES.map((v) => (
-                <Link
-                  key={v.href}
-                  href={v.href}
-                  onClick={closeMobileMenu}
-                  target={v.external ? "_blank" : undefined}
-                  rel={v.external ? "noopener noreferrer" : undefined}
-                  className={cn(PILL_BASE, v.pill, "w-full gap-3 rounded-2xl py-3 pr-5 pl-3 text-left whitespace-normal")}
-                >
-                  <VentureMark logo={v.logo} className="h-10 w-10" />
-                  <span>
-                    <span className="block text-base">
-                      {v.label}
-                      {v.external && <span className="sr-only">(opens in a new tab)</span>}
-                    </span>
-                    <span className={cn("block text-xs font-medium", v.taglineClass)}>
-                      {v.tagline}
-                    </span>
-                  </span>
-                </Link>
-              ))}
-            </div>
           </div>
         </div>
       </header>
