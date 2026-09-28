@@ -11,7 +11,7 @@ export default function Programs() {
     <div className="min-h-screen bg-white">
       <Navigation currentPage="/programs" />
 
-      <section className="relative -mt-20 flex min-h-[72dvh] flex-col justify-end bg-gradient-hero px-6 pt-28 pb-20 md:px-12 lg:px-24">
+      <section className="px-6 py-14 md:px-12 lg:px-24 relative bg-gradient-hero">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-display text-purple-950 mb-8">
