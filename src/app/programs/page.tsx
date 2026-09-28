@@ -215,7 +215,7 @@ export default function Programs() {
           <Starfield className="[mask-image:linear-gradient(to_bottom,#000_60%,transparent)]" />
 
           <div className="relative mx-auto w-full max-w-7xl">
-            <h1 className="font-display text-[clamp(3rem,9vw,7.5rem)] leading-[0.95]">
+            <h1 className="font-display text-[clamp(3rem,9vw,7.5rem)] leading-[1]">
               <SplitText text="Programs" trigger="load" delay={150} />
             </h1>
             <Reveal
