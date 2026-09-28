@@ -30,7 +30,7 @@ export default function AnalystProgramCard() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="rounded-3xl p-10 hover-lift animate-fade-in-up border border-purple-200 bg-white">
+    <div id="analyst" className="rounded-3xl p-10 hover-lift animate-fade-in-up border border-purple-200 bg-white">
       <div className="bg-purple-200 text-purple-800 px-4 py-2 rounded-full text-sm font-heading font-semibold mb-6 inline-block">
         Applications Open
       </div>
