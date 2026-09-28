@@ -6,7 +6,7 @@ import { FlipCard, Reveal, SplitText } from "@/components/motion";
 const PROGRAMS = [
   {
     name: "Analyst Program",
-    href: "/programs",
+    href: "/programs#analyst",
     external: false,
     photo: "/events/image_carousel_pic2.jpg",
     blurb:
@@ -30,7 +30,7 @@ const PROGRAMS = [
   },
   {
     name: "HealthTech Innovation Lab",
-    href: "/programs",
+    href: "/programs#htil",
     external: false,
     photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
     blurb:
