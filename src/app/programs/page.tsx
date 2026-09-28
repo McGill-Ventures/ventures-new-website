@@ -1,96 +1,285 @@
+import type { Metadata } from "next";
+import type { StaticImageData } from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { APPLICATION_STEPS } from "@/constants";
-import FundProgramCard from "@/components/FundProgramCard";
-import AnalystProgramCard from "@/components/AnalystProgramCard";
-import HTILProgramCard from "@/components/HTILProgramCard";
-import GrowthStudioProgramCard from "@/components/GrowthStudioProgramCard";
+import { DealFlow } from "@/components/programs/DealFlow";
+import { ProgramIndex } from "@/components/programs/ProgramIndex";
+import { ProgramSection } from "@/components/programs/ProgramSection";
+import { Reveal, SplitText, Starfield } from "@/components/motion";
+import { Button } from "@/components/ui";
+import graphiteVenturesLogo from "@/app/sponsors/graphite_ventures.png";
+
+export const metadata: Metadata = {
+  title: "Programs | McGill Ventures",
+};
+
+interface CurriculumItem {
+  /** Defaults to the item's position, zero-padded. */
+  label?: string;
+  title: string;
+  body?: string;
+}
+
+export interface ProgramData {
+  /** Also the section's anchor, e.g. `/programs#analyst`. */
+  id: string;
+  name: string;
+  /** Stamped over the photo: a small line, then the big one. */
+  status: [kicker: string, headline: string];
+  description: string;
+  photo: string;
+  /** CSS object-position, when the default centre crop cuts something off. */
+  photoPosition?: string;
+  facts: [term: string, value: string][];
+  features: string[];
+  sponsor?: { name: string; href: string; logo: StaticImageData };
+  curriculum?: {
+    label: string;
+    groups: { title: string; items: CurriculumItem[] }[];
+  };
+  /** The first renders as the primary button. */
+  links: { label: string; href: string }[];
+}
+
+const PROGRAMS: ProgramData[] = [
+  {
+    id: "analyst",
+    name: "Analyst Program",
+    status: ["Applications", "Open"],
+    description:
+      "A comprehensive program covering the fundamentals of venture capital, including deal sourcing, due diligence, portfolio management, and case study analysis.",
+    photo: "/events/image_carousel_pic2.jpg",
+    facts: [
+      ["Duration", "16 weeks"],
+      ["Commitment", "4-6 hours/week"],
+    ],
+    features: [
+      "Weekly workshops with VC and biotech industry professionals",
+      "Case study analysis and pitch competitions",
+      "Mentorship from experienced VCs",
+      "Networking events with startup founders and investors",
+    ],
+    sponsor: { name: "Graphite Ventures", href: "https://graphitevc.com/", logo: graphiteVenturesLogo },
+    curriculum: {
+      label: "View the curriculum",
+      groups: [
+        {
+          title: "Weekly modules",
+          items: [
+            { title: "Introduction to Venture Capital as an Asset Class" },
+            { title: "Networking and Breaking into VC" },
+            { title: "Sourcing and Introduction to Dealflow" },
+            { title: "Screening and Introduction to Due Diligence" },
+            { title: "Valuation and Financial Modelling: Early Stage" },
+            { title: "Valuation and Financial Modelling: Late Stage" },
+            { title: "Structuring Investment Deals & Portfolio Support" },
+            { title: "The Founder's Perspective" },
+            { title: "Fund Structure & LP Relationships" },
+            { title: "Impact Investing" },
+          ],
+        },
+        {
+          title: "Deliverables",
+          items: [
+            { label: "HW 1", title: "Sourcing", body: "Find three interesting startups within McGill's ecosystem" },
+            { label: "HW 2", title: "Due Diligence 1", body: "Complete part 1 of DD and form convictions about the business" },
+            { label: "Case 1", title: "Due diligence", body: "Complete the full process in small teams on an existing startup" },
+            { label: "Case 2", title: "Investment memo", body: "Draft an investment memo and term sheet for a potential investor" },
+          ],
+        },
+      ],
+    },
+    links: [
+      {
+        label: "Apply now",
+        href: "https://docs.google.com/forms/d/e/1FAIpQLSc1MFcaJfcj9leRB4P_W_kaHvyk4UGBh6nWoQhjBHBXtV_99Q/viewform",
+      },
+    ],
+  },
+  {
+    id: "htil",
+    name: "Health Tech & Innovation Lab",
+    status: ["Reopens", "Fall 2026"],
+    description:
+      "An intensive 7-week program bridging healthcare and venture capital through hands-on workshops with biotech and VC professionals, mentorship, and real-world project deliverables.",
+    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
+    photoPosition: "left center",
+    facts: [
+      ["Duration", "7 weeks"],
+      ["Commitment", "4-6 hours/week"],
+    ],
+    features: [
+      "Weekly workshops with biotech and VC professionals",
+      "Hands-on project deliverables",
+      "Mentorship from industry experts",
+      "Exposure to the health tech investment landscape",
+    ],
+    curriculum: {
+      label: "View the program structure",
+      groups: [
+        {
+          title: "Timeline",
+          items: [
+            { label: "Week 1", title: "Kickoff & Challenge Identification", body: "Welcome the cohort and frame healthcare problems to tackle" },
+            { label: "Week 2", title: "Team Formation & Ideation", body: "The cohort splits into project teams and starts building solutions" },
+            { label: "Weeks 3-5", title: "Mid-Term Project Development", body: "Teams present current work, seek feedback, and refine their solutions" },
+            { label: "Weeks 6-7", title: "Capstone Deliverable & Presentation", body: "Teams present their final prototype or research report" },
+          ],
+        },
+        {
+          title: "Workshop series",
+          items: [
+            { title: "Innovation in Healthcare", body: "Frameworks to identify unmet healthcare needs and opportunities for innovation" },
+            { title: "Building a Healthcare Startup", body: "Business modelling and commercialization strategies to turn ideas into real-world ventures" },
+            { title: "Company Creation Cases", body: "Case studies on the creation and development of three biotech companies" },
+            { title: "Healthcare Founders Panel", body: "An open conversation with healthcare founders about their journeys, challenges, and advice" },
+            { title: "Intellectual Property & Legal", body: "IP protection, the patent process, and the MedTech regulatory landscape" },
+            { title: "Fundraising in Healthcare", body: "Communicating value for venture capital, non-dilutive funding, and incubator programs" },
+          ],
+        },
+        {
+          title: "Deliverables",
+          items: [
+            { label: "Project", title: "Final project", body: "A prototype or research report addressing a real healthcare challenge" },
+            { label: "Pitch", title: "Professional presentation", body: "Present the final work to Mayo Clinic physicians and industry partners" },
+          ],
+        },
+      ],
+    },
+    links: [],
+  },
+  {
+    id: "growth-studio",
+    name: "Growth Studio",
+    status: ["Reopens", "Fall 2026"],
+    description:
+      "Students work with early-stage startups on real scaling challenges, delivering actionable recommendations on go-to-market and venture capital fundraising.",
+    photo: "/growth-studio/hero-founders.webp",
+    facts: [
+      ["Duration", "6 weeks"],
+      ["Commitment", "4-6 hours/week"],
+      ["Location", "Bronfman"],
+    ],
+    features: [
+      "Direct consulting work with early-stage startups",
+      "Go-to-market and fundraising strategy deliverables",
+      "Weekly in-person meetings with founders",
+      "Workshops and guest speakers from the startup ecosystem",
+    ],
+    links: [
+      { label: "Visit Growth Studio", href: "/growth-studio" },
+      {
+        label: "Apply for Fall 2026",
+        href: "https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform",
+      },
+    ],
+  },
+  {
+    id: "fund",
+    name: "Fund Program",
+    status: ["Reopens", "Fall 2026"],
+    description:
+      "McGill Ventures' student-run fund. Analysts learn deal sourcing, due diligence, financial modelling, and investment structuring while evaluating real startups.",
+    photo: "/events/scarlet_pitch_2026/sp26_02.jpg",
+    facts: [
+      ["Duration", "10 weeks"],
+      ["Commitment", "4-6 hours/week"],
+    ],
+    features: [
+      "10-week curriculum covering the full VC investment process",
+      "Real deal sourcing and due diligence on live startups",
+      "Financial modelling for early and late-stage companies",
+      "Investment memo and term sheet deliverables",
+    ],
+    links: [{ label: "Learn more", href: "/fund" }],
+  },
+];
 
 export default function Programs() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navigation currentPage="/programs" />
+    <div className="min-h-screen bg-black">
+      <Navigation currentPage="/programs" darkOver="#programs" />
 
-      <section className="px-6 py-14 md:px-12 lg:px-24 relative bg-gradient-hero">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-display text-purple-950 mb-8">
-              Our Programs
+      {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
+      <main id="programs" className="relative -mt-20 overflow-clip bg-black text-white">
+        <section className="relative flex min-h-[72dvh] flex-col justify-end px-6 pt-28 pb-20 md:px-12 lg:px-24">
+          <div
+            aria-hidden
+            className="animate-orb pointer-events-none absolute -top-48 -left-48 size-[36rem] rounded-full bg-purple-600/40 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="animate-orb pointer-events-none absolute -right-24 -bottom-40 size-[32rem] rounded-full bg-purple-800/40 blur-3xl [animation-delay:-8s]"
+          />
+          <Starfield className="[mask-image:linear-gradient(to_bottom,#000_60%,transparent)]" />
+
+          <div className="relative mx-auto w-full max-w-7xl">
+            <h1 className="font-display text-[clamp(3rem,9vw,7.5rem)] leading-[0.95]">
+              <SplitText text="Programs" trigger="load" delay={150} />
             </h1>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-purple-600 to-purple-700 mx-auto rounded-full mb-12"></div>
-            <p className="text-xl md:text-2xl text-purple-800 leading-relaxed font-body max-w-4xl mx-auto">
-              Discover the comprehensive programs designed to develop the next generation of venture capitalists and entrepreneurs
-            </p>
+            <Reveal
+              as="p"
+              trigger="load"
+              delay={450}
+              className="mt-6 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
+            >
+              Hands-on programs that develop the next generation of venture capitalists and
+              entrepreneurs, taught by the investors and founders doing the work.
+            </Reveal>
+            <Reveal as="ul" trigger="load" delay={650} className="mt-8 flex flex-wrap gap-x-8 gap-y-3 lg:hidden">
+              {PROGRAMS.map((program, i) => (
+                <li key={program.id}>
+                  <a
+                    href={`#${program.id}`}
+                    className="font-heading text-base text-white/70 transition-colors hover:text-white"
+                  >
+                    <span className="mr-2 text-purple-400">{String(i + 1).padStart(2, "0")}</span>
+                    {program.name}
+                  </a>
+                </li>
+              ))}
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="px-6 py-32 md:px-12 lg:px-24 bg-gradient-mesh">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-8">Transform Your Future</h2>
-            <p className="text-xl text-purple-800 leading-relaxed font-body max-w-3xl mx-auto">
-              Choose from our intensive programs designed to give you real-world experience in venture capital and technology
-            </p>
-          </div>
-          
-          <div className="max-w-5xl mx-auto space-y-12">
-            <AnalystProgramCard />
-
-            <HTILProgramCard />
-
-            <GrowthStudioProgramCard />
-
-            <FundProgramCard />
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-32 md:px-12 lg:px-24 bg-white">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="animate-fade-in-up">
-            <h2 className="text-5xl md:text-6xl font-display text-purple-950 mb-8">How to Apply</h2>
-            <p className="text-xl text-purple-800 leading-relaxed font-body mb-16">
-              Join McGill Ventures and be part of Montreal&apos;s most dynamic student entrepreneurship community
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-4 gap-8 mb-16">
-            {APPLICATION_STEPS.map((step, index) => (
-              <div key={index} className="text-center animate-fade-in-up" style={{animationDelay: `${index * 0.15}s`}}>
-                <div className="w-20 h-20 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-display font-bold shadow-lg">
-                  {step.step}
-                </div>
-                <h3 className="text-2xl font-display text-purple-950 mb-4">{step.title}</h3>
-                <p className="text-purple-800 leading-relaxed font-body">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-          
-          <div className="bg-gradient-to-r from-purple-600 to-purple-700 rounded-3xl p-12 text-white animate-fade-in-up" style={{animationDelay: '0.5s'}}>
-            <h3 className="text-3xl font-display mb-6">Ready to Get Started?</h3>
-            <p className="text-xl text-purple-100 mb-8 font-body">
-              Applications for our Fall 2026 cohort will open soon. Follow us on LinkedIn for updates.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a
-                href="https://www.linkedin.com/company/mcgill-ventures"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center bg-white/10 hover:bg-white/20 transition-all duration-300 px-6 py-3 rounded-xl font-heading font-semibold group"
-                aria-label="Follow us on LinkedIn for updates"
-              >
-                <svg className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-                Follow for Updates
-              </a>
+        <div className="relative px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
+          <div className="mx-auto grid max-w-7xl gap-24 lg:grid-cols-2 lg:gap-16">
+            <ProgramIndex programs={PROGRAMS.map(({ id, name, photo, photoPosition, status }) => ({ id, name, photo, photoPosition, status }))} />
+            <div className="flex flex-col gap-24">
+              {PROGRAMS.map((program) => (
+                <ProgramSection key={program.id} program={program} />
+              ))}
             </div>
           </div>
         </div>
-      </section>
+
+        <section aria-labelledby="apply" className="relative px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
+          <div className="mx-auto max-w-7xl border-t border-white/10 pt-12 lg:pt-16">
+            <h2 id="apply" className="section-heading">
+              <SplitText text="How to apply" />
+            </h2>
+            <Reveal
+              as="p"
+              delay={200}
+              className="mt-6 max-w-xl font-body text-lg text-purple-100/75 md:text-xl"
+            >
+              Every application runs through the same pipeline as a startup pitching us. This
+              time, you&apos;re the deal.
+            </Reveal>
+            <DealFlow />
+            <Reveal delay={400} className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-white/10 pt-10">
+              <p className="max-w-xl font-body text-lg text-purple-100/75">
+                New cohorts are announced on LinkedIn first.
+              </p>
+              <Button href="https://www.linkedin.com/company/mcgillvc/" variant="secondary" external>
+                Follow on LinkedIn
+                <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Button>
+            </Reveal>
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>
