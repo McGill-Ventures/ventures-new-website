@@ -154,7 +154,9 @@ a[href],
 
 /* ------------------------------------------------------------------
    Motion primitives, used by src/components/motion. Hidden states sit
-   behind `@media (scripting: enabled)` so content stays visible without JS.
+   behind `@media (scripting: enabled)` so content stays visible without JS,
+   and behind (min-width: 768px) so phones show content as it scrolls in
+   rather than animating every section.
    ------------------------------------------------------------------ */
 :root {
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -189,7 +191,7 @@ a[href],
   transition: transform var(--reveal-duration, 900ms) var(--ease-out-expo) var(--reveal-delay, 0ms);
 }
 
-@media (scripting: enabled) {
+@media (scripting: enabled) and (min-width: 768px) {
   [data-reveal]:not([data-reveal="clip"])[data-trigger="view"]:not([data-inview]) {
     opacity: 0;
     transform: var(--reveal-from, none);
@@ -242,7 +244,7 @@ a[href],
   display: inline-block;
 }
 
-@media (scripting: enabled) {
+@media (scripting: enabled) and (min-width: 768px) {
   .split-inner {
     transform: translateY(120%);
   }
@@ -407,8 +409,12 @@ a[href],
   animation: orb-drift 16s ease-in-out infinite;
 }
 
+/* Phones keep the glow and the gradient but hold them still: the drift
+   re-blurs a blur-3xl layer every frame, and the gradient shift repaints the
+   whole page every frame for as long as a button is on it. */
 @media (max-width: 767px) {
-  .animate-orb {
+  .animate-orb,
+  .animate-gradient {
     animation: none;
   }
 }

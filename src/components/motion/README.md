@@ -3,6 +3,7 @@
 Import from `@/components/motion`.
 Styles live in `src/app/globals.css` under "Motion primitives".
 Every component respects `prefers-reduced-motion`, and hidden states only apply when JS runs.
+Phones (up to 767px wide) skip the entrance animations and get a still starfield, so scrolling stays light.
 
 ## `<Reveal>`
 
@@ -41,7 +42,8 @@ Pass enough children to fill the container.
 
 Ambient starfield rendered by tsParticles (`@tsparticles/react` with the slim engine).
 Meant to sit behind content inside a `relative` dark section.
-Slow drift and twinkle, still under reduced motion, paused while off screen.
+Slow drift and twinkle on desktop, paused while off screen.
+Phones and reduced motion get the stars drawn once as SVG, and never load tsParticles.
 
 ```tsx
 <Starfield count={220} className="[mask-image:linear-gradient(to_right,#000_40%,transparent_65%)]" />
