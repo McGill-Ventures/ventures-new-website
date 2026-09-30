@@ -87,10 +87,12 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
       <div aria-hidden className="h-20" />
       <header
         className={cn(
+          // Phones switch state instantly: easing the bar repainted the page for
+          // half a second every time a scroll crossed the threshold.
           // Only what actually changes: transition-all also interpolated the
           // 0->1px bottom border out of the UA's near-white default colour,
           // which drew a white hairline across the bar in both directions.
-          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-500 ease-out",
+          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-500 ease-out max-md:transition-none",
           isScrolled && "backdrop-blur-xl backdrop-saturate-150",
           isScrolled && dark && "border-white/10 bg-black/55 shadow-[0_8px_30px_-14px_rgba(0,0,0,0.6)]",
           isScrolled && !dark && "border-purple-950/10 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)]",
@@ -102,7 +104,7 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
         <div
           aria-hidden
           className={cn(
-            "pointer-events-none absolute inset-0 -z-10 transition-opacity duration-500 ease-out",
+            "pointer-events-none absolute inset-0 -z-10 transition-opacity duration-500 ease-out max-md:transition-none",
             isScrolled
               ? "bg-gradient-to-b from-white/85 to-purple-50/85"
               : // Matches the top of every hero's wash, so the bar leaves no seam.
@@ -113,7 +115,7 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
         <nav
           aria-label="Main"
           className={cn(
-            "mx-auto flex max-w-7xl items-center gap-6 px-6 transition-[height] duration-500 ease-out xl:gap-10",
+            "mx-auto flex max-w-7xl items-center gap-6 px-6 transition-[height] duration-500 ease-out max-md:transition-none xl:gap-10",
             isScrolled ? "h-16" : "h-20"
           )}
         >
@@ -129,7 +131,7 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
               height={302}
               className={cn(
                 // shrink-0: without it flex compresses the wordmark to absorb overflow
-                "w-auto shrink-0 object-contain transition-[height,opacity] duration-500 ease-out",
+                "w-auto shrink-0 object-contain transition-[height,opacity] duration-500 ease-out max-md:transition-none",
                 isScrolled ? "h-5 xl:h-7" : "h-6 xl:h-8",
                 dark && "opacity-0"
               )}
@@ -145,7 +147,7 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
               width={2576}
               height={302}
               className={cn(
-                "absolute inset-0 size-full object-contain brightness-0 invert transition-opacity duration-500 ease-out",
+                "absolute inset-0 size-full object-contain brightness-0 invert transition-opacity duration-500 ease-out max-md:transition-none",
                 dark ? "opacity-100" : "opacity-0"
               )}
               sizes="(max-width: 640px) 210px, 260px"
@@ -200,7 +202,7 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
             ref={toggleRef}
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             className={cn(
-              "ml-auto rounded-xl p-2.5 transition-colors duration-500 lg:hidden",
+              "ml-auto rounded-xl p-2.5 transition-colors duration-500 max-md:transition-none lg:hidden",
               dark ? "text-white hover:bg-white/10" : "text-purple-950 hover:bg-purple-100"
             )}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}

@@ -54,7 +54,8 @@ export default function Interactions() {
     const root = document.querySelector<HTMLElement>(".gs-root");
     if (!root) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Phones skip the reveals too: content arrives ready instead of fading in.
+    const still = window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)").matches;
     const cleanups: (() => void)[] = [];
 
     // ---- hover effects -------------------------------------------------
@@ -130,6 +131,7 @@ export default function Interactions() {
 
       const setActive = (i: number | null) => {
         hoverIndex = i;
+        if (!radarRaf) radarRaf = requestAnimationFrame(animate);
         labels.forEach((el, idx) => {
           if (!el) return;
           const on = idx === i;
@@ -181,12 +183,16 @@ export default function Interactions() {
         });
       });
 
+      // Runs only while a point is still easing, not every frame forever.
       let radarRaf = 0;
       const animate = () => {
         const pts: string[] = [];
+        let moving = false;
         for (let i = 0; i < 8; i++) {
           const target = hoverIndex === i ? hoverR : baseR;
           radii[i] += (target - radii[i]) * 0.16;
+          if (Math.abs(target - radii[i]) > 0.05) moving = true;
+          else radii[i] = target;
           const { x, y } = toXY(angles[i], radii[i]);
           pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
           const dot = dots[i];
@@ -197,7 +203,7 @@ export default function Interactions() {
           }
         }
         if (octagon) octagon.setAttribute("points", pts.join(" "));
-        radarRaf = requestAnimationFrame(animate);
+        radarRaf = moving ? requestAnimationFrame(animate) : 0;
       };
       animate();
       cleanups.push(() => cancelAnimationFrame(radarRaf));
@@ -206,7 +212,7 @@ export default function Interactions() {
     // ---- reveals -------------------------------------------------------
     const reveals = Array.from(root.querySelectorAll<HTMLElement>("[data-reveal]"));
 
-    if (reduce) {
+    if (still) {
       root.querySelectorAll<HTMLElement>("[data-float]").forEach((el) => {
         el.style.animation = "none";
       });

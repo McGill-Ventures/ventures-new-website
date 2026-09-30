@@ -41,6 +41,14 @@ html:has(.gs-root) { scroll-behavior: smooth; }
   66%     { border-radius: 43% 57% 49% 51% / 56% 44% 58% 42%; }
 }
 
+/* Phones: nothing loops. The pages set their animations inline, and only an
+   !important rule beats an inline style. */
+@media (max-width: 767px) {
+  .gs-root [style*="animation"] {
+    animation: none !important;
+  }
+}
+
 /* =====================================================================
  * Responsive layer.
  * The pages are styled inline (ported from the design bundle), and inline

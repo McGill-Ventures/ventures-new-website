@@ -315,6 +315,21 @@ a[href],
   to { transform: translateY(calc(-100% - var(--marquee-gap, 1rem))); }
 }
 
+/* Phones: nothing loops. Rails hold still, and a sideways strip becomes a
+   row you swipe, without the second copy that only closed the loop. */
+@media (max-width: 767px) {
+  .marquee-track {
+    animation: none;
+  }
+  .marquee-x {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .marquee-x > .marquee-track[aria-hidden] {
+    display: none;
+  }
+}
+
 /* <FlipCard> */
 .flip {
   perspective: 1600px;
@@ -409,13 +424,19 @@ a[href],
   animation: orb-drift 16s ease-in-out infinite;
 }
 
-/* Phones keep the glow and the gradient but hold them still: the drift
-   re-blurs a blur-3xl layer every frame, and the gradient shift repaints the
-   whole page every frame for as long as a button is on it. */
+/* Phones hold every looping effect still: the orb drift re-blurs a blur-3xl
+   layer every frame, and the gradient shift and the pulsing glow repaint the
+   whole page every frame for as long as they are on it. One-off fade-ins
+   show at once instead. */
 @media (max-width: 767px) {
   .animate-orb,
-  .animate-gradient {
+  .animate-gradient,
+  .animate-pulse-glow {
     animation: none;
+  }
+  .animate-fade-in-up {
+    animation: none;
+    opacity: 1;
   }
 }
 

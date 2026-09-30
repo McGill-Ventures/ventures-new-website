@@ -36,7 +36,7 @@
 }
 
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
     .about-hero {
       height: 240vh;
       view-timeline: --about-hero block;
@@ -126,7 +126,7 @@
 }
 
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
     .about-lit {
       view-timeline: --about-lit block;
     }
