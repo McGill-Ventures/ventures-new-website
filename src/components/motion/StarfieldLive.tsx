@@ -52,9 +52,7 @@ const COMETS = {
   },
 };
 
-/** The animated field, drawn by tsParticles. v4 accepts `pauseOnOutsideViewport`
- *  but never acts on it, so the loop is paused here whenever the field is off
- *  screen. Otherwise it redraws every frame for as long as the page is open. */
+/** tsParticles v4 ignores `pauseOnOutsideViewport`, so this pauses the loop off screen. */
 export function StarfieldLive({ count, speed, comets }: Props) {
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
@@ -115,8 +113,7 @@ export function StarfieldLive({ count, speed, comets }: Props) {
   return (
     <div ref={ref} className="size-full">
       <ParticlesProvider init={init}>
-        {/* Must stay the same function: the wrapper destroys and reloads the
-            field whenever this prop changes, and loading re-renders us. */}
+        {/* Must stay stable: the wrapper reloads the field whenever this prop changes. */}
         <Particles
           id={id}
           className="size-full"

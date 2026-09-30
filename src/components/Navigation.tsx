@@ -87,8 +87,6 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
       <div aria-hidden className="h-20" />
       <header
         className={cn(
-          // Phones switch state instantly: easing the bar repainted the page for
-          // half a second every time a scroll crossed the threshold.
           // Only what actually changes: transition-all also interpolated the
           // 0->1px bottom border out of the UA's near-white default colour,
           // which drew a white hairline across the bar in both directions.

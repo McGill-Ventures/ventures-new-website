@@ -54,7 +54,6 @@ export default function Interactions() {
     const root = document.querySelector<HTMLElement>(".gs-root");
     if (!root) return;
 
-    // Phones skip the reveals too: content arrives ready instead of fading in.
     const still = window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)").matches;
     const cleanups: (() => void)[] = [];
 
@@ -183,7 +182,6 @@ export default function Interactions() {
         });
       });
 
-      // Runs only while a point is still easing, not every frame forever.
       let radarRaf = 0;
       const animate = () => {
         const pts: string[] = [];

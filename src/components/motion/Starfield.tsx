@@ -19,7 +19,7 @@ type Props = {
   className?: string;
 };
 
-/** mulberry32: a tiny seeded generator, so the still field never reshuffles. */
+/** mulberry32, seeded so the still field never reshuffles. */
 function seeded(seed: number) {
   return () => {
     seed = (seed + 0x6d2b79f5) | 0;
@@ -29,7 +29,6 @@ function seeded(seed: number) {
   };
 }
 
-/** The same stars as the live field, drawn once and left alone. */
 function StillStars({ count }: { count: number }) {
   const stars = useMemo(() => {
     const random = seeded(count);
@@ -58,9 +57,7 @@ function StillStars({ count }: { count: number }) {
   );
 }
 
-/** Sits behind content as `absolute inset-0`. Drifts and twinkles on desktop.
- *  Phones and reduced motion get a still field: animating a full-screen canvas
- *  every frame is what made scrolling heavy on phones. */
+/** Sits behind content as `absolute inset-0`. Phones and reduced motion get a still field. */
 export function Starfield({
   count = 220,
   speed = 1,

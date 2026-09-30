@@ -154,9 +154,7 @@ a[href],
 
 /* ------------------------------------------------------------------
    Motion primitives, used by src/components/motion. Hidden states sit
-   behind `@media (scripting: enabled)` so content stays visible without JS,
-   and behind (min-width: 768px) so phones show content as it scrolls in
-   rather than animating every section.
+   behind `@media (scripting: enabled)` so content stays visible without JS.
    ------------------------------------------------------------------ */
 :root {
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -315,8 +313,7 @@ a[href],
   to { transform: translateY(calc(-100% - var(--marquee-gap, 1rem))); }
 }
 
-/* Phones: nothing loops. Rails hold still, and a sideways strip becomes a
-   row you swipe, without the second copy that only closed the loop. */
+/* Phones: rails hold still, and sideways strips scroll by hand without the loop's second copy. */
 @media (max-width: 767px) {
   .marquee-track {
     animation: none;
@@ -424,10 +421,6 @@ a[href],
   animation: orb-drift 16s ease-in-out infinite;
 }
 
-/* Phones hold every looping effect still: the orb drift re-blurs a blur-3xl
-   layer every frame, and the gradient shift and the pulsing glow repaint the
-   whole page every frame for as long as they are on it. One-off fade-ins
-   show at once instead. */
 @media (max-width: 767px) {
   .animate-orb,
   .animate-gradient,
