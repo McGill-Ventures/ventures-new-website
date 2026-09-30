@@ -36,7 +36,7 @@
 }
 
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
+  @media (prefers-reduced-motion: no-preference) {
     .about-hero {
       height: 240vh;
       view-timeline: --about-hero block;
