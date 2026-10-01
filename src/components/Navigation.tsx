@@ -29,7 +29,7 @@ const ROLL =
 export default function Navigation({ currentPage, darkOver }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  // Dark chrome only while the bar still overlaps the darkOver section.
+  // Dark chrome only while the bar overlaps one of the darkOver sections.
   const [dark, setDark] = useState(Boolean(darkOver));
   const toggleRef = useRef<HTMLButtonElement>(null);
   const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
@@ -50,10 +50,16 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
   }, []);
 
   useEffect(() => {
-    const section = darkOver && document.querySelector(darkOver);
-    if (!section) return;
-    // 64 is the condensed bar: swap once the section has cleared it.
-    const update = () => setDark(section.getBoundingClientRect().bottom > 64);
+    const sections = darkOver ? [...document.querySelectorAll(darkOver)] : [];
+    if (!sections.length) return;
+    // 64 is the condensed bar: dark while a dark section spans its bottom edge.
+    const update = () =>
+      setDark(
+        sections.some((section) => {
+          const { top, bottom } = section.getBoundingClientRect();
+          return top <= 64 && bottom > 64;
+        }),
+      );
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);

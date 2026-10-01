@@ -1,9 +1,9 @@
 export interface NavigationProps {
   currentPage?: string;
   /**
-   * CSS selector of a dark section at the top of the page. While the bar overlaps it the
-   * chrome is transparent, then dark glass, with white text; past it the bar returns to the
-   * light design used everywhere else.
+   * CSS selector of the page's dark sections. While one sits under the bar the chrome is
+   * transparent, then dark glass, with white text; over anything else the bar returns to
+   * the light design used everywhere else.
    */
   darkOver?: string;
 }
@@ -52,13 +52,6 @@ export interface APIResponse<T = Record<string, unknown>> {
 }
 
 export type TeamType = 'founders' | 'executive' | 'fund' | 'finance' | 'analyst' | 'dev' | 'htil';
-
-export type GovernanceType = 'fund-overview' | 'governance' | 'get-involved';
-
-export interface GovernanceSectionProps {
-  activeSection: GovernanceType;
-  setActiveSection: (section: GovernanceType) => void;
-}
 
 export interface TeamSectionProps {
   activeTeam: TeamType;

@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useId, useMemo, useState } from "react";
-import { Particles, ParticlesProvider } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
-import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
-import { loadTrailEffect } from "@tsparticles/effect-trail";
-import type { Engine, ISourceOptions } from "@tsparticles/engine";
+import { useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
+
+// Loaded only where the field animates, so phones never download the engine.
+const StarfieldLive = dynamic(
+  () => import("./StarfieldLive").then((m) => m.StarfieldLive),
+  { ssr: false },
+);
 
 type Props = {
   /** Stars per 1440x900, scaled to the actual size. */
@@ -18,111 +19,72 @@ type Props = {
   className?: string;
 };
 
-const init = async (engine: Engine) => {
-  await loadSlim(engine);
-  await loadEmittersPlugin(engine);
-  await loadEmittersShapeSquare(engine);
-  await loadTrailEffect(engine);
-};
+/** mulberry32: a tiny seeded generator, so the still field never reshuffles. */
+function seeded(seed: number) {
+  return () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
 
-// A comet never fades mid-flight: it is destroyed only once off canvas.
-const COMETS = {
-  position: { x: 55, y: 12 },
-  size: { width: 40, height: 24, mode: "percent" },
-  rate: { delay: { min: 5, max: 12 }, quantity: 1 },
-  life: { wait: false },
-  particles: {
-    color: { value: "#ffffff" },
-    shape: { type: "circle" },
-    size: { value: { min: 1.4, max: 2.1 } },
-    opacity: { value: 1 },
-    shadow: { enable: true, color: "#ffffff", blur: 12 },
-    effect: {
-      type: "trail",
-      options: {
-        // Trail width ramps up over the buffer, so keep it near the visible streak.
-        trail: { length: 16, fade: true, minWidth: 0.6, maxWidth: 3 },
-      },
-    },
-    move: {
-      enable: true,
-      // Degrees, 0 is right and 90 is down.
-      direction: 155,
-      angle: { value: 10, offset: 0 },
-      straight: true,
-      speed: { min: 14, max: 22 },
-      outModes: { default: "destroy" },
-    },
-  },
-};
+/** The same stars as the live field, drawn once and left alone. */
+function StillStars({ count }: { count: number }) {
+  const stars = useMemo(() => {
+    const random = seeded(count);
+    return Array.from({ length: Math.round(count / 8) }, () => ({
+      x: random() * 100,
+      y: random() * 100,
+      r: 0.4 + random() * 1.4,
+      opacity: 0.15 + random() * 0.75,
+      lilac: random() < 1 / 3,
+    }));
+  }, [count]);
 
-/** Sits behind content as `absolute inset-0`. Still under reduced motion. */
+  return (
+    <svg className="size-full">
+      {stars.map((star, i) => (
+        <circle
+          key={i}
+          cx={`${star.x}%`}
+          cy={`${star.y}%`}
+          r={star.r}
+          fill={star.lilac ? "#d8b4fe" : "#fff"}
+          opacity={star.opacity}
+        />
+      ))}
+    </svg>
+  );
+}
+
+/** Sits behind content as `absolute inset-0`. Drifts and twinkles on desktop.
+ *  Phones and reduced motion get a still field: animating a full-screen canvas
+ *  every frame is what made scrolling heavy on phones. */
 export function Starfield({
   count = 220,
   speed = 1,
   comets = true,
   className,
 }: Props) {
-  const id = useId();
-  const [still, setStill] = useState(false);
-  const [small, setSmall] = useState(false);
+  const [mode, setMode] = useState<"live" | "still">();
 
   useEffect(() => {
-    setStill(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-    setSmall(window.matchMedia("(max-width: 767px)").matches);
+    const still = window.matchMedia(
+      "(max-width: 767px), (prefers-reduced-motion: reduce)",
+    ).matches;
+    setMode(still ? "still" : "live");
   }, []);
-
-  const options = useMemo(
-    () =>
-      ({
-        fullScreen: { enable: false },
-        fpsLimit: 60,
-        detectRetina: true,
-        pauseOnOutsideViewport: true,
-        background: { color: "transparent" },
-        interactivity: {
-          events: { onHover: { enable: false }, onClick: { enable: false } },
-        },
-        particles: {
-          number: {
-            value: small ? Math.round(count * 0.4) : count,
-            density: { enable: true, width: 1440, height: 900 },
-          },
-          color: { value: ["#ffffff", "#ffffff", "#d8b4fe"] },
-          shape: { type: "circle" },
-          size: { value: { min: 0.4, max: 1.8 } },
-          opacity: {
-            value: { min: 0.15, max: 0.9 },
-            animation: {
-              enable: !still,
-              speed: 0.5,
-              sync: false,
-              startValue: "random",
-              mode: "auto",
-            },
-          },
-          move: {
-            enable: !still,
-            direction: "top-right",
-            straight: true,
-            speed: { min: 0.05 * speed, max: 0.3 * speed },
-            outModes: { default: "out" },
-          },
-        },
-        // Plugin options are not part of the engine's types.
-        emitters: comets && !still && !small ? COMETS : [],
-      }) as ISourceOptions,
-    [count, speed, comets, still, small],
-  );
 
   return (
     <div
       aria-hidden
       className={cn("pointer-events-none absolute inset-0", className)}
     >
-      <ParticlesProvider init={init}>
-        <Particles id={id} className="size-full" options={options} />
-      </ParticlesProvider>
+      {mode === "still" && <StillStars count={count} />}
+      {mode === "live" && (
+        <StarfieldLive count={count} speed={speed} comets={comets} />
+      )}
     </div>
   );
 }

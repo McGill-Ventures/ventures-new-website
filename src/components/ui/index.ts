@@ -8,8 +8,5 @@ export { Icon } from './Icon/Icon';
 export { Button } from './Button/Button';
 export { Tag } from './Tag/Tag';
 export { Stamp } from './Stamp/Stamp';
-export { GovernanceNavigation } from './GovernanceNavigation/GovernanceNavigation';
-export { FundOverviewSection } from './FundOverviewSection/FundOverviewSection';
 export { OurGovernanceSection } from './OurGovernanceSection/OurGovernanceSection';
-export { GetInvolvedSection } from './GetInvolvedSection/GetInvolvedSection';
 export type { IconName } from './Icon/Icon';
