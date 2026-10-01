@@ -84,7 +84,7 @@ export default function Sponsors() {
                 src={deloitteLogo}
                 alt="Deloitte"
                 width={300}
-                height={120}
+                height={128}
                 className="h-32 object-contain filter grayscale hover:grayscale-0 transition duration-300"
               />
             </a>
@@ -109,7 +109,7 @@ export default function Sponsors() {
                     src={logo.src}
                     alt={logo.alt}
                     width={150}
-                    height={60}
+                    height={64}
                     className="h-16 object-contain filter grayscale hover:grayscale-0 transition duration-300"
                   />
                 </a>
@@ -161,7 +161,7 @@ export default function Sponsors() {
                     src={logo.src}
                     alt={logo.alt}
                     width={150}
-                    height={60}
+                    height={80}
                     className="h-20 object-contain filter grayscale hover:grayscale-0 transition duration-300"
                   />
                 </a>
@@ -189,7 +189,7 @@ export default function Sponsors() {
                     src={logo.src}
                     alt={logo.alt}
                     width={150}
-                    height={60}
+                    height={80}
                     className="h-20 object-contain filter grayscale hover:grayscale-0 transition duration-300"
                   />
                 </a>
