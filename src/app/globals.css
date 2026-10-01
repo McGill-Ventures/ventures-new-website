@@ -154,9 +154,7 @@ a[href],
 
 /* ------------------------------------------------------------------
    Motion primitives, used by src/components/motion. Hidden states sit
-   behind `@media (scripting: enabled)` so content stays visible without JS,
-   and behind (min-width: 768px) so phones show content as it scrolls in
-   rather than animating every section.
+   behind `@media (scripting: enabled)` so content stays visible without JS.
    ------------------------------------------------------------------ */
 :root {
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -315,6 +313,20 @@ a[href],
   to { transform: translateY(calc(-100% - var(--marquee-gap, 1rem))); }
 }
 
+/* Phones: rails hold still, and sideways strips scroll by hand without the loop's second copy. */
+@media (max-width: 767px) {
+  .marquee-track {
+    animation: none;
+  }
+  .marquee-x {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .marquee-x > .marquee-track[aria-hidden] {
+    display: none;
+  }
+}
+
 /* <FlipCard> */
 .flip {
   perspective: 1600px;
@@ -409,13 +421,21 @@ a[href],
   animation: orb-drift 16s ease-in-out infinite;
 }
 
-/* Phones keep the glow and the gradient but hold them still: the drift
-   re-blurs a blur-3xl layer every frame, and the gradient shift repaints the
-   whole page every frame for as long as a button is on it. */
 @media (max-width: 767px) {
   .animate-orb,
-  .animate-gradient {
+  .animate-gradient,
+  .animate-pulse-glow {
     animation: none;
+  }
+  .animate-gradient {
+    background-position: 0% 50%;
+  }
+  .animate-pulse-glow {
+    box-shadow: 0 0 25px rgba(147, 51, 234, 0.4), 0 0 50px rgba(147, 51, 234, 0.1);
+  }
+  .animate-fade-in-up {
+    animation: none;
+    opacity: 1;
   }
 }
 

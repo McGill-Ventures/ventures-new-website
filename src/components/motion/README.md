@@ -3,7 +3,7 @@
 Import from `@/components/motion`.
 Styles live in `src/app/globals.css` under "Motion primitives".
 Every component respects `prefers-reduced-motion`, and hidden states only apply when JS runs.
-Phones (up to 767px wide) skip the entrance animations and get a still starfield, so scrolling stays light.
+Phones (up to 767px wide) skip the entrance animations, hold every loop still and get a still starfield, so scrolling stays light.
 
 ## `<Reveal>`
 
@@ -32,6 +32,7 @@ Headline whose words rise out of a clipped line one by one.
 
 Infinite CSS scroller in any direction.
 Pass enough children to fill the container.
+On phones the track holds still, and a horizontal marquee becomes a row you swipe.
 
 ```tsx
 <Marquee direction="left" duration={75}>{photos}</Marquee>
