@@ -7,11 +7,14 @@ interface UseContactFormOptions {
   onError?: (error: string) => void;
 }
 
+const GENERIC_ERROR = 'Something went wrong. Please try again later.';
+
 interface UseContactFormReturn {
   formData: ContactFormData;
   errors: Partial<ContactFormData>;
   isSubmitting: boolean;
   submitStatus: 'idle' | 'success' | 'error';
+  errorMessage: string;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   handleSubmit: (e: React.FormEvent) => Promise<void>;
   resetForm: () => void;
@@ -29,6 +32,7 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const validateForm = useCallback((): boolean => {
     const newErrors: Partial<ContactFormData> = {};
@@ -77,6 +81,7 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
     });
     setErrors({});
     setSubmitStatus('idle');
+    setErrorMessage('');
   }, []);
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
@@ -88,6 +93,7 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage('');
 
     try {
       const response = await fetch('/api/contact', {
@@ -101,26 +107,33 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
       const result: APIResponse = await response.json();
 
       if (response.ok && result.success) {
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setErrors({});
         setSubmitStatus('success');
-        resetForm();
         onSuccess?.();
       } else {
+        // Only validation and rate-limit responses carry text meant for the
+        // visitor. Anything else (config, SMTP, unexpected) stays generic.
+        const userFacing = response.status === 400 || response.status === 429;
         setSubmitStatus('error');
+        setErrorMessage(userFacing && result.error ? result.error : GENERIC_ERROR);
         onError?.(result.error || 'Failed to send message');
       }
     } catch (error) {
       setSubmitStatus('error');
+      setErrorMessage(GENERIC_ERROR);
       onError?.(error instanceof Error ? error.message : 'Failed to send message');
     } finally {
       setIsSubmitting(false);
     }
-  }, [formData, validateForm, resetForm, onSuccess, onError]);
+  }, [formData, validateForm, onSuccess, onError]);
 
   return {
     formData,
     errors,
     isSubmitting,
     submitStatus,
+    errorMessage,
     handleInputChange,
     handleSubmit,
     resetForm,
