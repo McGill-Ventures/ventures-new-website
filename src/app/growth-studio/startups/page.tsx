@@ -163,7 +163,7 @@ export default function StartupsPage() {
                 </div>
               </a>
               <a data-reveal="" data-delay="120" href="https://aerocellutions.com/" target="_blank" rel="noopener" style={{ background: 'var(--purple,#3a1fb0)', color: '#fff', borderRadius: '3px', padding: '34px 30px', display: 'flex', flexDirection: 'column', gap: '22px', textDecoration: 'none', cursor: 'pointer', transition: 'transform .2s ease' }}>
-                <Image src="/growth-studio/startup-logo-hands-on-execution.png" alt="Aerocellutions" width={200} height={200} style={{ height: '105px', maxWidth: '100%', objectFit: 'contain', objectPosition: 'center' }} />
+                <Image src="/growth-studio/startup-logo-hands-on-execution.png" alt="Aerocellutions" width={200} height={105} style={{ height: '105px', maxWidth: '100%', objectFit: 'contain', objectPosition: 'center' }} />
                 <blockquote style={{ margin: '0', fontSize: '16px', lineHeight: '1.55', fontWeight: '500', color: 'rgba(255,255,255,.92)' }}>&quot;Working with Growth Studio was a game-changer.&quot; <i>- Carolyn Denton (Founder)</i></blockquote>
                 <div style={{ marginTop: 'auto' }}>
                   <div style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '18px', margin: '0 0 4px' }}>Aerocellutions</div>
@@ -171,7 +171,7 @@ export default function StartupsPage() {
                 </div>
               </a>
               <a data-reveal="" data-delay="240" href="https://mypipdev.com/" target="_blank" rel="noopener" style={{ background: '#fbfbff', border: '1px solid rgba(36,20,84,.16)', borderRadius: '3px', padding: '34px 30px', display: 'flex', flexDirection: 'column', gap: '22px', textDecoration: 'none', color: 'inherit', cursor: 'pointer', transition: 'border-color .2s ease, transform .2s ease' }}>
-                <Image src="/growth-studio/startup-logo-generic.png" alt="MyPip" width={200} height={200} style={{ maxHeight: '96px', maxWidth: '100%', objectFit: 'contain' }} />
+                <Image src="/growth-studio/startup-logo-generic.png" alt="MyPip" width={200} height={96} style={{ maxHeight: '96px', maxWidth: '100%', objectFit: 'contain' }} />
                 <div style={{ fontSize: '16px', color: 'rgba(36,20,84,.6)' }}>&quot;The [Growth Studio consultants] surfaced a lot of ideas I hadn&apos;t thought of yet&quot; <i>-&nbsp;Misha Stastna (Founder)</i></div>
                 <div style={{ marginTop: 'auto' }}>
                   <div style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '18px', margin: '0 0 4px' }}>MyPip</div>

@@ -93,7 +93,7 @@ export default function PartnersPage() {
                 </div>
               </a>
               <a href="https://aerocellutions.com/" target="_blank" rel="noopener" style={{ background: 'var(--purple,#3a1fb0)', color: '#fff', borderRadius: '3px', padding: '32px 28px', display: 'flex', flexDirection: 'column', gap: '20px', textDecoration: 'none' }}>
-                <Image src="/growth-studio/startup-logo-hands-on-execution.png" alt="Aerocellutions" width={200} height={200} style={{ height: '76px', maxWidth: '100%', objectFit: 'contain', objectPosition: 'left' }} />
+                <Image src="/growth-studio/startup-logo-hands-on-execution.png" alt="Aerocellutions" width={200} height={76} style={{ height: '76px', maxWidth: '100%', objectFit: 'contain', objectPosition: 'left' }} />
                 <div style={{ fontSize: '16px', lineHeight: '1.5', color: 'rgba(255,255,255,.9)' }}>&quot;Working with Growth Studio was a game-changer.&quot; <i>- Carolyn Denton (Founder)</i></div>
                 <div style={{ marginTop: 'auto' }}>
                   <div style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '18px', margin: '0 0 4px' }}>Aerocellutions</div>
@@ -101,7 +101,7 @@ export default function PartnersPage() {
                 </div>
               </a>
               <a href="https://mypipdev.com/" target="_blank" rel="noopener" style={{ background: '#fbfbff', border: '1px solid rgba(36,20,84,.16)', borderRadius: '3px', padding: '32px 28px', display: 'flex', flexDirection: 'column', gap: '20px', textDecoration: 'none', color: 'inherit' }}>
-                <Image src="/growth-studio/startup-logo-generic.png" alt="MyPip" width={200} height={200} style={{ height: '76px', maxWidth: '100%', objectFit: 'contain', objectPosition: 'left' }} />
+                <Image src="/growth-studio/startup-logo-generic.png" alt="MyPip" width={200} height={76} style={{ height: '76px', maxWidth: '100%', objectFit: 'contain', objectPosition: 'left' }} />
                 <div style={{ fontSize: '16px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)' }}>&quot;The [Growth Studio consultants] surfaced a lot of ideas I hadn&apos;t thought of yet&quot; <i>- Misha Stastna (Founder)</i></div>
                 <div style={{ marginTop: 'auto' }}>
                   <div style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '18px', margin: '0 0 4px' }}>MyPip</div>
