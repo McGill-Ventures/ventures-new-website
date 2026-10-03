@@ -85,7 +85,7 @@ function ProgramBack({ program }: { program: Program }) {
         {...(program.external
           ? { target: "_blank", rel: "noopener noreferrer" }
           : {})}
-        className="group/link mt-auto inline-flex w-fit items-center gap-2 font-heading text-sm text-purple-300 transition-colors hover:text-white"
+        className="group/link mt-auto inline-flex w-fit items-center gap-2 font-heading text-sm text-purple-300 transition-colors after:absolute after:inset-0 hover:text-white"
       >
         {program.external ? "Visit site" : "Learn more"}
         <ArrowRight className="size-4 transition-transform duration-300 group-hover/link:translate-x-1" />
