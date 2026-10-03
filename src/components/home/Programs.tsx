@@ -50,7 +50,13 @@ type Program = (typeof PROGRAMS)[number];
 
 /* Each face is its own component: an element built inline in one component
    and handed to another as a prop trips React's key validation. */
-function ProgramFront({ program }: { program: Program }) {
+function ProgramFront({
+  program,
+  arrow = false,
+}: {
+  program: Program;
+  arrow?: boolean;
+}) {
   return (
     <div className="absolute inset-0">
       <Image
@@ -66,9 +72,27 @@ function ProgramFront({ program }: { program: Program }) {
       />
       <h3 className="absolute inset-x-4 bottom-4 font-display text-xl leading-tight text-white text-balance transition-transform duration-500 ease-out group-hover:-translate-y-1">
         {program.name}
+        {arrow && (
+          <ArrowRight
+            aria-hidden
+            className="ml-2 inline size-5 align-[-0.125em]"
+          />
+        )}
       </h3>
     </div>
   );
+}
+
+function linkTarget(program: Program) {
+  return program.external
+    ? { target: "_blank", rel: "noopener noreferrer" }
+    : {};
+}
+
+function NewTabNote({ program }: { program: Program }) {
+  return program.external ? (
+    <span className="sr-only">(opens in a new tab)</span>
+  ) : null;
 }
 
 function ProgramBack({ program }: { program: Program }) {
@@ -82,16 +106,12 @@ function ProgramBack({ program }: { program: Program }) {
       </p>
       <Link
         href={program.href}
-        {...(program.external
-          ? { target: "_blank", rel: "noopener noreferrer" }
-          : {})}
+        {...linkTarget(program)}
         className="group/link mt-auto inline-flex w-fit items-center gap-2 font-heading text-sm text-purple-300 transition-colors after:absolute after:inset-0 hover:text-white"
       >
         {program.external ? "Visit site" : "Learn more"}
         <ArrowRight className="size-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-        {program.external && (
-          <span className="sr-only">(opens in a new tab)</span>
-        )}
+        <NewTabNote program={program} />
       </Link>
     </div>
   );
@@ -123,8 +143,17 @@ export function Programs() {
         <ul className="mt-12 grid gap-4 sm:grid-cols-3 lg:mt-14 lg:grid-cols-5">
           {PROGRAMS.map((program, i) => (
             <Reveal as="li" key={program.name} delay={i * 90}>
+              {/* A flip costs phones an extra tap before the page, so they get a plain link. */}
+              <Link
+                href={program.href}
+                {...linkTarget(program)}
+                className="relative block aspect-[16/10] w-full overflow-hidden rounded-2xl sm:aspect-[3/4] md:hidden"
+              >
+                <ProgramFront program={program} arrow />
+                <NewTabNote program={program} />
+              </Link>
               <FlipCard
-                className="group aspect-[16/10] w-full rounded-2xl sm:aspect-[3/4]"
+                className="group aspect-[3/4] w-full rounded-2xl max-md:hidden"
                 label={program.name}
                 front={<ProgramFront program={program} />}
                 back={<ProgramBack program={program} />}
