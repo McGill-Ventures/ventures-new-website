@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Manrope, Plus_Jakarta_Sans, Hanken_Grotesk } from "next/font/google";
-// All CSS and fonts load here: <Link> prefetch preloads any route-level ones on every page that links to that route.
+// Every font and stylesheet enters here. <Link> prefetch preloads route-level ones on every page that links to the route.
 import "./globals.css";
-import "./about/about.css";
-import "./growth-studio/growth-studio.css";
-import "yet-another-react-lightbox/styles.css";
 
 const inter = Inter({
   subsets: ["latin"],

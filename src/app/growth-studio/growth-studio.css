@@ -1,6 +1,6 @@
 /*
  * Growth Studio CSS, ported from the design bundle's <style> block.
- * It loads on every page from the root layout, so every rule stays under
+ * It loads on every page through globals.css, so every rule stays under
  * .gs-root and every @keyframes name starts with gs-.
  */
 

@@ -9,8 +9,8 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const ROOT_LAYOUT_ONLY =
-  "Import CSS and fonts in src/app/layout.tsx. <Link> prefetch preloads route-level ones on every page that links to the route, where they go unused.";
+const PRELOAD_WHY =
+  "<Link> prefetch preloads route-level ones on every page that links to the route, where they go unused.";
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
@@ -33,9 +33,14 @@ const eslintConfig = [
         {
           paths: ["next/font/google", "next/font/local"].map((name) => ({
             name,
-            message: ROOT_LAYOUT_ONLY,
+            message: `Load fonts in src/app/layout.tsx. ${PRELOAD_WHY}`,
           })),
-          patterns: [{ group: ["*.css"], message: ROOT_LAYOUT_ONLY }],
+          patterns: [
+            {
+              group: ["*.css"],
+              message: `@import CSS from src/app/globals.css, with prefixed class names instead of CSS Modules. ${PRELOAD_WHY}`,
+            },
+          ],
         },
       ],
     },
