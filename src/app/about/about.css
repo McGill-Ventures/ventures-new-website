@@ -1,3 +1,5 @@
+/* Loads on every page through globals.css, so every class and @keyframes name starts with about-. */
+
 .about-contour {
   background-color: currentColor;
   -webkit-mask-image: url("/about/mountain-contour.svg"), radial-gradient(closest-side, #000 35%, transparent);
