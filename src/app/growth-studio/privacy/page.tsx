@@ -25,7 +25,7 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="LEGAL"
       title="Privacy Policy"
-      updated="September 2, 2026"
+      updated="October 3, 2026"
       intro={
         <>
           Growth Studio is a startup consulting program run by McGill Ventures,
@@ -76,10 +76,20 @@ export default function PrivacyPage() {
         />
         <LegalP>
           <strong>Information collected automatically.</strong> The Growth
-          Studio pages do not set their own cookies and do not run analytics or
-          advertising trackers. Our hosting provider may automatically record
-          standard technical information when you visit, such as your IP
-          address, browser type, device type, and the pages you request. This
+          Studio pages do not set cookies, other than a sign-in cookie for our
+          team&apos;s admin page, and do not run advertising trackers. We use
+          PostHog, a website analytics service, to count visits and see which
+          pages are useful. It records the pages you view, how you interact
+          with them (such as clicks and scrolling), the website that referred
+          you, your browser and device type, and your browser&apos;s language
+          and time zone. It does not store cookies or any other identifier on
+          your device, does not look up your location, and is not used to
+          identify you. To count unique visitors,
+          PostHog combines your IP address and browser details into an
+          anonymous code that changes every day and cannot be traced back to
+          you. Our hosting provider may also automatically record standard
+          technical information when you visit, such as your IP address,
+          browser type, device type, and the pages you request. This
           information is used to keep the site secure and running reliably.
         </LegalP>
       </LegalSection>
@@ -106,7 +116,7 @@ export default function PrivacyPage() {
         <LegalList
           items={[
             "Members of the Growth Studio and McGill Ventures team who need it to review applications and deliver the program;",
-            "Service providers that help us operate, such as Google (our forms are hosted on Google Forms) and our website hosting provider. These providers process information on our behalf and under their own privacy policies;",
+            "Service providers that help us operate, such as Google (our forms are hosted on Google Forms), PostHog (website analytics, with servers in the European Union), and our website hosting provider. These providers process information on our behalf and under their own privacy policies;",
             "Mentors, advisors, or partner organizations in the McGill Ventures network, only where it is relevant to supporting your startup and you have agreed to the introduction;",
             "Authorities or other parties where required by law or to protect the rights, safety, or property of Growth Studio, McGill Ventures, or others.",
           ]}
