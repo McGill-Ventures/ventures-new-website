@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { FlipCard, Reveal, SplitText } from "@/components/motion";
+import { Reveal, SplitText } from "@/components/motion";
 
 const PROGRAMS = [
   {
@@ -9,56 +9,38 @@ const PROGRAMS = [
     href: "/programs#analyst",
     external: false,
     photo: "/events/image_carousel_pic2.jpg",
-    blurb:
-      "Weekly classes taught by leading VCs. Deal flow, due diligence, valuation and investment memos, with founders pitching directly to analysts.",
   },
   {
     name: "McGill Venture Fund",
     href: "/fund",
     external: false,
     photo: "/events/scarlet_pitch_2026/sp26_02.jpg",
-    blurb:
-      "A student-led fund backed by McGill alumni and faculty, investing in pre-seed startups from the McGill community.",
   },
   {
     name: "Growth Studio",
     href: "/growth-studio",
     external: false,
     photo: "/growth-studio/hero-founders.webp",
-    blurb:
-      "Startup consulting that gets pre-seed and seed founders investor-ready: pitch decks, investor CRM, go-to-market and AI adoption.",
   },
   {
     name: "HealthTech Innovation Lab",
     href: "/programs#htil",
     external: false,
     photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
-    blurb:
-      "A selective fellowship where interdisciplinary teams tackle real challenges from health ventures and clinical innovators.",
   },
   {
     name: "Project Atlas",
     href: "https://www.project-atlas.ca/",
     external: true,
     photo: "/events/project_atlas/atlas_02.jpg",
-    blurb:
-      "Montreal's young builders, connected to the wider Canadian ecosystem through year-round events and a 30-person cohort sent to Toronto Tech Week.",
   },
 ];
 
 type Program = (typeof PROGRAMS)[number];
 
-/* Each face is its own component: an element built inline in one component
-   and handed to another as a prop trips React's key validation. */
-function ProgramFront({
-  program,
-  arrow = false,
-}: {
-  program: Program;
-  arrow?: boolean;
-}) {
+function ProgramCard({ program }: { program: Program }) {
   return (
-    <div className="absolute inset-0">
+    <>
       <Image
         src={program.photo}
         alt=""
@@ -72,48 +54,12 @@ function ProgramFront({
       />
       <h3 className="absolute inset-x-4 bottom-4 font-display text-xl leading-tight text-white text-balance transition-transform duration-500 ease-out group-hover:-translate-y-1">
         {program.name}
-        {arrow && (
-          <ArrowRight
-            aria-hidden
-            className="ml-2 inline size-5 align-[-0.125em]"
-          />
-        )}
+        <ArrowRight
+          aria-hidden
+          className="ml-2 inline size-5 align-[-0.125em]"
+        />
       </h3>
-    </div>
-  );
-}
-
-function linkTarget(program: Program) {
-  return program.external
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : {};
-}
-
-function NewTabNote({ program }: { program: Program }) {
-  return program.external ? (
-    <span className="sr-only">(opens in a new tab)</span>
-  ) : null;
-}
-
-function ProgramBack({ program }: { program: Program }) {
-  return (
-    <div className="flex h-full flex-col bg-purple-950 p-4 text-white">
-      <h3 className="font-display text-lg leading-tight text-balance">
-        {program.name}
-      </h3>
-      <p className="mt-3 font-body text-sm leading-snug text-purple-200">
-        {program.blurb}
-      </p>
-      <Link
-        href={program.href}
-        {...linkTarget(program)}
-        className="group/link mt-auto inline-flex w-fit items-center gap-2 font-heading text-sm text-purple-300 transition-colors after:absolute after:inset-0 hover:text-white"
-      >
-        {program.external ? "Visit site" : "Learn more"}
-        <ArrowRight className="size-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-        <NewTabNote program={program} />
-      </Link>
-    </div>
+    </>
   );
 }
 
@@ -143,21 +89,18 @@ export function Programs() {
         <ul className="mt-12 grid gap-4 sm:grid-cols-3 lg:mt-14 lg:grid-cols-5">
           {PROGRAMS.map((program, i) => (
             <Reveal as="li" key={program.name} delay={i * 90}>
-              {/* A flip costs phones an extra tap before the page, so they get a plain link. */}
               <Link
                 href={program.href}
-                {...linkTarget(program)}
-                className="relative block aspect-[16/10] w-full overflow-hidden rounded-2xl sm:aspect-[3/4] md:hidden"
+                {...(program.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className="group relative block aspect-[16/10] w-full overflow-hidden rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 sm:aspect-[3/4]"
               >
-                <ProgramFront program={program} arrow />
-                <NewTabNote program={program} />
+                <ProgramCard program={program} />
+                {program.external && (
+                  <span className="sr-only">(opens in a new tab)</span>
+                )}
               </Link>
-              <FlipCard
-                className="group aspect-[3/4] w-full rounded-2xl max-md:hidden"
-                label={program.name}
-                front={<ProgramFront program={program} />}
-                back={<ProgramBack program={program} />}
-              />
             </Reveal>
           ))}
         </ul>
