@@ -1,218 +1,158 @@
 "use client";
 
-import React from 'react';
-import { useContactForm } from '@/hooks/useContactForm';
-import { Icon } from '@/components/ui';
+import { Loader2, Send } from "lucide-react";
+import { useContactForm } from "@/hooks/useContactForm";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/Button/Button";
 
-interface ContactFormProps {
-  onSubmitSuccess?: () => void;
-  onSubmitError?: (error: string) => void;
+const LABEL = "block font-heading text-xs tracking-wider text-purple-300 uppercase";
+
+const FIELD =
+  "mt-3 block w-full border border-white/30 bg-transparent px-4 py-3.5 font-body text-white placeholder:text-white/40 transition-colors hover:border-white/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400 disabled:opacity-50";
+
+const FIELD_ERROR = "border-red-300/80 hover:border-red-300";
+
+function FieldError({ id, message }: { id: string; message?: string }) {
+  if (!message) return null;
+  return (
+    <p id={id} className="mt-2 font-body text-sm text-red-300">
+      {message}
+    </p>
+  );
 }
 
-export const ContactForm: React.FC<ContactFormProps> = ({ 
-  onSubmitSuccess, 
-  onSubmitError 
-}) => {
+export function ContactForm() {
   const {
     formData,
     errors,
     isSubmitting,
     submitStatus,
+    errorMessage,
     handleInputChange,
-    handleSubmit
-  } = useContactForm({ 
-    onSuccess: onSubmitSuccess, 
-    onError: onSubmitError 
-  });
+    handleSubmit,
+    resetForm,
+  } = useContactForm();
 
-  const isSubmitted = submitStatus === 'success';
-  const hasError = submitStatus === 'error';
+  if (submitStatus === "success") {
+    return (
+      <div role="status" className="border-t border-white/10 pt-8">
+        <p className="font-display text-3xl leading-[1.05] md:text-4xl">Message sent.</p>
+        <p className="mt-4 max-w-md font-body text-lg text-purple-100/75">
+          Thanks for writing. We&apos;ll reply by email.
+        </p>
+        <button
+          type="button"
+          onClick={resetForm}
+          className="mt-8 font-heading text-lg text-purple-300 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-400"
+        >
+          Send another message
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-white border border-purple-200 rounded-3xl p-8 shadow-xl">
-      <h2 className="text-4xl font-display text-purple-950 mb-8">Send us a message</h2>
-      <p className="text-purple-700 mb-8 font-body text-lg">
-        Have a question about our programs, want to partner with us, or just want to say hello? We&apos;d love to hear from you.
-      </p>
-      
-      {isSubmitted ? (
-        <div className="text-center py-12">
-          <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Icon name="check" className="text-white" size="lg" />
-          </div>
-          <h3 className="text-2xl font-display text-purple-950 mb-4">Message Sent!</h3>
-          <p className="text-purple-700 font-body">
-            Thank you for reaching out. We&apos;ll get back to you within 24 hours.
-          </p>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="name" className="block text-purple-950 font-heading font-semibold mb-3 text-sm">
-                Name *
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const emailInput = document.getElementById('email');
-                    emailInput?.focus();
-                  }
-                }}
-                className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 font-body text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 ${
-                  errors.name 
-                    ? 'border-red-300 bg-red-50' 
-                    : 'border-gray-300 bg-gray-50 hover:border-purple-400 focus:border-purple-500 focus:bg-white'
-                }`}
-                placeholder="Your name"
-                required
-                disabled={isSubmitting}
-                tabIndex={1}
-              />
-              {errors.name && (
-                <p className="mt-2 text-red-600 text-sm font-body">{errors.name}</p>
-              )}
-            </div>
-            
-            <div>
-              <label htmlFor="email" className="block text-purple-950 font-heading font-semibold mb-3 text-sm">
-                Email *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const subjectInput = document.getElementById('subject');
-                    subjectInput?.focus();
-                  }
-                }}
-                className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 font-body text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 ${
-                  errors.email 
-                    ? 'border-red-300 bg-red-50' 
-                    : 'border-gray-300 bg-gray-50 hover:border-purple-400 focus:border-purple-500 focus:bg-white'
-                }`}
-                placeholder="your.email@example.com"
-                required
-                disabled={isSubmitting}
-                tabIndex={2}
-              />
-              {errors.email && (
-                <p className="mt-2 text-red-600 text-sm font-body">{errors.email}</p>
-              )}
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor="subject" className="block text-purple-950 font-heading font-semibold mb-3 text-sm">
-              Subject
-            </label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleInputChange}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  const messageInput = document.getElementById('message');
-                  messageInput?.focus();
-                }
-              }}
-              className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 font-body text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 ${
-                errors.subject 
-                  ? 'border-red-300 bg-red-50' 
-                  : 'border-gray-300 bg-gray-50 hover:border-purple-400 focus:border-purple-500 focus:bg-white'
-              }`}
-              placeholder="What&apos;s this about?"
-              disabled={isSubmitting}
-              tabIndex={3}
-            />
-            {errors.subject && (
-              <p className="mt-2 text-red-600 text-sm font-body">{errors.subject}</p>
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="message" className="block text-purple-950 font-heading font-semibold mb-3 text-sm">
-              Message *
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={6}
-              value={formData.message}
-              onChange={handleInputChange}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault();
-                  const submitButton = document.querySelector('button[type="submit"]') as HTMLButtonElement;
-                  submitButton?.focus();
-                } else if (e.key === 'Tab' && !e.shiftKey) {
-                  e.preventDefault();
-                  const submitButton = document.querySelector('button[type="submit"]') as HTMLButtonElement;
-                  submitButton?.focus();
-                }
-              }}
-              className={`w-full px-4 py-4 rounded-xl border-2 transition-all duration-300 font-body text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 resize-none ${
-                errors.message 
-                  ? 'border-red-300 bg-red-50' 
-                  : 'border-gray-300 bg-gray-50 hover:border-purple-400 focus:border-purple-500 focus:bg-white'
-              }`}
-              placeholder="Tell us more about your inquiry... (Shift+Enter for new line)"
-              required
-              disabled={isSubmitting}
-              tabIndex={4}
-            />
-            {errors.message && (
-              <p className="mt-2 text-red-600 text-sm font-body">{errors.message}</p>
-            )}
-          </div>
-
-          <button
-            type="submit"
+    <form onSubmit={handleSubmit} noValidate className="space-y-7">
+      <div className="grid gap-7 md:grid-cols-2">
+        <div>
+          <label htmlFor="name" className={LABEL}>
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            autoComplete="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            className={cn(FIELD, errors.name && FIELD_ERROR)}
+            placeholder="Your name"
+            required
             disabled={isSubmitting}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                if (!isSubmitting) {
-                  handleSubmit(e as React.FormEvent);
-                }
-              }
-            }}
-            className={`w-full px-8 py-4 rounded-xl transition-all duration-300 font-heading text-lg font-semibold shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:ring-offset-2 flex items-center justify-center ${
-              'bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:from-purple-700 hover:to-purple-800 hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-purple-600 disabled:hover:to-purple-700 disabled:transform-none'
-            }`}
-            tabIndex={5}
-          >
-            {isSubmitting ? (
-              <>
-                <Icon name="spinner" className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
-                Sending...
-              </>
-            ) : (
-              'Send Message'
-            )}
-          </button>
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? "name-error" : undefined}
+          />
+          <FieldError id="name-error" message={errors.name} />
+        </div>
 
-          {hasError && (
-            <div className="bg-red-50 border border-red-200 rounded-xl p-4">
-              <p className="text-red-700 font-body">Failed to send message. Please try again.</p>
-            </div>
+        <div>
+          <label htmlFor="email" className={LABEL}>
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autoComplete="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            className={cn(FIELD, errors.email && FIELD_ERROR)}
+            placeholder="you@example.com"
+            required
+            disabled={isSubmitting}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "email-error" : undefined}
+          />
+          <FieldError id="email-error" message={errors.email} />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="subject" className={LABEL}>
+          Subject <span className="text-white/40 normal-case">(optional)</span>
+        </label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          value={formData.subject}
+          onChange={handleInputChange}
+          className={FIELD}
+          placeholder="What is this about?"
+          disabled={isSubmitting}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="message" className={LABEL}>
+          Message
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows={6}
+          value={formData.message}
+          onChange={handleInputChange}
+          className={cn(FIELD, "resize-y", errors.message && FIELD_ERROR)}
+          placeholder="Tell us more"
+          required
+          disabled={isSubmitting}
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? "message-error" : undefined}
+        />
+        <FieldError id="message-error" message={errors.message} />
+      </div>
+
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <>
+              Sending
+              <Loader2 aria-hidden className="size-5 animate-spin" />
+            </>
+          ) : (
+            <>
+              Send message
+              <Send aria-hidden className="size-5" />
+            </>
           )}
-        </form>
-      )}
-    </div>
+        </Button>
+        {submitStatus === "error" && (
+          <p role="alert" className="font-body text-red-300">
+            {errorMessage}
+          </p>
+        )}
+      </div>
+    </form>
   );
-};
+}

@@ -66,7 +66,12 @@ function FooterLink({
   );
 }
 
-export default function Footer() {
+/** `hideContactCta` drops "Get in touch", for the page it links to. */
+export default function Footer({
+  hideContactCta = false,
+}: {
+  hideContactCta?: boolean;
+}) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -81,9 +86,11 @@ export default function Footer() {
               Explore Programs
               <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Button>
-            <Button href="/contact" variant="secondary">
-              Get in touch
-            </Button>
+            {!hideContactCta && (
+              <Button href="/contact" variant="secondary">
+                Get in touch
+              </Button>
+            )}
           </Reveal>
         </div>
 

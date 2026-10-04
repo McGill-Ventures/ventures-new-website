@@ -2,15 +2,28 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type Props = {
-  href: string;
+type CommonProps = {
   children: ReactNode;
   /** Both variants assume a dark surface. */
   variant?: "primary" | "secondary";
   size?: "md" | "sm";
-  external?: boolean;
   className?: string;
 };
+
+type LinkProps = CommonProps & {
+  href: string;
+  external?: boolean;
+};
+
+/** Without an `href` it renders a real `<button>`, for forms. */
+type ActionProps = CommonProps & {
+  href?: undefined;
+  type?: "submit" | "button";
+  disabled?: boolean;
+  onClick?: () => void;
+};
+
+type Props = LinkProps | ActionProps;
 
 /* The link never moves, only the inner face lifts. A lift on the element
    that owns :hover carries it out from under the pointer, hover drops, it
@@ -34,18 +47,28 @@ const SIZE = {
   sm: "px-6 py-3 text-base",
 };
 
-export function Button({
-  href,
-  children,
-  variant = "primary",
-  size = "md",
-  external = false,
-  className,
-}: Props) {
+export function Button(props: Props) {
+  const { children, variant = "primary", size = "md", className } = props;
   const face = (
     <span className={cn(FACE, VARIANT[variant], SIZE[size])}>{children}</span>
   );
   const outer = cn(OUTER, className);
+
+  if (props.href === undefined) {
+    const { type = "button", disabled, onClick } = props;
+    return (
+      <button
+        type={type}
+        disabled={disabled}
+        onClick={onClick}
+        className={cn(outer, "disabled:cursor-not-allowed disabled:opacity-50")}
+      >
+        {face}
+      </button>
+    );
+  }
+
+  const { href, external = false } = props;
 
   if (external) {
     return (
