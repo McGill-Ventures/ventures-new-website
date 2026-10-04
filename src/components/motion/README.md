@@ -49,11 +49,3 @@ Phones and reduced motion get the stars drawn once as SVG, and never load tsPart
 ```tsx
 <Starfield count={220} className="[mask-image:linear-gradient(to_right,#000_40%,transparent_65%)]" />
 ```
-
-## `<FlipCard>`
-
-Card that turns over on click, either way. Links on the back keep their own clicks.
-
-```tsx
-<FlipCard className="aspect-[3/4]" label="Analyst Program" front={<Front />} back={<Back />} />
-```
