@@ -267,7 +267,7 @@ function AnalyticsTab() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8 }}>
           <h1 style={{ fontSize: 24, fontWeight: 800, margin: 0, letterSpacing: "-0.02em" }}>Growth Studio website traffic</h1>
           <span style={{ fontSize: 13.5, color: loadError ? T.danger : T.muted }}>
-            {loadError ? `${loadError} Showing data from ${time(updatedAt!)}.` : `Updated ${time(updatedAt!)}, refreshes every minute`}
+            {loadError ? `${loadError.replace(/[.!?]?$/, (p) => p || ".")} Showing data from ${time(updatedAt!)}.` : `Updated ${time(updatedAt!)}, refreshes every minute`}
           </span>
         </div>
         <p style={{ margin: "8px 0 0", fontSize: 13.5, color: T.muted }}>
