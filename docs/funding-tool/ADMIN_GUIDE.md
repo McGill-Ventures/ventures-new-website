@@ -12,7 +12,8 @@ immediately.
    like a shared key and change it if it leaks.
 
 ## Editing
-- Two tabs at the top: Funding programs and Partners.
+- Four tabs at the top: Needs attention, Funding programs, Partners, and
+  Website analytics.
 - Click Edit on any row to change it, or "+ Add new" to create one.
 - Everything is a dropdown, a toggle, a date picker, or a tag selector, so you
   cannot enter a value the matcher will not understand.
@@ -42,6 +43,12 @@ immediately.
   customer answer matches against. Tag a clinic as healthcare, not as whatever
   its suppliers sell.
 - Set Status to Paused to hide a partner temporarily instead of deleting them.
+
+## Website analytics
+This tab shows visits to the Growth Studio pages and refreshes every minute while it is open.
+Counts are anonymous, so a returning visitor counts once per day.
+Application form clicks count clicks on the startup and consultant Google Form links from any page on the site.
+For anything the tab does not show, open PostHog at eu.posthog.com.
 
 ## The ID field
 When you create an entry you set an ID once (lowercase, no spaces, like
