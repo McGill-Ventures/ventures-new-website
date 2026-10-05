@@ -6,9 +6,10 @@ import { T } from "@/lib/funding/theme";
 import { Shell, Card, Brand, btnPrimary, btnGhost, inputStyle, Pill } from "@/app/growth-studio/funding/_components/ui";
 import { FUNDING_FIELDS, PARTNER_FIELDS, blankRecord, type Field } from "@/lib/funding/adminSchema";
 import { ISSUE_LABELS, type ActionItem, type Priority } from "@/lib/funding/reviewAlgorithm";
+import type { Dashboard, Ranked } from "@/lib/funding/analytics";
 
 type Row = Record<string, unknown>;
-type Tab = "attention" | "programs" | "partners";
+type Tab = "attention" | "programs" | "partners" | "analytics";
 
 
 // Turn a failed admin API response into a sentence the data manager can act on.
@@ -85,6 +86,7 @@ function Console() {
         <TabBtn active={tab === "attention"} onClick={() => { setTab("attention"); setEditTarget(null); }}>Needs attention</TabBtn>
         <TabBtn active={tab === "programs"} onClick={() => { setTab("programs"); setEditTarget(null); }}>Funding programs</TabBtn>
         <TabBtn active={tab === "partners"} onClick={() => { setTab("partners"); setEditTarget(null); }}>Partners</TabBtn>
+        <TabBtn active={tab === "analytics"} onClick={() => { setTab("analytics"); setEditTarget(null); }}>Website analytics</TabBtn>
       </div>
 
       {tab === "attention" && (
@@ -92,6 +94,7 @@ function Console() {
       )}
       {tab === "programs" && <CrudTab endpoint="/api/funding/admin/programs" fields={FUNDING_FIELDS} label="programs" nameKey="program_name" jumpToId={editTarget?.endpoint === "/api/funding/admin/programs" ? editTarget.id : null} />}
       {tab === "partners" && <CrudTab endpoint="/api/funding/admin/partners" fields={PARTNER_FIELDS} label="partners" nameKey="name" jumpToId={null} />}
+      {tab === "analytics" && <AnalyticsTab />}
     </Shell>
   );
 }
@@ -218,6 +221,89 @@ function AttentionDashboard({ onEdit }: { onEdit: (id: string) => void }) {
         </div>
       )}
     </div>
+  );
+}
+
+function AnalyticsTab() {
+  const [data, setData] = useState<Dashboard | null>(null);
+  const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
+  const [unconfigured, setUnconfigured] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    try {
+      const r = await fetch("/api/funding/admin/analytics");
+      const d = await r.json().catch(() => ({}));
+      if (r.status === 503) { setUnconfigured(true); return; }
+      if (!r.ok) throw new Error(r.status === 401 ? describeFailure(401) : d?.error ?? `Request failed (HTTP ${r.status}).`);
+      setData(d); setUpdatedAt(new Date()); setLoadError(null);
+    } catch (e) {
+      setLoadError(e instanceof Error ? e.message : "Could not load website analytics.");
+    }
+  }, []);
+  useEffect(() => {
+    load();
+    const id = setInterval(() => { if (!document.hidden) load(); }, 60_000);
+    return () => clearInterval(id);
+  }, [load]);
+
+  if (unconfigured) {
+    return (
+      <Card>
+        <p style={{ margin: 0, fontWeight: 700 }}>Website analytics is not set up on this deployment yet.</p>
+        <p style={{ margin: "8px 0 0", color: T.inkSoft }}>Add POSTHOG_SECRET_KEY to its environment variables. See docs/funding-tool/SETUP.md.</p>
+      </Card>
+    );
+  }
+  if (!data) {
+    return loadError ? <ErrorCard message={loadError} onRetry={load} />
+      : <Card><p style={{ margin: 0, color: T.muted }}>Loading website analytics...</p></Card>;
+  }
+
+  const time = (d: Date) => d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  return (
+    <div style={{ display: "grid", gap: 16 }}>
+      <Card>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8 }}>
+          <h1 style={{ fontSize: 24, fontWeight: 800, margin: 0, letterSpacing: "-0.02em" }}>Growth Studio website traffic</h1>
+          <span style={{ fontSize: 13.5, color: loadError ? T.danger : T.muted }}>
+            {loadError ? `Could not refresh. Showing data from ${time(updatedAt!)}.` : `Updated ${time(updatedAt!)}, refreshes every minute`}
+          </span>
+        </div>
+        <p style={{ margin: "8px 0 0", fontSize: 13.5, color: T.muted }}>
+          Pages under /growth-studio only. Counts are anonymous, so a returning visitor counts once per day.
+        </p>
+        <div style={{ display: "flex", gap: 10, marginTop: 16, flexWrap: "wrap" }}>
+          <Stat n={data.views30m} label="Views, last 30 min" fg={T.primary} bg={T.primarySoft} />
+          <Stat n={data.viewsToday} label="Views today" fg={T.primary} bg={T.primarySoft} />
+          <Stat n={data.visitorsToday} label="Visitors today" fg={T.primary} bg={T.primarySoft} />
+          <Stat n={data.views7d} label="Views, last 7 days" fg={T.primary} bg={T.primarySoft} />
+        </div>
+      </Card>
+      <div style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
+        <RankedList title="Application form clicks" note="Last 7 days, from any page" items={data.formClicks} empty="No clicks yet." />
+        <RankedList title="Top pages" note="Last 7 days, by views" items={data.topPages} empty="No visits yet." />
+        <RankedList title="Top sources" note="Last 7 days, by visits" items={data.topSources} empty="No visits yet." />
+      </div>
+      <p style={{ margin: 0, fontSize: 13, color: T.muted }}>
+        For more detail, open <a href="https://eu.posthog.com" target="_blank" rel="noreferrer" style={{ color: T.primary }}>PostHog</a>.
+      </p>
+    </div>
+  );
+}
+
+function RankedList({ title, note, items, empty }: { title: string; note: string; items: Ranked[]; empty: string }) {
+  return (
+    <Card padding={24}>
+      <p style={{ margin: 0, fontSize: 15.5, fontWeight: 700 }}>{title}</p>
+      <p style={{ margin: "3px 0 12px", fontSize: 12.5, color: T.muted }}>{note}</p>
+      {items.length === 0 ? <p style={{ margin: 0, fontSize: 14, color: T.muted }}>{empty}</p> : items.map((it, i) => (
+        <div key={it.label} style={{ display: "flex", justifyContent: "space-between", gap: 12, padding: "9px 0", borderTop: i === 0 ? "none" : `1px solid ${T.lineSoft}`, fontSize: 14 }}>
+          <span title={it.label} style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: T.inkSoft }}>{it.label}</span>
+          <span style={{ fontWeight: 700 }}>{it.value}</span>
+        </div>
+      ))}
+    </Card>
   );
 }
 
