@@ -36,6 +36,8 @@ pnpm lint    # eslint
 install script. pnpm blocks install scripts by default. That one links a
 platform-native binary for the ESLint TypeScript resolver, and installs fail
 without it.
+`pnpm.ignoredBuiltDependencies` lists `core-js` (pulled in by `posthog-js`) so
+pnpm skips its unneeded postinstall script without warning about it.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
