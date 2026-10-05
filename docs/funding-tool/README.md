@@ -31,6 +31,9 @@ Three environment variables (see `.env.example` at the repo root):
 Without them the rest of the site is unaffected; the funding API routes return
 HTTP 503 "not configured" and the questionnaire shows that message.
 
+The admin Website analytics tab also needs `POSTHOG_SECRET_KEY` (PostHog project secret key, server-only).
+Without it only that tab shows "not set up". See `SETUP.md`, Part 6.
+
 ## First-time database setup
 
 In Supabase's SQL editor run, in order: `schema.sql`, `schema_partners.sql`,
