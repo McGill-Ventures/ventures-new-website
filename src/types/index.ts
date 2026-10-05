@@ -34,10 +34,6 @@ export interface DeveloperTeamMember extends TeamMember {
   bio?: string;
 }
 
-export interface GovernanceTeamMember extends TeamMember {
-  organization?: string;
-}
-
 export interface ContactFormData {
   name: string;
   email: string;
@@ -49,19 +45,6 @@ export interface APIResponse<T = Record<string, unknown>> {
   success: boolean;
   data?: T;
   error?: string;
-}
-
-export type TeamType = 'founders' | 'executive' | 'fund' | 'finance' | 'analyst' | 'dev' | 'htil';
-
-export interface TeamSectionProps {
-  activeTeam: TeamType;
-  setActiveTeam: (team: TeamType) => void;
-}
-
-export interface TeamCardProps {
-  member: TeamMember;
-  index: number;
-  variant?: 'executive' | 'analyst' | 'developer' | 'head';
 }
 
 export interface AnimationProps {
@@ -79,12 +62,6 @@ export interface PageProps {
   params?: Record<string, string>;
   searchParams?: Record<string, string | string[] | undefined>;
 }
-
-export const TEAM_TYPES = {
-  EXECUTIVE: 'executive' as const,
-  ANALYST: 'analyst' as const,
-  DEVELOPER: 'dev' as const,
-} as const;
 
 export const ANIMATION_DELAYS = {
   SHORT: 0.1,
