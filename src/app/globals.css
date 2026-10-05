@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* Route CSS joins this sheet instead of loading per route. See no-restricted-imports in eslint.config.mjs. */
+@import "./about/about.css";
+@import "./growth-studio/growth-studio.css";
+@import "yet-another-react-lightbox/styles.css";
 
 :root {
   --background: #ffffff;

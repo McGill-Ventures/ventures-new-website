@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Manrope, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Space_Grotesk, Manrope, Plus_Jakarta_Sans, Hanken_Grotesk } from "next/font/google";
+// Every font and stylesheet enters here. <Link> prefetch preloads route-level ones on every page that links to the route.
 import "./globals.css";
 
 const inter = Inter({
@@ -26,6 +27,14 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
 });
 
+// Growth Studio body face. No preload, or every main-site page would fetch it unused.
+const hankenGrotesk = Hanken_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-hanken-grotesk",
+  preload: false,
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mcgillvc.ca"),
   title: "McGill Ventures",
@@ -50,7 +59,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} ${plusJakarta.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} ${plusJakarta.variable} ${hankenGrotesk.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>
