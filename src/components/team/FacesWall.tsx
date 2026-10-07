@@ -27,7 +27,7 @@ export function FacesWall({ faces, rows = 4, perRow = 12 }: Props) {
             pauseOnHover={false}
           >
             {line.map((src) => (
-              <div key={src} className="relative aspect-[4/5] w-24 overflow-hidden bg-white/5 md:w-32">
+              <div key={src} className="relative aspect-[4/5] w-24 overflow-hidden bg-white/5 max-md:[&:nth-child(n+6)]:hidden md:w-32">
                 <Image src={src} alt="" fill sizes="128px" className="object-cover grayscale" />
               </div>
             ))}
