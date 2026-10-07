@@ -40,7 +40,7 @@ export default function Team() {
               delay={450}
               className="mt-6 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
             >
-              We&apos;re kind, we&apos;re open, and we work with conviction. Every cohort builds on the work of the last.
+              We&apos;re kind, we&apos;re open, and we work with conviction.
             </Reveal>
           </div>
         </section>
