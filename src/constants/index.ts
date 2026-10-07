@@ -57,6 +57,7 @@ export const TEAMS: Team[] = [
           { name: "Zara Berholz", role: "Director", image: "/headshots/exec/zara_beholz.JPG", linkedinUrl: "https://www.linkedin.com/in/zara-berholz/" },
           { name: "Alexandra Jorgensen", role: "Associate", image: "/headshots/exec/alexandra_jorgensen.jpeg", linkedinUrl: "https://www.linkedin.com/in/alexandra-jorgensen-torress/" },
           { name: "Chaerin Song", role: "Associate", image: "/headshots/2026-27/chaerin_song.jpg", linkedinUrl: "https://www.linkedin.com/in/chaerin-song" },
+          { name: "Isabelle Kondo", role: "Associate", image: "/headshots/2026-27/isabelle_kondo.jpg", linkedinUrl: "https://www.linkedin.com/in/isabelle-kondo-724482307/" },
         ],
       },
       {
