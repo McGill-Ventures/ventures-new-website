@@ -4,104 +4,11 @@ import Footer from "@/components/Footer";
 import { MemberCard } from "@/components/team/MemberCard";
 import { TeamIndex } from "@/components/team/TeamIndex";
 import { Reveal, SplitText, Starfield } from "@/components/motion";
-import type { TeamMember } from "@/types";
-import {
-  FOUNDERS,
-  EXECUTIVE_TEAM,
-  FUND_TEAM,
-  ANALYST_TEAM,
-  DEVELOPMENT_TEAM,
-  HEAD_OF_ENGINEERING,
-  HTIL_TEAM,
-} from "@/constants";
+import { TEAMS } from "@/constants";
 
 export const metadata: Metadata = {
   title: "Team | McGill Ventures",
 };
-
-interface Group {
-  title?: string;
-  members: TeamMember[];
-}
-
-/** Each member joins the first group with a role keyword theirs contains,
- *  ignoring case, and everyone left over joins `rest`. Empty groups are dropped. */
-function groupByRole(
-  members: TeamMember[],
-  groups: [title: string, keywords: string[]][],
-  rest: string,
-): Group[] {
-  const placed = new Set<TeamMember>();
-  const result: Group[] = groups.map(([title, keywords]) => {
-    const matches = members.filter(
-      (m) => !placed.has(m) && keywords.some((k) => m.role.toLowerCase().includes(k.toLowerCase())),
-    );
-    matches.forEach((m) => placed.add(m));
-    return { title, members: matches };
-  });
-  result.push({ title: rest, members: members.filter((m) => !placed.has(m)) });
-  return result.filter((g) => g.members.length > 0);
-}
-
-/** `id` is also the section's anchor, e.g. `/team#fund`. */
-const TEAMS: { id: string; name: string; intro?: string; groups: Group[] }[] = [
-  {
-    id: "executive",
-    name: "Executive Team",
-    groups: groupByRole(
-      EXECUTIVE_TEAM,
-      [
-        ["Co-Presidents", ["Co-President"]],
-        ["Events", ["Event"]],
-        ["Finance", ["Finance"]],
-        ["Partnerships", ["Partnerships", "Sponsorship"]],
-        ["Marketing", ["Marketing", "Creative"]],
-      ],
-      "Operations",
-    ),
-  },
-  {
-    id: "fund",
-    name: "Fund Team",
-    groups: groupByRole(
-      FUND_TEAM,
-      [
-        ["Managing Directors", ["Founder & IC", "Managing Director"]],
-        ["Fund Principals", ["Fund Principal"]],
-      ],
-      "Senior Analysts",
-    ),
-  },
-  {
-    id: "analysts",
-    name: "Analyst Team",
-    groups: groupByRole(ANALYST_TEAM, [["Program Managers", ["Program Manager"]]], "Analysts"),
-  },
-  {
-    id: "development",
-    name: "Development Team",
-    groups: [{ members: [HEAD_OF_ENGINEERING, ...DEVELOPMENT_TEAM] }],
-  },
-  {
-    id: "htil",
-    name: "Health Tech & Innovation Lab",
-    groups: groupByRole(
-      HTIL_TEAM,
-      [
-        ["Program Leaders", ["Program Leader"]],
-        ["Program Managers", ["Program Manager"]],
-      ],
-      "Innovation Strategists",
-    ),
-  },
-  // Last, since they have graduated: the alumni who started it, not a current team.
-  {
-    id: "founders",
-    name: "Founders",
-    intro: "Aaron, Woo and Zach started McGill Ventures in 2020. Everyone above is building on it.",
-    groups: [{ members: FOUNDERS }],
-  },
-];
 
 const GRID = "grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:gap-x-6 xl:grid-cols-4";
 

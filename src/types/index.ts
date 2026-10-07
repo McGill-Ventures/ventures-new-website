@@ -10,28 +10,23 @@ export interface NavigationProps {
 
 export interface TeamMember {
   name: string;
+  /** Their title within this team only. */
   role: string;
-  experience?: string;
-  bio?: string;
-  education?: string;
-  skills?: string[];
-  specialization?: string;
   image?: string;
   linkedinUrl?: string;
 }
 
-export interface ExecutiveTeamMember extends TeamMember {
-  bio: string;
-  education: string;
+export interface TeamGroup {
+  title?: string;
+  members: TeamMember[];
 }
 
-export interface AnalystTeamMember extends TeamMember {
-  specialization?: string;
-}
-
-export interface DeveloperTeamMember extends TeamMember {
-  skills?: string[];
-  bio?: string;
+export interface Team {
+  /** Also the section's anchor, e.g. `/team#fund`. */
+  id: string;
+  name: string;
+  intro?: string;
+  groups: TeamGroup[];
 }
 
 export interface ContactFormData {
