@@ -167,7 +167,7 @@ export const TEAMS: Team[] = [
       {
         members: [
           { name: "Michael Lukas", role: "Lead Developer", image: "/headshots/development/michael_lukas_headshot.JPG", linkedinUrl: "https://www.linkedin.com/in/michaellukas" },
-          { name: "Thai Tran", role: "Developer", image: "/headshots/exec/thai.jpg", linkedinUrl: "https://www.linkedin.com/in/thai-tran-minh/" },
+          { name: "Thai Tran", role: "Developer", image: "/headshots/2026-27/thai_tran.jpg", linkedinUrl: "https://www.linkedin.com/in/thai-tran-minh/" },
         ],
       },
     ],
