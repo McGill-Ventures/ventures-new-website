@@ -2,11 +2,6 @@ import { useState, useCallback } from 'react';
 import { ContactFormData, APIResponse } from '@/types';
 import { isValidEmail } from '@/lib/utils';
 
-interface UseContactFormOptions {
-  onSuccess?: () => void;
-  onError?: (error: string) => void;
-}
-
 const GENERIC_ERROR = 'Something went wrong. Please try again later.';
 
 interface UseContactFormReturn {
@@ -21,7 +16,7 @@ interface UseContactFormReturn {
   validateForm: () => boolean;
 }
 
-export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {}): UseContactFormReturn {
+export function useContactForm(): UseContactFormReturn {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -86,14 +81,14 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setErrorMessage('');
 
     try {
       const response = await fetch('/api/contact', {
@@ -110,23 +105,20 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
         setFormData({ name: '', email: '', subject: '', message: '' });
         setErrors({});
         setSubmitStatus('success');
-        onSuccess?.();
       } else {
         // Only validation and rate-limit responses carry text meant for the
         // visitor. Anything else (config, SMTP, unexpected) stays generic.
         const userFacing = response.status === 400 || response.status === 429;
         setSubmitStatus('error');
         setErrorMessage(userFacing && result.error ? result.error : GENERIC_ERROR);
-        onError?.(result.error || 'Failed to send message');
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
       setErrorMessage(GENERIC_ERROR);
-      onError?.(error instanceof Error ? error.message : 'Failed to send message');
     } finally {
       setIsSubmitting(false);
     }
-  }, [formData, validateForm, onSuccess, onError]);
+  }, [formData, validateForm]);
 
   return {
     formData,
