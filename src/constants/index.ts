@@ -2,7 +2,7 @@ import type { Team, TeamMember } from '@/types';
 
 export const FOUNDERS = [
   { name: "Aaron Anandji", role: "Co-Founder", image: "/headshots/team/aaron_anandji.png", linkedinUrl: "https://www.linkedin.com/in/aaron-anandji/" },
-  { name: "Hyeonwoo (\"Woo\") Park", role: "Co-Founder", image: "/headshots/team/hyeonwoo_park.png", linkedinUrl: "https://www.linkedin.com/in/woo-park1/" },
+  { name: "Woo Park", role: "Co-Founder", image: "/headshots/team/woo_park.png", linkedinUrl: "https://www.linkedin.com/in/woo-park1/" },
   { name: "Zacharie Faucillion", role: "Co-Founder", image: "/headshots/team/zacharie_faucillion.jpg", linkedinUrl: "https://www.linkedin.com/in/zfaucillion/" },
 ] satisfies TeamMember[];
 
