@@ -25,7 +25,7 @@ export function TeamIndex({ teams }: Props) {
   return (
     <Reveal
       delay={100}
-      className="sticky top-16 z-30 -mx-6 self-start border-b border-white/10 bg-black/80 backdrop-blur-md md:-mx-12 lg:top-28 lg:mx-0 lg:border-0 lg:bg-transparent lg:backdrop-blur-none"
+      className="sticky top-16 z-30 -mx-6 self-start border-b border-white/10 bg-black/95 md:-mx-12 lg:top-28 lg:mx-0 lg:border-0 lg:bg-transparent"
     >
       <nav aria-label="Teams">
         <ol

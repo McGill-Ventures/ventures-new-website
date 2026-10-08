@@ -41,7 +41,7 @@ export function MemberCard({ member, delay = 0, headingAs: Heading = "h3" }: Pro
       {member.linkedinUrl && (
         <span
           aria-hidden
-          className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-full bg-black/50 text-white opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+          className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
         >
           <ArrowUpRight className="size-4" />
         </span>
