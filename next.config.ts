@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     // photo asked for the 3840 bucket on any retina screen: 1.4 MB. Capping
     // the ladder at 2560 keeps a 2x desktop near native and cuts that to
     // ~400 kB. Nothing on the site is painted wider than 2560 device px.
+    // Photos also wrap `sizes` in at2x() so 3x phones fetch 2x files.
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 2560],
     remotePatterns: [
       {

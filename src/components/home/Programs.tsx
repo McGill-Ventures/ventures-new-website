@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Reveal, SplitText } from "@/components/motion";
+import { at2x } from "@/lib/photoSizes";
 
 const PROGRAMS = [
   {
@@ -45,7 +46,7 @@ function ProgramCard({ program }: { program: Program }) {
         src={program.photo}
         alt=""
         fill
-        sizes="(max-width: 639px) 100vw, (max-width: 1023px) 60vw, 480px"
+        sizes={at2x("(max-width: 639px) 100vw, (max-width: 1023px) 60vw, 480px")}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
       />
       <div

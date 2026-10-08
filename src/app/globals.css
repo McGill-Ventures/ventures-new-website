@@ -317,7 +317,7 @@ a[href],
   to { transform: translateY(calc(-100% - var(--marquee-gap, 1rem))); }
 }
 
-/* Phones: rails hold still, and sideways strips scroll by hand without the loop's second copy. */
+/* Phones: rails hold still, so the loop's second copy is dropped, and sideways strips scroll by hand. */
 @media (max-width: 767px) {
   .marquee-track {
     animation: none;
@@ -326,7 +326,7 @@ a[href],
     overflow-x: auto;
     scrollbar-width: none;
   }
-  .marquee-x > .marquee-track[aria-hidden] {
+  .marquee > .marquee-track[aria-hidden] {
     display: none;
   }
 }

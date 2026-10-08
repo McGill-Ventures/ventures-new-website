@@ -10,6 +10,7 @@ import { Slide, SlideHeader } from "@/components/fund/Slide";
 import { Reveal, SplitText, Starfield } from "@/components/motion";
 import { Button, Tag } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import { at2x } from "@/lib/photoSizes";
 
 export const metadata: Metadata = {
   title: "Fund | McGill Ventures",
@@ -123,7 +124,7 @@ export default function Fund() {
                 src={item.photo}
                 alt=""
                 fill
-                sizes="(max-width: 767px) 100vw, 50vw"
+                sizes={at2x("(max-width: 767px) 100vw, 50vw")}
                 className="object-cover"
                 style={{ objectPosition: item.position }}
               />

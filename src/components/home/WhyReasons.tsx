@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Sparkle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion";
+import { at2x } from "@/lib/photoSizes";
 
 const REASONS = [
   {
@@ -80,7 +81,7 @@ export function WhyReasons() {
               src={reason.photo}
               alt=""
               fill
-              sizes="(max-width: 1024px) 90vw, 600px"
+              sizes={at2x("(max-width: 1024px) 90vw, 600px")}
               className={cn(
                 "object-cover transition-[opacity,transform] duration-700 ease-out",
                 i === active ? "scale-100 opacity-100" : "scale-105 opacity-0",
