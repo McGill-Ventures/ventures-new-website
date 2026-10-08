@@ -104,19 +104,18 @@ export function Hero() {
                     pauseOnHover={false}
                     className="h-full"
                   >
-                    {column.map((src, j) => (
+                    {column.map((src) => (
                       <div
                         key={src}
-                        className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl"
+                        // Phones hold the rail still and show two tiles, so the rest never load.
+                        className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl max-md:[&:nth-child(n+4)]:hidden"
                       >
                         <Image
                           src={src}
                           alt=""
                           fill
-                          sizes="(max-width: 639px) 60vw, 600px"
+                          sizes="(max-width: 767px) 40vw, 310px"
                           className="object-cover"
-                          priority={j < 2}
-                          loading={j < 2 ? undefined : "eager"}
                         />
                       </div>
                     ))}
