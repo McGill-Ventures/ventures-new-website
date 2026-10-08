@@ -6,6 +6,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { NavigationProps } from "@/types";
 import { Icon } from "@/components/ui";
+import { syncNav } from "@/lib/navSync";
 
 type NavLink = { href: string; label: string };
 
@@ -28,9 +29,7 @@ const ROLL =
 
 export default function Navigation({ currentPage, darkOver }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  // Dark chrome only while the bar overlaps one of the darkOver sections.
-  const [dark, setDark] = useState(Boolean(darkOver));
+  const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
   // inert blurs focus to <body>, so hand it back to the control that opened it.
@@ -39,35 +38,8 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
     toggleRef.current?.focus();
   }, []);
 
-  useEffect(() => {
-    // Separate thresholds: one would let scroll jitter re-trigger endlessly.
-    const onScroll = () =>
-      setIsScrolled((prev) => (prev ? window.scrollY > 8 : window.scrollY > 64));
-    // Seeds off the exit threshold; reusing onScroll leaves an 8-64 dead zone.
-    setIsScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const sections = darkOver ? [...document.querySelectorAll(darkOver)] : [];
-    if (!sections.length) return;
-    // 64 is the condensed bar: dark while a dark section spans its bottom edge.
-    const update = () =>
-      setDark(
-        sections.some((section) => {
-          const { top, bottom } = section.getBoundingClientRect();
-          return top <= 64 && bottom > 64;
-        }),
-      );
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, [darkOver]);
+  // The layout's inline copy covers the first load; this covers client navigations.
+  useEffect(() => syncNav(headerRef.current), []);
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
@@ -85,16 +57,22 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
       {/* Header is fixed, not sticky: condensing must not change document
           height, or scroll anchoring shifts scrollY and oscillates. */}
       <div aria-hidden className="h-20" />
+      {/* data-scrolled and data-on-dark come from syncNav, not React state, so the
+          bar is right before hydration. data-on-dark starts on for dark-topped pages. */}
       <header
+        ref={headerRef}
+        data-nav=""
+        data-dark-over={darkOver}
+        data-on-dark={darkOver ? "" : undefined}
+        suppressHydrationWarning
         className={cn(
           // Only what actually changes: transition-all also interpolated the
           // 0->1px bottom border out of the UA's near-white default colour,
           // which drew a white hairline across the bar in both directions.
-          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-500 ease-out max-md:transition-none",
-          isScrolled && "backdrop-blur-xl backdrop-saturate-150",
-          isScrolled && dark && "border-white/10 bg-black/55 shadow-[0_8px_30px_-14px_rgba(0,0,0,0.6)]",
-          isScrolled && !dark && "border-purple-950/10 shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)]",
-          !isScrolled && "border-transparent"
+          "group/nav fixed inset-x-0 top-0 z-50 border-b border-transparent transition-[background-color,border-color,box-shadow] duration-500 ease-out max-md:transition-none",
+          "data-scrolled:backdrop-blur-xl data-scrolled:backdrop-saturate-150",
+          "data-scrolled:data-on-dark:border-white/10 data-scrolled:data-on-dark:bg-black/55 data-scrolled:data-on-dark:shadow-[0_8px_30px_-14px_rgba(0,0,0,0.6)]",
+          "data-scrolled:not-data-on-dark:border-purple-950/10 data-scrolled:not-data-on-dark:shadow-[0_8px_30px_-14px_rgba(88,28,135,0.35)]"
         )}
       >
         {/* The light wash is its own layer so it can fade when the bar leaves a
@@ -103,19 +81,14 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
           aria-hidden
           className={cn(
             "pointer-events-none absolute inset-0 -z-10 transition-opacity duration-500 ease-out max-md:transition-none",
-            isScrolled
-              ? "bg-gradient-to-b from-white/85 to-purple-50/85"
-              : // Matches the top of every hero's wash, so the bar leaves no seam.
-                "bg-gradient-to-b from-white to-purple-50",
-            dark ? "opacity-0" : "opacity-100"
+            // Unscrolled, it matches the top of every hero's wash, so the bar leaves no seam.
+            "bg-gradient-to-b from-white to-purple-50 group-data-scrolled/nav:from-white/85 group-data-scrolled/nav:to-purple-50/85",
+            "group-data-on-dark/nav:opacity-0"
           )}
         />
         <nav
           aria-label="Main"
-          className={cn(
-            "mx-auto flex max-w-7xl items-center gap-6 px-6 transition-[height] duration-500 ease-out max-md:transition-none xl:gap-10",
-            isScrolled ? "h-16" : "h-20"
-          )}
+          className="mx-auto flex h-20 max-w-7xl items-center gap-6 px-6 transition-[height] duration-500 ease-out group-data-scrolled/nav:h-16 max-md:transition-none xl:gap-10"
         >
           <Link
             href="/"
@@ -130,8 +103,8 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
               className={cn(
                 // shrink-0: without it flex compresses the wordmark to absorb overflow
                 "w-auto shrink-0 object-contain transition-[height,opacity] duration-500 ease-out max-md:transition-none",
-                isScrolled ? "h-5 xl:h-7" : "h-6 xl:h-8",
-                dark && "opacity-0"
+                "h-6 group-data-scrolled/nav:h-5 xl:h-8 xl:group-data-scrolled/nav:h-7",
+                "group-data-on-dark/nav:opacity-0"
               )}
               sizes="(max-width: 640px) 210px, 260px"
               priority
@@ -144,10 +117,7 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
               aria-hidden
               width={2576}
               height={302}
-              className={cn(
-                "absolute inset-0 size-full object-contain brightness-0 invert transition-opacity duration-500 ease-out max-md:transition-none",
-                dark ? "opacity-100" : "opacity-0"
-              )}
+              className="absolute inset-0 size-full object-contain opacity-0 brightness-0 invert transition-opacity duration-500 ease-out group-data-on-dark/nav:opacity-100 max-md:transition-none"
               sizes="(max-width: 640px) 210px, 260px"
             />
           </Link>
@@ -160,10 +130,7 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
                   key={href}
                   href={href}
                   aria-current={isActive ? "page" : undefined}
-                  className={cn(
-                    "group relative px-1 py-2 font-heading text-lg font-semibold whitespace-nowrap transition-colors duration-500 ease-out xl:px-2",
-                    dark ? "text-white" : "text-purple-900"
-                  )}
+                  className="group relative px-1 py-2 font-heading text-lg font-semibold whitespace-nowrap text-purple-900 transition-colors duration-500 ease-out group-data-on-dark/nav:text-white xl:px-2"
                 >
                   {/* leading-8 keeps descenders clear of the clip edge */}
                   <span className="relative block overflow-hidden leading-8">
@@ -199,10 +166,7 @@ export default function Navigation({ currentPage, darkOver }: NavigationProps) {
           <button
             ref={toggleRef}
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-            className={cn(
-              "ml-auto rounded-xl p-2.5 transition-colors duration-500 max-md:transition-none lg:hidden",
-              dark ? "text-white hover:bg-white/10" : "text-purple-950 hover:bg-purple-100"
-            )}
+            className="ml-auto rounded-xl p-2.5 text-purple-950 transition-colors duration-500 group-data-on-dark/nav:text-white hover:bg-purple-100 group-data-on-dark/nav:hover:bg-white/10 max-md:transition-none lg:hidden"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"

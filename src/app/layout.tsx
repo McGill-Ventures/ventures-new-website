@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Manrope, Plus_Jakarta_Sans, Hanken_Grotesk } from "next/font/google";
 // Every font and stylesheet enters here. <Link> prefetch preloads route-level ones on every page that links to the route.
 import "./globals.css";
+import { syncNav } from "@/lib/navSync";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -61,6 +62,8 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} ${plusJakarta.variable} ${hankenGrotesk.variable} font-sans antialiased`}>
         {children}
+        {/* Inline, so the nav reacts to scrolling before the page's JS arrives. */}
+        <script dangerouslySetInnerHTML={{ __html: `(${syncNav})()` }} />
       </body>
     </html>
   );
