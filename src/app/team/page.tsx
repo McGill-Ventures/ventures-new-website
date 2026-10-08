@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ArrowDown } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { MemberCard } from "@/components/team/MemberCard";
@@ -118,7 +119,7 @@ export default function Team() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="team" className="relative -mt-20 overflow-clip bg-black text-white">
-        <section className="relative flex min-h-[64dvh] flex-col justify-end px-6 pt-28 pb-16 md:px-12 lg:px-24">
+        <section className="relative flex min-h-[100dvh] flex-col justify-end px-6 pt-28 pb-24 md:px-12 lg:px-24">
           <FacesWall faces={FACES} />
           <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black via-black/70 via-35% to-black/30" />
           <div aria-hidden className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black to-transparent" />
@@ -140,6 +141,17 @@ export default function Team() {
               We&apos;re kind, we&apos;re open, and we work with conviction.
             </Reveal>
           </div>
+
+          <Reveal
+            as="p"
+            trigger="load"
+            variant="fade"
+            delay={900}
+            className="absolute inset-x-0 bottom-8 flex items-center justify-center gap-2 font-heading text-sm text-white/70"
+          >
+            Scroll
+            <ArrowDown aria-hidden className="size-4" />
+          </Reveal>
         </section>
 
         <div className="relative px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
