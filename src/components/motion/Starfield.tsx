@@ -42,7 +42,8 @@ function StillStars({ count }: { count: number }) {
   }, [count]);
 
   return (
-    <svg className="size-full">
+    // Server-rendered so phones have stars at first paint. Hidden where the live field runs.
+    <svg className="size-full md:motion-safe:hidden">
       {stars.map((star, i) => (
         <circle
           key={i}
@@ -64,13 +65,13 @@ export function Starfield({
   comets = true,
   className,
 }: Props) {
-  const [mode, setMode] = useState<"live" | "still">();
+  const [live, setLive] = useState(false);
 
   useEffect(() => {
-    const still = window.matchMedia(
-      "(max-width: 767px), (prefers-reduced-motion: reduce)",
-    ).matches;
-    setMode(still ? "still" : "live");
+    setLive(
+      !window.matchMedia("(max-width: 767px), (prefers-reduced-motion: reduce)")
+        .matches,
+    );
   }, []);
 
   return (
@@ -78,10 +79,8 @@ export function Starfield({
       aria-hidden
       className={cn("pointer-events-none absolute inset-0", className)}
     >
-      {mode === "still" && <StillStars count={count} />}
-      {mode === "live" && (
-        <StarfieldLive count={count} speed={speed} comets={comets} />
-      )}
+      <StillStars count={count} />
+      {live && <StarfieldLive count={count} speed={speed} comets={comets} />}
     </div>
   );
 }
