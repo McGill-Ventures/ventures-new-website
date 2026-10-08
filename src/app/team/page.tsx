@@ -119,24 +119,28 @@ export default function Team() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="team" className="relative -mt-20 overflow-clip bg-black text-white">
-        <section className="relative flex min-h-[100dvh] flex-col justify-end px-6 pt-28 pb-24 md:px-12 lg:px-24">
+        <section className="relative flex min-h-[100dvh] flex-col items-center justify-center px-6 pt-28 pb-24 text-center md:px-12 lg:px-24">
           <FacesWall faces={FACES} />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black via-black/70 via-35% to-black/30" />
-          <div aria-hidden className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black to-transparent" />
+          {/* Darkest behind the words, lighter toward the edges so the faces frame them. */}
           <div
             aria-hidden
-            className="animate-orb pointer-events-none absolute -bottom-48 -left-48 size-[36rem] rounded-full bg-purple-700/30 blur-3xl"
+            className="absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_center,rgba(0,0,0,0.88),rgba(0,0,0,0.6)_55%,rgba(0,0,0,0.3))]"
           />
+          <div aria-hidden className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black to-transparent" />
+          <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
+          <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <div className="animate-orb size-[34rem] rounded-full bg-purple-700/25 blur-3xl" />
+          </div>
 
-          <div className="relative mx-auto w-full max-w-7xl">
-            <h1 className="font-display text-[clamp(3rem,9vw,7.5rem)] leading-[1.05]">
+          <div className="relative mx-auto w-full max-w-3xl">
+            <h1 className="font-display text-[clamp(4rem,14vw,10rem)] leading-[0.95]">
               <SplitText text="Team" trigger="load" delay={150} />
             </h1>
             <Reveal
               as="p"
               trigger="load"
               delay={450}
-              className="mt-6 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
+              className="mx-auto mt-6 max-w-xl font-body text-lg text-balance text-purple-100/80 md:text-xl"
             >
               We&apos;re kind, we&apos;re open, and we work with conviction.
             </Reveal>
