@@ -327,6 +327,27 @@ a[href],
   }
 }
 
+/* Hero "Scroll" cue: fades out over the first stretch of scrolling, like the
+   About hero's. Hidden where scroll-linked animation isn't supported. */
+.scroll-cue {
+  opacity: 0;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-cue {
+      opacity: 1;
+      animation: scroll-cue-out linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 25vh;
+    }
+  }
+}
+
+@keyframes scroll-cue-out {
+  to { opacity: 0; }
+}
+
 /* Slow-breathing background glow. */
 @keyframes orb-drift {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); }

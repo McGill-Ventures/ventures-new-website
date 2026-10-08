@@ -53,16 +53,18 @@ export default function Team() {
             </Reveal>
           </div>
 
-          <Reveal
-            as="p"
-            trigger="load"
-            variant="fade"
-            delay={900}
-            className="absolute inset-x-0 bottom-8 flex items-center justify-center gap-2 font-heading text-sm text-white/70"
-          >
-            Scroll
-            <ArrowDown aria-hidden className="size-4" />
-          </Reveal>
+          <div aria-hidden className="scroll-cue absolute inset-x-0 bottom-8">
+            <Reveal
+              as="p"
+              trigger="load"
+              variant="fade"
+              delay={900}
+              className="flex items-center justify-center gap-2 font-heading text-sm text-white/70"
+            >
+              Scroll
+              <ArrowDown className="size-4" />
+            </Reveal>
+          </div>
         </section>
 
         <div className="relative px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
