@@ -26,7 +26,7 @@ export default function Team() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="team" className="relative -mt-20 overflow-clip bg-black text-white">
-        <section className="relative flex min-h-[100dvh] flex-col items-center justify-center px-6 pt-28 pb-24 text-center md:px-12 lg:px-24">
+        <section className="relative flex min-h-[100svh] flex-col items-center justify-center px-6 pt-28 pb-24 text-center md:px-12 lg:px-24">
           <FacesWall faces={FACES} />
           {/* Darkest behind the words, lighter toward the edges so the faces frame them. */}
           <div
