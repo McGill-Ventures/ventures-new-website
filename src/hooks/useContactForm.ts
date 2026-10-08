@@ -2,23 +2,21 @@ import { useState, useCallback } from 'react';
 import { ContactFormData, APIResponse } from '@/types';
 import { isValidEmail } from '@/lib/utils';
 
-interface UseContactFormOptions {
-  onSuccess?: () => void;
-  onError?: (error: string) => void;
-}
+const GENERIC_ERROR = 'Something went wrong. Please try again later.';
 
 interface UseContactFormReturn {
   formData: ContactFormData;
   errors: Partial<ContactFormData>;
   isSubmitting: boolean;
   submitStatus: 'idle' | 'success' | 'error';
+  errorMessage: string;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   handleSubmit: (e: React.FormEvent) => Promise<void>;
   resetForm: () => void;
   validateForm: () => boolean;
 }
 
-export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {}): UseContactFormReturn {
+export function useContactForm(): UseContactFormReturn {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -29,6 +27,7 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const validateForm = useCallback((): boolean => {
     const newErrors: Partial<ContactFormData> = {};
@@ -77,17 +76,19 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
     });
     setErrors({});
     setSubmitStatus('idle');
+    setErrorMessage('');
   }, []);
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
-    setSubmitStatus('idle');
 
     try {
       const response = await fetch('/api/contact', {
@@ -101,26 +102,30 @@ export function useContactForm({ onSuccess, onError }: UseContactFormOptions = {
       const result: APIResponse = await response.json();
 
       if (response.ok && result.success) {
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setErrors({});
         setSubmitStatus('success');
-        resetForm();
-        onSuccess?.();
       } else {
+        // Only validation and rate-limit responses carry text meant for the
+        // visitor. Anything else (config, SMTP, unexpected) stays generic.
+        const userFacing = response.status === 400 || response.status === 429;
         setSubmitStatus('error');
-        onError?.(result.error || 'Failed to send message');
+        setErrorMessage(userFacing && result.error ? result.error : GENERIC_ERROR);
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
-      onError?.(error instanceof Error ? error.message : 'Failed to send message');
+      setErrorMessage(GENERIC_ERROR);
     } finally {
       setIsSubmitting(false);
     }
-  }, [formData, validateForm, resetForm, onSuccess, onError]);
+  }, [formData, validateForm]);
 
   return {
     formData,
     errors,
     isSubmitting,
     submitStatus,
+    errorMessage,
     handleInputChange,
     handleSubmit,
     resetForm,
