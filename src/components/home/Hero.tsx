@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui";
 import { Marquee, Reveal, SplitText, Starfield } from "@/components/motion";
+import { at2x } from "@/lib/photoSizes";
 
 const RAILS = [
   [
@@ -114,7 +115,7 @@ export function Hero() {
                           src={src}
                           alt=""
                           fill
-                          sizes="(max-width: 767px) 40vw, 310px"
+                          sizes={at2x("(max-width: 767px) 40vw, 310px")}
                           className="object-cover"
                         />
                       </div>

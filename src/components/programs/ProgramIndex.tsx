@@ -6,6 +6,7 @@ import { Reveal } from "@/components/motion";
 import { Stamp } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import type { ProgramData } from "@/app/programs/page";
+import { at2x } from "@/lib/photoSizes";
 
 type Props = {
   programs: Pick<ProgramData, "id" | "name" | "photo" | "photoPosition" | "status">[];
@@ -78,7 +79,7 @@ export function ProgramIndex({ programs }: Props) {
                 src={program.photo}
                 alt=""
                 fill
-                sizes="(max-width: 1279px) 45vw, 600px"
+                sizes={at2x("(max-width: 1279px) 45vw, 600px")}
                 className={cn(
                   "object-cover transition-[opacity,scale] duration-700 ease-out",
                   i === active ? "opacity-100" : "scale-105 opacity-0",

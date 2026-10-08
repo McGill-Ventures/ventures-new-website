@@ -3,6 +3,7 @@ import { ArrowUpRight, CalendarDays, MapPin } from "lucide-react";
 import { Reveal } from "@/components/motion";
 import { Button, Tag } from "@/components/ui";
 import type { EventData } from "@/app/events/page";
+import { at2x } from "@/lib/photoSizes";
 
 const DATE_FORMAT = new Intl.DateTimeFormat("en-US", {
   weekday: "long",
@@ -23,7 +24,7 @@ export function UpcomingEvent({ event }: { event: EventData }) {
             src={event.coverImage}
             alt=""
             fill
-            sizes="(max-width: 767px) 100vw, 50vw"
+            sizes={at2x("(max-width: 767px) 100vw, 50vw")}
             className="object-cover"
             style={{ objectPosition: event.imagePosition ?? "center" }}
           />
