@@ -21,3 +21,7 @@ test("aspect-ratio conditions and vh lengths pass through", () => {
       "(min-resolution: 3dppx) calc(100vw * 2 / 3), 100vw",
   );
 });
+
+test("a comma inside a function throws instead of splitting the entry", () => {
+  assert.throws(() => at2x("(max-width: 767px) min(100vw, 600px), 50vw"), /contains a comma/);
+});

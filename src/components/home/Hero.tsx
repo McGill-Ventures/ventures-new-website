@@ -108,7 +108,7 @@ export function Hero() {
                     {column.map((src) => (
                       <div
                         key={src}
-                        // Phones hold the rail still and show two tiles, so the rest never load.
+                        // Phones hold the rail still and show two tiles, so past a spare third none load.
                         className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl max-md:[&:nth-child(n+4)]:hidden"
                       >
                         <Image
