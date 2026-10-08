@@ -56,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} ${plusJakarta.variable} ${hankenGrotesk.variable} font-sans antialiased`}>
