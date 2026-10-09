@@ -21,14 +21,6 @@ export default function TeamPage() {
   return (
     <>
       <div data-team-page="">
-      <svg width="0" height="0" aria-hidden="true" style={{ position: 'absolute', pointerEvents: 'none' }}>
-        <filter id="gs-watercolor" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.013" numOctaves="4" seed="7" result="noise">
-          </feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="42" xChannelSelector="R" yChannelSelector="G">
-          </feDisplacementMap>
-        </filter>
-      </svg>
       <Nav active={"team"} ctaHref={"mailto:hello.growthstudio@gmail.com"} />
       <main>
         <header className="gs-wrap gs-team-head" style={{ position: 'relative', zIndex: '1', maxWidth: '1200px', margin: '0 auto', padding: '80px 32px 20px' }}>

@@ -34,11 +34,6 @@ html:has(.gs-root) { scroll-behavior: smooth; }
 @keyframes gs-marquee { to{transform:translateX(-50%)} }
 @keyframes gs-pulse   { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.08);opacity:.85} }
 @keyframes gs-burst   { 0%,100%{transform:scale(1) rotate(0deg)} 50%{transform:scale(1.06) rotate(6deg)} }
-@keyframes gs-wc-morph {
-  0%,100% { border-radius: 48% 52% 43% 57% / 53% 45% 55% 47%; }
-  33%     { border-radius: 57% 43% 52% 48% / 45% 55% 46% 54%; }
-  66%     { border-radius: 43% 57% 49% 51% / 56% 44% 58% 42%; }
-}
 
 /* The pages animate inline, so only !important can stop them on phones. */
 @media (max-width: 767px) {
