@@ -52,7 +52,7 @@ export default function TeamPage() {
                 <Image src="/growth-studio/anthony-melki-headshot.jpg" alt="Anthony Melki headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Anthony Melki</h3>
-              <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>5th Year BEng, Mechanical Engineering<br />Favourite productivity tool: n8n</p>
+              <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BEng, Mechanical Engineering<br />Favourite productivity tool: n8n</p>
               <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>PRODUCTSHOP</p>
             </a>
             <a href="https://www.linkedin.com/in/sophia-mahiout-153785354/" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="180" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
@@ -77,8 +77,8 @@ export default function TeamPage() {
                     <Image src="/growth-studio/ronardy-abellard-headshot.jpg" alt="Ronardy Abellard headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Ronardy Abellard</h3>
-                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BEng, Materials Engineering<br />Favourite productivity tool: Claude Code</p>
-                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>McGILL INNOVATION FUND</p>
+                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BEng, Materials Engineering<br />Favourite productivity tool: Claude</p>
+                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>MCGILL INNOVATION FUND</p>
                 </a>
                 <a href="https://www.linkedin.com/in/joeymarsh9/" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="90" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
                   <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
@@ -87,7 +87,7 @@ export default function TeamPage() {
                     <Image src="/growth-studio/joey-marsh-headshot.jpg" alt="Joey Marsh headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Joey Marsh</h3>
-                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>2nd Year BCom, Finance<br />Favourite productivity tool: Claude Chat</p>
+                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>2nd Year BCom, Finance<br />Favourite productivity tool: Claude Code</p>
                   <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>LUNEA CAPITAL</p>
                 </a>
               </div>
