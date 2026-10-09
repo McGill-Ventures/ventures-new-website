@@ -119,7 +119,7 @@ export default function TeamPage() {
                   </div>
                   <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Gael González</h3>
                   <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BCom, Strategic Management & Finance<br />Favourite productivity tool: Opennote</p>
-                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>CO-PRESIDENT (McGILL VENTURES)<br />FRONT ROW VENTURES</p>
+                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>CO-PRESIDENT (MCGILL VENTURES)<br />FRONT ROW VENTURES</p>
                 </a>
                 <a href="https://ca.linkedin.com/in/delfina-lian-guan" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="90" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
                   <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
