@@ -184,6 +184,7 @@ html:has(.gs-root) { scroll-behavior: smooth; }
   .gs-root #directors > [data-team-row] { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
   /* 2-up cards get a little more room than the 3-up directors */
   .gs-root .gs-team-group [data-photo] { width: 112px !important; height: 112px !important; }
+  .gs-root [data-photo-placeholder] { font-size: 32px !important; }
   .gs-root .gs-team-group [data-team-card] h3 { font-size: 16px !important; }
   .gs-root .gs-team-group [data-team-card] p { font-size: 12.5px !important; }
   .gs-root .gs-team-group [data-team-card] p:last-child { font-size: 11px !important; }
