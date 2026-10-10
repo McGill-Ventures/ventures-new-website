@@ -1,37 +1,21 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import { useMemo, type CSSProperties } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/motion";
 import { Stamp } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import type { ProgramData } from "@/app/programs/page";
 
 type Props = {
   programs: Pick<ProgramData, "id" | "name" | "photo" | "photoPosition" | "status">[];
 };
 
-/** Desktop only: names pinned beside the program being read, which is the
- *  last section to have reached the middle of the viewport. Measured on every
- *  scroll rather than observed, so a jump past a whole section still lands on
- *  the right one. */
+/** Desktop only: names pinned beside the program being read. */
 export function ProgramIndex({ programs }: Props) {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const sections = programs.map((p) => document.getElementById(p.id));
-    const update = () => {
-      const middle = window.innerHeight / 2;
-      setActive(Math.max(0, sections.findLastIndex((s) => s && s.getBoundingClientRect().top <= middle)));
-    };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, [programs]);
+  const ids = useMemo(() => programs.map((p) => p.id), [programs]);
+  const active = useActiveSection(ids);
 
   const [kicker, headline] = programs[active].status;
 

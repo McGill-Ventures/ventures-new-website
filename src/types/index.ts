@@ -10,32 +10,23 @@ export interface NavigationProps {
 
 export interface TeamMember {
   name: string;
+  /** Their title within this team only. */
   role: string;
-  experience?: string;
-  bio?: string;
-  education?: string;
-  skills?: string[];
-  specialization?: string;
   image?: string;
   linkedinUrl?: string;
 }
 
-export interface ExecutiveTeamMember extends TeamMember {
-  bio: string;
-  education: string;
+export interface TeamGroup {
+  title?: string;
+  members: TeamMember[];
 }
 
-export interface AnalystTeamMember extends TeamMember {
-  specialization?: string;
-}
-
-export interface DeveloperTeamMember extends TeamMember {
-  skills?: string[];
-  bio?: string;
-}
-
-export interface GovernanceTeamMember extends TeamMember {
-  organization?: string;
+export interface Team {
+  /** Also the section's anchor, e.g. `/team#fund`. */
+  id: string;
+  name: string;
+  intro?: string;
+  groups: TeamGroup[];
 }
 
 export interface ContactFormData {
@@ -49,19 +40,6 @@ export interface APIResponse<T = Record<string, unknown>> {
   success: boolean;
   data?: T;
   error?: string;
-}
-
-export type TeamType = 'founders' | 'executive' | 'fund' | 'finance' | 'analyst' | 'dev' | 'htil';
-
-export interface TeamSectionProps {
-  activeTeam: TeamType;
-  setActiveTeam: (team: TeamType) => void;
-}
-
-export interface TeamCardProps {
-  member: TeamMember;
-  index: number;
-  variant?: 'executive' | 'analyst' | 'developer' | 'head';
 }
 
 export interface AnimationProps {
@@ -79,12 +57,6 @@ export interface PageProps {
   params?: Record<string, string>;
   searchParams?: Record<string, string | string[] | undefined>;
 }
-
-export const TEAM_TYPES = {
-  EXECUTIVE: 'executive' as const,
-  ANALYST: 'analyst' as const,
-  DEVELOPER: 'dev' as const,
-} as const;
 
 export const ANIMATION_DELAYS = {
   SHORT: 0.1,
