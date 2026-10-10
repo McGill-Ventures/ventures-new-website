@@ -40,8 +40,8 @@ export function TeamIndex({ teams }: Props) {
                   href={`#${team.id}`}
                   aria-current={on ? "true" : undefined}
                   className={cn(
-                    "block py-3 font-display text-base whitespace-nowrap transition-[color,translate] duration-500 lg:py-0 lg:text-2xl lg:leading-tight lg:whitespace-normal",
-                    on ? "text-white lg:translate-x-1.5" : "text-white/45 hover:text-white/70",
+                    "block origin-left py-3 font-display text-base whitespace-nowrap transition-[color,translate,scale] duration-500 lg:py-0 lg:text-2xl lg:leading-tight lg:whitespace-normal",
+                    on ? "text-white lg:translate-x-1.5 lg:scale-110" : "text-white/30 hover:text-white/60",
                   )}
                 >
                   {team.name}
