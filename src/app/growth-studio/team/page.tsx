@@ -21,14 +21,6 @@ export default function TeamPage() {
   return (
     <>
       <div data-team-page="">
-      <svg width="0" height="0" aria-hidden="true" style={{ position: 'absolute', pointerEvents: 'none' }}>
-        <filter id="gs-watercolor" x="-80%" y="-80%" width="260%" height="260%" colorInterpolationFilters="sRGB">
-          <feTurbulence type="fractalNoise" baseFrequency="0.013" numOctaves="4" seed="7" result="noise">
-          </feTurbulence>
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="42" xChannelSelector="R" yChannelSelector="G">
-          </feDisplacementMap>
-        </filter>
-      </svg>
       <Nav active={"team"} ctaHref={"mailto:hello.growthstudio@gmail.com"} />
       <main>
         <header className="gs-wrap gs-team-head" style={{ position: 'relative', zIndex: '1', maxWidth: '1200px', margin: '0 auto', padding: '80px 32px 20px' }}>
@@ -60,7 +52,7 @@ export default function TeamPage() {
                 <Image src="/growth-studio/anthony-melki-headshot.jpg" alt="Anthony Melki headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Anthony Melki</h3>
-              <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>5th Year BEng, Mechanical Engineering<br />Favourite productivity tool: n8n</p>
+              <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BEng, Mechanical Engineering<br />Favourite productivity tool: n8n</p>
               <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>PRODUCTSHOP</p>
             </a>
             <a href="https://www.linkedin.com/in/sophia-mahiout-153785354/" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="180" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
@@ -74,7 +66,7 @@ export default function TeamPage() {
               <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>180 DEGREES CONSULTING</p>
             </a>
           </div>
-          <div className="gs-grid gs-team-groups" data-reveal="" style={{ margin: '80px 0 0', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '16px', paddingBottom: '72px' }}>
+          <div className="gs-grid gs-team-groups" data-reveal="" style={{ margin: '80px 0 0', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', columnGap: '16px', rowGap: '64px', paddingBottom: '72px' }}>
             <div className="gs-team-group" style={{ gridColumn: 'span 2' }}>
               <p className="gs-team-label" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 32px', paddingLeft: '28px' }}>CONSULTANTS</p>
               <div data-team-row="" style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }}>
@@ -85,8 +77,8 @@ export default function TeamPage() {
                     <Image src="/growth-studio/ronardy-abellard-headshot.jpg" alt="Ronardy Abellard headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Ronardy Abellard</h3>
-                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BEng, Materials Engineering<br />Favourite productivity tool: Claude Code</p>
-                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>McGILL INNOVATION FUND</p>
+                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BEng, Materials Engineering<br />Favourite productivity tool: Claude</p>
+                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>MCGILL INNOVATION FUND</p>
                 </a>
                 <a href="https://www.linkedin.com/in/joeymarsh9/" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="90" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
                   <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
@@ -95,15 +87,31 @@ export default function TeamPage() {
                     <Image src="/growth-studio/joey-marsh-headshot.jpg" alt="Joey Marsh headshot" width={800} height={800} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Joey Marsh</h3>
-                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>2nd Year BCom, Finance<br />Favourite productivity tool: Claude Chat</p>
+                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>2nd Year BCom, Finance<br />Favourite productivity tool: Claude Code</p>
                   <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>LUNEA CAPITAL</p>
                 </a>
               </div>
             </div>
             <div className="gs-team-group">
-              <p className="gs-team-label" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 32px', paddingLeft: '28px' }}>ADVISORS</p>
+              <p className="gs-team-label" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 32px', paddingLeft: '28px' }}>PARTNERSHIPS &amp; OUTREACH</p>
               <div data-team-row="" style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr', gap: '16px' }}>
-                <a href="https://www.linkedin.com/in/gaelhgonzalez/" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="180" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
+                {/* No headshot yet: initials placeholder until one arrives. */}
+                <a href="https://www.linkedin.com/in/maxwvhauser" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="180" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
+                  <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
+                  </span>
+                  <div data-photo="" data-photo-placeholder="" role="img" aria-label="Max Hauser (photo coming soon)" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(58,31,176,.08)', color: 'var(--purple,#3a1fb0)', fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '44px', letterSpacing: '.02em' }}>
+                    MH
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Max Hauser</h3>
+                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>2nd Year BCom, Honours Economics<br />Favourite productivity tool: SalesQL</p>
+                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>STRATEGIC VENTURES LLC</p>
+                </a>
+              </div>
+            </div>
+            <div className="gs-team-group" style={{ gridColumn: 'span 2' }}>
+              <p className="gs-team-label" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'var(--purple,#3a1fb0)', margin: '0 0 32px', paddingLeft: '28px' }}>ADVISORS</p>
+              <div data-team-row="" style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }}>
+                <a href="https://www.linkedin.com/in/gaelhgonzalez/" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="0" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
                   <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
                   </span>
                   <div data-photo="" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)' }}>
@@ -111,7 +119,17 @@ export default function TeamPage() {
                   </div>
                   <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Gael González</h3>
                   <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BCom, Strategic Management & Finance<br />Favourite productivity tool: Opennote</p>
-                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>CO-PRESIDENT (McGILL VENTURES)<br />FRONT ROW VENTURES</p>
+                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>CO-PRESIDENT (MCGILL VENTURES)<br />FRONT ROW VENTURES</p>
+                </a>
+                <a href="https://ca.linkedin.com/in/delfina-lian-guan" target="_blank" rel="noopener" data-team-card="" data-reveal="" data-delay="90" style={{ position: 'relative', isolation: 'isolate', textDecoration: 'none', color: 'inherit', display: 'block', padding: '36px 28px 32px', borderRadius: '14px' }}>
+                  <span data-splash="" aria-hidden="true" style={{ position: 'absolute', inset: '-26%', zIndex: '-1', opacity: '0', pointerEvents: 'none' }}>
+                  </span>
+                  <div data-photo="" style={{ width: '152px', height: '152px', borderRadius: '50%', overflow: 'hidden', marginBottom: '22px', filter: 'grayscale(1)', transition: 'filter .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)' }}>
+                    <Image src="/growth-studio/delfina-guan-headshot.jpg" alt="Delfina Guan headshot" width={400} height={400} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '600', fontSize: '20px', margin: '0 0 6px' }}>Delfina Guan</h3>
+                  <p style={{ fontSize: '14.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '0 0 10px' }}>4th Year BCom, Finance, Accounting &amp; Business Analytics<br />Favourite productivity tool: Gemini Notebook</p>
+                  <p style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.04em', color: 'var(--purple,#3a1fb0)', margin: '0' }}>INTERNAL ADVISOR<br />PwC CANADA</p>
                 </a>
               </div>
             </div>

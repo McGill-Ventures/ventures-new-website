@@ -170,7 +170,7 @@ const PROGRAMS: ProgramData[] = [
     links: [
       { label: "Visit Growth Studio", href: "/growth-studio" },
       {
-        label: "Apply for Fall 2026",
+        label: "Apply to our next cohort",
         href: "https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform",
       },
     ],

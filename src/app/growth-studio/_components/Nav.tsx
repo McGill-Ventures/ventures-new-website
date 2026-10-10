@@ -117,7 +117,7 @@ export default function Nav({
                 color: "rgba(36,20,84,.55)",
               }}
             >
-              POWERED BY McGILL VENTURES
+              POWERED BY MCGILL VENTURES
             </span>
           </span>
         </Link>
