@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useSyncExternalStore, type ReactNode } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
+import Image, { getImageProps } from "next/image";
 import { Reveal } from "@/components/motion";
 import { Stamp } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import type { Program } from "@/app/programs/page";
 
-type Row = Pick<Program, "id" | "name" | "photo" | "length" | "hours" | "applications">;
+type Row = Pick<Program, "id" | "name" | "photo" | "length" | "hours" | "reopens">;
 
 const FINE = "(pointer: fine)";
 const subscribe = (onChange: () => void) => {
@@ -16,13 +16,41 @@ const subscribe = (onChange: () => void) => {
   return () => query.removeEventListener("change", onChange);
 };
 
+/** Drawn on a canvas, which Largest Contentful Paint ignores, so a hover never counts as the page's main image. */
+function HoverPhoto({ photo, className }: { photo: Row["photo"]; className: string }) {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const { src, position = "50% 50%" } = photo;
+
+  useEffect(() => {
+    const canvas = ref.current!;
+    const img = new window.Image();
+    img.fetchPriority = "low";
+    img.src = getImageProps({ src, alt: "", width: 960, height: 540 }).props.src;
+    const [x, y] = position.split(" ").map((v) => parseFloat(v) / 100);
+    // object-fit: cover with object-position, by hand.
+    const draw = () => {
+      canvas.width = canvas.clientWidth * devicePixelRatio;
+      canvas.height = canvas.clientHeight * devicePixelRatio;
+      const scale = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
+      const w = img.naturalWidth * scale;
+      const h = img.naturalHeight * scale;
+      canvas.getContext("2d")!.drawImage(img, (canvas.width - w) * x, (canvas.height - h) * y, w, h);
+    };
+    const resize = new ResizeObserver(draw);
+    img.onload = () => resize.observe(canvas);
+    return () => resize.disconnect();
+  }, [src, position]);
+
+  return <canvas ref={ref} className={className} />;
+}
+
 // Name, length, time per week, applications, then a thumbnail where there is no hover.
 const COLS =
   "lg:grid-cols-[minmax(0,1fr)_6.5rem_7.5rem_9rem] lg:pointer-coarse:grid-cols-[minmax(0,1fr)_6.5rem_7.5rem_9rem_9rem]";
 
 function Status({ row, delay }: { row: Row; delay: number }) {
-  if (row.applications !== "Open") {
-    return <span className="font-heading text-white/55">{row.applications}</span>;
+  if (row.reopens) {
+    return <span className="font-heading text-white/55">Reopens {row.reopens}</span>;
   }
   return (
     <>
@@ -50,19 +78,14 @@ export function ProgramBoard({ programs, children }: { programs: Row[]; children
           className="pointer-events-none absolute inset-x-0 bottom-0 aspect-video [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_80%,transparent)]"
         >
           {programs.map((row) => (
-            <Image
+            <HoverPhoto
               key={row.id}
-              src={row.photo.src}
-              alt=""
-              fill
-              sizes="100vw"
-              fetchPriority="low"
+              photo={row.photo}
               // The outgoing photo lingers a beat, so moving between rows never dips to black.
               className={cn(
-                "object-cover transition-[opacity,scale] duration-700 ease-out",
+                "absolute inset-0 size-full transition-[opacity,scale] duration-700 ease-out",
                 row.id === active ? "opacity-100" : "opacity-0 delay-150 motion-safe:scale-[1.04]",
               )}
-              style={{ objectPosition: row.photo.position }}
             />
           ))}
           <div

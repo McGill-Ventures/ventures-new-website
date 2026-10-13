@@ -24,8 +24,8 @@ export interface Program {
   /** Also the chapter's anchor, e.g. `/programs#analyst`. */
   id: string;
   name: string;
-  /** "Open", or when the next cohort opens. Open programs get the ink stamp. */
-  applications: string;
+  /** When applications reopen, e.g. "Fall 2026". Unset while they are open, which earns the ink stamp. */
+  reopens?: string;
   description: string;
   photo: {
     src: string;
@@ -54,7 +54,6 @@ const PROGRAMS: Program[] = [
   {
     id: "analyst",
     name: "Analyst Program",
-    applications: "Open",
     description:
       "A comprehensive program covering the fundamentals of venture capital, including deal sourcing, due diligence, portfolio management, and case study analysis.",
     photo: {
@@ -110,7 +109,6 @@ const PROGRAMS: Program[] = [
   {
     id: "htil",
     name: "Health Tech & Innovation Lab",
-    applications: "Open",
     description:
       "A 12-week fellowship where McGill students across STEM and business build solutions to real healthcare challenges with startups and industry partners.",
     photo: {
@@ -161,7 +159,7 @@ const PROGRAMS: Program[] = [
   {
     id: "growth-studio",
     name: "Growth Studio",
-    applications: "Reopens Fall 2026",
+    reopens: "Fall 2026",
     description:
       "Students work with early-stage startups on real scaling challenges, delivering actionable recommendations on go-to-market and venture capital fundraising.",
     photo: {
@@ -190,7 +188,7 @@ const PROGRAMS: Program[] = [
   {
     id: "fund",
     name: "Fund Program",
-    applications: "Reopens Fall 2026",
+    reopens: "Fall 2026",
     description:
       "McGill Ventures' student-run fund. Analysts learn deal sourcing, due diligence, financial modelling, and investment structuring while evaluating real startups.",
     photo: {
@@ -218,10 +216,10 @@ export default function Programs() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="programs" className="relative -mt-20 overflow-clip bg-black text-white">
-        {/* At least 16:9 tall wherever the board's hover photo can show, so it is never cropped wider. */}
+        {/* As tall as the hover photo's 16:9 where one can show, capped at a screen so ultrawides keep a sane hero. */}
         <section
           aria-labelledby="programs-title"
-          className="relative isolate flex flex-col justify-center px-6 pt-32 pb-20 md:px-12 md:pt-36 lg:px-24 lg:pb-24 pointer-fine:min-h-[56.25vw]"
+          className="relative isolate flex flex-col justify-center px-6 pt-32 pb-20 md:px-12 md:pt-36 lg:px-24 lg:pb-24 pointer-fine:min-h-[min(56.25vw,100svh)]"
         >
           <div
             aria-hidden
@@ -234,13 +232,13 @@ export default function Programs() {
           <Starfield className="[mask-image:linear-gradient(to_bottom,#000_55%,transparent)]" />
 
           <ProgramBoard
-            programs={PROGRAMS.map(({ id, name, photo, length, hours, applications }) => ({
+            programs={PROGRAMS.map(({ id, name, photo, length, hours, reopens }) => ({
               id,
               name,
               photo,
               length,
               hours,
-              applications,
+              reopens,
             }))}
           >
             <div className="grid gap-5 lg:grid-cols-12 lg:items-baseline-last lg:gap-6">

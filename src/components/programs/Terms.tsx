@@ -1,13 +1,12 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
 import type { Program } from "@/app/programs/page";
 
 /** The program's terms as a spec list. Lay it out with `className`. */
 export function Terms({ program, className }: { program: Program; className?: string }) {
-  const { applications, length, hours, seats, where, sponsor } = program;
+  const { reopens, length, hours, seats, where, sponsor } = program;
   const terms: [string, ReactNode][] = [
-    ["Applications", <span key="a" className={cn(applications === "Open" && "text-purple-200")}>{applications}</span>],
+    ["Applications", reopens ? `Reopens ${reopens}` : <span key="a" className="text-purple-200">Open</span>],
     ["Length", length],
     ["Time", `${hours} a week`],
   ];
