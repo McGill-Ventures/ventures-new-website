@@ -216,10 +216,9 @@ export default function Programs() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="programs" className="relative -mt-20 overflow-clip bg-black text-white">
-        {/* As tall as the hover photo's 16:9 where one can show, capped at a screen so ultrawides keep a sane hero. */}
         <section
           aria-labelledby="programs-title"
-          className="relative isolate flex flex-col justify-center px-6 pt-32 pb-20 md:px-12 md:pt-36 lg:px-24 lg:pb-24 pointer-fine:min-h-[min(56.25vw,100svh)]"
+          className="relative isolate flex flex-col justify-center px-6 pt-32 pb-20 md:px-12 md:pt-36 lg:px-24 lg:pb-24 min-h-svh"
         >
           <div
             aria-hidden
