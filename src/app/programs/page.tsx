@@ -100,33 +100,25 @@ const PROGRAMS: ProgramData[] = [
   {
     id: "htil",
     name: "Health Tech & Innovation Lab",
-    status: ["Reopens", "Fall 2026"],
+    status: ["Applications", "Open"],
     description:
-      "An intensive 7-week program bridging healthcare and venture capital through hands-on workshops with biotech and VC professionals, mentorship, and real-world project deliverables.",
+      "A 12-week fellowship where McGill students across STEM and business build solutions to real healthcare challenges with startups and industry partners.",
     photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
     photoPosition: "left center",
     facts: [
-      ["Duration", "7 weeks"],
-      ["Commitment", "4-6 hours/week"],
+      ["Duration", "12 weeks"],
+      ["Commitment", "8-10 hours/week"],
+      ["Positions", "22 fellows"],
     ],
     features: [
-      "Weekly workshops with biotech and VC professionals",
-      "Hands-on project deliverables",
-      "Mentorship from industry experts",
-      "Exposure to the health tech investment landscape",
+      "3 project streams with startups across biotech, healthtech and medtech",
+      "10 workshops with partners like Deloitte and Osler",
+      "Open to every discipline, from undergrad to PhD",
+      "Ongoing mentorship and access to incubators, accelerators and investors",
     ],
     curriculum: {
       label: "View the program structure",
       groups: [
-        {
-          title: "Timeline",
-          items: [
-            { label: "Week 1", title: "Kickoff & Challenge Identification", body: "Welcome the cohort and frame healthcare problems to tackle" },
-            { label: "Week 2", title: "Team Formation & Ideation", body: "The cohort splits into project teams and starts building solutions" },
-            { label: "Weeks 3-5", title: "Mid-Term Project Development", body: "Teams present current work, seek feedback, and refine their solutions" },
-            { label: "Weeks 6-7", title: "Capstone Deliverable & Presentation", body: "Teams present their final prototype or research report" },
-          ],
-        },
         {
           title: "Workshop series",
           items: [
@@ -141,13 +133,19 @@ const PROGRAMS: ProgramData[] = [
         {
           title: "Deliverables",
           items: [
-            { label: "Project", title: "Final project", body: "A prototype or research report addressing a real healthcare challenge" },
-            { label: "Pitch", title: "Professional presentation", body: "Present the final work to Mayo Clinic physicians and industry partners" },
+            { label: "Build", title: "Working prototype", body: "A functional demo addressing a real healthcare challenge" },
+            { label: "Research", title: "Feasibility analysis", body: "Evidence-backed analysis of whether the solution can work" },
+            { label: "Pitch", title: "Investor-ready materials", body: "A pitch to take the project to incubators, accelerators and investors" },
           ],
         },
       ],
     },
-    links: [],
+    links: [
+      {
+        label: "Apply now",
+        href: "https://docs.google.com/forms/d/e/1FAIpQLSfW_b6VKWWAKYwySgQWqrhr9VYqfsoKykOHNMD9T7odqpoZGA/viewform",
+      },
+    ],
   },
   {
     id: "growth-studio",
