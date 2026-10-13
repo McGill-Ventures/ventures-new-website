@@ -4,8 +4,8 @@ How to stand up the database, connect it to the site, and configure the live
 deployment for the Growth Studio funding tool (`/growth-studio/funding`).
 Written for a beginner; about 30 minutes end to end.
 
-**One rule for the whole guide:** the two Supabase keys and the admin password
-are secrets. They go only into the two places named below (a local `.env.local`
+**One rule for the whole guide:** the two Supabase keys, the admin password,
+and the PostHog secret key are secrets. They go only into the two places named below (a local `.env.local`
 file and Vercel's environment-variable settings). Never paste them into Slack,
 email, GitHub, or a chat with an AI assistant.
 
@@ -103,6 +103,24 @@ someone with access to the McGill Ventures project on Vercel.
   statuses, unverified links, stale reviews). See `ADMIN_GUIDE.md`.
 - **Bulk refresh** from a spreadsheet: see `UPDATING_DATA.md`.
 
+## Part 6 - Website analytics tab (PostHog)
+
+The admin console's **Website analytics** tab shows traffic to the Growth Studio pages.
+It reads from PostHog, the site's analytics service, through one saved query called an endpoint.
+Do this once, as someone with access to the McGill Ventures project at **eu.posthog.com**.
+
+1. In PostHog open **Settings**, search for "time zone", and set it to `America/Toronto`.
+   The tab's "today" follows this setting, the same as PostHog's own pages.
+2. In PostHog open **SQL editor**, paste the entire contents of `docs/funding-tool/analytics_endpoint.sql`, and click **Run** to check it returns rows.
+3. Click **Save as endpoint** and name it exactly `growth_studio_dashboard`.
+4. Open **Settings → Project secret API keys**, click **Create project secret API key**, and give it only the `endpoint:read` scope.
+   Copy the key, which starts with `phs_`.
+5. Add it as `POSTHOG_SECRET_KEY` in `.env.local` for local use, and in Vercel with **Production** and **Preview** ticked.
+6. Until this is done, the tab shows "Website analytics is not set up on this deployment yet."
+
+To change what the tab counts, edit the endpoint in PostHog, then update `analytics_endpoint.sql` to match so the two never drift.
+The tab expects the columns `metric`, `label`, and `value`.
+
 ## Troubleshooting
 
 | Symptom | Likely cause |
@@ -111,4 +129,8 @@ someone with access to the McGill Ventures project on Vercel.
 | `pnpm funding:seed` says "Missing Supabase env vars" | `.env.local` is missing, misnamed, or not in the repo root. |
 | Seed fails with a table error | Part 2 was not completed; run `schema_data.sql`. |
 | Admin login always says "Wrong password" | `ADMIN_PASSWORD` is not set, or differs between where you set it and where the site runs. After 5 failed attempts, wait 15 minutes. |
+| "Website analytics is not set up on this deployment yet." | `POSTHOG_SECRET_KEY` is missing where the site is running. |
+| "PostHog rejected the API key." | The key was deleted or rotated. PostHog rotates a key on its own if it ever leaks publicly. Create a new one (Part 6, step 4). |
+| "PostHog returned HTTP 404." | The endpoint is missing or not named exactly `growth_studio_dashboard`. |
+| "PostHog returned an unexpected shape." | The endpoint was edited and no longer returns `metric`, `label`, and `value`. |
 | Matches come back empty | Programs were not seeded, or every program was filtered out by the answers. Check `funding_programs` has ~502 rows. |
