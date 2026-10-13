@@ -103,8 +103,8 @@ const PROGRAMS: ProgramData[] = [
     status: ["Applications", "Open"],
     description:
       "A 12-week fellowship where McGill students across STEM and business build solutions to real healthcare challenges with startups and industry partners.",
-    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
-    photoPosition: "left center",
+    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_program.jpg",
+    photoPosition: "20% center",
     facts: [
       ["Duration", "12 weeks"],
       ["Commitment", "8-10 hours/week"],

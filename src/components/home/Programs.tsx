@@ -26,7 +26,7 @@ const PROGRAMS = [
     name: "HealthTech Innovation Lab",
     href: "/programs#htil",
     external: false,
-    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_hero.jpg",
+    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_program.jpg",
   },
   {
     name: "Project Atlas",
