@@ -30,7 +30,7 @@ export function CompactChapter({ program }: { program: Program }) {
           {description}
         </Reveal>
         <Reveal delay={100}>
-          <Terms program={program} className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5" />
+          <Terms program={program} className="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 [&>:last-child:nth-child(odd)]:col-span-2" />
         </Reveal>
         <Reveal delay={150} className="mt-12">
           <h3 className="font-heading text-lg">What you’ll do</h3>

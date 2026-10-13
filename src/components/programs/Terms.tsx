@@ -17,11 +17,11 @@ export function Terms({ program, className }: { program: Program; className?: st
     terms.push([
       "Backed by",
       <a key="s" href={sponsor.href} target="_blank" rel="noopener noreferrer" className="inline-block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-400">
-        {/* The logo is grey on an opaque white box: invert it, then screen away the black. */}
+        {/* Grey on an opaque white box: invert and brighten it, then screen away the black. */}
         <Image
           src={sponsor.logo}
           alt={sponsor.name}
-          className="mt-1 h-9 w-auto opacity-80 mix-blend-screen invert transition-opacity hover:opacity-100"
+          className="mt-1 h-9 w-auto opacity-90 mix-blend-screen transition-opacity [filter:invert(1)_brightness(1.6)] hover:opacity-100"
         />
         <span className="sr-only">(opens in a new tab)</span>
       </a>,

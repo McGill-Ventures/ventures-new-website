@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, useSyncExternalStore, type ReactNode } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/motion";
 import { Stamp } from "@/components/ui";
@@ -8,6 +8,13 @@ import { cn } from "@/lib/utils";
 import type { Program } from "@/app/programs/page";
 
 type Row = Pick<Program, "id" | "name" | "photo" | "length" | "hours" | "applications">;
+
+const FINE = "(pointer: fine)";
+const subscribe = (onChange: () => void) => {
+  const query = matchMedia(FINE);
+  query.addEventListener("change", onChange);
+  return () => query.removeEventListener("change", onChange);
+};
 
 // Name, length, time per week, applications, then a thumbnail where there is no hover.
 const COLS =
@@ -32,36 +39,40 @@ function Status({ row, delay }: { row: Row; delay: number }) {
 /** Hovering or focusing a row brings its photo up behind the board. Touch gets thumbnails. */
 export function ProgramBoard({ programs, children }: { programs: Row[]; children: ReactNode }) {
   const [active, setActive] = useState<string | null>(null);
+  // Mounted only where a mouse can hover, so touch screens never render the full-width photos.
+  const canHover = useSyncExternalStore(subscribe, () => matchMedia(FINE).matches, () => false);
 
   return (
     <>
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 hidden aspect-video [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_80%,transparent)] pointer-fine:block"
-      >
-        {programs.map((row) => (
-          <Image
-            key={row.id}
-            src={row.photo.src}
-            alt=""
-            fill
-            sizes="100vw"
-            fetchPriority="low"
-            // The outgoing photo lingers a beat, so moving between rows never dips to black.
-            className={cn(
-              "object-cover transition-[opacity,scale] duration-700 ease-out",
-              row.id === active ? "opacity-100" : "opacity-0 delay-150 motion-safe:scale-[1.04]",
-            )}
-            style={{ objectPosition: row.photo.position }}
-          />
-        ))}
+      {canHover && (
         <div
-          className={cn(
-            "absolute inset-0 bg-black/60 transition-opacity duration-700",
-            active ? "opacity-100" : "opacity-0",
-          )}
-        />
-      </div>
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 aspect-video [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_80%,transparent)]"
+        >
+          {programs.map((row) => (
+            <Image
+              key={row.id}
+              src={row.photo.src}
+              alt=""
+              fill
+              sizes="100vw"
+              fetchPriority="low"
+              // The outgoing photo lingers a beat, so moving between rows never dips to black.
+              className={cn(
+                "object-cover transition-[opacity,scale] duration-700 ease-out",
+                row.id === active ? "opacity-100" : "opacity-0 delay-150 motion-safe:scale-[1.04]",
+              )}
+              style={{ objectPosition: row.photo.position }}
+            />
+          ))}
+          <div
+            className={cn(
+              "absolute inset-0 bg-black/60 transition-opacity duration-700",
+              active ? "opacity-100" : "opacity-0",
+            )}
+          />
+        </div>
+      )}
 
       <div className="relative mx-auto w-full max-w-7xl">
         {children}
@@ -97,10 +108,7 @@ export function ProgramBoard({ programs, children }: { programs: Row[]; children
                     {row.name}
                   </span>
                   <span className="mt-2 block font-heading text-[0.9375rem] text-white/60 md:text-base lg:hidden">
-                    {row.length}
-                    <span aria-hidden> · </span>
-                    <span className="sr-only">, </span>
-                    <span className="whitespace-nowrap">{row.hours} a week</span>
+                    {row.length}, <span className="whitespace-nowrap">{row.hours} a week</span>
                   </span>
                   <span className="mt-3 block lg:hidden">
                     <Status row={row} delay={900 + i * 150} />
@@ -111,7 +119,8 @@ export function ProgramBoard({ programs, children }: { programs: Row[]; children
                   {row.hours}
                   <span className="sr-only"> a week</span>
                 </span>
-                <span className="hidden lg:block">
+                {/* Negative margin keeps a stamped row as tall as a plain one. */}
+                <span className="hidden lg:-my-3 lg:block">
                   <Status row={row} delay={900 + i * 150} />
                 </span>
                 <span className="relative aspect-[3/2] w-24 self-center overflow-hidden bg-neutral-900 md:w-36 pointer-fine:hidden">
