@@ -7,7 +7,7 @@ import { Stamp } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import type { Program } from "@/app/programs/page";
 
-type Row = Pick<Program, "id" | "name" | "photo" | "length" | "hours" | "reopens">;
+type Row = Pick<Program, "id" | "name" | "photo" | "length" | "hours" | "reopens" | "closed">;
 
 const FINE = "(pointer: fine)";
 const subscribe = (onChange: () => void) => {
@@ -49,6 +49,9 @@ const COLS =
   "lg:grid-cols-[minmax(0,1fr)_6.5rem_7.5rem_9rem] lg:pointer-coarse:grid-cols-[minmax(0,1fr)_6.5rem_7.5rem_9rem_9rem]";
 
 function Status({ row, delay }: { row: Row; delay: number }) {
+  if (row.closed) {
+    return <span className="font-heading text-white/55">Closed</span>;
+  }
   if (row.reopens) {
     return <span className="font-heading text-white/55">Reopens {row.reopens}</span>;
   }

@@ -74,7 +74,7 @@ export function Chapter({ program }: { program: Program }) {
             </Reveal>
             <Reveal delay={100} className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 lg:col-span-8 lg:col-start-4 lg:mt-10">
               {links.map((link, i) => (
-                <Cta key={link.href} href={link.href} variant={i === 0 ? "solid" : "line"}>
+                <Cta key={link.label} href={link.href} disabled={link.disabled} variant={i === 0 ? "solid" : "line"}>
                   {link.label}
                 </Cta>
               ))}

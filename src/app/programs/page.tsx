@@ -26,6 +26,7 @@ export interface Program {
   name: string;
   /** When applications reopen, e.g. "Fall 2026". Unset while they are open, which earns the ink stamp. */
   reopens?: string;
+  closed?: boolean;
   description: string;
   photo: {
     src: string;
@@ -45,7 +46,7 @@ export interface Program {
     groups: { title: string; items: CurriculumItem[] }[];
   };
   /** The first renders as the solid button. */
-  links: { label: string; href: string }[];
+  links: { label: string; href?: string; disabled?: boolean }[];
   /** Runs its own site, so its chapter stays short and points there. */
   compact?: boolean;
 }
@@ -63,6 +64,7 @@ const PROGRAMS: Program[] = [
     },
     length: "16 weeks",
     hours: "4-6 hours",
+    closed: true,
     features: [
       "Weekly workshops with VC and biotech industry professionals",
       "Case study analysis and pitch competitions",
@@ -101,8 +103,8 @@ const PROGRAMS: Program[] = [
     },
     links: [
       {
-        label: "Apply now",
-        href: "https://docs.google.com/forms/d/e/1FAIpQLSc1MFcaJfcj9leRB4P_W_kaHvyk4UGBh6nWoQhjBHBXtV_99Q/viewform",
+        label: "Applications closed",
+        disabled: true,
       },
     ],
   },
@@ -231,13 +233,14 @@ export default function Programs() {
           <Starfield className="[mask-image:linear-gradient(to_bottom,#000_55%,transparent)]" />
 
           <ProgramBoard
-            programs={PROGRAMS.map(({ id, name, photo, length, hours, reopens }) => ({
+            programs={PROGRAMS.map(({ id, name, photo, length, hours, reopens, closed }) => ({
               id,
               name,
               photo,
               length,
               hours,
               reopens,
+              closed,
             }))}
           >
             <div className="grid gap-5 lg:grid-cols-12 lg:items-baseline-last lg:gap-6">
