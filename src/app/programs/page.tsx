@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import type { StaticImageData } from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { Chapter } from "@/components/programs/Chapter";
+import { CompactChapter } from "@/components/programs/CompactChapter";
+import { Cta } from "@/components/programs/Cta";
 import { DealFlow } from "@/components/programs/DealFlow";
-import { ProgramIndex } from "@/components/programs/ProgramIndex";
-import { ProgramSection } from "@/components/programs/ProgramSection";
+import { ProgramBoard } from "@/components/programs/ProgramBoard";
 import { Reveal, SplitText, Starfield } from "@/components/motion";
-import { Button } from "@/components/ui";
 import graphiteVenturesLogo from "@/app/sponsors/graphite_ventures.png";
 
 export const metadata: Metadata = {
@@ -15,45 +15,56 @@ export const metadata: Metadata = {
 };
 
 interface CurriculumItem {
-  /** Defaults to the item's position, zero-padded. */
   label?: string;
   title: string;
   body?: string;
 }
 
-export interface ProgramData {
-  /** Also the section's anchor, e.g. `/programs#analyst`. */
+export interface Program {
+  /** Also the chapter's anchor, e.g. `/programs#analyst`. */
   id: string;
   name: string;
-  /** Stamped over the photo: a small line, then the big one. */
-  status: [kicker: string, headline: string];
+  /** When applications reopen, e.g. "Fall 2026". Unset while they are open, which earns the ink stamp. */
+  reopens?: string;
+  closed?: boolean;
   description: string;
-  photo: string;
-  /** CSS object-position, when the default centre crop cuts something off. */
-  photoPosition?: string;
-  facts: [term: string, value: string][];
+  photo: {
+    src: string;
+    alt: string;
+    /** CSS object-position, for the 16:9 and 3:2 crops. */
+    position?: string;
+  };
+  length: string;
+  /** Time per week. */
+  hours: string;
+  seats?: string;
+  where?: string;
   features: string[];
   sponsor?: { name: string; href: string; logo: StaticImageData };
   curriculum?: {
-    label: string;
+    summary: string;
     groups: { title: string; items: CurriculumItem[] }[];
   };
-  /** The first renders as the primary button. */
-  links: { label: string; href: string }[];
+  /** The first renders as the solid button. */
+  links: { label: string; href?: string; disabled?: boolean }[];
+  /** Runs its own site, so its chapter stays short and points there. */
+  compact?: boolean;
 }
 
-const PROGRAMS: ProgramData[] = [
+const PROGRAMS: Program[] = [
   {
     id: "analyst",
     name: "Analyst Program",
-    status: ["Applications", "Open"],
     description:
       "A comprehensive program covering the fundamentals of venture capital, including deal sourcing, due diligence, portfolio management, and case study analysis.",
-    photo: "/events/image_carousel_pic2.jpg",
-    facts: [
-      ["Duration", "16 weeks"],
-      ["Commitment", "4-6 hours/week"],
-    ],
+    photo: {
+      src: "/events/image_carousel_pic2.jpg",
+      alt: "A full conference room at a talk on serial founders in manufacturing, hardtech and construction",
+      position: "50% 70%",
+    },
+    length: "16 weeks",
+    hours: "4-6 hours",
+    closed: true,
     features: [
       "Weekly workshops with VC and biotech industry professionals",
       "Case study analysis and pitch competitions",
@@ -62,7 +73,7 @@ const PROGRAMS: ProgramData[] = [
     ],
     sponsor: { name: "Graphite Ventures", href: "https://graphitevc.com/", logo: graphiteVenturesLogo },
     curriculum: {
-      label: "View the curriculum",
+      summary: "Weekly modules and deliverables",
       groups: [
         {
           title: "Weekly modules",
@@ -92,24 +103,24 @@ const PROGRAMS: ProgramData[] = [
     },
     links: [
       {
-        label: "Apply now",
-        href: "https://docs.google.com/forms/d/e/1FAIpQLSc1MFcaJfcj9leRB4P_W_kaHvyk4UGBh6nWoQhjBHBXtV_99Q/viewform",
+        label: "Applications closed",
+        disabled: true,
       },
     ],
   },
   {
     id: "htil",
     name: "Health Tech & Innovation Lab",
-    status: ["Applications", "Open"],
     description:
       "A 12-week fellowship where McGill students across STEM and business build solutions to real healthcare challenges with startups and industry partners.",
-    photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_program.jpg",
-    photoPosition: "20% center",
-    facts: [
-      ["Duration", "12 weeks"],
-      ["Commitment", "8-10 hours/week"],
-      ["Positions", "22 fellows"],
-    ],
+    photo: {
+      src: "/events/clipxhealthtech_2026/clipxhealthtech_2026_program.jpg",
+      alt: "Students in conversation at CLIP x Health Tech Innovation Lab",
+      position: "40% 50%",
+    },
+    length: "12 weeks",
+    hours: "8-10 hours",
+    seats: "22 fellows",
     features: [
       "3 project streams with startups across biotech, healthtech and medtech",
       "10 workshops with partners like Deloitte and Osler",
@@ -117,7 +128,7 @@ const PROGRAMS: ProgramData[] = [
       "Ongoing mentorship and access to incubators, accelerators and investors",
     ],
     curriculum: {
-      label: "View the program structure",
+      summary: "Workshop series and deliverables",
       groups: [
         {
           title: "Workshop series",
@@ -150,15 +161,17 @@ const PROGRAMS: ProgramData[] = [
   {
     id: "growth-studio",
     name: "Growth Studio",
-    status: ["Reopens", "Fall 2026"],
+    reopens: "Fall 2026",
     description:
       "Students work with early-stage startups on real scaling challenges, delivering actionable recommendations on go-to-market and venture capital fundraising.",
-    photo: "/growth-studio/hero-founders.webp",
-    facts: [
-      ["Duration", "6 weeks"],
-      ["Commitment", "4-6 hours/week"],
-      ["Location", "Bronfman"],
-    ],
+    photo: {
+      src: "/growth-studio/hero-founders.webp",
+      alt: "Growth Studio founders working together",
+      position: "50% 30%",
+    },
+    length: "6 weeks",
+    hours: "4-6 hours",
+    where: "Bronfman",
     features: [
       "Direct consulting work with early-stage startups",
       "Go-to-market and fundraising strategy deliverables",
@@ -172,25 +185,29 @@ const PROGRAMS: ProgramData[] = [
         href: "https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform",
       },
     ],
+    compact: true,
   },
   {
     id: "fund",
     name: "Fund Program",
-    status: ["Reopens", "Fall 2026"],
+    reopens: "Fall 2026",
     description:
       "McGill Ventures' student-run fund. Analysts learn deal sourcing, due diligence, financial modelling, and investment structuring while evaluating real startups.",
-    photo: "/events/scarlet_pitch_2026/sp26_02.jpg",
-    facts: [
-      ["Duration", "10 weeks"],
-      ["Commitment", "4-6 hours/week"],
-    ],
+    photo: {
+      src: "/events/scarlet_pitch_2026/sp26_02.jpg",
+      alt: "The crowd at Scarlet Pitch 2026",
+      position: "50% 35%",
+    },
+    length: "10 weeks",
+    hours: "4-6 hours",
     features: [
       "10-week curriculum covering the full VC investment process",
       "Real deal sourcing and due diligence on live startups",
       "Financial modelling for early and late-stage companies",
       "Investment memo and term sheet deliverables",
     ],
-    links: [{ label: "Learn more", href: "/fund" }],
+    links: [{ label: "Visit the fund", href: "/fund" }],
+    compact: true,
   },
 ];
 
@@ -201,7 +218,10 @@ export default function Programs() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="programs" className="relative -mt-20 overflow-clip bg-black text-white">
-        <section className="relative flex min-h-[72dvh] flex-col justify-end px-6 pt-28 pb-[11rem] md:px-12 lg:px-24">
+        <section
+          aria-labelledby="programs-title"
+          className="relative isolate flex flex-col justify-center px-6 pt-32 pb-20 md:px-12 md:pt-36 lg:px-24 lg:pb-24 min-h-svh"
+        >
           <div
             aria-hidden
             className="animate-orb pointer-events-none absolute -top-48 -left-48 size-[36rem] rounded-full bg-purple-600/40 blur-3xl"
@@ -210,70 +230,83 @@ export default function Programs() {
             aria-hidden
             className="animate-orb pointer-events-none absolute -right-24 -bottom-40 size-[32rem] rounded-full bg-purple-800/40 blur-3xl [animation-delay:-8s]"
           />
-          <Starfield className="[mask-image:linear-gradient(to_bottom,#000_60%,transparent)]" />
+          <Starfield className="[mask-image:linear-gradient(to_bottom,#000_55%,transparent)]" />
 
-          <div className="relative mx-auto w-full max-w-7xl">
-            <h1 className="font-display text-[clamp(3rem,9vw,7.5rem)] leading-[1.05]">
-              <SplitText text="Programs" trigger="load" delay={150} />
-            </h1>
-            <Reveal
-              as="p"
-              trigger="load"
-              delay={450}
-              className="mt-6 max-w-2xl font-body text-lg text-purple-100/75 md:text-xl"
-            >
-              Hands-on programs that develop the next generation of venture capitalists and
-              entrepreneurs, taught by the investors and founders doing the work.
-            </Reveal>
-            <Reveal as="ul" trigger="load" delay={650} className="mt-8 flex flex-wrap gap-x-8 gap-y-3 lg:hidden">
-              {PROGRAMS.map((program, i) => (
-                <li key={program.id}>
-                  <a
-                    href={`#${program.id}`}
-                    className="font-heading text-base text-white/70 transition-colors hover:text-white"
-                  >
-                    <span className="mr-2 text-purple-400">{String(i + 1).padStart(2, "0")}</span>
-                    {program.name}
-                  </a>
-                </li>
-              ))}
-            </Reveal>
-          </div>
+          <ProgramBoard
+            programs={PROGRAMS.map(({ id, name, photo, length, hours, reopens, closed }) => ({
+              id,
+              name,
+              photo,
+              length,
+              hours,
+              reopens,
+              closed,
+            }))}
+          >
+            <div className="grid gap-5 lg:grid-cols-12 lg:items-baseline-last lg:gap-6">
+              <h1
+                id="programs-title"
+                className="font-display text-[clamp(2.25rem,3.4vw,3rem)] leading-none lg:col-span-5"
+              >
+                <SplitText text="Programs" trigger="load" delay={150} />
+              </h1>
+              <Reveal
+                as="p"
+                trigger="load"
+                delay={300}
+                className="max-w-xl font-body text-lg text-pretty text-purple-100/75 md:text-xl lg:col-span-6 lg:col-start-7"
+              >
+                Hands-on programs that develop the next generation of venture capitalists and
+                entrepreneurs, taught by the investors and founders doing the work.
+              </Reveal>
+            </div>
+          </ProgramBoard>
         </section>
 
-        <div className="relative px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
-          <div className="mx-auto grid max-w-7xl gap-24 lg:grid-cols-2 lg:gap-16">
-            <ProgramIndex programs={PROGRAMS.map(({ id, name, photo, photoPosition, status }) => ({ id, name, photo, photoPosition, status }))} />
-            <div className="flex flex-col gap-24">
-              {PROGRAMS.map((program) => (
-                <ProgramSection key={program.id} program={program} />
+        <div className="flex flex-col gap-32 pb-32 lg:gap-44 lg:pb-44">
+          {PROGRAMS.filter((p) => !p.compact).map((program) => (
+            <Chapter key={program.id} program={program} />
+          ))}
+
+          <div className="px-6 md:px-12 lg:px-24">
+            <div className="mx-auto grid max-w-7xl gap-32 lg:grid-cols-2 lg:gap-12">
+              {PROGRAMS.filter((p) => p.compact).map((program) => (
+                <CompactChapter key={program.id} program={program} />
               ))}
             </div>
           </div>
         </div>
 
-        <section aria-labelledby="apply" className="relative px-6 pb-24 md:px-12 lg:px-24 lg:pb-32">
-          <div className="mx-auto max-w-7xl border-t border-white/10 pt-12 lg:pt-16">
-            <h2 id="apply" className="section-heading">
-              <SplitText text="How to apply" />
-            </h2>
-            <Reveal
-              as="p"
-              delay={200}
-              className="mt-6 max-w-xl font-body text-lg text-purple-100/75 md:text-xl"
-            >
-              Every application runs through the same pipeline as a startup pitching us. This
-              time, you&apos;re the deal.
-            </Reveal>
+        <section
+          aria-labelledby="apply"
+          className="bg-grain relative overflow-clip bg-purple-950 px-6 py-24 md:px-12 lg:px-24 lg:py-32"
+        >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-48 -right-40 size-[34rem] rounded-full bg-purple-600/30 blur-3xl"
+          />
+          <div className="relative z-10 mx-auto max-w-7xl">
+            <div className="grid gap-6 lg:grid-cols-12 lg:items-baseline-last">
+              <h2 id="apply" className="section-heading lg:col-span-6">
+                <SplitText text="How to apply" />
+              </h2>
+              <Reveal
+                as="p"
+                delay={200}
+                className="max-w-xl font-body text-lg text-pretty text-purple-100/75 md:text-xl lg:col-span-5 lg:col-start-8"
+              >
+                Every application runs through the same pipeline as a startup pitching us. This
+                time, you&apos;re the deal.
+              </Reveal>
+            </div>
             <DealFlow />
-            <Reveal delay={400} className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-white/10 pt-10">
-              <p className="max-w-xl font-body text-lg text-purple-100/75">
+            <Reveal className="mt-20 flex flex-wrap items-center justify-between gap-x-10 gap-y-6 border-t border-white/15 pt-8">
+              <p className="font-body text-lg text-purple-100/75 md:text-xl">
                 New cohorts are announced on LinkedIn first.
               </p>
-              <Button href="https://www.linkedin.com/company/mcgillvc/" variant="secondary" external>
+              <Cta href="https://www.linkedin.com/company/mcgillvc/" variant="line">
                 Follow on LinkedIn
-                <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Button>
+              </Cta>
             </Reveal>
           </div>
         </section>
