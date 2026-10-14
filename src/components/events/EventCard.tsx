@@ -4,6 +4,7 @@ import EventPhotoGallery from "@/components/EventPhotoGallery";
 import { Reveal } from "@/components/motion";
 import { Tag } from "@/components/ui";
 import type { EventData } from "@/app/events/page";
+import { at2x } from "@/lib/photoSizes";
 
 // A bare `YYYY-MM-DD` parses as UTC midnight, so format in UTC too or the
 // date slips back a day west of Greenwich.
@@ -48,7 +49,7 @@ export function EventCard({
           src={event.coverImage}
           alt=""
           fill
-          sizes={sizes}
+          sizes={at2x(sizes)}
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
           style={{
             objectPosition: event.imagePosition ?? "center",

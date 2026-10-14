@@ -3,6 +3,7 @@ import Image from "next/image";
 import Nav from "./_components/Nav";
 import Footer from "./_components/Footer";
 import Interactions from "./_components/Interactions";
+import { at2x } from "@/lib/photoSizes";
 
 export const metadata: Metadata = {
   title: "Growth Studio — Startup consulting by McGill Ventures",
@@ -47,7 +48,7 @@ export default function GrowthStudioPage() {
             </div>
           </div>
           <div className="gs-hero-img" style={{ position: 'relative', height: '480px', borderRadius: '4px', overflow: 'hidden' }}>
-            <Image src="/growth-studio/hero-founders.webp" alt="Growth Studio founders working together" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: 'cover' }} priority />
+            <Image src="/growth-studio/hero-founders.webp" alt="Growth Studio founders working together" fill sizes={at2x("(max-width: 900px) 100vw, 50vw")} style={{ objectFit: 'cover' }} priority />
             <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(160deg,rgba(58,31,176,.22),rgba(36,20,84,0) 55%)', pointerEvents: 'none' }}>
             </div>
           </div>

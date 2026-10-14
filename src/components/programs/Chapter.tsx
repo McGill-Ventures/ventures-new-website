@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Plus } from "lucide-react";
 import { Reveal } from "@/components/motion";
 import { cn } from "@/lib/utils";
+import { at2x } from "@/lib/photoSizes";
 import { Cta } from "./Cta";
 import { Terms } from "./Terms";
 import type { Program } from "@/app/programs/page";
@@ -29,7 +30,7 @@ export function TitleBand({ program, frame, gutter, sizes, className }: BandProp
           src={photo.src}
           alt={photo.alt}
           fill
-          sizes={sizes}
+          sizes={at2x(sizes)}
           className="object-cover"
           style={{ objectPosition: photo.position }}
         />

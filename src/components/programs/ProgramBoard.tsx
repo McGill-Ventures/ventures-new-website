@@ -5,6 +5,7 @@ import Image, { getImageProps } from "next/image";
 import { Reveal } from "@/components/motion";
 import { Stamp } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import { at2x } from "@/lib/photoSizes";
 import type { Program } from "@/app/programs/page";
 
 type Row = Pick<Program, "id" | "name" | "photo" | "length" | "hours" | "reopens">;
@@ -151,7 +152,7 @@ export function ProgramBoard({ programs, children }: { programs: Row[]; children
                     src={row.photo.src}
                     alt=""
                     fill
-                    sizes="(min-width: 768px) 144px, 96px"
+                    sizes={at2x("(min-width: 768px) 144px, 96px")}
                     className="object-cover"
                     style={{ objectPosition: row.photo.position }}
                   />

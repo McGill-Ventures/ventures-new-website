@@ -1,6 +1,7 @@
 import { getImageProps } from "next/image";
 import { ArrowDown } from "lucide-react";
 import { SplitText } from "@/components/motion";
+import { at2x } from "@/lib/photoSizes";
 
 const ALT = "The judges’ table at Scarlet Pitch 2026";
 
@@ -9,12 +10,12 @@ function RoomPhoto() {
   const { props: portrait } = getImageProps({
     ...shared,
     src: "/events/scarlet_pitch_2026/sp26_04_portrait.jpg",
-    sizes: "(max-aspect-ratio: 2/3) 67vh, 100vw",
+    sizes: at2x("(max-aspect-ratio: 2/3) 67vh, 100vw"),
   });
   const { props: landscape } = getImageProps({
     ...shared,
     src: "/events/scarlet_pitch_2026/sp26_04.jpg",
-    sizes: "100vw",
+    sizes: at2x("100vw"),
   });
 
   return (
