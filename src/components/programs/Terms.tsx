@@ -4,9 +4,9 @@ import type { Program } from "@/app/programs/page";
 
 /** The program's terms as a spec list. Lay it out with `className`. */
 export function Terms({ program, className }: { program: Program; className?: string }) {
-  const { reopens, length, hours, seats, where, sponsor } = program;
+  const { closed, reopens, length, hours, seats, where, sponsor } = program;
   const terms: [string, ReactNode][] = [
-    ["Applications", reopens ? `Reopens ${reopens}` : <span key="a" className="text-purple-200">Open</span>],
+    ["Applications", closed ? "Closed" : reopens ? `Reopens ${reopens}` : <span key="a" className="text-purple-200">Open</span>],
     ["Length", length],
     ["Time", `${hours} a week`],
   ];

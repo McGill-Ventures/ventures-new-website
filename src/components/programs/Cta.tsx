@@ -4,11 +4,12 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  href: string;
+  href?: string;
   children: ReactNode;
   /** "solid" is the ink-coloured block, "line" an underlined link. */
   variant?: "solid" | "line";
   className?: string;
+  disabled?: boolean;
 };
 
 const VARIANT = {
@@ -17,12 +18,13 @@ const VARIANT = {
 };
 
 /** Square-cornered call to action. External links open in a new tab. */
-export function Cta({ href, children, variant = "solid", className }: Props) {
-  const external = href.startsWith("http");
+export function Cta({ href, children, variant = "solid", className, disabled = false }: Props) {
+  const external = href?.startsWith("http") ?? false;
   const Arrow = external ? ArrowUpRight : ArrowRight;
   const classes = cn(
     "group inline-flex items-center gap-3 font-heading text-lg transition-[background-color,text-decoration-color] duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-400",
     VARIANT[variant],
+    disabled && "cursor-default bg-white/15 text-white/50 hover:bg-white/15",
     className,
   );
   const content = (
@@ -37,6 +39,10 @@ export function Cta({ href, children, variant = "solid", className }: Props) {
       />
     </>
   );
+
+  if (disabled || !href) {
+    return <span aria-disabled="true" className={classes}>{children}</span>;
+  }
 
   if (external) {
     return (

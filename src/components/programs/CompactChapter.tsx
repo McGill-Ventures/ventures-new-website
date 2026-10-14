@@ -44,7 +44,7 @@ export function CompactChapter({ program }: { program: Program }) {
         </Reveal>
         <Reveal delay={200} className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
           {links.map((link, i) => (
-            <Cta key={link.href} href={link.href} variant={i === 0 ? "solid" : "line"}>
+            <Cta key={link.label} href={link.href} disabled={link.disabled} variant={i === 0 ? "solid" : "line"}>
               {link.label}
             </Cta>
           ))}
