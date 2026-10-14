@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight, Check, ChevronDown } from "lucide-react";
 import { Reveal } from "@/components/motion";
 import { Button, Stamp } from "@/components/ui";
 import type { ProgramData } from "@/app/programs/page";
+import { at2x } from "@/lib/photoSizes";
 
 /** The program's details. Below `lg` it also carries its own photo and stamp,
  *  which the pinned ProgramIndex shows on wider screens. */
@@ -23,7 +24,7 @@ export function ProgramSection({ program }: { program: ProgramData }) {
               src={program.photo}
               alt=""
               fill
-              sizes="100vw"
+              sizes={at2x("100vw")}
               className="object-cover"
               style={{ objectPosition: program.photoPosition }}
             />

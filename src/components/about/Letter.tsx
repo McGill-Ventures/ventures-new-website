@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Reveal, SplitText } from "@/components/motion";
 import { FOUNDERS } from "@/constants";
+import { at2x } from "@/lib/photoSizes";
 
 const AARON = FOUNDERS.find((f) => f.name.startsWith("Aaron"))!;
 
@@ -34,7 +35,7 @@ export function Letter() {
                 src={AARON.image}
                 alt=""
                 fill
-                sizes="56px"
+                sizes={at2x("56px")}
                 className="object-cover"
               />
             </div>

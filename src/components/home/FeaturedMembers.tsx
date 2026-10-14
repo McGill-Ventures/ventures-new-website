@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import Image from "next/image";
 import { Reveal, SplitText } from "@/components/motion";
+import { at2x } from "@/lib/photoSizes";
 
 const FOUNDERS = [
   {
@@ -175,7 +176,7 @@ export function FeaturedMembers() {
                           src={founder.photo}
                           alt={founder.name}
                           fill
-                          sizes="96px"
+                          sizes={at2x("96px")}
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
                       </div>

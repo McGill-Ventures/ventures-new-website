@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui";
 import { Marquee, Reveal, SplitText, Starfield } from "@/components/motion";
+import { at2x } from "@/lib/photoSizes";
 
 /** Top row is 2026, bottom row 2025, each interleaving its events so no two
  *  neighbours come from the same one. */
@@ -34,7 +35,7 @@ function StripPhoto({ src }: { src: string }) {
         src={src}
         alt=""
         fill
-        sizes="(max-width: 768px) 240px, 288px"
+        sizes={at2x("(max-width: 768px) 240px, 288px")}
         className="object-cover transition-transform duration-700 ease-out hover:scale-105"
       />
     </div>

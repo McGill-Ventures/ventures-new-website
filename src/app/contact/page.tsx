@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ContactForm } from "@/components/ui/ContactForm/ContactForm";
 import { Reveal, SplitText, Starfield } from "@/components/motion";
+import { at2x } from "@/lib/photoSizes";
 
 export const metadata: Metadata = {
   title: "Contact | McGill Ventures",
@@ -158,7 +159,7 @@ export default function Contact() {
                   src="/events/contact_us_photo.jpg"
                   alt="The McGill Ventures community after a fireside chat"
                   fill
-                  sizes="(max-width: 1279px) 100vw, 1280px"
+                  sizes={at2x("(max-width: 1279px) 100vw, 1280px")}
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                   style={{ objectPosition: "50% 55%" }}
                 />
