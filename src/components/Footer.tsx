@@ -15,6 +15,11 @@ const footerLinks = {
     { label: "Sponsors", href: "/sponsors" },
     { label: "Contact Us", href: "/contact" },
     {
+      label: "HTIL Impact Report",
+      href: "/reports/htil-impact-report-2025-2026.pdf",
+      external: true,
+    },
+    {
       label: "Asset Base",
       href: "https://www.playbook.com/s/takenbyknives/mvc-asset-base",
       external: true,
