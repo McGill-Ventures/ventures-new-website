@@ -45,13 +45,11 @@ export interface Program {
     summary: string;
     groups: { title: string; items: CurriculumItem[] }[];
   };
-  /** A published PDF, shown below the curriculum. */
   report?: {
     title: string;
     blurb: string;
     href: string;
     cover: { src: string; alt: string; width: number; height: number };
-    /** Shown in the download link, e.g. "4.2 MB". */
     size: string;
   };
   /** The first renders as the solid button. */

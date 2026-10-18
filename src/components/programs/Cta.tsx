@@ -10,9 +10,7 @@ type Props = {
   variant?: "solid" | "line";
   className?: string;
   disabled?: boolean;
-  /** Opens in a new tab even for a same-site `href`, e.g. a PDF. */
   newTab?: boolean;
-  /** Saves the file instead of navigating. */
   download?: boolean;
 };
 
