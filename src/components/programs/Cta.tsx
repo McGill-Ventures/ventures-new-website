@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -10,6 +10,10 @@ type Props = {
   variant?: "solid" | "line";
   className?: string;
   disabled?: boolean;
+  /** Opens in a new tab even for a same-site `href`, e.g. a PDF. */
+  newTab?: boolean;
+  /** Saves the file instead of navigating. */
+  download?: boolean;
 };
 
 const VARIANT = {
@@ -18,9 +22,9 @@ const VARIANT = {
 };
 
 /** Square-cornered call to action. External links open in a new tab. */
-export function Cta({ href, children, variant = "solid", className, disabled = false }: Props) {
-  const external = href?.startsWith("http") ?? false;
-  const Arrow = external ? ArrowUpRight : ArrowRight;
+export function Cta({ href, children, variant = "solid", className, disabled = false, newTab = false, download = false }: Props) {
+  const external = (href?.startsWith("http") ?? false) || newTab;
+  const Arrow = download ? Download : external ? ArrowUpRight : ArrowRight;
   const classes = cn(
     "group inline-flex items-center gap-3 font-heading text-lg transition-[background-color,text-decoration-color] duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-400",
     VARIANT[variant],
@@ -44,6 +48,13 @@ export function Cta({ href, children, variant = "solid", className, disabled = f
     return <span aria-disabled="true" className={classes}>{children}</span>;
   }
 
+  if (download) {
+    return (
+      <a href={href} download className={classes}>
+        {content}
+      </a>
+    );
+  }
   if (external) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
