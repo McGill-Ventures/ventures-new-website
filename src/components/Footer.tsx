@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Instagram, Linkedin, Mail, MapPin } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Reveal, SplitText } from "@/components/motion";
 import { Button } from "@/components/ui";
@@ -26,6 +33,8 @@ const contactInfo = {
   email: "mcgillventuresclub@gmail.com",
   location: "Montreal, QC",
 };
+
+const NEWSLETTER_URL = "https://mcgillventuresclub.substack.com/subscribe";
 
 const socials = [
   {
@@ -95,8 +104,8 @@ export default function Footer({
         </div>
 
         <div>
-          <Reveal className="grid gap-10 border-t border-white/15 pt-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.6fr)]">
-            <div>
+          <Reveal className="grid gap-10 border-t border-white/15 pt-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.4fr)] xl:grid-cols-[minmax(0,1.7fr)_minmax(0,0.8fr)_minmax(0,0.9fr)_minmax(0,2fr)_minmax(0,1.6fr)]">
+            <div className="md:col-span-2 xl:col-span-1">
               <Image
                 src="/logos/white_logo_transparent.png"
                 alt="McGill Ventures"
@@ -165,6 +174,24 @@ export default function Footer({
                   {contactInfo.location}
                 </li>
               </ul>
+            </div>
+
+            {/* Shares the brand's row below xl, so the link columns get a full row. */}
+            <div className="md:col-start-3 md:row-start-1 xl:col-start-auto xl:row-start-auto">
+              <h4 className="font-heading text-sm text-white/50">Newsletter</h4>
+              <p className="mt-4 font-body text-white/80">
+                Monthly updates on the club and Montreal&apos;s startup scene.
+              </p>
+              <Button
+                href={NEWSLETTER_URL}
+                external
+                variant="secondary"
+                size="sm"
+                className="mt-5"
+              >
+                Subscribe
+                <ArrowUpRight className="size-4" />
+              </Button>
             </div>
           </Reveal>
 
