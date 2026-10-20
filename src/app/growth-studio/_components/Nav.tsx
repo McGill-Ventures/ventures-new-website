@@ -21,6 +21,7 @@ const LINK_ACTIVE: React.CSSProperties = {
 
 const NAV_LINKS = [
   { href: "/growth-studio/startups", label: "How we help founders", key: "startups" },
+  { href: "/growth-studio/funding", label: "Funding tool", key: "funding" },
   { href: "/growth-studio/team", label: "Our team", key: "team" },
   { href: "/growth-studio/partners", label: "Partner with us", key: "partners" },
   { href: "/growth-studio/careers", label: "Careers", key: "careers" },
@@ -31,12 +32,12 @@ export default function Nav({
   ctaHref,
 }: {
   /** Which nav item renders in the active (purple) style. */
-  active?: "startups" | "team" | "partners" | "careers" | null;
+  active?: "startups" | "funding" | "team" | "partners" | "careers" | null;
   /** Target of the "Contact" CTA — varies per page in the source design. */
   ctaHref: string;
 }) {
   // Phone menu state. On wide screens the links are always visible (see
-  // growth-studio.css: .gs-nav-*), so this only matters below 900px.
+  // growth-studio.css: .gs-nav-*), so this only matters below 1080px.
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 

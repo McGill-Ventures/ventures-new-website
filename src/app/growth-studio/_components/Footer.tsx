@@ -83,6 +83,9 @@ export default function Footer({
               <Link href="/growth-studio/startups" style={LINK}>
                 How we help founders
               </Link>
+              <Link href="/growth-studio/funding" style={LINK}>
+                Funding tool
+              </Link>
               <Link href="/growth-studio/partners" style={LINK}>
                 Partner with us
               </Link>

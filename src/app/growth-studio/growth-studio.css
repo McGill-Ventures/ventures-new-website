@@ -77,8 +77,9 @@ html:has(.gs-root) { scroll-behavior: smooth; }
 }
 .gs-root .gs-nav-panel { display: none; }
 
-@media (max-width: 900px) {
-  /* Nav */
+/* Five nav links plus the logo and Contact need about 1080px; below that the
+ * links switch to the menu button. Only the nav uses this breakpoint. */
+@media (max-width: 1080px) {
   .gs-root .gs-nav-links, .gs-root .gs-nav-cta { display: none !important; }
   .gs-root .gs-nav-burger { display: inline-flex; }
   .gs-root .gs-nav-panel[data-open="true"] {
@@ -98,7 +99,9 @@ html:has(.gs-root) { scroll-behavior: smooth; }
     background: var(--purple); color: var(--yellow);
     text-align: center; font-weight: 700; border: 0; border-radius: 2px;
   }
+}
 
+@media (max-width: 900px) {
   /* Layout */
   .gs-root .gs-wrap { padding-left: 20px !important; padding-right: 20px !important; }
   .gs-root .gs-grid { grid-template-columns: 1fr !important; }
