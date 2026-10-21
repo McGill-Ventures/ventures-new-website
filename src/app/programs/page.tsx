@@ -45,6 +45,13 @@ export interface Program {
     summary: string;
     groups: { title: string; items: CurriculumItem[] }[];
   };
+  report?: {
+    title: string;
+    blurb: string;
+    href: string;
+    cover: { src: string; alt: string; width: number; height: number };
+    size: string;
+  };
   /** The first renders as the solid button. */
   links: { label: string; href?: string; disabled?: boolean }[];
   /** Runs its own site, so its chapter stays short and points there. */
@@ -150,6 +157,19 @@ const PROGRAMS: Program[] = [
           ],
         },
       ],
+    },
+    report: {
+      title: "Impact Report 2025–2026",
+      blurb:
+        "In 2025–2026, 19 Fellows worked on 6 healthcare partner projects, with Deloitte as lead sponsor and guidance from 14 mentors and experts. The report looks back at the cohort, the projects and the people behind them.",
+      href: "/reports/htil-impact-report-2025-2026.pdf",
+      cover: {
+        src: "/reports/htil-impact-report-2025-2026-cover.webp",
+        alt: "Cover of the HTIL Impact Report 2025–2026, showing the Health Tech Innovation Lab cohort",
+        width: 800,
+        height: 1035,
+      },
+      size: "4.7 MB",
     },
     links: [
       {
