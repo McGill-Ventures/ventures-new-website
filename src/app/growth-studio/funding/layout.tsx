@@ -10,7 +10,7 @@ import FundingDisclaimer from "./_components/FundingDisclaimer";
 export default function FundingLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Nav active={null} ctaHref="mailto:hello.growthstudio@gmail.com" />
+      <Nav active="funding" ctaHref="mailto:hello.growthstudio@gmail.com" />
       {children}
       <FundingDisclaimer />
       <Footer />
