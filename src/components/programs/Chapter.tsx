@@ -4,6 +4,7 @@ import { Reveal } from "@/components/motion";
 import { cn } from "@/lib/utils";
 import { at2x } from "@/lib/photoSizes";
 import { Cta } from "./Cta";
+import { ImpactReport } from "./ImpactReport";
 import { Terms } from "./Terms";
 import type { Program } from "@/app/programs/page";
 
@@ -51,7 +52,7 @@ export function TitleBand({ program, frame, gutter, sizes, className }: BandProp
 const RAIL_HEADING = "font-heading text-lg lg:col-span-3 lg:border-t lg:border-white/15 lg:pt-4";
 
 export function Chapter({ program }: { program: Program }) {
-  const { id, description, features, curriculum, links } = program;
+  const { id, description, features, curriculum, report, links } = program;
 
   return (
     <article
@@ -127,6 +128,17 @@ export function Chapter({ program }: { program: Program }) {
                   </div>
                 </details>
               </Reveal>
+            </div>
+          )}
+
+          {report && (
+            <div className="mt-12 grid gap-x-6 lg:mt-16 lg:grid-cols-12">
+              <Reveal as="h3" className={RAIL_HEADING}>
+                Impact report
+              </Reveal>
+              <div className="mt-4 lg:col-span-9 lg:mt-0">
+                <ImpactReport report={report} />
+              </div>
             </div>
           )}
         </div>
