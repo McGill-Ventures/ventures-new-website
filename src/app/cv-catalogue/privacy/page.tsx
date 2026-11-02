@@ -52,7 +52,7 @@ export default function CvCataloguePrivacy() {
       <main className="px-6 py-14 md:px-12 lg:px-24">
         <article className="mx-auto max-w-3xl font-body text-lg leading-relaxed text-purple-900">
           <h1 className="mb-4 font-display text-5xl text-purple-950 md:text-6xl">CV Catalogue Privacy Policy</h1>
-          <p className="mb-12 text-purple-800/70">Last updated: November 1, 2026</p>
+          <p className="mb-12 text-purple-800/70">Last updated: November 3, 2026</p>
 
           <Section title="Who we are">
             <p>
@@ -75,8 +75,8 @@ export default function CvCataloguePrivacy() {
             <List
               items={[
                 "Your name",
-                "A short bio of up to 280 characters",
-                "The tracks you are interested in",
+                "Your major or majors, and your graduation year",
+                "Your interests, such as VC/Finance or Engineering",
                 "Your CV, as a PDF",
                 "The date and time you agreed to have your CV shared",
               ]}
@@ -90,18 +90,20 @@ export default function CvCataloguePrivacy() {
 
           <Section title="How we use it">
             <p>
-              We combine every profile into one PDF catalogue and send it to venture capital firms and startups
-              looking for talent. Our admins also use the list to confirm that each profile belongs to a
-              McGill Ventures member. We do not use your information for anything else without asking you first.
+              We combine profiles into PDF catalogues and send them to venture capital firms and startups looking
+              for talent. A catalogue can hold every profile, or only those matching what a firm asked for, such as
+              a major or graduation year. Some firms pay McGill Ventures a fee to receive a catalogue. Our admins
+              also use the list to confirm that each profile belongs to a McGill Ventures member. We do not use
+              your information for anything else without asking you first.
             </p>
           </Section>
 
           <Section title="Who sees it">
-            <p>We do not sell personal information. It is shared with:</p>
+            <p>Your information is shared with:</p>
             <List
               items={[
                 "McGill Ventures admins, who review profiles and export the catalogue.",
-                "Venture capital firms and startups that receive the catalogue. It includes your name, email address, bio, tracks, and CV.",
+                "Venture capital firms and startups that receive a catalogue, some of which pay McGill Ventures for it. It includes your name, email address, majors, graduation year, interests, and CV.",
                 "Supabase, which stores the database and CV files on servers in Canada and runs sign-in.",
                 "Vercel, which hosts the app and may process requests on servers outside Canada.",
                 "Google, which handles sign-in.",
