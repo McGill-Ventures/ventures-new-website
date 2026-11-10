@@ -4,7 +4,7 @@ import Nav from "../_components/Nav";
 import Footer from "../_components/Footer";
 import Interactions from "../_components/Interactions";
 
-const INTEREST_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfbyiRB5Lo5Pb-s7c9OYx48h60NqwwZ1I9dlUJbMYjnJg5HbA/viewform?usp=publish-editor";
+const APPLICATION_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd6DYOBVkdq66QPV6tglbUZFoKJdq18oqXDGcqB5nesE6Ehdg/viewform?usp=publish-editor";
 
 export const metadata: Metadata = {
   title: "Careers — Growth Studio",
@@ -29,7 +29,7 @@ export default function CareersPage() {
       <Nav active={"careers"} ctaHref={"#c-apply"} />
       <main>
         <div style={{ background: 'var(--yellow,#f3f13a)', padding: '12px 32px', textAlign: 'center' }}>
-          <a href={INTEREST_FORM_URL} target="_blank" rel="noopener" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '14px', letterSpacing: '.08em', color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>FUTURE CONSULTANTS: INTEREST FORM IS NOW LIVE</a>
+          <a href={APPLICATION_FORM_URL} target="_blank" rel="noopener" style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: '14px', letterSpacing: '.08em', color: 'var(--purple,#3a1fb0)', textDecoration: 'underline' }}>FUTURE CONSULTANTS: INTEREST FORM IS NOW LIVE</a>
         </div>
         <header className="gs-wrap" id="c-top" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto', padding: '88px 32px 96px', overflow: 'hidden' }}>
           <div aria-hidden="true" style={{ position: 'absolute', right: '0', top: 'calc(50% - 190px)', width: '380px', height: '380px', pointerEvents: 'none', opacity: '.2' }}>
@@ -41,7 +41,7 @@ export default function CareersPage() {
           </h1>
           <p data-reveal="" data-delay="160" style={{ fontSize: '19px', lineHeight: '1.55', maxWidth: '640px', color: 'rgba(36,20,84,.78)', margin: '0 0 34px' }}>Growth Studio consultants ship fundraising, GTM, and market work for founders. If you want hands-on startup experience before you graduate, this is where you get it.</p>
           <div data-reveal="" data-delay="240" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href={INTEREST_FORM_URL} target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)","boxShadow":"0 12px 28px rgba(58,31,176,.32)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease,box-shadow .18s ease' }}>
+            <a href={APPLICATION_FORM_URL} target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)","boxShadow":"0 12px 28px rgba(58,31,176,.32)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease,box-shadow .18s ease' }}>
               <div>Apply to join</div>
               <span style={{ fontSize: '18px', lineHeight: '1' }}>→</span>
             </a>
@@ -155,10 +155,10 @@ export default function CareersPage() {
             <div data-float="" style={{ position: 'absolute', right: '120px', bottom: '-50px', width: '120px', height: '120px', background: 'rgba(36,20,84,.08)', transform: 'rotate(20deg)', animation: 'gs-floatY 8s ease-in-out infinite' }}>
             </div>
             <div style={{ position: 'relative', maxWidth: '560px' }}>
-              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'rgba(36,20,84,.7)', margin: '0 0 18px' }}>CONSULTANT RECRUITMENT FOR WINTER 2027 WILL OPEN SOON</p>
+              <p style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', letterSpacing: '.16em', fontSize: '13px', fontWeight: '700', color: 'rgba(36,20,84,.7)', margin: '0 0 18px' }}>CONSULTANT APPLICATIONS ARE NOW OPEN</p>
               <h2 style={{ fontFamily: 'var(--font-space-grotesk),sans-serif', fontWeight: '700', fontSize: 'clamp(32px,4.4vw,54px)', lineHeight: '1.0', letterSpacing: '-.02em', margin: '0 0 18px' }}>Ready to build with us?</h2>
-              <p style={{ fontSize: '18px', lineHeight: '1.55', color: 'rgba(36,20,84,.82)', margin: '0 0 30px' }}>We bring on a new cohort each winter. Fill out our interest form to tell us who you are and get notified when applications open.</p>
-              <a href={INTEREST_FORM_URL} target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', fontFamily: 'var(--font-space-grotesk),sans-serif', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease' }}>Interest form <span style={{ fontSize: '18px', lineHeight: '1' }}>→</span>
+              <p style={{ fontSize: '18px', lineHeight: '1.55', color: 'rgba(36,20,84,.82)', margin: '0 0 30px' }}>We bring on a new cohort of consultants each winter. Apply now and tell us who you are and why you want to work with founders.</p>
+              <a href={APPLICATION_FORM_URL} target="_blank" rel="noopener" data-hover={`{"transform":"translateY(-2px)"}`} style={{ textDecoration: 'none', background: 'var(--purple,#3a1fb0)', color: '#f3f13a', fontWeight: '700', fontSize: '16px', fontFamily: 'var(--font-space-grotesk),sans-serif', padding: '15px 28px', borderRadius: '2px', display: 'inline-flex', alignItems: 'center', gap: '10px', transition: 'transform .18s ease' }}>Apply now <span style={{ fontSize: '18px', lineHeight: '1' }}>→</span>
             </a>
             <p style={{ fontSize: '15.5px', lineHeight: '1.5', color: 'rgba(36,20,84,.68)', margin: '22px 0 0' }}>Questions? Reach us directly at <a href="mailto:hello.growthstudio@gmail.com" style={{ color: 'var(--purple,#3a1fb0)', fontWeight: '700' }}>hello.growthstudio@gmail.com</a>
           </p>
