@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Quote } from "lucide-react";
+import { Quote, Sparkle } from "lucide-react";
 import { Reveal, SplitText } from "@/components/motion";
 import { at2x } from "@/lib/photoSizes";
 import { cn } from "@/lib/utils";
@@ -93,13 +93,28 @@ function GeneralMagicLogo() {
   );
 }
 
+// Twinkling stars around the heading, placed by hand to frame the last word.
+const STARS = [
+  { className: "-top-3 -right-8 size-6 text-fuchsia-500", delay: "0s" },
+  { className: "top-6 -right-12 size-3 text-purple-400", delay: "-1.1s" },
+  { className: "-top-4 left-[38%] size-3 text-indigo-400", delay: "-2.2s" },
+];
+
 /** Two founder spreads, portrait and quote side by side, alternating sides. */
 export function FeaturedMembers() {
   return (
     <section className="bg-white px-6 py-20 text-purple-950 md:px-12 md:py-28 lg:px-24">
       <div className="mx-auto max-w-7xl">
-        <h2 className="section-heading text-black">
-          <SplitText text="Featured members" />
+        <h2 className="section-heading relative w-fit">
+          <SplitText text="Featured members" className="text-nebula" />
+          {STARS.map((star) => (
+            <Sparkle
+              key={star.className}
+              aria-hidden
+              style={{ animationDelay: star.delay }}
+              className={cn("animate-twinkle absolute fill-current", star.className)}
+            />
+          ))}
         </h2>
         <Reveal
           as="p"

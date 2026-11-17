@@ -261,6 +261,53 @@ a[href],
   to { transform: translateY(0); }
 }
 
+/* Nebula text, set per <SplitText> word because a parent's text clip misses transformed words. */
+.text-nebula .split-inner {
+  background-image: linear-gradient(100deg, #3b0764 0%, #7e22ce 28%, #c026d3 46%, #4f46e5 64%, #3b0764 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: nebula-drift 12s ease-in-out infinite;
+}
+
+@media (scripting: enabled) and (min-width: 768px) {
+  .text-nebula.split[data-inview] .split-inner {
+    animation:
+      split-rise var(--split-duration, 1000ms) var(--ease-out-expo) both,
+      nebula-drift 12s ease-in-out infinite;
+    animation-delay: calc(var(--split-delay, 0ms) + var(--i, 0) * var(--split-stagger, 70ms)), calc(var(--i, 0) * -3s);
+  }
+}
+
+@media (max-width: 767px) {
+  .text-nebula .split-inner {
+    animation: none;
+    background-position: 30% 50%;
+  }
+}
+
+@keyframes nebula-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Twinkling star, keyed to end lit so reduced motion leaves it visible. */
+.animate-twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.25; transform: scale(0.6) rotate(45deg); }
+}
+
+@media (max-width: 767px) {
+  .animate-twinkle {
+    animation: none;
+  }
+}
+
 /* <Marquee> */
 .marquee {
   display: flex;
