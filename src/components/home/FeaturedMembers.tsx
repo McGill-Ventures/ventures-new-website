@@ -1,9 +1,8 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import Image from "next/image";
 import { ArrowUpRight, Quote } from "lucide-react";
 import { Reveal, SplitText } from "@/components/motion";
 import { at2x } from "@/lib/photoSizes";
+import { cn } from "@/lib/utils";
 
 const FOUNDERS = [
   {
@@ -19,11 +18,12 @@ const FOUNDERS = [
       title: "General Magic raises $7.2M USD, led by Radical Ventures",
       href: "https://betakit.com/a16z-speedrun-alum-general-magic-secures-7-2-million-usd-to-make-calling-your-insurance-company-less-of-a-slog/",
     },
+    // BetaKit calls General Magic an a16z speedrun alum. Radical Ventures led its raise.
+    backerVerb: "Alum of",
     backer: {
       src: "/logos/companies/a16z_speedrun.png",
       width: 600,
       height: 83,
-      className: "h-4 w-auto md:h-5",
       label: "a16z speedrun",
     } as const,
   },
@@ -40,192 +40,104 @@ const FOUNDERS = [
       title: "Aditya on GrayPass and Y Combinator",
       href: "https://www.linkedin.com/feed/update/urn:li:activity:7521322611729932288/",
     },
+    backerVerb: "Backed by",
     // Inline: the only bitmap of this mark is 69px square and visibly blurs.
     backer: { mark: "yc" as const, label: "Y Combinator" },
   },
 ];
 
-const GROUPS = [
-  {
-    label: "Venture capital",
-    logos: [
-      ["inovia", "Inovia"],
-      ["bdc", "BDC"],
-      ["brightspark", "Brightspark"],
-      ["framework", "Framework Venture Partners"],
-      ["novateur", "Novateur Ventures"],
-      ["triptyq", "Triptyq Capital"],
-      ["boreal_ventures", "Boreal Ventures"],
-      ["boxone", "BoxOne Ventures"],
-      ["front_row_ventures", "Front Row Ventures"],
-      ["dorm_room_fund", "Dorm Room Fund"],
-      ["white_star_capital", "White Star Capital"],
-      ["northside_ventures", "Northside Ventures"],
-    ],
-  },
-  {
-    label: "Startups",
-    logos: [
-      ["checksammy", "CheckSammy"],
-      ["betakit", "BetaKit"],
-      ["attain", "Attain"],
-      ["afterquery", "AfterQuery"],
-      ["z_fellows", "Z Fellows"],
-      ["nationgraph", "NationGraph"],
-      ["next", "NEXT Canada"],
-      ["carbon6", "Carbon6"],
-      ["optionality", "Optionality"],
-      ["brio", "Brio"],
-      ["planned", "Planned"],
-      ["botpress", "Botpress"],
-    ],
-  },
-  {
-    label: "Traditional careers",
-    logos: [
-      ["mckinsey", "McKinsey & Company"],
-      ["rbc", "RBC"],
-      ["ubs", "UBS"],
-      ["td", "TD"],
-      ["lightspeed", "Lightspeed"],
-      ["citi", "Citi"],
-      ["bmo", "BMO"],
-      ["ey_parthenon", "EY-Parthenon"],
-      ["bank_of_america", "Bank of America"],
-      ["bnp_paribas", "BNP Paribas"],
-      ["cibc", "CIBC"],
-      ["pwc", "PwC"],
-    ],
-  },
-] satisfies { label: string; logos: [string, string][] }[];
-
 function YCombinatorMark() {
   return (
-    <svg
-      viewBox="0 0 100 100"
-      role="img"
-      aria-label="Y Combinator"
-      className="size-9 rounded-md md:size-10"
-    >
+    <svg viewBox="0 0 100 100" role="img" aria-label="Y Combinator" className="size-6 rounded-[4px]">
       <rect width="100" height="100" fill="#FC651E" />
-      <path
-        d="M29.7 25 L50 48.5 L70.3 25 M50 48.5 L50 73.5"
-        fill="none"
-        stroke="#fff"
-        strokeWidth="7.4"
-      />
+      <path d="M29.7 25 L50 48.5 L70.3 25 M50 48.5 L50 73.5" fill="none" stroke="#fff" strokeWidth="7.4" />
     </svg>
   );
 }
 
-function pngSize(file: string) {
-  const png = readFileSync(
-    join(process.cwd(), "public/logos/companies", `${file}.png`),
-  );
-  if (png.toString("latin1", 12, 16) !== "IHDR") {
-    throw new Error(`public/logos/companies/${file}.png is not a PNG`);
-  }
-  return { width: png.readUInt32BE(16), height: png.readUInt32BE(20) };
-}
-
-// Same area for every logo so wide wordmarks and square marks read at equal weight.
-const LOGO_AREA = 2200;
-
-function WallLogo({ file, name }: { file: string; name: string }) {
-  const { width, height } = pngSize(file);
-  const ratio = width / height;
-  const w = Math.min(Math.sqrt(LOGO_AREA * ratio), 140, 36 * ratio);
-  return (
-    <div className="flex h-20 items-center justify-center border-r border-b border-purple-950/10 px-3 md:h-24">
-      <Image
-        src={`/logos/companies/${file}.png`}
-        alt={name}
-        title={name}
-        width={width}
-        height={height}
-        sizes="160px"
-        style={{ "--w": `${w}px` } as React.CSSProperties}
-        className="h-auto w-[calc(var(--w)*0.8)] max-w-full object-contain opacity-55 brightness-0 transition-opacity duration-300 hover:opacity-90 md:w-(--w)"
-      />
-    </div>
-  );
-}
-
-// Cells the label spans so every row closes at 3, 4 and 7 columns.
-const labelSpan = (logos: number, cols: number) => cols - (logos % cols);
-
+/** Two founder spreads, portrait and quote side by side, alternating sides. */
 export function FeaturedMembers() {
   return (
-    <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-white py-20 text-purple-950">
-      <div className="px-6 md:px-12 lg:px-24">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="section-heading text-black">
-            <SplitText text="Featured members" />
-          </h2>
-          <Reveal
-            as="p"
-            delay={200}
-            className="mt-6 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
-          >
-            Our alumni are ambitious builders, backed by some of the best
-            accelerators and funds in the world.
-          </Reveal>
+    <section className="bg-white px-6 pt-20 pb-16 text-purple-950 md:px-12 md:pt-28 lg:px-24">
+      <div className="mx-auto max-w-7xl">
+        <h2 className="section-heading text-black">
+          <SplitText text="Featured members" />
+        </h2>
+        <Reveal
+          as="p"
+          delay={200}
+          className="mt-6 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
+        >
+          Our alumni are ambitious builders, backed by some of the best
+          accelerators and funds in the world.
+        </Reveal>
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-2">
-            {FOUNDERS.map((founder, i) => (
-              <Reveal key={founder.name} delay={300 + i * 130}>
-                <figure className="flex h-full flex-col rounded-3xl bg-purple-50 p-6 ring-1 ring-purple-950/5 ring-inset md:p-8">
-                  <div className="flex h-10 items-center justify-between gap-4">
-                    <Quote aria-hidden className="size-8 fill-purple-300 text-purple-300" />
-                    <div className="shrink-0">
-                      {"mark" in founder.backer ? (
-                        <YCombinatorMark />
-                      ) : (
-                        <Image
-                          src={founder.backer.src}
-                          alt={founder.backer.label}
-                          width={founder.backer.width}
-                          height={founder.backer.height}
-                          className={`object-contain brightness-0 ${founder.backer.className}`}
-                        />
-                      )}
-                    </div>
+        <div className="mt-12 space-y-6 md:mt-16 md:space-y-8">
+          {FOUNDERS.map((founder, i) => (
+            <Reveal key={founder.name} delay={200}>
+              <figure
+                className={cn(
+                  "group grid overflow-hidden rounded-3xl bg-purple-50 ring-1 ring-purple-950/5 ring-inset",
+                  i % 2 === 0
+                    ? "md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
+                    : "md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]",
+                )}
+              >
+                <div
+                  className={cn(
+                    "relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[28rem]",
+                    i % 2 === 1 && "md:order-last",
+                  )}
+                >
+                  <Image
+                    src={founder.photo}
+                    alt={founder.name}
+                    fill
+                    sizes={at2x("(max-width: 767px) 100vw, 40vw")}
+                    className="object-cover object-[50%_30%] grayscale transition-[scale,filter] duration-700 ease-out group-hover:scale-[1.03] group-hover:grayscale-0 motion-reduce:transition-none"
+                  />
+                  <div className="absolute top-4 left-4 flex h-10 items-center gap-2.5 rounded-xl bg-white/90 px-3.5 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md">
+                    <span className="font-heading text-xs text-purple-900/70">{founder.backerVerb}</span>
+                    {"mark" in founder.backer ? (
+                      <YCombinatorMark />
+                    ) : (
+                      <Image
+                        src={founder.backer.src}
+                        alt={founder.backer.label}
+                        width={founder.backer.width}
+                        height={founder.backer.height}
+                        className="h-3.5 w-auto object-contain brightness-0"
+                      />
+                    )}
                   </div>
-                  <blockquote className="mt-4 font-display text-xl leading-snug text-purple-950 md:text-2xl">
+                </div>
+
+                <div className="flex flex-col p-6 md:p-10 lg:p-12">
+                  <Quote aria-hidden className="size-9 fill-purple-300 text-purple-300" />
+                  <blockquote className="mt-5 font-display text-xl leading-snug text-purple-950 md:text-2xl lg:text-[1.75rem]">
                     {founder.quote}
                   </blockquote>
 
-                  <figcaption className="mt-auto flex items-center gap-4 pt-8">
-                    <div className="relative size-14 shrink-0 overflow-hidden rounded-2xl md:size-16">
-                      <Image
-                        src={founder.photo}
-                        alt=""
-                        fill
-                        sizes={at2x("64px")}
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <a
-                        href={founder.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-display text-lg leading-tight text-purple-950 underline-offset-4 hover:underline md:text-xl"
-                      >
-                        {founder.name}
-                        <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
-                      </a>
-                      <p className="font-body text-sm text-purple-900/70 md:text-base">
-                        {founder.role}, {founder.company}
-                      </p>
-                    </div>
+                  <figcaption className="mt-8 md:mt-auto md:pt-10">
+                    <a
+                      href={founder.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-display text-xl leading-tight text-purple-950 underline-offset-4 hover:underline"
+                    >
+                      {founder.name}
+                      <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
+                    </a>
+                    <p className="mt-1 font-body text-purple-900/70">
+                      {founder.role}, {founder.company}
+                    </p>
                   </figcaption>
 
                   <a
                     href={founder.news.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group mt-6 flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-4 ring-1 ring-purple-950/5 transition-shadow duration-300 hover:ring-purple-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
+                    className="group/news mt-6 flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-4 ring-1 ring-purple-950/5 transition-shadow duration-300 hover:ring-purple-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
                   >
                     <span className="min-w-0">
                       <span className="block font-heading text-xs text-purple-700">
@@ -237,65 +149,14 @@ export function FeaturedMembers() {
                     </span>
                     <ArrowUpRight
                       aria-hidden
-                      className="size-5 shrink-0 text-purple-700 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      className="size-5 shrink-0 text-purple-700 transition-transform duration-300 group-hover/news:translate-x-0.5 group-hover/news:-translate-y-0.5"
                     />
                     <span className="sr-only">(opens in a new tab)</span>
                   </a>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-12 px-6 md:mt-16 md:px-12 lg:px-24">
-        <div className="mx-auto max-w-7xl">
-          <Reveal
-            as="p"
-            delay={120}
-            className="font-heading text-sm text-purple-900/60"
-          >
-            And the rest of us landed opportunities here
-          </Reveal>
-          <div className="mt-4 space-y-6">
-            {GROUPS.map((group, i) => {
-              const fromLeft = i % 2 === 1;
-              return (
-                <Reveal
-                  key={group.label}
-                  variant={fromLeft ? "left" : "right"}
-                  delay={200 + i * 140}
-                  duration={1100}
-                  className="grid grid-cols-3 border-t border-l border-purple-950/10 sm:grid-cols-4 lg:grid-cols-7"
-                  style={
-                    {
-                      "--reveal-from": fromLeft
-                        ? "translateX(-120px)"
-                        : "translateX(120px)",
-                    } as React.CSSProperties
-                  }
-                >
-                  <div
-                    className="col-span-(--span-3) flex items-center justify-center border-r border-b border-purple-950/10 p-4 sm:col-span-(--span-4) lg:col-span-(--span-7)"
-                    style={
-                      {
-                        "--span-3": labelSpan(group.logos.length, 3),
-                        "--span-4": labelSpan(group.logos.length, 4),
-                        "--span-7": labelSpan(group.logos.length, 7),
-                      } as React.CSSProperties
-                    }
-                  >
-                    <h3 className="text-center font-heading text-sm text-purple-700 md:text-base">
-                      {group.label}
-                    </h3>
-                  </div>
-                  {group.logos.map(([file, name]) => (
-                    <WallLogo key={file} file={file} name={name} />
-                  ))}
-                </Reveal>
-              );
-            })}
-          </div>
+                </div>
+              </figure>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

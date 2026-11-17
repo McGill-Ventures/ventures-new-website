@@ -5,6 +5,7 @@ import { Programs } from "@/components/home/Programs";
 import { Events } from "@/components/home/Events";
 import { Why } from "@/components/home/Why";
 import { FeaturedMembers } from "@/components/home/FeaturedMembers";
+import { Placements } from "@/components/home/Placements";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Events />
       <Why />
       <FeaturedMembers />
+      <Placements />
       <Footer />
     </div>
   );
