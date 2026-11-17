@@ -94,7 +94,7 @@ export function FeaturedMembers() {
                     alt={founder.name}
                     fill
                     sizes={at2x("(max-width: 767px) 100vw, 40vw")}
-                    className="object-cover object-[50%_30%] grayscale transition-[scale,filter] duration-700 ease-out group-hover:scale-[1.03] group-hover:grayscale-0 motion-reduce:transition-none"
+                    className="object-cover object-[50%_30%] grayscale transition-[scale] duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
                   />
                   <div className="absolute top-4 left-4 flex h-10 items-center gap-2.5 rounded-xl bg-white/90 px-3.5 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md">
                     <span className="font-heading text-xs text-purple-900/70">{founder.backerVerb}</span>
