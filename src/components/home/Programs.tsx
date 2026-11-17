@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { Reveal, SplitText } from "@/components/motion";
 import { at2x } from "@/lib/photoSizes";
 import { cn } from "@/lib/utils";
@@ -13,7 +12,6 @@ const PROGRAMS = [
     role: "Learn",
     name: "Analyst Program",
     description: "A crash course in venture capital, from sourcing deals to writing the investment memo.",
-    facts: "16 weeks, 4 to 6 hours a week",
     href: "/programs#analyst",
     external: false,
     photo: "/events/image_carousel_pic2.jpg",
@@ -23,7 +21,6 @@ const PROGRAMS = [
     role: "Invest",
     name: "McGill Venture Fund",
     description: "Source, diligence and model real startups as an analyst on the student-run fund.",
-    facts: "10 weeks, live deals",
     href: "/fund",
     external: false,
     photo: "/events/scarlet_pitch_2026/sp26_02.jpg",
@@ -33,7 +30,6 @@ const PROGRAMS = [
     role: "Advise",
     name: "Growth Studio",
     description: "Consult for early-stage startups on go-to-market and fundraising, side by side with their founders.",
-    facts: "6 weeks, in person",
     href: "/growth-studio",
     external: false,
     photo: "/growth-studio/hero-founders.webp",
@@ -43,7 +39,6 @@ const PROGRAMS = [
     role: "Build",
     name: "HealthTech Innovation Lab",
     description: "A fellowship building solutions to real healthcare challenges with startups and industry partners.",
-    facts: "12 weeks, open to every discipline",
     href: "/programs#htil",
     external: false,
     photo: "/events/clipxhealthtech_2026/clipxhealthtech_2026_program.jpg",
@@ -53,7 +48,6 @@ const PROGRAMS = [
     role: "Explore",
     name: "Project Atlas",
     description: "Connects Montreal's young builders to Canadian and international startup hubs, with San Francisco next.",
-    facts: "Season 2, San Francisco",
     href: "https://www.project-atlas.ca/",
     external: true,
     photo: "/events/project_atlas/atlas_02.jpg",
@@ -74,7 +68,7 @@ function NewTab({ program }: { program: Program }) {
 function Panels() {
   const [active, setActive] = useState(0);
   return (
-    <ul className="hidden h-[32rem] gap-3 lg:flex xl:h-[36rem]">
+    <ul className="hidden h-[36rem] gap-3 xl:flex">
       {PROGRAMS.map((program, i) => {
         const open = i === active;
         return (
@@ -123,13 +117,6 @@ function Panels() {
                 >
                   <div className="overflow-hidden">
                     <p className="mt-3 font-body text-white/80">{program.description}</p>
-                    <p className="mt-4 flex items-center justify-between gap-4 border-t border-white/20 pt-4 font-heading text-sm">
-                      <span className="text-white/70">{program.facts}</span>
-                      <span className="flex items-center gap-1.5">
-                        Explore
-                        <ArrowRight aria-hidden className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </span>
-                    </p>
                   </div>
                 </div>
               </div>
@@ -143,7 +130,7 @@ function Panels() {
 
 function List() {
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:hidden">
+    <ul className="grid gap-4 sm:grid-cols-2 xl:hidden">
       {PROGRAMS.map((program, i) => (
         <Reveal as="li" key={program.name} delay={i * 60}>
           <Link
@@ -168,10 +155,6 @@ function List() {
                 <NewTab program={program} />
               </h3>
               <p className="mt-2 font-body text-purple-900/75">{program.description}</p>
-              <p className="mt-4 flex items-center justify-between gap-4 font-heading text-sm text-purple-900/70">
-                {program.facts}
-                <ArrowRight aria-hidden className="size-4 text-purple-700 transition-transform duration-300 group-hover:translate-x-1" />
-              </p>
             </div>
           </Link>
         </Reveal>
@@ -203,7 +186,7 @@ export function Programs() {
           </Reveal>
         </div>
 
-        <Reveal delay={250} className="mt-12 lg:mt-14">
+        <Reveal delay={250} className="mt-12 xl:mt-14">
           <Panels />
           <List />
         </Reveal>
