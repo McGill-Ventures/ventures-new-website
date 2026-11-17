@@ -98,8 +98,11 @@ export function FeaturedMembers() {
   return (
     <section className="bg-white px-6 py-20 text-purple-950 md:px-12 md:py-28 lg:px-24">
       <div className="mx-auto max-w-7xl">
-        <h2 className="section-heading">
-          <SplitText text="Featured members" className="text-sheen" />
+        <h2 className="section-heading relative w-fit text-[#1e0b36]">
+          <SplitText text="Featured members" />
+          <span aria-hidden className="text-sheen absolute inset-0">
+            Featured members
+          </span>
         </h2>
         <Reveal
           as="p"

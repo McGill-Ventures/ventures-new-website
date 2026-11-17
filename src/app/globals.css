@@ -261,28 +261,31 @@ a[href],
   to { transform: translateY(0); }
 }
 
-/* A band of light sweeping across <SplitText> words, set per word as a parent's text clip misses transformed words. */
-.text-sheen .split-inner {
-  background-image: linear-gradient(105deg, #1e0b36 0%, #1e0b36 42%, #c4b5fd 50%, #1e0b36 58%, #1e0b36 100%);
-  background-size: 300% 100%;
+/* A band of light on an untransformed copy of a heading's text, laid over the real one. */
+.text-sheen {
+  color: transparent;
+  background-image: linear-gradient(100deg, transparent 0%, transparent 44%, rgba(196, 181, 253, 0.95) 50%, transparent 56%, transparent 100%);
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
   background-position: 100% 0;
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  pointer-events: none;
 }
 
-@media (scripting: enabled) and (min-width: 768px) and (prefers-reduced-motion: no-preference) {
-  .text-sheen.split[data-inview] .split-inner {
-    animation:
-      split-rise var(--split-duration, 1000ms) var(--ease-out-expo) both,
-      sheen-sweep 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    animation-delay: calc(var(--split-delay, 0ms) + var(--i, 0) * var(--split-stagger, 70ms)), calc(1.1s + var(--i, 0) * 0.85s);
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  /* Starts once the <SplitText> beside it has risen into place. */
+  .split[data-inview] ~ .text-sheen {
+    animation: sheen-sweep 7s 1.4s infinite;
   }
 }
 
 @keyframes sheen-sweep {
-  0% { background-position: 100% 0; }
-  30%, 100% { background-position: 0% 0; }
+  0% {
+    background-position: 100% 0;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1);
+  }
+  35%, 100% { background-position: 0% 0; }
 }
 
 /* <Marquee> */
