@@ -2,14 +2,14 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import { Reveal, SplitText } from "@/components/motion";
+import { Reveal, SplitText, Starfield } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
 // ring is the orbit radius as a percentage of the diagram's width, duration its seconds per turn.
 const GROUPS = [
   {
     label: "Venture capital",
-    ring: 22,
+    ring: 24,
     duration: 80,
     logos: [
       ["inovia", "Inovia"],
@@ -28,7 +28,7 @@ const GROUPS = [
   },
   {
     label: "Startups",
-    ring: 34.5,
+    ring: 36,
     duration: 110,
     logos: [
       ["checksammy", "CheckSammy"],
@@ -47,7 +47,7 @@ const GROUPS = [
   },
   {
     label: "Traditional careers",
-    ring: 47,
+    ring: 47.5,
     duration: 140,
     logos: [
       ["mckinsey", "McKinsey & Company"],
@@ -74,31 +74,45 @@ function pngSize(file: string) {
   return { width: png.readUInt32BE(16), height: png.readUInt32BE(20) };
 }
 
-// Same area for every logo so wide wordmarks and square marks read at equal weight, sized
-// in cqw so the whole orbit scales with its container.
-function logoWidth(file: string) {
+// Light rim, body and night side of each planet, cycled so neighbours differ.
+const PALETTE = [
+  ["#c4b5fd", "#5b21b6", "#160b2e"],
+  ["#f9a8d4", "#9d174d", "#24081a"],
+  ["#93c5fd", "#1d4ed8", "#0a1230"],
+  ["#99f6e4", "#0f766e", "#05201d"],
+  ["#fcd34d", "#a16207", "#241505"],
+  ["#d8b4fe", "#7e22ce", "#1a0a2e"],
+];
+
+// Planet diameters per ring in cqw, so the whole system scales with its container.
+const PLANET = [8, 8.5, 9];
+
+// Same area for every logo so wordmarks and square marks read at equal weight, kept inside the planet.
+function logoWidth(file: string, planet: number) {
   const { width, height } = pngSize(file);
   const ratio = width / height;
-  return { width, height, cqw: Math.min(Math.sqrt(820 * ratio), 62, 30 * ratio) / 7 };
+  return { width, height, cqw: Math.min(Math.sqrt(820 * ratio) / 7, 30 * ratio / 7, planet * 0.7) };
 }
 
 const SPIN = "animate-[spin_var(--turn)_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:animate-none";
 
 function Orbit() {
   return (
-    <div className="group @container relative aspect-square w-[150%] max-w-none shrink-0 sm:w-full sm:max-w-[44rem]">
+    <div className="group @container relative aspect-square w-[165%] max-w-none shrink-0 sm:w-full sm:max-w-[48rem]">
       <div
         aria-hidden
-        className="absolute top-1/2 left-1/2 size-[46%] -translate-1/2 rounded-full bg-purple-600/30 blur-3xl"
+        className="absolute top-1/2 left-1/2 size-[62%] -translate-1/2 animate-[pulse_7s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,rgba(216,180,254,0.4),rgba(147,51,234,0.14)_45%,transparent_70%)] motion-reduce:animate-none"
       />
-      <Image
-        src="/logos/main_logo_wordmark.png"
-        alt="McGill Ventures"
-        width={2576}
-        height={302}
-        sizes="(max-width: 639px) 40vw, 180px"
-        className="absolute top-1/2 left-1/2 w-[26%] -translate-1/2 brightness-0 invert"
-      />
+      <div className="absolute top-1/2 left-1/2 grid size-[30%] -translate-1/2 place-items-center rounded-full bg-[radial-gradient(circle_at_50%_42%,#ffffff_0%,#fbf7ff_52%,#ead8ff_78%,#c48cff_100%)] shadow-[0_0_5cqw_1.5cqw_rgba(216,180,254,0.55),0_0_14cqw_5cqw_rgba(147,51,234,0.35)]">
+        <Image
+          src="/logos/main_logo_wordmark.png"
+          alt="McGill Ventures"
+          width={2576}
+          height={302}
+          sizes="(max-width: 639px) 40vw, 200px"
+          className="w-[74%]"
+        />
+      </div>
       {GROUPS.map((group, ringIndex) => {
         const reverse = ringIndex % 2 === 1;
         return (
@@ -106,17 +120,19 @@ function Orbit() {
             <div
               aria-hidden
               style={{ width: `${group.ring * 2}cqw` }}
-              className="absolute top-1/2 left-1/2 aspect-square -translate-1/2 rounded-full border border-white/10"
+              className="absolute top-1/2 left-1/2 aspect-square -translate-1/2 rounded-full border border-white/[0.08]"
             />
-            {/* The ring turns one way and each logo the other, so the logos stay upright. */}
+            {/* The orbit turns one way and each logo the other, so logos stay upright while the planet's lit side keeps facing the star. */}
             <ul
               aria-label={group.label}
               style={{ "--turn": `${group.duration}s` } as CSSProperties}
               className={cn("absolute inset-0", SPIN, reverse && "[animation-direction:reverse]")}
             >
               {group.logos.map(([file, name], i) => {
-                const { width, height, cqw } = logoWidth(file);
                 const angle = (360 / group.logos.length) * i + ringIndex * 15;
+                const size = PLANET[ringIndex] * (0.92 + ((i * 37 + ringIndex * 11) % 17) / 100);
+                const [rim, body, night] = PALETTE[(i + ringIndex * 2) % PALETTE.length];
+                const { width, height, cqw } = logoWidth(file, size);
                 return (
                   <li
                     key={file}
@@ -125,20 +141,32 @@ function Orbit() {
                     }}
                     className="absolute top-1/2 left-1/2"
                   >
-                    <div
-                      style={{ "--turn": `${group.duration}s` } as CSSProperties}
-                      className={cn(SPIN, !reverse && "[animation-direction:reverse]")}
-                    >
-                      <Image
-                        src={`/logos/companies/${file}.png`}
-                        alt={name}
-                        title={name}
-                        width={width}
-                        height={height}
-                        sizes="120px"
-                        style={{ width: `${cqw}cqw` }}
-                        className="h-auto max-w-none object-contain opacity-80 transition-opacity duration-300 hover:opacity-100"
+                    <div className="relative transition-transform duration-500 hover:scale-110">
+                      <span
+                        aria-hidden
+                        style={{
+                          width: `${size}cqw`,
+                          rotate: `${angle}deg`,
+                          background: `radial-gradient(circle at 50% 118%, ${rim} 0%, ${body} 40%, ${night} 82%)`,
+                          boxShadow: `0 0 2cqw ${body}80, inset 0 -0.3cqw 0.6cqw rgba(255,255,255,0.18)`,
+                        }}
+                        className="block aspect-square rounded-full"
                       />
+                      <div
+                        style={{ "--turn": `${group.duration}s` } as CSSProperties}
+                        className={cn("absolute inset-0 grid place-items-center", SPIN, !reverse && "[animation-direction:reverse]")}
+                      >
+                        <Image
+                          src={`/logos/companies/${file}.png`}
+                          alt={name}
+                          title={name}
+                          width={width}
+                          height={height}
+                          sizes="120px"
+                          style={{ width: `${cqw}cqw` }}
+                          className="h-auto max-w-none object-contain drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]"
+                        />
+                      </div>
                     </div>
                   </li>
                 );
@@ -169,11 +197,12 @@ function RingIcon({ ring }: { ring: number }) {
   );
 }
 
-/** Where members and alumni went on to work, as three orbiting rings around MVC. */
+/** Where members and alumni went on to work: firms as planets orbiting MVC as the star. */
 export function Placements() {
   return (
-    <section className="bg-grain relative overflow-hidden bg-purple-950 px-6 py-24 text-white md:px-12 md:py-32 lg:px-24">
-      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
+    <section className="relative overflow-hidden bg-purple-950 bg-[radial-gradient(ellipse_at_68%_50%,rgba(126,34,206,0.35),transparent_60%),radial-gradient(ellipse_at_10%_90%,rgba(190,24,93,0.15),transparent_50%)] px-6 py-24 text-white md:px-12 md:py-32 lg:px-24">
+      <Starfield count={160} comets={false} />
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-12">
         <div>
           <h2 className="section-heading">
             <SplitText text="Where members land" />
