@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 
 const PROGRAMS = [
   {
-    role: "Learn",
     name: "Analyst Program",
     description: "A crash course in venture capital, from sourcing deals to writing the investment memo.",
     href: "/programs#analyst",
@@ -18,7 +17,6 @@ const PROGRAMS = [
     position: "50% 70%",
   },
   {
-    role: "Invest",
     name: "McGill Venture Fund",
     description: "Source, diligence and model real startups as an analyst on the student-run fund.",
     href: "/fund",
@@ -27,7 +25,6 @@ const PROGRAMS = [
     position: "50% 35%",
   },
   {
-    role: "Advise",
     name: "Growth Studio",
     description: "Consult for early-stage startups on go-to-market and fundraising, side by side with their founders.",
     href: "/growth-studio",
@@ -36,7 +33,6 @@ const PROGRAMS = [
     position: "50% 30%",
   },
   {
-    role: "Build",
     name: "Health Tech Innovation Lab",
     description: "A fellowship building solutions to real healthcare challenges with startups and industry partners.",
     href: "/programs#htil",
@@ -45,7 +41,6 @@ const PROGRAMS = [
     position: "40% 50%",
   },
   {
-    role: "Explore",
     name: "Project Atlas",
     description: "Connects Montreal's young builders to Canadian and international startup hubs, with San Francisco next.",
     href: "https://www.project-atlas.ca/",
@@ -107,8 +102,7 @@ function Panels() {
                       open ? "opacity-0" : "opacity-100 delay-200",
                     )}
                   >
-                    <p className="font-heading text-sm text-purple-200">{program.role}</p>
-                    <p className="mt-1 font-display text-xl leading-tight">{program.name}</p>
+                    <p className="font-display text-xl leading-tight">{program.name}</p>
                   </div>
                   <div
                     className={cn(
@@ -116,8 +110,7 @@ function Panels() {
                       open ? "opacity-100 delay-200" : "opacity-0",
                     )}
                   >
-                    <p className="font-heading text-sm text-purple-200">{program.role}</p>
-                    <h3 className="mt-1 font-display text-3xl leading-tight text-balance">
+                    <h3 className="font-display text-3xl leading-tight text-balance">
                       {program.name}
                       <NewTab program={program} />
                     </h3>
@@ -163,8 +156,7 @@ function List() {
               />
             </div>
             <div className="p-5">
-              <p className="font-heading text-sm text-purple-700">{program.role}</p>
-              <h3 className="mt-1 font-display text-xl leading-tight text-purple-950">
+              <h3 className="font-display text-xl leading-tight text-purple-950">
                 {program.name}
                 <NewTab program={program} />
               </h3>
@@ -177,7 +169,6 @@ function List() {
   );
 }
 
-/** The negative scroll margin cancels the global scroll-padding so the hero's "Discover more" clears it fully. */
 export function Programs() {
   return (
     <section
@@ -194,7 +185,7 @@ export function Programs() {
             delay={200}
             className="mt-6 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
           >
-            Learn venture capital, invest from a student-run fund, advise
+            Learn venture capital, invest from a student-run fund, grow
             startups, build health tech, or take Montreal&apos;s builders
             abroad.
           </Reveal>
