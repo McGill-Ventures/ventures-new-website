@@ -3,18 +3,54 @@ import assert from "node:assert/strict";
 import vm from "node:vm";
 import { syncNav } from "../src/lib/navSync.ts";
 
-// The root layout inlines syncNav's source, so it must run with nothing but browser globals.
-test("syncNav runs standalone, the way the layout inlines it", () => {
+/** Runs syncNav the way the layout inlines it, with only browser globals, over a
+ *  stack of elements whose background colours paint to the given RGBA bytes. */
+function runOver(stack: { rgba: number[]; width?: number; inHeader?: boolean }[]) {
   const set: [string, boolean][] = [];
-  const header = { dataset: { darkOver: "#hero" }, toggleAttribute: (name: string, on: boolean) => set.push([name, on]) };
+  const elements = stack.map(({ rgba, width = 1280 }) => ({
+    rgba,
+    getBoundingClientRect: () => ({ width }),
+  }));
+  const header = {
+    contains: (el: unknown) => stack[elements.indexOf(el as never)]?.inHeader ?? false,
+    toggleAttribute: (name: string, on: boolean) => set.push([name, on]),
+  };
+  let painted = [0, 0, 0, 0];
+  const probe = {
+    clearRect: () => {},
+    fillRect: () => {},
+    getImageData: () => ({ data: painted }),
+    set fillStyle(rgba: number[]) {
+      painted = rgba;
+    },
+  };
   const sandbox = {
     AbortController,
-    window: { scrollY: 120, addEventListener: () => {} },
+    window: {
+      innerWidth: 1280,
+      addEventListener: () => {},
+      getComputedStyle: (el: { rgba: number[] }) => ({ backgroundColor: el.rgba }),
+    },
     document: {
       querySelector: () => header,
-      querySelectorAll: () => [{ getBoundingClientRect: () => ({ top: -200, bottom: 600 }) }],
+      createElement: () => ({ getContext: () => probe }),
+      elementsFromPoint: () => elements,
     },
   };
   vm.runInNewContext(`(${syncNav})()`, sandbox);
-  assert.deepEqual(set, [["data-scrolled", true], ["data-on-dark", true]]);
+  return set;
+}
+
+test("dark over a dark section, skipping the island, cards and transparent layers", () => {
+  const set = runOver([
+    { rgba: [255, 255, 255, 255], inHeader: true },
+    { rgba: [255, 255, 255, 255], width: 300 },
+    { rgba: [0, 0, 0, 0] },
+    { rgba: [0, 0, 0, 255] },
+  ]);
+  assert.deepEqual(set, [["data-on-dark", true]]);
+});
+
+test("light over a light section", () => {
+  assert.deepEqual(runOver([{ rgba: [250, 245, 255, 255] }, { rgba: [0, 0, 0, 255] }]), [["data-on-dark", false]]);
 });

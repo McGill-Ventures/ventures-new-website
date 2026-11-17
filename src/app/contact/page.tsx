@@ -38,7 +38,7 @@ const ROW_LINK =
 export default function Contact() {
   return (
     <div className="min-h-screen bg-black">
-      <Navigation currentPage="/contact" darkOver="#contact" />
+      <Navigation currentPage="/contact" />
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="contact" className="relative -mt-20 overflow-clip bg-black text-white">

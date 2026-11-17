@@ -234,7 +234,7 @@ const PROGRAMS: Program[] = [
 export default function Programs() {
   return (
     <div className="min-h-screen bg-black">
-      <Navigation currentPage="/programs" darkOver="#programs" />
+      <Navigation currentPage="/programs" />
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="programs" className="relative -mt-20 overflow-clip bg-black text-white">

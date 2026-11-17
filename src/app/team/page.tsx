@@ -22,7 +22,7 @@ const GRID = "grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:gap-x-6 xl:grid
 export default function Team() {
   return (
     <div className="min-h-screen bg-black">
-      <Navigation currentPage="/team" darkOver="#team" />
+      <Navigation currentPage="/team" />
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="team" className="relative -mt-20 overflow-clip bg-black text-white">

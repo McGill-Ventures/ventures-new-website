@@ -37,15 +37,13 @@ const TONE: Record<Tone, string> = {
 
 type Props = Omit<HeaderProps, "dark"> & { tone: Tone; children: ReactNode };
 
-/** One slide of the deck as a full-screen section. Dark slides carry
- *  `data-dark` so the nav bar turns dark over them. */
+/** One slide of the deck as a full-screen section. */
 export function Slide({ tone, children, ...header }: Props) {
   const dark = tone === "black" || tone === "purple";
   return (
     <section
       id={header.id}
       aria-labelledby={`${header.id}-title`}
-      data-dark={dark || undefined}
       className={cn(
         "relative flex min-h-[100dvh] flex-col overflow-clip px-6 pt-24 pb-16 md:px-12 lg:px-24",
         TONE[tone],
