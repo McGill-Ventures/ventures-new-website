@@ -94,7 +94,7 @@ function CompanyLogo({ company }: { company: string }) {
 /** Two founder spreads, portrait and quote side by side, alternating sides. */
 export function FeaturedMembers() {
   return (
-    <section className="bg-white px-6 pt-20 pb-16 text-purple-950 md:px-12 md:pt-28 lg:px-24">
+    <section className="bg-white px-6 py-20 text-purple-950 md:px-12 md:py-28 lg:px-24">
       <div className="mx-auto max-w-7xl">
         <h2 className="section-heading text-black">
           <SplitText text="Featured members" />
