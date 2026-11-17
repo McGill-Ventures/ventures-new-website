@@ -64,12 +64,11 @@ const DECK_EMAIL = `mailto:mcgillventuresfund@gmail.com?subject=${encodeURICompo
 export default function Fund() {
   return (
     <div className="min-h-screen bg-black">
-      <Navigation currentPage="/fund" darkOver="[data-dark]" />
+      <Navigation currentPage="/fund" />
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main className="relative -mt-20 overflow-clip bg-black text-white">
         <section
-          data-dark
           className="relative flex min-h-[100dvh] flex-col justify-end px-6 pt-28 pb-16 md:px-12 lg:px-24"
         >
           <div
@@ -112,7 +111,6 @@ export default function Fund() {
         <section
           id="problem"
           aria-labelledby="problem-title"
-          data-dark
           className="relative grid min-h-[100dvh] md:grid-cols-2"
         >
           {PROBLEMS.map((item, i) => (

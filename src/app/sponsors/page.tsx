@@ -58,9 +58,10 @@ import triptyqCapitalLogo from "./triptyq_capital.png";
 export default function Sponsors() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation currentPage="/sponsors" />
+      <Navigation currentPage="/sponsors" lightHero />
 
-      <section className="px-6 py-14 md:px-12 lg:px-24 relative bg-gradient-hero">
+      {/* Pulled up under the floating nav, so `-mt-20` tracks its spacer. */}
+      <section className="relative -mt-20 bg-gradient-hero px-6 pt-34 pb-14 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-display text-purple-950 mb-8">

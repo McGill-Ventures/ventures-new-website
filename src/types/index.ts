@@ -1,11 +1,7 @@
 export interface NavigationProps {
   currentPage?: string;
-  /**
-   * CSS selector of the page's dark sections. While one sits under the bar the chrome is
-   * transparent, then dark glass, with white text; over anything else the bar returns to
-   * the light design used everywhere else.
-   */
-  darkOver?: string;
+  /** The page opens on a light hero, so the nav starts light before it can measure. */
+  lightHero?: boolean;
 }
 
 export interface TeamMember {

@@ -310,7 +310,7 @@ export default function Events() {
 
   return (
     <div className="min-h-screen bg-black">
-      <Navigation currentPage="/events" darkOver="#events" />
+      <Navigation currentPage="/events" />
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="events" className="relative -mt-20 overflow-hidden bg-black text-white">
