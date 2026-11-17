@@ -4,6 +4,8 @@
 @import "./growth-studio/growth-studio.css";
 @import "yet-another-react-lightbox/styles.css";
 
+@custom-variant can-hover (@media (hover: hover) and (pointer: fine));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

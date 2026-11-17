@@ -37,7 +37,7 @@ const PROGRAMS = [
   },
   {
     role: "Build",
-    name: "HealthTech Innovation Lab",
+    name: "Health Tech Innovation Lab",
     description: "A fellowship building solutions to real healthcare challenges with startups and industry partners.",
     href: "/programs#htil",
     external: false,
@@ -68,7 +68,7 @@ function NewTab({ program }: { program: Program }) {
 function Panels() {
   const [active, setActive] = useState(0);
   return (
-    <ul className="hidden h-[36rem] gap-3 xl:flex">
+    <ul className="hidden h-[36rem] gap-3 can-hover:xl:flex">
       {PROGRAMS.map((program, i) => {
         const open = i === active;
         return (
@@ -77,7 +77,7 @@ function Panels() {
             onMouseEnter={() => setActive(i)}
             className={cn(
               "min-w-0 basis-0 transition-[flex-grow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
-              open ? "grow-[3.4]" : "grow",
+              open ? "grow-[2.8]" : "grow",
             )}
           >
             <Link
@@ -90,7 +90,7 @@ function Panels() {
                 src={program.photo}
                 alt=""
                 fill
-                sizes={at2x("(max-width: 1279px) 60vw, 760px")}
+                sizes={at2x("580px")}
                 style={{ objectPosition: program.position }}
                 className={cn(
                   "object-cover transition-[scale,filter] duration-700 ease-out motion-reduce:transition-none",
@@ -98,20 +98,34 @@ function Panels() {
                 )}
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/5" />
-              <div className="absolute inset-x-0 bottom-0 p-6 text-white xl:p-7">
-                <p className="font-heading text-sm text-purple-200">{program.role}</p>
-                <h3
-                  className={cn(
-                    "mt-1 font-display leading-tight text-balance transition-[font-size] duration-500",
-                    open ? "text-3xl" : "text-xl",
-                  )}
-                >
-                  {program.name}
-                  <NewTab program={program} />
-                </h3>
+              <div className="absolute inset-x-0 bottom-0 p-5 text-white 2xl:p-7">
+                <div className="grid items-end">
+                  <div
+                    aria-hidden
+                    className={cn(
+                      "col-start-1 row-start-1 w-[6.5rem] transition-opacity duration-300 motion-reduce:transition-none",
+                      open ? "opacity-0" : "opacity-100 delay-200",
+                    )}
+                  >
+                    <p className="font-heading text-sm text-purple-200">{program.role}</p>
+                    <p className="mt-1 font-display text-xl leading-tight">{program.name}</p>
+                  </div>
+                  <div
+                    className={cn(
+                      "col-start-1 row-start-1 w-[22rem] transition-opacity duration-300 motion-reduce:transition-none",
+                      open ? "opacity-100 delay-200" : "opacity-0",
+                    )}
+                  >
+                    <p className="font-heading text-sm text-purple-200">{program.role}</p>
+                    <h3 className="mt-1 font-display text-3xl leading-tight text-balance">
+                      {program.name}
+                      <NewTab program={program} />
+                    </h3>
+                  </div>
+                </div>
                 <div
                   className={cn(
-                    "grid w-[24rem] max-w-full transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none",
+                    "grid w-[22rem] transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none",
                     open ? "grid-rows-[1fr] opacity-100 delay-200" : "grid-rows-[0fr] opacity-0",
                   )}
                 >
@@ -130,9 +144,9 @@ function Panels() {
 
 function List() {
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 xl:hidden">
-      {PROGRAMS.map((program, i) => (
-        <Reveal as="li" key={program.name} delay={i * 60}>
+    <ul className="grid gap-4 sm:grid-cols-2 can-hover:xl:hidden">
+      {PROGRAMS.map((program) => (
+        <li key={program.name}>
           <Link
             href={program.href}
             {...linkProps(program)}
@@ -157,7 +171,7 @@ function List() {
               <p className="mt-2 font-body text-purple-900/75">{program.description}</p>
             </div>
           </Link>
-        </Reveal>
+        </li>
       ))}
     </ul>
   );
@@ -186,7 +200,7 @@ export function Programs() {
           </Reveal>
         </div>
 
-        <Reveal delay={250} className="mt-12 xl:mt-14">
+        <Reveal delay={250} className="mt-12 can-hover:xl:mt-14">
           <Panels />
           <List />
         </Reveal>
