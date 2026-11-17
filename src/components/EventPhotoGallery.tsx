@@ -1,7 +1,26 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
+import Lightbox, { type RenderSlideProps } from "yet-another-react-lightbox";
+import { at2x } from "@/lib/photoSizes";
+
+/** The lightbox's own `<img>` would fetch the ~10 MB originals, so slides go through next/image. */
+function OptimizedSlide({ slide, rect }: RenderSlideProps) {
+  return (
+    <div style={{ position: "relative", width: rect.width, height: rect.height }}>
+      <Image
+        src={slide.src}
+        alt={slide.alt ?? ""}
+        fill
+        loading="eager"
+        draggable={false}
+        sizes={at2x("100vw")}
+        className="object-contain"
+      />
+    </div>
+  );
+}
 
 interface Photo {
   src: string;
@@ -43,6 +62,7 @@ export default function EventPhotoGallery({ photos, label }: EventPhotoGalleryPr
         open={open}
         close={() => setOpen(false)}
         slides={slides}
+        render={{ slide: OptimizedSlide }}
         styles={{
           container: { backgroundColor: "rgba(0, 0, 0, 0.94)" },
         }}
