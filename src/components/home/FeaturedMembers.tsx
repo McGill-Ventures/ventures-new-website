@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 import { Reveal, SplitText } from "@/components/motion";
 import { at2x } from "@/lib/photoSizes";
 import { cn } from "@/lib/utils";
@@ -179,26 +179,18 @@ export function FeaturedMembers() {
                     </p>
                   </figcaption>
 
-                  <a
-                    href={founder.news.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/news mt-6 flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-4 ring-1 ring-purple-950/5 transition-shadow duration-300 hover:ring-purple-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
-                  >
-                    <span className="min-w-0">
-                      <span className="block font-heading text-xs text-purple-700">
-                        Latest · {founder.news.source}
-                      </span>
-                      <span className="mt-0.5 block font-heading text-purple-950">
-                        {founder.news.title}
-                      </span>
-                    </span>
-                    <ArrowUpRight
-                      aria-hidden
-                      className="size-5 shrink-0 text-purple-700 transition-transform duration-300 group-hover/news:translate-x-0.5 group-hover/news:-translate-y-0.5"
-                    />
-                    <span className="sr-only">(opens in a new tab)</span>
-                  </a>
+                  <p className="mt-6 border-t border-purple-950/10 pt-5 font-body text-sm text-purple-900/70">
+                    {founder.news.source}:{" "}
+                    <a
+                      href={founder.news.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-heading text-purple-950 underline decoration-purple-300 underline-offset-4 transition-colors duration-300 hover:decoration-purple-700"
+                    >
+                      {founder.news.title}
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  </p>
                 </div>
               </figure>
             </Reveal>
