@@ -10,7 +10,7 @@ const REASONS = [
     description:
       "You become the people you spend your time around. Here that is founders, investors and students who are all building something.",
     photo: "/events/northstar_2026/ns26_02.jpg",
-    tilt: "-4deg",
+    tilt: "-3deg",
     tape: "-3deg",
     // Desktop stagger, so the prints read as laid down by hand rather than gridded.
     offset: "lg:mt-4",
@@ -48,7 +48,12 @@ export function WhyReasons() {
           key={reason.title}
           delay={200 + i * 140}
           duration={1000}
-          className={cn("w-full max-w-[19rem] sm:max-w-sm lg:max-w-none", reason.offset, reason.side)}
+          // Phones reveal one print at a time as it scrolls in, so the stagger would only add a wait.
+          className={cn(
+            "w-full max-w-[19rem] max-lg:[--reveal-delay:0ms]! sm:max-w-sm lg:max-w-none",
+            reason.offset,
+            reason.side,
+          )}
         >
           <div
             style={{ "--tilt": reason.tilt, "--tape": reason.tape } as CSSProperties}
