@@ -61,8 +61,8 @@ function YCombinatorMark() {
 /** GrayPass's own mark (graypass.com/logo.svg), set beside its name as on their site. */
 function GrayPassLogo() {
   return (
-    <span className="flex items-center gap-2 text-[#242323]">
-      <svg viewBox="0 0 224 224" aria-hidden className="size-7">
+    <span className="flex items-center gap-1.5 text-[#242323]">
+      <svg viewBox="0 0 224 224" aria-hidden className="size-6">
         <path
           d="M110 25C159 18 204 44 210 83C218 126 189 150 153 164C132 173 112 184 103 206C100 215 88 215 88 203C89 185 83 178 68 176C32 172 13 153 13 124C13 80 52 34 110 25Z"
           fill="#ef334f"
@@ -72,7 +72,7 @@ function GrayPassLogo() {
           fill="#242323"
         />
       </svg>
-      <span className="font-sans text-xl font-semibold tracking-[-0.035em]">GrayPass</span>
+      <span className="font-sans text-lg font-semibold tracking-[-0.035em]">GrayPass</span>
     </span>
   );
 }
@@ -86,7 +86,7 @@ function CompanyLogo({ company }: { company: string }) {
       alt=""
       width={1866}
       height={246}
-      className="h-5 w-auto object-contain brightness-0"
+      className="h-[1.125rem] w-auto object-contain brightness-0"
     />
   );
 }
@@ -154,31 +154,29 @@ export function FeaturedMembers() {
                     {founder.quote}
                   </blockquote>
 
-                  <figcaption className="mt-8 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 md:mt-auto md:pt-10">
-                    <div>
-                      <a
-                        href={founder.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-display text-xl leading-tight text-purple-950 underline-offset-4 hover:underline"
-                      >
-                        {founder.name}
-                        <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
-                      </a>
-                      <p className="mt-1 font-body text-purple-900/70">
-                        {founder.role}, {founder.company}
-                      </p>
-                    </div>
+                  <figcaption className="mt-8 md:mt-auto md:pt-10">
                     <a
-                      href={founder.site}
+                      href={founder.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 rounded-lg py-1 transition-opacity duration-300 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500"
+                      className="font-display text-xl leading-tight text-purple-950 underline-offset-4 hover:underline"
                     >
-                      <CompanyLogo company={founder.company} />
-                      <ArrowUpRight aria-hidden className="size-4 text-purple-700" />
-                      <span className="sr-only">{founder.company} website (opens in a new tab)</span>
+                      {founder.name}
+                      <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
                     </a>
+                    <p className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-body text-purple-900/70">
+                      {founder.role}
+                      <span aria-hidden>at</span>
+                      <a
+                        href={founder.site}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center rounded-md transition-opacity duration-300 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500"
+                      >
+                        <CompanyLogo company={founder.company} />
+                        <span className="sr-only">at {founder.company} (opens its website in a new tab)</span>
+                      </a>
+                    </p>
                   </figcaption>
 
                   <a
