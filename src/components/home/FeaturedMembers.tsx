@@ -9,6 +9,7 @@ const FOUNDERS = [
     name: "Anthony Azrak",
     role: "Founder & CEO",
     company: "General Magic",
+    site: "https://generalmagic.inc/",
     photo: "/headshots/founders/anthony_azrak.jpg",
     linkedin: "https://www.linkedin.com/in/anthony-azrak/",
     quote:
@@ -29,8 +30,10 @@ const FOUNDERS = [
   },
   {
     name: "Aditya Ranjan",
-    role: "Founder & CEO",
+    // YC's company page lists Aditya as Founder/COO.
+    role: "Founder & COO",
     company: "GrayPass",
+    site: "https://graypass.com/",
     photo: "/headshots/founders/aditya_ranjan.jpg",
     linkedin: "https://www.linkedin.com/in/ad1tyaranjan/",
     quote:
@@ -52,6 +55,39 @@ function YCombinatorMark() {
       <rect width="100" height="100" fill="#FC651E" />
       <path d="M29.7 25 L50 48.5 L70.3 25 M50 48.5 L50 73.5" fill="none" stroke="#fff" strokeWidth="7.4" />
     </svg>
+  );
+}
+
+/** GrayPass's own mark (graypass.com/logo.svg), set beside its name as on their site. */
+function GrayPassLogo() {
+  return (
+    <span className="flex items-center gap-2 text-[#242323]">
+      <svg viewBox="0 0 224 224" aria-hidden className="size-7">
+        <path
+          d="M110 25C159 18 204 44 210 83C218 126 189 150 153 164C132 173 112 184 103 206C100 215 88 215 88 203C89 185 83 178 68 176C32 172 13 153 13 124C13 80 52 34 110 25Z"
+          fill="#ef334f"
+        />
+        <path
+          d="M109 42C150 35 180 51 186 77C192 105 173 118 146 121C127 123 115 128 105 142C93 158 78 164 60 158C38 152 30 138 31 120C32 83 63 50 109 42Z"
+          fill="#242323"
+        />
+      </svg>
+      <span className="font-sans text-xl font-semibold tracking-[-0.035em]">GrayPass</span>
+    </span>
+  );
+}
+
+function CompanyLogo({ company }: { company: string }) {
+  if (company === "GrayPass") return <GrayPassLogo />;
+  // White lockup like the other logo files, darkened for the light card.
+  return (
+    <Image
+      src="/logos/companies/general_magic.png"
+      alt=""
+      width={1866}
+      height={246}
+      className="h-5 w-auto object-contain brightness-0"
+    />
   );
 }
 
@@ -118,19 +154,31 @@ export function FeaturedMembers() {
                     {founder.quote}
                   </blockquote>
 
-                  <figcaption className="mt-8 md:mt-auto md:pt-10">
+                  <figcaption className="mt-8 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 md:mt-auto md:pt-10">
+                    <div>
+                      <a
+                        href={founder.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-display text-xl leading-tight text-purple-950 underline-offset-4 hover:underline"
+                      >
+                        {founder.name}
+                        <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
+                      </a>
+                      <p className="mt-1 font-body text-purple-900/70">
+                        {founder.role}, {founder.company}
+                      </p>
+                    </div>
                     <a
-                      href={founder.linkedin}
+                      href={founder.site}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-display text-xl leading-tight text-purple-950 underline-offset-4 hover:underline"
+                      className="flex items-center gap-2 rounded-lg py-1 transition-opacity duration-300 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500"
                     >
-                      {founder.name}
-                      <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
+                      <CompanyLogo company={founder.company} />
+                      <ArrowUpRight aria-hidden className="size-4 text-purple-700" />
+                      <span className="sr-only">{founder.company} website (opens in a new tab)</span>
                     </a>
-                    <p className="mt-1 font-body text-purple-900/70">
-                      {founder.role}, {founder.company}
-                    </p>
                   </figcaption>
 
                   <a
