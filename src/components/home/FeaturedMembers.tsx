@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import Image from "next/image";
+import { ArrowUpRight, Quote } from "lucide-react";
 import { Reveal, SplitText } from "@/components/motion";
 import { at2x } from "@/lib/photoSizes";
 
@@ -11,11 +12,18 @@ const FOUNDERS = [
     company: "General Magic",
     photo: "/headshots/founders/anthony_azrak.jpg",
     linkedin: "https://www.linkedin.com/in/anthony-azrak/",
+    quote:
+      "Sitting on the investor side of the table at MVC taught me what great founders do differently, and I've been trying to live up to it ever since.",
+    news: {
+      source: "BetaKit",
+      title: "General Magic raises $7.2M USD, led by Radical Ventures",
+      href: "https://betakit.com/a16z-speedrun-alum-general-magic-secures-7-2-million-usd-to-make-calling-your-insurance-company-less-of-a-slog/",
+    },
     backer: {
       src: "/logos/companies/a16z_speedrun.png",
       width: 600,
       height: 83,
-      className: "w-[104%] max-w-none",
+      className: "h-4 w-auto md:h-5",
       label: "a16z speedrun",
     } as const,
   },
@@ -25,6 +33,13 @@ const FOUNDERS = [
     company: "GrayPass",
     photo: "/headshots/founders/aditya_ranjan.jpg",
     linkedin: "https://www.linkedin.com/in/ad1tyaranjan/",
+    quote:
+      "McGill's entrepreneurial culture can feel quite scattered, and MVC does a great job of bringing the builders and ambitious people on campus into one place. It makes the startup scene feel much more solidified, personal, and like an actual community.",
+    news: {
+      source: "LinkedIn",
+      title: "Aditya on GrayPass and Y Combinator",
+      href: "https://www.linkedin.com/feed/update/urn:li:activity:7521322611729932288/",
+    },
     // Inline: the only bitmap of this mark is 69px square and visibly blurs.
     backer: { mark: "yc" as const, label: "Y Combinator" },
   },
@@ -90,7 +105,7 @@ function YCombinatorMark() {
       viewBox="0 0 100 100"
       role="img"
       aria-label="Y Combinator"
-      className="h-[5.5rem] w-[5.5rem] rounded-md"
+      className="size-9 rounded-md md:size-10"
     >
       <rect width="100" height="100" fill="#FC651E" />
       <path
@@ -121,7 +136,7 @@ function WallLogo({ file, name }: { file: string; name: string }) {
   const ratio = width / height;
   const w = Math.min(Math.sqrt(LOGO_AREA * ratio), 140, 36 * ratio);
   return (
-    <div className="flex h-20 items-center justify-center border-r border-b border-white/10 px-3 md:h-24">
+    <div className="flex h-20 items-center justify-center border-r border-b border-purple-950/10 px-3 md:h-24">
       <Image
         src={`/logos/companies/${file}.png`}
         alt={name}
@@ -130,7 +145,7 @@ function WallLogo({ file, name }: { file: string; name: string }) {
         height={height}
         sizes="160px"
         style={{ "--w": `${w}px` } as React.CSSProperties}
-        className="h-auto w-[calc(var(--w)*0.8)] max-w-full object-contain opacity-70 transition-opacity duration-300 hover:opacity-100 md:w-(--w)"
+        className="h-auto w-[calc(var(--w)*0.8)] max-w-full object-contain opacity-55 brightness-0 transition-opacity duration-300 hover:opacity-90 md:w-(--w)"
       />
     </div>
   );
@@ -141,59 +156,28 @@ const labelSpan = (logos: number, cols: number) => cols - (logos % cols);
 
 export function FeaturedMembers() {
   return (
-    <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-black py-16 text-white">
+    <section className="flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-white py-20 text-purple-950">
       <div className="px-6 md:px-12 lg:px-24">
         <div className="mx-auto max-w-7xl">
-          <h2 className="section-heading">
+          <h2 className="section-heading text-black">
             <SplitText text="Featured members" />
           </h2>
           <Reveal
             as="p"
             delay={200}
-            className="mt-4 max-w-xl font-body text-lg text-white/60 md:text-xl"
+            className="mt-6 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
           >
             Our alumni are ambitious builders, backed by some of the best
             accelerators and funds in the world.
           </Reveal>
 
-          <div className="mt-6 grid gap-4 lg:grid-cols-2">
+          <div className="mt-12 grid gap-5 lg:grid-cols-2">
             {FOUNDERS.map((founder, i) => (
               <Reveal key={founder.name} delay={300 + i * 130}>
-                <a
-                  href={founder.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex h-full rounded-3xl"
-                >
-                  <span className="relative flex w-full flex-col overflow-hidden rounded-3xl bg-black text-white ring-1 ring-white/10 ring-inset transition-transform duration-500 group-hover:-translate-y-1">
-                    <div
-                      aria-hidden
-                      className="animate-orb pointer-events-none absolute -top-24 -right-16 size-72 rounded-full bg-purple-700/40 blur-3xl"
-                    />
-                    <div className="relative flex items-center gap-5 p-5 md:gap-6 md:p-6">
-                      <div className="relative size-[4.5rem] shrink-0 overflow-hidden rounded-2xl md:size-20">
-                        <Image
-                          src={founder.photo}
-                          alt={founder.name}
-                          fill
-                          sizes={at2x("96px")}
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="min-w-0">
-                        <h3 className="font-display text-2xl leading-tight md:text-3xl">
-                          {founder.name}
-                        </h3>
-                        <p className="mt-1.5 font-heading text-purple-300">
-                          {founder.role}
-                        </p>
-                        <p className="font-body text-purple-100/70">
-                          {founder.company}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="relative mt-auto flex min-h-24 items-center justify-center overflow-hidden px-6 pb-5">
+                <figure className="flex h-full flex-col rounded-3xl bg-purple-50 p-6 ring-1 ring-purple-950/5 ring-inset md:p-8">
+                  <div className="flex h-10 items-center justify-between gap-4">
+                    <Quote aria-hidden className="size-8 fill-purple-300 text-purple-300" />
+                    <div className="shrink-0">
                       {"mark" in founder.backer ? (
                         <YCombinatorMark />
                       ) : (
@@ -202,15 +186,62 @@ export function FeaturedMembers() {
                           alt={founder.backer.label}
                           width={founder.backer.width}
                           height={founder.backer.height}
-                          className={`object-contain ${founder.backer.className}`}
+                          className={`object-contain brightness-0 ${founder.backer.className}`}
                         />
                       )}
                     </div>
-                    <span className="sr-only">
-                      {founder.name} on LinkedIn (opens in a new tab)
+                  </div>
+                  <blockquote className="mt-4 font-display text-xl leading-snug text-purple-950 md:text-2xl">
+                    {founder.quote}
+                  </blockquote>
+
+                  <figcaption className="mt-auto flex items-center gap-4 pt-8">
+                    <div className="relative size-14 shrink-0 overflow-hidden rounded-2xl md:size-16">
+                      <Image
+                        src={founder.photo}
+                        alt=""
+                        fill
+                        sizes={at2x("64px")}
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <a
+                        href={founder.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-display text-lg leading-tight text-purple-950 underline-offset-4 hover:underline md:text-xl"
+                      >
+                        {founder.name}
+                        <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
+                      </a>
+                      <p className="font-body text-sm text-purple-900/70 md:text-base">
+                        {founder.role}, {founder.company}
+                      </p>
+                    </div>
+                  </figcaption>
+
+                  <a
+                    href={founder.news.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group mt-6 flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-4 ring-1 ring-purple-950/5 transition-shadow duration-300 hover:ring-purple-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
+                  >
+                    <span className="min-w-0">
+                      <span className="block font-heading text-xs text-purple-700">
+                        Latest · {founder.news.source}
+                      </span>
+                      <span className="mt-0.5 block font-heading text-purple-950">
+                        {founder.news.title}
+                      </span>
                     </span>
-                  </span>
-                </a>
+                    <ArrowUpRight
+                      aria-hidden
+                      className="size-5 shrink-0 text-purple-700 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                    <span className="sr-only">(opens in a new tab)</span>
+                  </a>
+                </figure>
               </Reveal>
             ))}
           </div>
@@ -222,7 +253,7 @@ export function FeaturedMembers() {
           <Reveal
             as="p"
             delay={120}
-            className="font-heading text-sm text-white/50"
+            className="font-heading text-sm text-purple-900/60"
           >
             And the rest of us landed opportunities here
           </Reveal>
@@ -235,7 +266,7 @@ export function FeaturedMembers() {
                   variant={fromLeft ? "left" : "right"}
                   delay={200 + i * 140}
                   duration={1100}
-                  className="grid grid-cols-3 border-t border-l border-white/10 sm:grid-cols-4 lg:grid-cols-7"
+                  className="grid grid-cols-3 border-t border-l border-purple-950/10 sm:grid-cols-4 lg:grid-cols-7"
                   style={
                     {
                       "--reveal-from": fromLeft
@@ -245,7 +276,7 @@ export function FeaturedMembers() {
                   }
                 >
                   <div
-                    className="col-span-(--span-3) flex items-center justify-center border-r border-b border-white/10 p-4 sm:col-span-(--span-4) lg:col-span-(--span-7)"
+                    className="col-span-(--span-3) flex items-center justify-center border-r border-b border-purple-950/10 p-4 sm:col-span-(--span-4) lg:col-span-(--span-7)"
                     style={
                       {
                         "--span-3": labelSpan(group.logos.length, 3),
@@ -254,7 +285,7 @@ export function FeaturedMembers() {
                       } as React.CSSProperties
                     }
                   >
-                    <h3 className="text-center font-heading text-sm text-purple-300 md:text-base">
+                    <h3 className="text-center font-heading text-sm text-purple-700 md:text-base">
                       {group.label}
                     </h3>
                   </div>
