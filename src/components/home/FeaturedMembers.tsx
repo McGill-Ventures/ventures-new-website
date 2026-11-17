@@ -10,6 +10,7 @@ const FOUNDERS = [
     role: "Founder & CEO",
     company: "General Magic",
     site: "https://generalmagic.inc/",
+    logo: <GeneralMagicLogo />,
     photo: "/headshots/founders/anthony_azrak.jpg",
     linkedin: "https://www.linkedin.com/in/anthony-azrak/",
     quote:
@@ -34,6 +35,7 @@ const FOUNDERS = [
     role: "Founder & COO",
     company: "GrayPass",
     site: "https://graypass.com/",
+    logo: <GrayPassLogo />,
     photo: "/headshots/founders/aditya_ranjan.jpg",
     linkedin: "https://www.linkedin.com/in/ad1tyaranjan/",
     quote:
@@ -61,7 +63,8 @@ function YCombinatorMark() {
 /** GrayPass's own mark (graypass.com/logo.svg), set beside its name as on their site. */
 function GrayPassLogo() {
   return (
-    <span className="flex items-center gap-1.5 text-[#242323]">
+    // Hidden: the link around it carries the company name for screen readers.
+    <span aria-hidden className="flex items-center gap-1.5 text-[#242323]">
       <svg viewBox="0 0 224 224" aria-hidden className="size-6">
         <path
           d="M110 25C159 18 204 44 210 83C218 126 189 150 153 164C132 173 112 184 103 206C100 215 88 215 88 203C89 185 83 178 68 176C32 172 13 153 13 124C13 80 52 34 110 25Z"
@@ -77,9 +80,8 @@ function GrayPassLogo() {
   );
 }
 
-function CompanyLogo({ company }: { company: string }) {
-  if (company === "GrayPass") return <GrayPassLogo />;
-  // White lockup like the other logo files, darkened for the light card.
+/** General Magic's white lockup from their site, darkened for the light card. */
+function GeneralMagicLogo() {
   return (
     <Image
       src="/logos/companies/general_magic.png"
@@ -111,7 +113,7 @@ export function FeaturedMembers() {
         <div className="mt-12 space-y-6 md:mt-16 md:space-y-8">
           {FOUNDERS.map((founder, i) => (
             <Reveal key={founder.name} delay={200}>
-              <figure
+              <article
                 className={cn(
                   "group grid overflow-hidden rounded-3xl bg-purple-50 ring-1 ring-purple-950/5 ring-inset",
                   i % 2 === 0
@@ -149,35 +151,39 @@ export function FeaturedMembers() {
                 </div>
 
                 <div className="flex flex-col p-6 md:p-10 lg:p-12">
-                  <Quote aria-hidden className="size-9 fill-purple-300 text-purple-300" />
-                  <blockquote className="mt-5 font-display text-xl leading-snug text-purple-950 md:text-2xl lg:text-[1.75rem]">
-                    {founder.quote}
-                  </blockquote>
+                  <figure className="flex flex-1 flex-col">
+                    <Quote aria-hidden className="size-9 fill-purple-300 text-purple-300" />
+                    <blockquote className="mt-5 font-display text-xl leading-snug text-purple-950 md:text-2xl lg:text-[1.75rem]">
+                      {founder.quote}
+                    </blockquote>
 
-                  <figcaption className="mt-8 md:mt-auto md:pt-10">
-                    <a
-                      href={founder.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-display text-xl leading-tight text-purple-950 underline-offset-4 hover:underline"
-                    >
-                      {founder.name}
-                      <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
-                    </a>
-                    <p className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-body text-purple-900/70">
-                      {founder.role}
-                      <span aria-hidden>at</span>
-                      <a
-                        href={founder.site}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center rounded-md transition-opacity duration-300 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500"
-                      >
-                        <CompanyLogo company={founder.company} />
-                        <span className="sr-only">at {founder.company} (opens its website in a new tab)</span>
-                      </a>
-                    </p>
-                  </figcaption>
+                    <figcaption className="mt-8 md:mt-auto md:pt-10">
+                      <h3 className="font-display text-xl leading-tight">
+                        <a
+                          href={founder.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-purple-950 underline-offset-4 hover:underline"
+                        >
+                          {founder.name}
+                          <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
+                        </a>
+                      </h3>
+                      <p className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-body text-purple-900/70">
+                        {founder.role}
+                        <span aria-hidden>at</span>
+                        <a
+                          href={founder.site}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center rounded-md transition-opacity duration-300 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-500"
+                        >
+                          {founder.logo}
+                          <span className="sr-only">at {founder.company} (opens its website in a new tab)</span>
+                        </a>
+                      </p>
+                    </figcaption>
+                  </figure>
 
                   <p className="mt-6 border-t border-purple-950/10 pt-5 font-body text-sm text-purple-900/70">
                     {founder.news.source}:{" "}
@@ -192,7 +198,7 @@ export function FeaturedMembers() {
                     </a>
                   </p>
                 </div>
-              </figure>
+              </article>
             </Reveal>
           ))}
         </div>
