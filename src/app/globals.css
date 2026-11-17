@@ -380,18 +380,6 @@ a[href],
   }
 }
 
-/* <WhyReasons>: pointer-driven dimming means nothing without a pointer, so
-   touch devices get every reason at full strength. */
-.reason-dim {
-  opacity: 0.4;
-}
-
-@media (hover: none) {
-  .reason-dim {
-    opacity: 1;
-  }
-}
-
 /* Fine grain over a flat fill. Solid brand colours read as cheap plastic at
    full-screen size; a little noise gives them a surface. */
 .bg-grain::after {
