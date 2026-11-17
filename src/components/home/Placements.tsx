@@ -74,15 +74,8 @@ function pngSize(file: string) {
   return { width: png.readUInt32BE(16), height: png.readUInt32BE(20) };
 }
 
-// Light rim, body and night side of each planet, cycled so neighbours differ.
-const PALETTE = [
-  ["#c4b5fd", "#5b21b6", "#160b2e"],
-  ["#f9a8d4", "#9d174d", "#24081a"],
-  ["#93c5fd", "#1d4ed8", "#0a1230"],
-  ["#99f6e4", "#0f766e", "#05201d"],
-  ["#fcd34d", "#a16207", "#241505"],
-  ["#d8b4fe", "#7e22ce", "#1a0a2e"],
-];
+// Body colour of each planet, kept within the brand's purples so the system reads as one.
+const BODIES = ["#2b1650", "#1e1b4b", "#3b0d3a", "#241040"];
 
 // Planet diameters per ring in cqw, so the whole system scales with its container.
 const PLANET = [8, 8.5, 9];
@@ -103,14 +96,14 @@ function Orbit() {
         aria-hidden
         className="absolute top-1/2 left-1/2 size-[62%] -translate-1/2 animate-[pulse_7s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle,rgba(216,180,254,0.4),rgba(147,51,234,0.14)_45%,transparent_70%)] motion-reduce:animate-none"
       />
-      <div className="absolute top-1/2 left-1/2 grid size-[30%] -translate-1/2 place-items-center rounded-full bg-[radial-gradient(circle_at_50%_42%,#ffffff_0%,#fbf7ff_52%,#ead8ff_78%,#c48cff_100%)] shadow-[0_0_5cqw_1.5cqw_rgba(216,180,254,0.55),0_0_14cqw_5cqw_rgba(147,51,234,0.35)]">
+      <div className="absolute top-1/2 left-1/2 grid size-[32%] -translate-1/2 place-items-center rounded-full bg-[radial-gradient(circle_closest-side,#ffffff_0%,#ffffff_58%,#f3e8ff_74%,rgba(216,180,254,0.55)_88%,rgba(168,85,247,0)_100%)]">
         <Image
           src="/logos/main_logo_wordmark.png"
           alt="McGill Ventures"
           width={2576}
           height={302}
           sizes="(max-width: 639px) 40vw, 200px"
-          className="w-[74%]"
+          className="w-[66%]"
         />
       </div>
       {GROUPS.map((group, ringIndex) => {
@@ -131,7 +124,7 @@ function Orbit() {
               {group.logos.map(([file, name], i) => {
                 const angle = (360 / group.logos.length) * i + ringIndex * 15;
                 const size = PLANET[ringIndex] * (0.92 + ((i * 37 + ringIndex * 11) % 17) / 100);
-                const [rim, body, night] = PALETTE[(i + ringIndex * 2) % PALETTE.length];
+                const body = BODIES[(i + ringIndex) % BODIES.length];
                 const { width, height, cqw } = logoWidth(file, size);
                 return (
                   <li
@@ -147,8 +140,9 @@ function Orbit() {
                         style={{
                           width: `${size}cqw`,
                           rotate: `${angle}deg`,
-                          background: `radial-gradient(circle at 50% 118%, ${rim} 0%, ${body} 40%, ${night} 82%)`,
-                          boxShadow: `0 0 2cqw ${body}80, inset 0 -0.3cqw 0.6cqw rgba(255,255,255,0.18)`,
+                          // A thin crescent of starlight on the side facing the star, the rest in shadow.
+                          background: `radial-gradient(circle at 50% 122%, rgba(243,232,255,0.95) 0%, rgba(192,132,252,0.6) 17%, ${body} 38%, #0c0617 74%)`,
+                          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06), 0 0.5cqw 1.6cqw -0.5cqw rgba(192,132,252,0.45)",
                         }}
                         className="block aspect-square rounded-full"
                       />
