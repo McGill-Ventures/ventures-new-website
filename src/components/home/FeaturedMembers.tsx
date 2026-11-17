@@ -20,7 +20,6 @@ const FOUNDERS = [
       title: "General Magic raises $7.2M USD, led by Radical Ventures",
       href: "https://betakit.com/a16z-speedrun-alum-general-magic-secures-7-2-million-usd-to-make-calling-your-insurance-company-less-of-a-slog/",
     },
-    // BetaKit calls General Magic an a16z speedrun alum. Radical Ventures led its raise.
     backerVerb: "Alum of",
     backer: {
       src: "/logos/companies/a16z_speedrun.png",
@@ -31,7 +30,6 @@ const FOUNDERS = [
   },
   {
     name: "Aditya Ranjan",
-    // YC's company page lists Aditya as Founder/COO.
     role: "Founder & COO",
     company: "GrayPass",
     site: "https://graypass.com/",
@@ -60,10 +58,8 @@ function YCombinatorMark() {
   );
 }
 
-/** GrayPass's own mark (graypass.com/logo.svg), set beside its name as on their site. */
 function GrayPassLogo() {
   return (
-    // Hidden: the link around it carries the company name for screen readers.
     <span aria-hidden className="flex items-center gap-1.5 text-[#242323]">
       <svg viewBox="0 0 224 224" aria-hidden className="size-6">
         <path
@@ -80,7 +76,6 @@ function GrayPassLogo() {
   );
 }
 
-/** General Magic's white lockup from their site, darkened for the light card. */
 function GeneralMagicLogo() {
   return (
     <Image
@@ -93,7 +88,6 @@ function GeneralMagicLogo() {
   );
 }
 
-/** Two founder spreads, portrait and quote side by side, alternating sides. */
 export function FeaturedMembers() {
   return (
     <section className="bg-white px-6 py-20 text-purple-950 md:px-12 md:py-28 lg:px-24">
