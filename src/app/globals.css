@@ -389,6 +389,15 @@ a[href],
   animation: orb-drift 16s ease-in-out infinite;
 }
 
+@keyframes why-progress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.animate-why-progress {
+  animation: why-progress 7s linear forwards;
+}
+
 @media (max-width: 767px) {
   .animate-orb,
   .animate-gradient,

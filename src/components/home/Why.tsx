@@ -19,12 +19,13 @@ export function Why() {
       />
       <div className="relative z-10 flex min-h-[100dvh] items-center px-6 py-20 md:px-12 lg:px-24">
         <div className="mx-auto w-full max-w-7xl">
-          <h2 className="section-heading">
-            <SplitText text="Why McGill Ventures" />
-          </h2>
-          <div className="mt-14 lg:mt-16">
-            <WhyReasons />
-          </div>
+          <WhyReasons
+            heading={
+              <h2 className="section-heading">
+                <SplitText text="Why McGill Ventures" />
+              </h2>
+            }
+          />
         </div>
       </div>
     </section>
