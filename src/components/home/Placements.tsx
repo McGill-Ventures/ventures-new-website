@@ -2,12 +2,15 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import { Marquee, Reveal, SplitText } from "@/components/motion";
+import { Reveal, SplitText } from "@/components/motion";
+import { cn } from "@/lib/utils";
 
+// ring is the orbit radius as a percentage of the diagram's width, duration its seconds per turn.
 const GROUPS = [
   {
     label: "Venture capital",
-    duration: 55,
+    ring: 22,
+    duration: 80,
     logos: [
       ["inovia", "Inovia"],
       ["bdc", "BDC"],
@@ -25,7 +28,8 @@ const GROUPS = [
   },
   {
     label: "Startups",
-    duration: 65,
+    ring: 34.5,
+    duration: 110,
     logos: [
       ["checksammy", "CheckSammy"],
       ["betakit", "BetaKit"],
@@ -43,7 +47,8 @@ const GROUPS = [
   },
   {
     label: "Traditional careers",
-    duration: 60,
+    ring: 47,
+    duration: 140,
     logos: [
       ["mckinsey", "McKinsey & Company"],
       ["rbc", "RBC"],
@@ -59,7 +64,7 @@ const GROUPS = [
       ["pwc", "PwC"],
     ],
   },
-] satisfies { label: string; duration: number; logos: [string, string][] }[];
+] satisfies { label: string; ring: number; duration: number; logos: [string, string][] }[];
 
 function pngSize(file: string) {
   const png = readFileSync(join(process.cwd(), "public/logos/companies", `${file}.png`));
@@ -69,68 +74,130 @@ function pngSize(file: string) {
   return { width: png.readUInt32BE(16), height: png.readUInt32BE(20) };
 }
 
-// Same area for every logo so wide wordmarks and square marks read at equal weight.
-const LOGO_AREA = 2200;
-
-function Logo({ file, name }: { file: string; name: string }) {
+// Same area for every logo so wide wordmarks and square marks read at equal weight, sized
+// in cqw so the whole orbit scales with its container.
+function logoWidth(file: string) {
   const { width, height } = pngSize(file);
   const ratio = width / height;
-  const w = Math.min(Math.sqrt(LOGO_AREA * ratio), 140, 36 * ratio);
+  return { width, height, cqw: Math.min(Math.sqrt(820 * ratio), 62, 30 * ratio) / 7 };
+}
+
+const SPIN = "animate-[spin_var(--turn)_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:animate-none";
+
+function Orbit() {
   return (
-    <div className="flex h-16 items-center md:h-20">
-      <Image
-        src={`/logos/companies/${file}.png`}
-        alt={name}
-        title={name}
-        width={width}
-        height={height}
-        sizes="160px"
-        style={{ "--w": `${w}px` } as CSSProperties}
-        // The files are white marks, so brightness-0 turns them dark for the white page.
-        className="h-auto w-[calc(var(--w)*0.8)] object-contain opacity-55 brightness-0 transition-opacity duration-300 hover:opacity-90 md:w-(--w)"
+    <div className="group @container relative aspect-square w-[150%] max-w-none shrink-0 sm:w-full sm:max-w-[44rem]">
+      <div
+        aria-hidden
+        className="absolute top-1/2 left-1/2 size-[46%] -translate-1/2 rounded-full bg-purple-600/30 blur-3xl"
       />
+      <Image
+        src="/logos/main_logo_wordmark.png"
+        alt="McGill Ventures"
+        width={2576}
+        height={302}
+        sizes="(max-width: 639px) 40vw, 180px"
+        className="absolute top-1/2 left-1/2 w-[26%] -translate-1/2 brightness-0 invert"
+      />
+      {GROUPS.map((group, ringIndex) => {
+        const reverse = ringIndex % 2 === 1;
+        return (
+          <div key={group.label}>
+            <div
+              aria-hidden
+              style={{ width: `${group.ring * 2}cqw` }}
+              className="absolute top-1/2 left-1/2 aspect-square -translate-1/2 rounded-full border border-white/10"
+            />
+            {/* The ring turns one way and each logo the other, so the logos stay upright. */}
+            <ul
+              aria-label={group.label}
+              style={{ "--turn": `${group.duration}s` } as CSSProperties}
+              className={cn("absolute inset-0", SPIN, reverse && "[animation-direction:reverse]")}
+            >
+              {group.logos.map(([file, name], i) => {
+                const { width, height, cqw } = logoWidth(file);
+                const angle = (360 / group.logos.length) * i + ringIndex * 15;
+                return (
+                  <li
+                    key={file}
+                    style={{
+                      transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-${group.ring}cqw) rotate(${-angle}deg)`,
+                    }}
+                    className="absolute top-1/2 left-1/2"
+                  >
+                    <div
+                      style={{ "--turn": `${group.duration}s` } as CSSProperties}
+                      className={cn(SPIN, !reverse && "[animation-direction:reverse]")}
+                    >
+                      <Image
+                        src={`/logos/companies/${file}.png`}
+                        alt={name}
+                        title={name}
+                        width={width}
+                        height={height}
+                        sizes="120px"
+                        style={{ width: `${cqw}cqw` }}
+                        className="h-auto max-w-none object-contain opacity-80 transition-opacity duration-300 hover:opacity-100"
+                      />
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-/** Where members and alumni went on to work, one scrolling row per kind of career. */
+function RingIcon({ ring }: { ring: number }) {
+  return (
+    <svg viewBox="0 0 32 32" aria-hidden className="size-7 shrink-0">
+      {[5, 10, 15].map((r, i) => (
+        <circle
+          key={r}
+          cx="16"
+          cy="16"
+          r={r}
+          fill="none"
+          strokeWidth={i === ring ? 2 : 1}
+          className={i === ring ? "stroke-purple-300" : "stroke-white/20"}
+        />
+      ))}
+    </svg>
+  );
+}
+
+/** Where members and alumni went on to work, as three orbiting rings around MVC. */
 export function Placements() {
   return (
-    <section className="bg-white px-6 pt-8 pb-24 md:px-12 md:pb-32 lg:px-24">
-      <div className="mx-auto max-w-7xl">
-        <h2 className="section-heading text-black">
-          <SplitText text="Where members land" />
-        </h2>
-        <Reveal
-          as="p"
-          delay={200}
-          className="mt-6 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
-        >
-          Members and alumni have gone on to venture funds, startups and the
-          firms below.
-        </Reveal>
-
-        <div className="mt-12 border-b border-purple-950/10">
-          {GROUPS.map((group, i) => (
-            <Reveal
-              key={group.label}
-              delay={200 + i * 120}
-              className="grid items-center gap-2 border-t border-purple-950/10 py-5 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-8 lg:py-6"
-            >
-              <h3 className="font-heading text-sm text-purple-700 md:text-base">{group.label}</h3>
-              <Marquee
-                direction={i % 2 ? "right" : "left"}
-                duration={group.duration}
-                gap="3.5rem"
-                fade
-              >
-                {group.logos.map(([file, name]) => (
-                  <Logo key={file} file={file} name={name} />
-                ))}
-              </Marquee>
-            </Reveal>
-          ))}
+    <section className="bg-grain relative overflow-hidden bg-purple-950 px-6 py-24 text-white md:px-12 md:py-32 lg:px-24">
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
+        <div>
+          <h2 className="section-heading">
+            <SplitText text="Where members land" />
+          </h2>
+          <Reveal
+            as="p"
+            delay={200}
+            className="mt-6 max-w-md font-body text-lg text-purple-200 md:text-xl"
+          >
+            Members and alumni have gone on to venture funds, startups and the
+            firms in orbit here.
+          </Reveal>
+          <Reveal as="ul" delay={320} className="mt-10 space-y-4">
+            {GROUPS.map((group, i) => (
+              <li key={group.label} className="flex items-center gap-3 font-heading text-purple-100">
+                <RingIcon ring={i} />
+                {group.label}
+              </li>
+            ))}
+          </Reveal>
         </div>
+        <Reveal variant="scale" delay={200} duration={1200} className="flex justify-center">
+          <Orbit />
+        </Reveal>
       </div>
     </section>
   );
