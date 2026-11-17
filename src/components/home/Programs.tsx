@@ -190,7 +190,7 @@ export function Programs() {
       <div className="mx-auto w-full max-w-7xl">
         <div className="max-w-3xl">
           <h2 className="section-heading text-black">
-            <SplitText text="Five ways in" />
+            <SplitText text="Find your place" />
           </h2>
           <Reveal
             as="p"
