@@ -31,6 +31,11 @@ const PROBLEMS = [
   },
 ];
 
+const SIDES = [
+  { side: "Founders", gets: "Capital, $10K-$50K at pre-seed" },
+  { side: "Students", gets: "Real responsibility, not simulations" },
+];
+
 const NOW = [
   "Raising the $500K pilot fund with support from McGill alumni and partners",
   "Identifying McGill-founded startups, faculties and research groups at the earliest stage",
@@ -43,6 +48,13 @@ const NEXT = [
   "Write an investment memo for every deal",
   "Deploy capital responsibly and support founders through the early stages",
 ];
+
+const STAGES = [
+  { label: "Now", items: NOW, live: true },
+  { label: "Once the fund is active", items: NEXT, live: false },
+];
+
+const SECTORS = ["Software", "AI", "Health tech", "Climate", "Deep tech", "Fintech"];
 
 const TERMS = [
   ["$500K", "Pilot fund"],
@@ -111,12 +123,12 @@ export default function Fund() {
         <section
           id="problem"
           aria-labelledby="problem-title"
-          className="relative grid min-h-[100dvh] md:grid-cols-2"
+          className="relative grid md:min-h-[85dvh] md:grid-cols-2"
         >
           {PROBLEMS.map((item, i) => (
             <figure
               key={item.side}
-              className="relative flex min-h-[75dvh] flex-col justify-end md:min-h-0"
+              className="relative flex min-h-[30rem] flex-col justify-end md:min-h-0"
             >
               <Image
                 src={item.photo}
@@ -141,10 +153,8 @@ export default function Fund() {
                 )}
               >
                 <Reveal delay={i * 150}>
-                  <span className="font-heading text-sm tracking-wider text-purple-300 uppercase">
-                    {item.side}
-                  </span>
-                  <p className="mt-3 max-w-xl font-display text-3xl leading-tight text-balance md:text-4xl">
+                  <Tag>{item.side}</Tag>
+                  <p className="mt-4 max-w-xl font-display text-3xl leading-tight text-balance md:text-4xl">
                     {item.problem}
                   </p>
                 </Reveal>
@@ -161,47 +171,62 @@ export default function Fund() {
         <Slide id="solution" title="Solution" tone="white">
           <Reveal
             as="p"
-            className="max-w-5xl font-display text-[clamp(2.5rem,6.5vw,6rem)] leading-[1.02] text-balance"
+            className="max-w-4xl font-display text-[clamp(2.25rem,5.5vw,4.75rem)] leading-[1.04] text-balance"
           >
             A student-run fund that fixes <span className="text-purple-600">both sides</span> of
             the problem.
           </Reveal>
-          <Reveal delay={200}>
-            <dl className="mt-16 grid gap-8 border-t border-purple-950/10 pt-8 md:grid-cols-2">
-              {[
-                ["Founders get", "Capital, $10K-$50K at pre-seed"],
-                ["Students get", "Real responsibility, not simulations"],
-              ].map(([term, value]) => (
-                <div key={term}>
-                  <dt className="font-heading text-sm tracking-wider text-purple-700 uppercase">
-                    {term}
-                  </dt>
-                  <dd className="mt-2 font-display text-2xl md:text-3xl">{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
+          <dl className="mt-12 grid gap-4 md:mt-16 md:grid-cols-2 md:gap-6">
+            {SIDES.map(({ side, gets }, i) => (
+              <Reveal
+                key={side}
+                delay={150 + i * 100}
+                className="rounded-3xl border border-purple-950/10 bg-purple-50/60 p-7 md:p-9"
+              >
+                <dt>
+                  <Tag tone="light">{side} get</Tag>
+                </dt>
+                <dd className="mt-6 font-display text-2xl leading-tight md:text-3xl">{gets}</dd>
+              </Reveal>
+            ))}
+          </dl>
         </Slide>
 
         <Slide id="progress" title="Where we are" tone="purple">
-          <Reveal as="p" className="font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.05]">
+          <Reveal
+            as="p"
+            className="max-w-3xl font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.05] text-balance"
+          >
             Building the $500K pilot fund.
           </Reveal>
-          <div className="mt-14 grid gap-10 md:grid-cols-2 lg:gap-16">
-            {[
-              { label: "Now", items: NOW },
-              { label: "Once the fund is active", items: NEXT },
-            ].map((column, c) => (
-              <Reveal key={column.label} delay={150 + c * 150}>
-                <h3 className="font-heading text-sm tracking-wider text-purple-300 uppercase">
-                  {column.label}
+          <div className="mt-12 grid gap-4 md:mt-16 md:grid-cols-2 md:gap-6">
+            {STAGES.map((stage, c) => (
+              <Reveal
+                key={stage.label}
+                delay={150 + c * 150}
+                className="rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm md:p-9"
+              >
+                <h3>
+                  <Tag className={stage.live ? "border-purple-300/50 bg-purple-500/25 text-white" : undefined}>
+                    {stage.live && (
+                      <span aria-hidden className="relative flex size-1.5">
+                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-purple-200 opacity-75" />
+                        <span className="relative inline-flex size-1.5 rounded-full bg-purple-200" />
+                      </span>
+                    )}
+                    {stage.label}
+                  </Tag>
                 </h3>
-                <ul className="mt-4">
-                  {column.items.map((item) => (
-                    <li
-                      key={item}
-                      className="border-t border-white/15 py-4 font-body text-lg text-white/85"
-                    >
+                <ul className="mt-6 space-y-4">
+                  {stage.items.map((item) => (
+                    <li key={item} className="flex gap-3 font-body text-base text-white/85 md:text-lg">
+                      <span
+                        aria-hidden
+                        className={cn(
+                          "mt-[0.6em] size-1.5 shrink-0 rounded-full",
+                          stage.live ? "bg-purple-300" : "border border-white/40",
+                        )}
+                      />
                       {item}
                     </li>
                   ))}
@@ -213,11 +238,18 @@ export default function Fund() {
 
         <Slide id="terms" title="The fund" tone="lilac">
           <Reveal>
-            <dl className="grid gap-x-8 gap-y-14 sm:grid-cols-2">
-              {TERMS.map(([value, label]) => (
-                <div key={label} className="flex flex-col-reverse">
-                  <dt className="mt-3 font-heading text-purple-900/70 md:text-lg">{label}</dt>
-                  <dd className="font-display text-[clamp(3rem,8vw,7.5rem)] leading-none whitespace-nowrap text-purple-950">
+            <dl className="grid grid-cols-2 border-t border-purple-950/10 xl:grid-cols-4">
+              {TERMS.map(([value, label], i) => (
+                <div
+                  key={label}
+                  className={cn(
+                    "flex flex-col-reverse justify-end gap-3 border-b border-purple-950/10 py-8 xl:border-b-0 xl:py-10",
+                    i % 2 === 0 ? "pr-4" : "border-l pl-4 sm:pl-8",
+                    "xl:border-l xl:px-8 xl:first:border-l-0 xl:first:pl-0",
+                  )}
+                >
+                  <dt className="font-heading text-sm text-purple-900/70 md:text-base">{label}</dt>
+                  <dd className="font-display text-[clamp(1.625rem,7.5vw,3rem)] leading-none whitespace-nowrap text-purple-950 xl:text-[clamp(2.75rem,3.5vw,3.75rem)]">
                     {value}
                   </dd>
                 </div>
@@ -227,15 +259,21 @@ export default function Fund() {
         </Slide>
 
         <Slide id="criteria" title="What we invest in" tone="black">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
             <Reveal>
               <p className="font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.05] text-balance">
                 Tick all three, then pitch us.
               </p>
               <p className="mt-6 max-w-md font-body text-lg text-purple-100/75">
-                Any sector works. We often see software, AI, health tech, climate, deep tech
-                and fintech.
+                Any sector works. We often see:
               </p>
+              <ul className="mt-4 flex max-w-md flex-wrap gap-2">
+                {SECTORS.map((sector) => (
+                  <li key={sector}>
+                    <Tag>{sector}</Tag>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
             <Reveal delay={150}>
               <FitChecklist />
@@ -244,16 +282,16 @@ export default function Fund() {
         </Slide>
 
         <Slide id="ask" title="The ask" tone="white">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-0">
-            <Reveal className="lg:pr-16">
-              <h3 className="font-display text-4xl md:text-5xl">Alumni and sponsors</h3>
-              <p className="mt-5 font-body text-lg text-purple-900/75">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-6">
+            <Reveal className="flex flex-col rounded-3xl border border-purple-950/10 bg-purple-50/60 p-6 md:p-10">
+              <h3 className="font-display text-3xl md:text-4xl">Alumni and sponsors</h3>
+              <p className="mt-4 font-body text-lg text-purple-900/75">
                 An alumni-driven initiative supported by University Advancement.
               </p>
-              <h4 className="mt-8 font-heading text-sm tracking-wider text-purple-700 uppercase">
-                What backers get
+              <h4 className="mt-8">
+                <Tag tone="light">What backers get</Tag>
               </h4>
-              <ul className="mt-4 space-y-2.5">
+              <ul className="mt-4 space-y-3">
                 {BACKER_PERKS.map((perk) => (
                   <li key={perk} className="flex items-start gap-3 font-body text-purple-950/85">
                     <Check aria-hidden className="mt-1 size-4 shrink-0 text-purple-600" />
@@ -261,23 +299,23 @@ export default function Fund() {
                   </li>
                 ))}
               </ul>
-              <Button href={DECK_EMAIL} className="mt-10">
+              <Button href={DECK_EMAIL} size="sm" className="mt-10 self-start">
                 Request the fund deck
                 <Mail className="size-5" />
               </Button>
             </Reveal>
             <Reveal
               delay={150}
-              className="border-t border-purple-950/10 pt-12 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-16"
+              className="flex flex-col rounded-3xl bg-purple-950 p-6 text-white md:p-10"
             >
-              <h3 className="font-display text-4xl md:text-5xl">Students</h3>
-              <p className="mt-5 font-body text-lg text-purple-900/75">
+              <h3 className="font-display text-3xl md:text-4xl">Students</h3>
+              <p className="mt-4 font-body text-lg text-purple-100/75">
                 Join the Analyst Program. No experience needed, we train you. Top analysts move
                 onto the investment team and work directly on deals.
               </p>
               <Link
                 href="/programs#analyst"
-                className="group mt-10 inline-flex items-center gap-2 font-heading text-lg text-purple-700 transition-colors hover:text-purple-950"
+                className="group mt-10 inline-flex items-center gap-2 self-start font-heading text-lg text-purple-200 transition-colors hover:text-white lg:mt-auto lg:pt-10"
               >
                 Explore the Analyst Program
                 <ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-1" />

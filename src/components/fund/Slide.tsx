@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/motion";
+import { Tag } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 type Tone = "black" | "purple" | "white" | "lilac";
@@ -10,18 +11,12 @@ type HeaderProps = {
   dark: boolean;
 };
 
-/** The slide's title over a hairline, like the title bar of a deck slide. */
+/** The section's name as a small pill. */
 export function SlideHeader({ id, title, dark }: HeaderProps) {
   return (
-    <Reveal className={cn("border-b pb-4", dark ? "border-white/15" : "border-purple-950/10")}>
-      <h2
-        id={`${id}-title`}
-        className={cn(
-          "font-heading text-sm tracking-wider uppercase",
-          dark ? "text-purple-300" : "text-purple-700",
-        )}
-      >
-        {title}
+    <Reveal>
+      <h2 id={`${id}-title`}>
+        <Tag tone={dark ? "dark" : "light"}>{title}</Tag>
       </h2>
     </Reveal>
   );
@@ -37,7 +32,7 @@ const TONE: Record<Tone, string> = {
 
 type Props = Omit<HeaderProps, "dark"> & { tone: Tone; children: ReactNode };
 
-/** One slide of the deck as a full-screen section. */
+/** One section of the fund's pitch, sized to its content. */
 export function Slide({ tone, children, ...header }: Props) {
   const dark = tone === "black" || tone === "purple";
   return (
@@ -45,7 +40,7 @@ export function Slide({ tone, children, ...header }: Props) {
       id={header.id}
       aria-labelledby={`${header.id}-title`}
       className={cn(
-        "relative flex min-h-[100dvh] flex-col overflow-clip px-6 pt-24 pb-16 md:px-12 lg:px-24",
+        "relative overflow-clip px-6 py-20 md:px-12 md:py-28 lg:px-24 lg:py-32",
         TONE[tone],
       )}
     >
@@ -55,9 +50,9 @@ export function Slide({ tone, children, ...header }: Props) {
           className="pointer-events-none absolute -top-40 -left-40 size-[34rem] rounded-full bg-purple-600/30 blur-3xl"
         />
       )}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col">
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
         <SlideHeader {...header} dark={dark} />
-        <div className="flex flex-1 flex-col justify-center py-12">{children}</div>
+        <div className="mt-8 md:mt-10">{children}</div>
       </div>
     </section>
   );
