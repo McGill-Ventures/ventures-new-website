@@ -169,7 +169,7 @@ const PROGRAMS: Program[] = [
         width: 800,
         height: 1035,
       },
-      size: "4.7 MB",
+      size: "6.1 MB",
     },
     links: [
       {
