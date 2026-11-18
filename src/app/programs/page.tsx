@@ -182,7 +182,6 @@ const PROGRAMS: Program[] = [
   {
     id: "growth-studio",
     name: "Growth Studio",
-    reopens: "Fall 2026",
     description:
       "Students work with early-stage startups on real scaling challenges, delivering actionable recommendations on go-to-market and venture capital fundraising.",
     photo: {
@@ -202,7 +201,7 @@ const PROGRAMS: Program[] = [
     links: [
       { label: "Visit Growth Studio", href: "/growth-studio" },
       {
-        label: "Apply to our next cohort",
+        label: "Apply now",
         href: "https://docs.google.com/forms/d/e/1FAIpQLSfNMLYY5THSx6F1WPXlK11zS2q7JiSHNCRekzMAEEbHZl54rQ/viewform",
       },
     ],
@@ -211,7 +210,7 @@ const PROGRAMS: Program[] = [
   {
     id: "fund",
     name: "Fund Program",
-    reopens: "Fall 2026",
+    closed: true,
     description:
       "McGill Ventures' student-run fund. Analysts learn deal sourcing, due diligence, financial modelling, and investment structuring while evaluating real startups.",
     photo: {
