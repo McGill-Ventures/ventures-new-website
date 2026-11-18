@@ -127,6 +127,7 @@ const PROGRAMS: Program[] = [
     },
     length: "12 weeks",
     hours: "8-10 hours",
+    closed: true,
     seats: "22 fellows",
     features: [
       "3 project streams with startups across biotech, healthtech and medtech",
@@ -173,8 +174,8 @@ const PROGRAMS: Program[] = [
     },
     links: [
       {
-        label: "Apply now",
-        href: "https://docs.google.com/forms/d/e/1FAIpQLSfW_b6VKWWAKYwySgQWqrhr9VYqfsoKykOHNMD9T7odqpoZGA/viewform",
+        label: "Applications closed",
+        disabled: true,
       },
     ],
   },
