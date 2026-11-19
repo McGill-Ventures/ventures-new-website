@@ -350,7 +350,7 @@ export default function Events() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="events" className="relative -mt-20 overflow-hidden bg-black text-white">
-        <section className="relative flex min-h-[72dvh] flex-col justify-end px-6 pt-28 pb-20 md:px-12 lg:px-24">
+        <section className="relative flex min-h-[72svh] flex-col justify-end px-6 pt-28 pb-20 md:px-12 lg:px-24">
           <div
             aria-hidden
             className="animate-orb pointer-events-none absolute -top-48 -left-48 size-[36rem] rounded-full bg-purple-600/40 blur-3xl"

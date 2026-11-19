@@ -173,7 +173,7 @@ export function Programs() {
   return (
     <section
       id="programs"
-      className="flex min-h-[100dvh] -scroll-mt-20 flex-col justify-center px-6 py-20 md:px-12 lg:px-24"
+      className="flex min-h-[100svh] -scroll-mt-20 flex-col justify-center px-6 py-20 md:px-12 lg:px-24"
     >
       <div className="mx-auto w-full max-w-7xl">
         <h2 className="section-heading text-black">

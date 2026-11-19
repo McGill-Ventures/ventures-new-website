@@ -36,7 +36,7 @@ export function Hero() {
       id="hero"
       className="about-hero relative -mt-20 bg-black text-white"
     >
-      <div className="about-hero-stage relative h-[100dvh] overflow-hidden">
+      <div className="about-hero-stage relative h-[100lvh] overflow-hidden">
         <div className="about-hero-photo absolute inset-0 origin-[50%_42%]">
           <RoomPhoto />
         </div>

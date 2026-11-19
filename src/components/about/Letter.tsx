@@ -7,7 +7,7 @@ const AARON = FOUNDERS.find((f) => f.name.startsWith("Aaron"))!;
 
 export function Letter() {
   return (
-    <section className="flex min-h-[100dvh] items-center px-6 py-24 md:px-12 lg:px-24">
+    <section className="flex min-h-[100svh] items-center px-6 py-24 md:px-12 lg:px-24">
       <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-16">
         <h2 className="section-heading text-black">
           <SplitText text="Where we come from" />
