@@ -176,20 +176,9 @@ export function Programs() {
       className="flex min-h-[100dvh] -scroll-mt-20 flex-col justify-center px-6 py-20 md:px-12 lg:px-24"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="max-w-3xl">
-          <h2 className="section-heading text-black">
-            <SplitText text="Every path into venture, under one roof" />
-          </h2>
-          <Reveal
-            as="p"
-            delay={200}
-            className="mt-6 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
-          >
-            Learn venture capital, invest from a student-run fund, grow
-            startups, build health tech, or take Montreal&apos;s builders
-            abroad.
-          </Reveal>
-        </div>
+        <h2 className="section-heading text-black">
+          <SplitText text="Every path into venture, under one roof" />
+        </h2>
 
         <Reveal delay={250} className="mt-12 can-hover:xl:mt-14">
           <Panels />
