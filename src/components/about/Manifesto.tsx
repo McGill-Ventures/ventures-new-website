@@ -11,13 +11,10 @@ const BODY = [
 const LIT_FROM = 10;
 const LIT_TO = 46;
 
-/** Words brighten in reading order as the block scrolls through the screen. Styles live in about.css.
- *  All paragraphs share the block's one timeline, so the second never starts before the first ends. */
 function Lit({ as: Tag, paragraphs, className }: { as: ElementType; paragraphs: string[]; className: string }) {
   const total = paragraphs.reduce((n, text) => n + text.split(" ").length, 0);
   const step = (LIT_TO - LIT_FROM) / total;
   let index = 0;
-  // Screen readers get the sentence once from a hidden copy, not one node per animated word.
   const lit = (text: string) => (
     <>
       <span className="sr-only">{text}</span>
