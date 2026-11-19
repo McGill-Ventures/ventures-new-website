@@ -1,31 +1,8 @@
 import type { ReactNode } from "react";
-import { Reveal } from "@/components/motion";
+import { SplitText } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
 type Tone = "black" | "purple" | "white" | "lilac";
-
-type HeaderProps = {
-  id: string;
-  title: string;
-  dark: boolean;
-};
-
-/** The slide's title over a hairline, like the title bar of a deck slide. */
-export function SlideHeader({ id, title, dark }: HeaderProps) {
-  return (
-    <Reveal className={cn("border-b pb-4", dark ? "border-white/15" : "border-purple-950/10")}>
-      <h2
-        id={`${id}-title`}
-        className={cn(
-          "font-heading text-sm tracking-wider uppercase",
-          dark ? "text-purple-300" : "text-purple-700",
-        )}
-      >
-        {title}
-      </h2>
-    </Reveal>
-  );
-}
 
 const TONE: Record<Tone, string> = {
   black: "bg-black text-white",
@@ -35,19 +12,15 @@ const TONE: Record<Tone, string> = {
   lilac: "bg-[color-mix(in_oklab,var(--color-purple-50)_60%,white)] text-black",
 };
 
-type Props = Omit<HeaderProps, "dark"> & { tone: Tone; children: ReactNode };
+type Props = { id: string; title: string; tone: Tone; children: ReactNode };
 
-/** One slide of the deck as a full-screen section. */
-export function Slide({ tone, children, ...header }: Props) {
-  const dark = tone === "black" || tone === "purple";
+/** One section of the fund page: a single headline, then its content, in the landing page's column. */
+export function Slide({ id, title, tone, children }: Props) {
   return (
     <section
-      id={header.id}
-      aria-labelledby={`${header.id}-title`}
-      className={cn(
-        "relative flex min-h-[100dvh] flex-col overflow-clip px-6 pt-24 pb-16 md:px-12 lg:px-24",
-        TONE[tone],
-      )}
+      id={id}
+      aria-labelledby={`${id}-title`}
+      className={cn("relative overflow-clip px-6 py-24 md:px-12 md:py-32 lg:px-24", TONE[tone])}
     >
       {tone === "purple" && (
         <div
@@ -55,9 +28,11 @@ export function Slide({ tone, children, ...header }: Props) {
           className="pointer-events-none absolute -top-40 -left-40 size-[34rem] rounded-full bg-purple-600/30 blur-3xl"
         />
       )}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col">
-        <SlideHeader {...header} dark={dark} />
-        <div className="flex flex-1 flex-col justify-center py-12">{children}</div>
+      <div className="relative z-10 mx-auto w-full max-w-7xl">
+        <h2 id={`${id}-title`} className="section-heading max-w-[24ch]">
+          <SplitText text={title} />
+        </h2>
+        <div className="mt-12 md:mt-16">{children}</div>
       </div>
     </section>
   );
