@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { at2x } from "@/lib/photoSizes";
 
 const STATEMENTS = [
   "We are Montreal’s venture organization, run by students.",
@@ -20,7 +21,8 @@ export function Hero() {
             alt="Investors on the panel at Demo Day 2026, seen from the audience"
             fill
             priority
-            sizes="100vw"
+            // A portrait screen crops this 3:2 photo to fill its height, so it shows 150vh wide.
+            sizes={at2x("(max-aspect-ratio: 3/2) 150vh, 100vw")}
             className="object-cover object-[50%_25%]"
           />
         </div>
