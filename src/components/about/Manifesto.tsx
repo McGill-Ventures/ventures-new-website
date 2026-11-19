@@ -17,21 +17,28 @@ function Lit({ as: Tag, paragraphs, className }: { as: ElementType; paragraphs: 
   const total = paragraphs.reduce((n, text) => n + text.split(" ").length, 0);
   const step = (LIT_TO - LIT_FROM) / total;
   let index = 0;
-  const lit = (text: string) =>
-    text.split(" ").map((word) => {
-      const i = index++;
-      return (
-        <span
-          key={i}
-          className="about-lit-word"
-          style={{
-            animationRange: `cover ${LIT_FROM + i * step}% cover ${LIT_FROM + (i + 2.5) * step}%`,
-          }}
-        >
-          {word}{" "}
-        </span>
-      );
-    });
+  // Screen readers get the sentence once from a hidden copy, not one node per animated word.
+  const lit = (text: string) => (
+    <>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden>
+        {text.split(" ").map((word) => {
+          const i = index++;
+          return (
+            <span
+              key={i}
+              className="about-lit-word"
+              style={{
+                animationRange: `cover ${LIT_FROM + i * step}% cover ${LIT_FROM + (i + 2.5) * step}%`,
+              }}
+            >
+              {word}{" "}
+            </span>
+          );
+        })}
+      </span>
+    </>
+  );
   return (
     <Tag className={`about-lit ${className}`}>
       {paragraphs.length === 1 ? lit(paragraphs[0]) : paragraphs.map((text) => <p key={text}>{lit(text)}</p>)}
