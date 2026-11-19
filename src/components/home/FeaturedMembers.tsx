@@ -98,14 +98,6 @@ export function FeaturedMembers() {
             Featured members
           </span>
         </h2>
-        <Reveal
-          as="p"
-          delay={200}
-          className="mt-6 max-w-xl font-body text-lg text-purple-900/75 md:text-xl"
-        >
-          Our alumni are ambitious builders, backed by some of the best
-          accelerators and funds in the world.
-        </Reveal>
 
         <div className="mt-12 space-y-6 md:mt-16 md:space-y-8">
           {FOUNDERS.map((founder, i) => (
