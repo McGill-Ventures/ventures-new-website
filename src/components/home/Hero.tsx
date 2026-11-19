@@ -7,8 +7,6 @@ const STATEMENTS = [
   "We bring investors the deals, and startups the talent, coming out of campus.",
 ];
 
-const GUTTER = "px-6 md:px-12 lg:px-16";
-
 /** Pulled up under the transparent header, so `-mt-20` tracks its height.
  *  The photo pins while the statements scroll over it. */
 export function Hero() {
@@ -34,7 +32,7 @@ export function Hero() {
 
       <div className="relative -mt-[100dvh]">
         {/* The nav stays away until the page scrolls, so the hero carries the name. */}
-        <h1 className={`absolute inset-x-0 top-0 pt-6 md:pt-8 ${GUTTER}`}>
+        <h1 className="absolute inset-x-0 top-0 px-6 pt-6 md:px-12 md:pt-8 lg:px-16">
           <Image
             src="/logos/white_logo_transparent.png"
             alt="McGill Ventures"
@@ -47,18 +45,19 @@ export function Hero() {
         </h1>
         <div aria-hidden className="h-[100dvh]" />
 
-        <div
-          className={`flex min-h-[100dvh] flex-col justify-center gap-10 bg-gradient-to-b from-transparent to-black/70 to-25% py-28 lg:gap-14 ${GUTTER}`}
-        >
-          {STATEMENTS.map((statement) => (
-            <p
-              key={statement}
-              className="scroll-fill-track max-w-[21em] text-[clamp(1.6rem,3.5vw,3.5rem)] leading-[1.12] font-medium tracking-[-0.025em] text-balance"
-            >
-              {/* Inline, so the fill runs through the lines in reading order. */}
-              <span className="scroll-fill">{statement}</span>
-            </p>
-          ))}
+        {/* Same column as the sections below, so the statements share their left edge. */}
+        <div className="flex min-h-[100dvh] items-center bg-gradient-to-b from-transparent to-black/70 to-25% px-6 py-28 md:px-12 lg:px-24">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 lg:gap-14">
+            {STATEMENTS.map((statement) => (
+              <p
+                key={statement}
+                className="scroll-fill-track max-w-[21em] text-[clamp(1.6rem,3.5vw,3.5rem)] leading-[1.12] font-medium tracking-[-0.025em] text-balance"
+              >
+                {/* Inline, so the fill runs through the lines in reading order. */}
+                <span className="scroll-fill">{statement}</span>
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </section>
