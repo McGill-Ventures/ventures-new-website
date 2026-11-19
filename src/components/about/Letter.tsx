@@ -14,7 +14,7 @@ export function Letter() {
         </h2>
 
         <Reveal as="figure" delay={200} duration={1100}>
-          <blockquote className="relative [font-family:var(--font-plus-jakarta)] text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.2] font-medium tracking-[-0.02em] text-pretty text-black">
+          <blockquote className="relative text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.2] font-medium tracking-[-0.02em] text-pretty text-black">
             <span
               aria-hidden
               className="absolute top-0 right-full pr-[0.08em]"

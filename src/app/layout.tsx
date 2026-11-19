@@ -1,25 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Manrope, Plus_Jakarta_Sans, Hanken_Grotesk } from "next/font/google";
+import { Space_Grotesk, Plus_Jakarta_Sans, Hanken_Grotesk } from "next/font/google";
 // Every font and stylesheet enters here. <Link> prefetch preloads route-level ones on every page that links to the route.
 import "./globals.css";
 import { syncNav } from "@/lib/navSync";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
+// Growth Studio heading face. No preload, or every main-site page would fetch it unused.
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-space-grotesk",
-});
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-manrope",
+  preload: false,
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -60,7 +50,7 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <head>
       </head>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${manrope.variable} ${plusJakarta.variable} ${hankenGrotesk.variable} font-sans antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${plusJakarta.variable} ${hankenGrotesk.variable} font-sans antialiased`}>
         {children}
         {/* Inline, so the nav reacts to scrolling before the page's JS arrives. */}
         <script dangerouslySetInnerHTML={{ __html: `(${syncNav})()` }} />

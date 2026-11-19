@@ -9,7 +9,7 @@ import { Terms } from "./Terms";
 import type { Program } from "@/app/programs/page";
 
 export const LEDE =
-  "font-medium [font-family:var(--font-plus-jakarta)] leading-[1.22] tracking-[-0.02em] text-pretty text-white";
+  "font-medium leading-[1.22] tracking-[-0.02em] text-pretty text-white";
 
 type BandProps = {
   program: Program;

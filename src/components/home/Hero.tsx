@@ -53,7 +53,7 @@ export function Hero() {
           {STATEMENTS.map((statement) => (
             <p
               key={statement}
-              className="scroll-fill-track max-w-[21em] [font-family:var(--font-plus-jakarta)] text-[clamp(1.6rem,3.5vw,3.5rem)] leading-[1.12] font-medium tracking-[-0.025em] text-balance"
+              className="scroll-fill-track max-w-[21em] text-[clamp(1.6rem,3.5vw,3.5rem)] leading-[1.12] font-medium tracking-[-0.025em] text-balance"
             >
               {/* Inline, so the fill runs through the lines in reading order. */}
               <span className="scroll-fill">{statement}</span>
