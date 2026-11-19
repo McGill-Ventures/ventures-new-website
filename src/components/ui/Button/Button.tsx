@@ -30,10 +30,10 @@ type Props = LinkProps | ActionProps;
    falls back and bounces forever. Widening the hit area only moves that
    edge; keeping the hover target still is the fix. */
 const OUTER =
-  "group relative inline-flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400";
+  "group relative inline-flex rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400";
 
 const FACE =
-  "inline-flex w-full items-center justify-center gap-3 rounded-full font-heading whitespace-nowrap transition-[transform,box-shadow,border-color,background-color,color] duration-300 group-hover:-translate-y-0.5";
+  "inline-flex w-full items-center justify-center gap-3 rounded-xl font-heading whitespace-nowrap transition-[transform,box-shadow,border-color,background-color,color] duration-300 group-hover:-translate-y-0.5";
 
 const VARIANT = {
   primary:
