@@ -4,17 +4,20 @@ import Link from "next/link";
 import { ArrowRight, Check, Mail } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Constellation } from "@/components/fund/Constellation";
 import { FitChecklist } from "@/components/fund/FitChecklist";
-import { Slide, SlideHeader } from "@/components/fund/Slide";
-import { Reveal, SplitText, Starfield } from "@/components/motion";
-import { Button, Tag } from "@/components/ui";
+import { Slide } from "@/components/fund/Slide";
+import { MemberCard } from "@/components/team/MemberCard";
+import { Reveal, SplitText } from "@/components/motion";
+import { Button } from "@/components/ui";
+import { TEAMS } from "@/constants";
 import { cn } from "@/lib/utils";
 import { at2x } from "@/lib/photoSizes";
 
 export const metadata: Metadata = {
   title: "Fund | McGill Ventures",
 };
+
+const FUND_TEAM = TEAMS.find((team) => team.id === "fund")!.groups.flatMap((group) => group.members);
 
 const PROBLEMS = [
   {
@@ -61,6 +64,8 @@ const BACKER_PERKS = [
 
 const DECK_EMAIL = `mailto:mcgillventuresfund@gmail.com?subject=${encodeURIComponent("Fund deck request")}`;
 
+const LABEL = "font-heading text-lg";
+
 export default function Fund() {
   return (
     <div className="min-h-screen bg-black">
@@ -68,55 +73,34 @@ export default function Fund() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main className="relative -mt-20 overflow-clip bg-black text-white">
-        <section
-          className="relative flex min-h-[100dvh] flex-col justify-end px-6 pt-28 pb-16 md:px-12 lg:px-24"
-        >
-          <div
-            aria-hidden
-            className="animate-orb pointer-events-none absolute -top-48 -left-48 size-[36rem] rounded-full bg-purple-600/40 blur-3xl"
+        <section className="relative flex min-h-[100dvh] items-end overflow-hidden">
+          <Image
+            src="/events/polytechniquexventures_2026/fi26_01.webp"
+            alt="A packed atrium at the Financing Innovation fireside chat, seen from above"
+            fill
+            priority
+            sizes={at2x("(max-aspect-ratio: 3/2) 150vh, 100vw")}
+            className="object-cover object-center"
           />
           <div
             aria-hidden
-            className="animate-orb pointer-events-none absolute -right-24 -bottom-40 size-[32rem] rounded-full bg-purple-800/40 blur-3xl [animation-delay:-8s]"
+            className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/30"
           />
-          <Starfield className="[mask-image:linear-gradient(to_bottom,#000_60%,transparent)]" />
-
-          <div className="relative mx-auto w-full max-w-7xl">
-            <Reveal
-              trigger="load"
-              variant="blur"
-              delay={600}
-              duration={1600}
-              className="mb-12 ml-auto w-full max-w-[52rem] md:mb-16"
-            >
-              <Constellation className="h-auto w-full" />
-            </Reveal>
-            <Reveal trigger="load">
-              <Tag>Raising the pilot fund</Tag>
-            </Reveal>
-            <h1 className="mt-6 max-w-5xl font-display text-[clamp(3rem,8vw,7rem)] leading-[0.95]">
+          <div className="relative w-full px-6 pb-16 md:px-12 lg:px-24 lg:pb-24">
+            <h1 className="mx-auto max-w-7xl font-display text-[clamp(3rem,8vw,7rem)] leading-[0.95]">
               <SplitText text="McGill Venture Fund" trigger="load" delay={150} />
             </h1>
-            <Reveal
-              as="p"
-              trigger="load"
-              delay={450}
-              className="mt-6 max-w-2xl font-body text-lg text-pretty text-purple-100/75 md:text-xl"
-            >
-              A student-run pre-seed fund backed by McGill alumni.
-            </Reveal>
           </div>
         </section>
 
-        <section
-          id="problem"
-          aria-labelledby="problem-title"
-          className="relative grid min-h-[100dvh] md:grid-cols-2"
-        >
+        <section aria-labelledby="problem-title" className="grid md:grid-cols-2">
+          <h2 id="problem-title" className="sr-only">
+            The problem
+          </h2>
           {PROBLEMS.map((item, i) => (
             <figure
               key={item.side}
-              className="relative flex min-h-[75dvh] flex-col justify-end md:min-h-0"
+              className="relative flex min-h-[75dvh] flex-col justify-end md:min-h-[85dvh]"
             >
               <Image
                 src={item.photo}
@@ -130,8 +114,6 @@ export default function Fund() {
                 aria-hidden
                 className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/45"
               />
-              {/* The outer edge follows the page container, so these captions
-                  line up with every other slide however wide the screen is. */}
               <figcaption
                 className={cn(
                   "relative px-6 pt-40 pb-14 md:pb-20",
@@ -141,9 +123,7 @@ export default function Fund() {
                 )}
               >
                 <Reveal delay={i * 150}>
-                  <span className="font-heading text-sm tracking-wider text-purple-300 uppercase">
-                    {item.side}
-                  </span>
+                  <p className={cn(LABEL, "text-purple-200")}>{item.side}</p>
                   <p className="mt-3 max-w-xl font-display text-3xl leading-tight text-balance md:text-4xl">
                     {item.problem}
                   </p>
@@ -151,31 +131,17 @@ export default function Fund() {
               </figcaption>
             </figure>
           ))}
-          <div className="absolute inset-x-0 top-0 z-10 px-6 pt-24 md:px-12 lg:px-24">
-            <div className="mx-auto max-w-7xl">
-              <SlideHeader id="problem" title="Problem" dark />
-            </div>
-          </div>
         </section>
 
-        <Slide id="solution" title="Solution" tone="white">
-          <Reveal
-            as="p"
-            className="max-w-5xl font-display text-[clamp(2.5rem,6.5vw,6rem)] leading-[1.02] text-balance"
-          >
-            A student-run fund that fixes <span className="text-purple-600">both sides</span> of
-            the problem.
-          </Reveal>
-          <Reveal delay={200}>
-            <dl className="mt-16 grid gap-8 border-t border-purple-950/10 pt-8 md:grid-cols-2">
+        <Slide id="solution" title="A student-run fund that fixes both sides of the problem" tone="white">
+          <Reveal>
+            <dl className="grid gap-8 border-t border-purple-950/10 pt-8 md:grid-cols-2">
               {[
                 ["Founders get", "Capital, $10K-$50K at pre-seed"],
                 ["Students get", "Real responsibility, not simulations"],
               ].map(([term, value]) => (
                 <div key={term}>
-                  <dt className="font-heading text-sm tracking-wider text-purple-700 uppercase">
-                    {term}
-                  </dt>
+                  <dt className={cn(LABEL, "text-purple-700")}>{term}</dt>
                   <dd className="mt-2 font-display text-2xl md:text-3xl">{value}</dd>
                 </div>
               ))}
@@ -183,19 +149,14 @@ export default function Fund() {
           </Reveal>
         </Slide>
 
-        <Slide id="progress" title="Where we are" tone="purple">
-          <Reveal as="p" className="font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.05]">
-            Building the $500K pilot fund.
-          </Reveal>
-          <div className="mt-14 grid gap-10 md:grid-cols-2 lg:gap-16">
+        <Slide id="progress" title="Building the $500K pilot fund" tone="purple">
+          <div className="grid gap-10 md:grid-cols-2 lg:gap-16">
             {[
               { label: "Now", items: NOW },
               { label: "Once the fund is active", items: NEXT },
             ].map((column, c) => (
-              <Reveal key={column.label} delay={150 + c * 150}>
-                <h3 className="font-heading text-sm tracking-wider text-purple-300 uppercase">
-                  {column.label}
-                </h3>
+              <Reveal key={column.label} delay={c * 150}>
+                <h3 className={cn(LABEL, "text-purple-200")}>{column.label}</h3>
                 <ul className="mt-4">
                   {column.items.map((item) => (
                     <li
@@ -226,33 +187,34 @@ export default function Fund() {
           </Reveal>
         </Slide>
 
-        <Slide id="criteria" title="What we invest in" tone="black">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <Slide id="team" title="The team behind the fund" tone="black">
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:gap-x-6 xl:grid-cols-5">
+            {FUND_TEAM.map((member, i) => (
+              <MemberCard key={member.name} member={member} delay={(i % 5) * 80} />
+            ))}
+          </ul>
+        </Slide>
+
+        <Slide id="criteria" title="Tick all three, then pitch us" tone="purple">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal>
-              <p className="font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.05] text-balance">
-                Tick all three, then pitch us.
-              </p>
-              <p className="mt-6 max-w-md font-body text-lg text-purple-100/75">
-                Any sector works. We often see software, AI, health tech, climate, deep tech
-                and fintech.
-              </p>
-            </Reveal>
-            <Reveal delay={150}>
               <FitChecklist />
+            </Reveal>
+            <Reveal delay={150} as="p" className="max-w-md font-body text-lg text-purple-100/75 lg:pt-5">
+              Any sector works. We often see software, AI, health tech, climate, deep tech and
+              fintech.
             </Reveal>
           </div>
         </Slide>
 
-        <Slide id="ask" title="The ask" tone="white">
+        <Slide id="ask" title="Get involved" tone="white">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-0">
             <Reveal className="lg:pr-16">
-              <h3 className="font-display text-4xl md:text-5xl">Alumni and sponsors</h3>
+              <h3 className="font-display text-3xl md:text-4xl">Alumni and sponsors</h3>
               <p className="mt-5 font-body text-lg text-purple-900/75">
                 An alumni-driven initiative supported by University Advancement.
               </p>
-              <h4 className="mt-8 font-heading text-sm tracking-wider text-purple-700 uppercase">
-                What backers get
-              </h4>
+              <h4 className={cn(LABEL, "mt-8 text-purple-700")}>What backers get</h4>
               <ul className="mt-4 space-y-2.5">
                 {BACKER_PERKS.map((perk) => (
                   <li key={perk} className="flex items-start gap-3 font-body text-purple-950/85">
@@ -270,7 +232,7 @@ export default function Fund() {
               delay={150}
               className="border-t border-purple-950/10 pt-12 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-16"
             >
-              <h3 className="font-display text-4xl md:text-5xl">Students</h3>
+              <h3 className="font-display text-3xl md:text-4xl">Students</h3>
               <p className="mt-5 font-body text-lg text-purple-900/75">
                 Join the Analyst Program. No experience needed, we train you. Top analysts move
                 onto the investment team and work directly on deals.
