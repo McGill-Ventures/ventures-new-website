@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   title: "Fund | McGill Ventures",
 };
 
-// The /team roster is the one source, so a new cohort updates both pages.
 const FUND_TEAM = TEAMS.find((team) => team.id === "fund")!.groups.flatMap((group) => group.members);
 
 const PROBLEMS = [
@@ -80,7 +79,6 @@ export default function Fund() {
             alt="A packed atrium at the Financing Innovation fireside chat, seen from above"
             fill
             priority
-            // A portrait screen crops this 3:2 photo to fill its height, so it shows 150vh wide.
             sizes={at2x("(max-aspect-ratio: 3/2) 150vh, 100vw")}
             className="object-cover object-center"
           />
@@ -116,8 +114,6 @@ export default function Fund() {
                 aria-hidden
                 className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/45"
               />
-              {/* The outer edge follows the page container, so these captions
-                  line up with every other section however wide the screen is. */}
               <figcaption
                 className={cn(
                   "relative px-6 pt-40 pb-14 md:pb-20",

@@ -14,7 +14,6 @@ const TONE: Record<Tone, string> = {
 
 type Props = { id: string; title: string; tone: Tone; children: ReactNode };
 
-/** One section of the fund page: a single headline, then its content, in the landing page's column. */
 export function Slide({ id, title, tone, children }: Props) {
   return (
     <section
