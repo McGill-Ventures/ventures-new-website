@@ -42,7 +42,7 @@ const PROGRAMS = [
   },
   {
     name: "Project Atlas",
-    description: "Connects Montreal's young builders to Canadian and international startup hubs, with San Francisco next.",
+    description: "Connects Montreal's young builders to Canadian and international startup hubs.",
     href: "https://www.project-atlas.ca/",
     external: true,
     photo: "/events/project_atlas/atlas_02.jpg",
