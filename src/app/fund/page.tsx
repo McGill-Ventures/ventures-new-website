@@ -76,13 +76,13 @@ export default function Fund() {
       <main className="relative -mt-20 overflow-clip bg-black text-white">
         <section className="relative flex min-h-[100dvh] items-end overflow-hidden">
           <Image
-            src="/events/demo_day_2026/dd26_04.webp"
-            alt="Investors scoring a startup pitch at Demo Day 2026"
+            src="/events/polytechniquexventures_2026/fi26_01.webp"
+            alt="A packed atrium at the Financing Innovation fireside chat, seen from above"
             fill
             priority
             // A portrait screen crops this 3:2 photo to fill its height, so it shows 150vh wide.
             sizes={at2x("(max-aspect-ratio: 3/2) 150vh, 100vw")}
-            className="object-cover object-[60%_40%]"
+            className="object-cover object-center"
           />
           <div
             aria-hidden
