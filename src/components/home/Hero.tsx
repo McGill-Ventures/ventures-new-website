@@ -2,7 +2,7 @@ import Image from "next/image";
 import { at2x } from "@/lib/photoSizes";
 
 const STATEMENTS = [
-  "We are Montreal’s venture organization, run by students.",
+  "We are Montreal’s leading student-run venture community.",
   "We get students into venture and startups, and give founders hands-on support.",
   "We bring investors the deals, and startups the talent, coming out of campus.",
 ];
