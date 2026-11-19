@@ -42,7 +42,7 @@ export default function Contact() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main id="contact" className="relative -mt-20 overflow-clip bg-black text-white">
-        <section className="relative flex flex-col px-6 pt-[clamp(8rem,25.5dvh,16rem)] pb-16 md:px-12 lg:px-24">
+        <section className="relative flex flex-col px-6 pt-[clamp(8rem,25.5svh,16rem)] pb-16 md:px-12 lg:px-24">
           <div
             aria-hidden
             className="animate-orb pointer-events-none absolute -top-48 -left-48 size-[36rem] rounded-full bg-purple-600/40 blur-3xl"

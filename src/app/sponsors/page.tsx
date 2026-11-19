@@ -192,7 +192,7 @@ export default function Sponsors() {
       <Navigation currentPage="/sponsors" />
 
       <main className="text-purple-950">
-        <section className="relative -mt-20 flex min-h-[100dvh] items-end overflow-hidden bg-black text-white">
+        <section className="relative -mt-20 flex min-h-[100svh] items-end overflow-hidden bg-black text-white">
           <Image
             src="/community/members_group.jpg"
             alt="McGill Ventures members together"

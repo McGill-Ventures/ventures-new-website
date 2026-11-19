@@ -17,7 +17,7 @@ export function Why() {
         comets={false}
         className="[mask-image:radial-gradient(120%_90%_at_20%_35%,#000_35%,transparent_75%)]"
       />
-      <div className="relative z-10 flex min-h-[100dvh] items-center px-6 py-20 md:px-12 lg:px-24">
+      <div className="relative z-10 flex min-h-[100svh] items-center px-6 py-20 md:px-12 lg:px-24">
         <div className="mx-auto w-full max-w-7xl">
           <h2 className="section-heading">
             <SplitText text="Why McGill Ventures" />

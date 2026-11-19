@@ -28,7 +28,7 @@ const TERMS = [
 
 export function TermSheet() {
   return (
-    <section className="flex min-h-[100dvh] items-center overflow-hidden bg-purple-50/60 px-6 py-24 md:px-12 lg:px-24">
+    <section className="flex min-h-[100svh] items-center overflow-hidden bg-purple-50/60 px-6 py-24 md:px-12 lg:px-24">
       <div className="mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <div>
           <h2 className="section-heading text-black">

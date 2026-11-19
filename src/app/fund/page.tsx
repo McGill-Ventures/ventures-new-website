@@ -73,7 +73,7 @@ export default function Fund() {
 
       {/* Pulled up under the transparent header, so `-mt-20` tracks its height. */}
       <main className="relative -mt-20 overflow-clip bg-black text-white">
-        <section className="relative flex min-h-[100dvh] items-end overflow-hidden">
+        <section className="relative flex min-h-[100svh] items-end overflow-hidden">
           <Image
             src="/events/polytechniquexventures_2026/fi26_01.webp"
             alt="A packed atrium at the Financing Innovation fireside chat, seen from above"
@@ -100,7 +100,7 @@ export default function Fund() {
           {PROBLEMS.map((item, i) => (
             <figure
               key={item.side}
-              className="relative flex min-h-[75dvh] flex-col justify-end md:min-h-[85dvh]"
+              className="relative flex min-h-[75svh] flex-col justify-end md:min-h-[85svh]"
             >
               <Image
                 src={item.photo}

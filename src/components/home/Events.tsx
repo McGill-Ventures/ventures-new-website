@@ -44,7 +44,7 @@ function StripPhoto({ src }: { src: string }) {
 
 export function Events() {
   return (
-    <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-black py-10 text-white">
+    <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-black py-10 text-white">
       <Starfield
         count={170}
         className="[mask-image:linear-gradient(to_bottom,#000_38%,transparent_62%)]"

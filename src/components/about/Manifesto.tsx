@@ -54,7 +54,7 @@ export function Manifesto() {
         aria-hidden
         className="pointer-events-none absolute -top-40 right-0 size-[34rem] rounded-full bg-purple-600/30 blur-3xl"
       />
-      <div className="relative z-10 flex min-h-[100dvh] items-center px-6 py-24 md:px-12 lg:px-24">
+      <div className="relative z-10 flex min-h-[100svh] items-center px-6 py-24 md:px-12 lg:px-24">
         <div className="mx-auto w-full max-w-7xl">
           <Lit
             as="h2"

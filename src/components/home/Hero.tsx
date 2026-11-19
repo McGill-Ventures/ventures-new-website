@@ -12,7 +12,7 @@ const STATEMENTS = [
 export function Hero() {
   return (
     <section id="hero" className="relative -mt-20 bg-black text-white">
-      <div className="sticky top-0 h-[100dvh] overflow-hidden">
+      <div className="sticky top-0 h-[100lvh] overflow-hidden">
         <div className="hero-push absolute inset-0">
           <Image
             src="/events/demo_day_2026/dd26_10.webp"
@@ -30,7 +30,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="relative -mt-[100dvh]">
+      <div className="relative -mt-[100lvh]">
         {/* The nav stays away until the page scrolls, so the hero carries the name. */}
         <h1 className="absolute inset-x-0 top-0 px-6 pt-6 md:px-12 md:pt-8 lg:px-16">
           <Image
@@ -43,10 +43,10 @@ export function Hero() {
             className="h-auto w-full"
           />
         </h1>
-        <div aria-hidden className="h-[100dvh]" />
+        <div aria-hidden className="h-[100svh]" />
 
         {/* Same column as the sections below, so the statements share their left edge. */}
-        <div className="flex min-h-[100dvh] items-center bg-gradient-to-b from-transparent to-black/70 to-25% px-6 py-28 md:px-12 lg:px-24">
+        <div className="flex min-h-[100svh] items-center bg-gradient-to-b from-transparent to-black/70 to-25% px-6 py-28 md:px-12 lg:px-24">
           <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 lg:gap-14">
             {STATEMENTS.map((statement) => (
               <p
