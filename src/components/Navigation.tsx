@@ -35,7 +35,7 @@ const GLASS_DARK =
 const ROLL =
   "block transition-transform duration-[260ms] ease-[cubic-bezier(.6,0,.2,1)] motion-reduce:transition-none";
 
-export default function Navigation({ currentPage, lightHero }: NavigationProps) {
+export default function Navigation({ currentPage, lightHero, hideAtTop }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -76,6 +76,8 @@ export default function Navigation({ currentPage, lightHero }: NavigationProps) 
         ref={headerRef}
         data-nav=""
         data-on-dark={lightHero ? undefined : ""}
+        data-hide-at-top={hideAtTop ? "" : undefined}
+        data-at-top={hideAtTop ? "" : undefined}
         suppressHydrationWarning
         className="group/nav pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-4"
       >
@@ -87,7 +89,7 @@ export default function Navigation({ currentPage, lightHero }: NavigationProps) 
             isMobileMenuOpen ? "pointer-events-auto opacity-100" : "opacity-0"
           )}
         />
-        <div className="pointer-events-auto relative mx-auto max-w-7xl lg:w-fit">
+        <div className="pointer-events-auto relative mx-auto max-w-7xl transition-[translate,opacity] duration-500 ease-out group-data-hide-at-top/nav:group-data-at-top/nav:not-focus-within:-translate-y-[150%] group-data-hide-at-top/nav:group-data-at-top/nav:not-focus-within:opacity-0 motion-reduce:transition-none lg:w-fit">
           <nav
             aria-label="Main"
             className={cn(
