@@ -42,7 +42,7 @@ const PROGRAMS = [
   },
   {
     name: "Project Atlas",
-    description: "Connects Montreal's young builders to Canadian and international startup hubs, with San Francisco next.",
+    description: "Connects Montreal's young builders to Canadian and international startup hubs.",
     href: "https://www.project-atlas.ca/",
     external: true,
     photo: "/events/project_atlas/atlas_02.jpg",
@@ -63,7 +63,7 @@ function NewTab({ program }: { program: Program }) {
 function Panels() {
   const [active, setActive] = useState(0);
   return (
-    <ul className="hidden h-[36rem] gap-3 can-hover:xl:flex">
+    <ul className="hidden h-[36rem] gap-3 can-hover:min-[1200px]:flex">
       {PROGRAMS.map((program, i) => {
         const open = i === active;
         return (
@@ -93,20 +93,20 @@ function Panels() {
                 )}
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/5" />
-              <div className="absolute inset-x-0 bottom-0 p-5 text-white 2xl:p-7">
-                <div className="grid items-end">
+              <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                <div className="grid grid-cols-1 items-end">
                   <div
                     aria-hidden
                     className={cn(
-                      "col-start-1 row-start-1 w-[6.5rem] transition-opacity duration-300 motion-reduce:transition-none",
+                      "col-start-1 row-start-1 transition-opacity duration-300 motion-reduce:transition-none",
                       open ? "opacity-0" : "opacity-100 delay-200",
                     )}
                   >
-                    <p className="font-display text-xl leading-tight">{program.name}</p>
+                    <p className="font-display text-lg leading-tight min-[1440px]:text-xl">{program.name}</p>
                   </div>
                   <div
                     className={cn(
-                      "col-start-1 row-start-1 w-[22rem] transition-opacity duration-300 motion-reduce:transition-none",
+                      "col-start-1 row-start-1 w-[min(28rem,calc((100vw-15rem)*0.4-2.5rem))] transition-opacity duration-300 motion-reduce:transition-none",
                       open ? "opacity-100 delay-200" : "opacity-0",
                     )}
                   >
@@ -118,7 +118,7 @@ function Panels() {
                 </div>
                 <div
                   className={cn(
-                    "grid w-[22rem] transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none",
+                    "grid w-[min(28rem,calc((100vw-15rem)*0.4-2.5rem))] transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none",
                     open ? "grid-rows-[1fr] opacity-100 delay-200" : "grid-rows-[0fr] opacity-0",
                   )}
                 >
@@ -137,7 +137,7 @@ function Panels() {
 
 function List() {
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 can-hover:xl:hidden">
+    <ul className="grid gap-4 sm:grid-cols-2 can-hover:min-[1200px]:hidden">
       {PROGRAMS.map((program) => (
         <li key={program.name}>
           <Link
@@ -180,7 +180,7 @@ export function Programs() {
           <SplitText text="Every path into venture, under one roof" />
         </h2>
 
-        <Reveal delay={250} className="mt-12 can-hover:xl:mt-14">
+        <Reveal delay={250} className="mt-12 can-hover:min-[1200px]:mt-14">
           <Panels />
           <List />
         </Reveal>
