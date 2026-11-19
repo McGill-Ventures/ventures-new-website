@@ -142,16 +142,3 @@
 @keyframes about-lit-word {
   from { opacity: 0.16; }
 }
-
-/* The Manifesto's contour pattern drifts slowly. Transform only, so it never repaints the full-screen layer.
-   The layer overhangs the section (-inset 20% / 10%), which keeps its edges out of view while it moves. */
-@media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
-  .about-contour-drift {
-    animation: about-contour-drift 30s ease-in-out infinite alternate;
-  }
-}
-
-@keyframes about-contour-drift {
-  from { transform: translate3d(-4%, -3%, 0) rotate(-2deg); }
-  to { transform: translate3d(4%, 3%, 0) rotate(2deg); }
-}
