@@ -25,6 +25,8 @@ export function syncNav(header = document.querySelector<NavHeader>("[data-nav]")
       break;
     }
     header.toggleAttribute("data-on-dark", dark);
+    // Only read by a bar that opts in with data-hide-at-top.
+    header.toggleAttribute("data-at-top", window.scrollY < 80);
   };
   update();
   // Scroll and resize already fire at most once per frame.

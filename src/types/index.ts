@@ -2,6 +2,8 @@ export interface NavigationProps {
   currentPage?: string;
   /** The page opens on a light hero, so the nav starts light before it can measure. */
   lightHero?: boolean;
+  /** Keeps the bar off screen until the page scrolls, for a hero that opens on its own wordmark. */
+  hideAtTop?: boolean;
 }
 
 export interface TeamMember {

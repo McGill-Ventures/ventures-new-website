@@ -9,7 +9,7 @@ import { FeaturedMembers } from "@/components/home/FeaturedMembers";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation currentPage="/" />
+      <Navigation currentPage="/" hideAtTop />
       <Hero />
       <Programs />
       <Events />
