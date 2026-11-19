@@ -42,7 +42,7 @@ export function Hero() {
         </div>
 
         <div className="about-hero-mask absolute inset-0 flex items-center justify-center bg-black px-4 pb-[10vh] mix-blend-multiply">
-          <h1 className="w-min text-center [font-family:var(--font-plus-jakarta)] text-[min(22vw,30vh)] leading-[0.82] font-extrabold tracking-[-0.055em] text-white">
+          <h1 className="w-min text-center text-[min(22vw,30vh)] leading-[0.82] font-extrabold tracking-[-0.055em] text-white">
             <SplitText
               text="McGill Ventures"
               trigger="load"

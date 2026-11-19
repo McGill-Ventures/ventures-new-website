@@ -21,23 +21,20 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  /* One family across the main site. Growth Studio sets its own on .gs-root. */
+  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
 }
 
 .font-heading {
-  font-family: var(--font-space-grotesk), var(--font-manrope), sans-serif;
   font-weight: 600;
-  letter-spacing: -0.02em;
 }
 
 .font-display {
-  font-family: var(--font-plus-jakarta), var(--font-space-grotesk), sans-serif;
   font-weight: 700;
   letter-spacing: -0.03em;
 }
 
 .section-heading {
-  font-family: var(--font-plus-jakarta), var(--font-space-grotesk), sans-serif;
   font-weight: 700;
   letter-spacing: -0.03em;
   font-size: clamp(2.25rem, 4.5vw, 4.25rem);
@@ -46,7 +43,6 @@ body {
 }
 
 .font-body {
-  font-family: var(--font-manrope), var(--font-inter), sans-serif;
   font-weight: 400;
   line-height: 1.6;
 }
