@@ -200,8 +200,28 @@ export default function Footer({
             </div>
           </Reveal>
 
-          <div className="mt-8 border-t border-white/15 pt-6 font-body text-sm text-white/45">
-            © {currentYear} McGill Ventures. All rights reserved.
+          <div className="mt-8 flex flex-col-reverse gap-6 border-t border-white/15 pt-6 font-body text-sm text-white/45 md:flex-row md:items-center md:justify-between">
+            <p>© {currentYear} McGill Ventures. All rights reserved.</p>
+            <a
+              href="https://www.musmcgill.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 transition-colors hover:text-white"
+            >
+              <Image
+                src="/logos/mus_white.png"
+                alt=""
+                width={300}
+                height={299}
+                className="size-10"
+              />
+              <span className="text-balance">
+                An official club of the McGill{" "}
+                <br className="max-md:hidden" />
+                Management Undergraduate Society
+              </span>
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
           </div>
         </div>
       </div>
